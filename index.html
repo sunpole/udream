@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Символон — выбор версии дизайна</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Inter', sans-serif;
+            background: #faf7f2;
+            color: #2c2825;
+            padding: 2rem 1rem;
+            line-height: 1.4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .sub {
+            color: #7a6a5c;
+            margin-bottom: 2rem;
+        }
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            width: 180px;
+            text-align: center;
+            text-decoration: none;
+            color: #2c2825;
+            border: 1px solid #ede3d8;
+            transition: all 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #dacbbc;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+        }
+        .version {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .desc {
+            font-size: 0.85rem;
+            color: #6b5b4e;
+        }
+        .badge {
+            background: #e2d4c8;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin-top: 0.8rem;
+        }
+        footer {
+            margin-top: 3rem;
+            font-size: 0.75rem;
+            color: #a6937f;
+            border-top: 1px solid #ece0d4;
+            padding-top: 1.5rem;
+        }
+        @media (max-width: 500px) {
+            .card {
+                width: 140px;
+                padding: 1rem;
+            }
+            .version {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>✦ Символон</h1>
+    <div class="sub">христианский сонник — выберите версию интерфейса</div>
+    <div class="grid">
+        <a href="/002/" class="card">
+            <div class="version">002</div>
+            <div class="desc">современный, гамбургер-меню</div>
+            <span class="badge">посмотреть →</span>
+        </a>
+        <a href="/003/" class="card">
+            <div class="version">003</div>
+            <div class="desc">крупный, контрастный, для 40+</div>
+            <span class="badge">посмотреть →</span>
+        </a>
+        <a href="/004/" class="card">
+            <div class="version">004</div>
+            <div class="desc">«стеклянный» стиль</div>
+            <span class="badge">посмотреть →</span>
+        </a>
+        <a href="/005/" class="card">
+            <div class="version">005 ⭐</div>
+            <div class="desc">финальный, улучшенный контраст</div>
+            <span class="badge">посмотреть →</span>
+        </a>
+    </div>
+    <footer>
+        Все версии адаптивны, работают на телефоне и ПК<br>
+        <a href="https://github.com/sunpole/udream" style="color:#8b715b;">GitHub репозиторий</a>
+    </footer>
+</div>
+</body>
+</html>
