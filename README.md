@@ -41,7 +41,7 @@
 
 | Телефон | Ноутбук |
 |---------|---------|
-| ![мобильная версия](screenshot-mobile.png) | ![десктоп версия](screenshot-desktop.png) |
+| ![мобильная версия](screenshot-mobile.jpg) | ![десктоп версия](screenshot-desktop.jpg) |
 
 > Скриншоты будут добавлены позже. Пока можно открыть [демо](https://sunpole.github.io/udream/005/) на своём устройстве.
 
