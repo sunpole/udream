@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Символон | Христианский сонник</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background: #faf7f2;
+            color: #2c2825;
+            line-height: 1.5;
+        }
+
+        /* контейнер */
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== ШАПКА — компактная, без гамбургера ===== */
+        .top-bar {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9e0d5;
+            background: rgba(250, 247, 242, 0.92);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .top-bar-inner {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 550;
+            letter-spacing: -0.3px;
+            color: #4a3a2c;
+        }
+        .logo p {
+            font-size: 0.7rem;
+            color: #8c7a68;
+            margin-top: 2px;
+        }
+
+        /* компактная группа переключателей */
+        .settings-group {
+            display: flex;
+            gap: 0.5rem;
+            background: #f1ece4;
+            padding: 0.25rem;
+            border-radius: 48px;
+        }
+        .setting-btn {
+            background: transparent;
+            border: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: inherit;
+            color: #5c4b3a;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .setting-btn i {
+            font-size: 0.8rem;
+        }
+        .setting-btn.active {
+            background: white;
+            color: #3c2c1e;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        /* ===== ПОИСК ===== */
+        .search-block {
+            margin: 2rem 0 1rem;
+        }
+        .search-field {
+            background: white;
+            border-radius: 56px;
+            display: flex;
+            align-items: center;
+            padding: 0.2rem 0.2rem 0.2rem 1.5rem;
+            border: 1px solid #e2d7cc;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .search-field:focus-within {
+            border-color: #b8a086;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .search-field i {
+            color: #b9a48b;
+        }
+        #searchInput {
+            flex: 1;
+            border: none;
+            padding: 1rem 0.8rem;
+            font-size: 1rem;
+            background: transparent;
+            font-family: inherit;
+            outline: none;
+        }
+        .search-field button {
+            background: #e2d4c8;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 48px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            color: #4a3728;
+        }
+
+        /* автодополнение (демо) */
+        .autocomplete-preview {
+            margin-top: 0.5rem;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.12);
+            border: 1px solid #efe4d8;
+            overflow: hidden;
+            display: none;
+        }
+        .search-field:focus-within + .autocomplete-preview,
+        .autocomplete-preview:hover {
+            display: block;
+        }
+        .auto-sugg {
+            padding: 0.7rem 1.2rem;
+            border-bottom: 1px solid #f7efe7;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .auto-sugg i {
+            margin-right: 0.8rem;
+            width: 1.4rem;
+            color: #b18f6e;
+        }
+
+        /* теги */
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.2rem 0 1.5rem;
+        }
+        .tag {
+            background: #efe7df;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #5b4232;
+            cursor: pointer;
+        }
+
+        /* карточки результатов */
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.6rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid #ede3d8;
+            transition: 0.15s;
+        }
+        .card:hover {
+            border-color: #dacbbc;
+        }
+        .card-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .symbol-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #3a2c21;
+            letter-spacing: -0.2px;
+        }
+        .date {
+            font-size: 0.7rem;
+            background: #f6f0ea;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            color: #8b715b;
+        }
+        .bible {
+            background: #fef6ea;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 28px;
+            font-size: 0.8rem;
+            color: #a07d58;
+            margin: 0.5rem 0;
+        }
+        .desc {
+            color: #3f3730;
+            margin: 1rem 0;
+            line-height: 1.55;
+            font-size: 0.95rem;
+        }
+        .symbol-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+        .st {
+            background: #f1eae2;
+            border-radius: 24px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #a6937f;
+            border-top: 1px solid #ece0d4;
+            padding: 2rem 0;
+            margin-top: 1rem;
+        }
+
+        /* адаптив для телефонов */
+        @media (max-width: 580px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .top-bar-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .settings-group {
+                align-self: flex-start;
+            }
+            .symbol-name {
+                font-size: 1.5rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+            .search-field button {
+                padding: 0.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container top-bar-inner">
+        <div class="logo">
+            <h1>✦ символон</h1>
+            <p>христианский сонник · толкование по Слову</p>
+        </div>
+        <div class="settings-group">
+            <button class="setting-btn active" id="themeLightBtn"><i class="fas fa-sun"></i> <span>Светлая</span></button>
+            <button class="setting-btn" id="themeDarkBtn"><i class="fas fa-moon"></i> <span>Тёмная</span></button>
+            <div style="width:1px; background:#ddd; margin:0 2px;"></div>
+            <button class="setting-btn active" id="langRuBtn">Рус</button>
+            <button class="setting-btn" id="LangEnBtn">En</button>
+        </div>
+    </div>
+</div>
+
+<main class="container">
+    <div class="search-block">
+        <div class="search-field">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Искать символ... например, пчела, вода, церковь" value="пчела">
+            <button><i class="fas fa-arrow-right"></i> Найти</button>
+        </div>
+        <!-- автодополнение (демо интерфейса) -->
+        <div class="autocomplete-preview">
+            <div class="auto-sugg"><i class="fas fa-bug"></i> пчела</div>
+            <div class="auto-sugg"><i class="fas fa-tint"></i> вода</div>
+            <div class="auto-sugg"><i class="fas fa-car"></i> автомобиль</div>
+            <div class="auto-sugg"><i class="fas fa-church"></i> церковь</div>
+            <div class="auto-sugg"><i class="fas fa-fire"></i> огонь</div>
+        </div>
+        <div class="tag-list">
+            <span class="tag">🐾 животные</span>
+            <span class="tag">💧 стихии</span>
+            <span class="tag">🚗 транспорт</span>
+            <span class="tag">⛪ духовное</span>
+            <span class="tag">🤝 служение</span>
+        </div>
+    </div>
+
+    <!-- Примеры 5 слов: короткие, средние, длинное описание -->
+    <div class="results">
+        <!-- 1. Пчела (короткое) -->
+        <div class="card">
+            <div class="card-header">
+                <span class="symbol-name">🐝 Пчела</span>
+                <span class="date">добавлено 12.03.2025</span>
+            </div>
+            <div class="bible">📖 Судьи 14:8 — рой пчёл в трупе льва</div>
+            <div class="desc">
+                Трудолюбие, общинность, собирание мудрости. Пчела во сне указывает на необходимость усердия в малых делах и командную работу. Ужаление — предупреждение об осторожности в словах.
+            </div>
+            <div class="symbol-tags"><span class="st">животные</span><span class="st">труд</span><span class="st">община</span></div>
+        </div>
+
+        <!-- 2. Вода (среднее) -->
+        <div class="card">
+            <div class="card-header">
+                <span class="symbol-name">💧 Вода</span>
+                <span class="date">добавлено 05.02.2025</span>
+            </div>
+            <div class="bible">📖 Иоанна 4:14 — вода живая</div>
+            <div class="desc">
+                Чистая вода — образ Святого Духа, очищение, обновление. Мутная — сомнения, греховные мысли. Пить воду — насыщение благодатью. Наводнение — испытания, но Бог даёт спасение. Источник — начало служения.
+            </div>
+            <div class="symbol-tags"><span class="st">стихия</span><span class="st">очищение</span><span class="st">Дух Святой</span></div>
+        </div>
+
+        <!-- 3. Автомобиль (среднее/развёрнутое) -->
+        <div class="card">
+            <div class="card-header">
+                <span class="symbol-name">🚗 Автомобиль</span>
+                <span class="date">добавлено 20.01.2025</span>
+            </div>
+            <div class="bible">📖 Деяния 8:28 — колесница Филиппа</div>
+            <div class="desc">
+                Управлять машиной — контроль над жизненным путём. Сломанная машина — нужен духовный «ремонт», покаяние. Ехать быстро — суета, медленно — размышление. Пассажир — доверие Божьему водительству. Новая машина — новые начинания.
+            </div>
+            <div class="symbol-tags"><span class="st">транспорт</span><span class="st">путь</span><span class="st">служение</span></div>
+        </div>
+
+        <!-- 4. Церковь (очень длинное описание) -->
+        <div class="card">
+            <div class="card-header">
+                <span class="symbol-name">⛪ Церковь / Храм</span>
+                <span class="date">добавлено 15.11.2024</span>
+            </div>
+            <div class="bible">📖 1 Коринфянам 3:16 — вы храм Божий</div>
+            <div class="desc">
+                <strong>Развёрнутое толкование:</strong> Видеть церковь во сне — отражение духовного состояния. Светлый, полный людей храм — общение с верующими, укрепление. Заброшенная церковь — охлаждение, удаление от Бога. Быть внутри без чувства присутствия — формальное христианство. Строить храм — участие в Божьих проектах. Слышать пение — утешение, ангельское присутствие. Алтарь или открытые небеса — призыв к молитве. Разрушающийся храм — предупреждение о лжеучениях. Выходить с лёгкостью — разрешение конфликта. Не пускают внутрь — проверьте, нет ли неисповеданного греха. Длинный сон о восстановлении стен — исцеление отношений в общине.
+            </div>
+            <div class="symbol-tags"><span class="st">святость</span><span class="st">община</span><span class="st">поклонение</span><span class="st">покаяние</span></div>
+        </div>
+
+        <!-- 5. Огонь (короткое) -->
+        <div class="card">
+            <div class="card-header">
+                <span class="symbol-name">🔥 Огонь</span>
+                <span class="date">добавлено 02.12.2024</span>
+            </div>
+            <div class="bible">📖 Деяния 2:3 — огненные языки</div>
+            <div class="desc">
+                Огонь — Божье присутствие, сила Духа или испытание. Горящий куст (как Моисею) — призыв к святости. Пожар без уничтожения — духовная ревность. Огонь, сжигающий вещи — избавление от греховных привязанностей.
+            </div>
+            <div class="symbol-tags"><span class="st">Дух Святой</span><span class="st">очищение</span><span class="st">горение</span></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <i class="fas fa-feather-alt"></i> Символон · база 340+ символов · поиск по названию и описанию<br>
+        ✦ премиальная версия без гамбургера ✦
+    </div>
+</main>
+</body>
+</html>
