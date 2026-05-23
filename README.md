@@ -50,8 +50,3 @@
 ---
 
 ## Как запустить у себя
-
-```bash
-git clone https://github.com/ваш-логин/udream.git
-cd udream
-# просто откройте index.html в браузере
