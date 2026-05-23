@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Символон — Админка сонника (исправленная)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        *{ margin:0; padding:0; box-sizing:border-box; }
+        body{
+            font-family:'Inter',sans-serif;
+            background:#f5efe7;
+            color:#2c2825;
+            line-height:1.4;
+            transition:background 0.2s, color 0.2s;
+            padding-bottom: 80px;
+        }
+        body.dark{ background:#1e1b18; color:#e2e0dd; }
+        body.dark .card, body.dark .search-field, body.dark .alphabet-row span, body.dark .top-bar, body.dark .menu-panel, body.dark .modal-card,
+        body.dark .word-item, body.dark .autocomplete-list{ background:#2a2622; border-color:#3e3a36; color:#e2e0dd; }
+        body.dark input, body.dark textarea{ background:#3b3630; color:#fff; border-color:#5a524a; }
+        body.dark .mini-btn.active{ background:#4a4036; color:white; }
+        /* шапка */
+        .top-bar{
+            position:sticky; top:0; z-index:100;
+            background:rgba(250,247,242,0.96); backdrop-filter:blur(8px);
+            border-bottom:1px solid #e6ddd2;
+            padding:0.5rem 1rem;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            gap:0.5rem;
+        }
+        .logo{ font-size:1.2rem; font-weight:600; }
+        .logo small{ font-size:0.6rem; font-weight:400; }
+        .tool-group{
+            display:flex;
+            gap:0.3rem;
+            align-items:center;
+            background:#f1ece4;
+            border-radius:40px;
+            padding:0.2rem;
+        }
+        .mini-btn{
+            background:transparent;
+            border:none;
+            padding:0.3rem 0.7rem;
+            border-radius:30px;
+            font-size:0.7rem;
+            font-weight:500;
+            cursor:pointer;
+            transition:0.1s;
+            display:inline-flex;
+            align-items:center;
+            gap:0.2rem;
+        }
+        .mini-btn.active{ background:white; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+        .burger{
+            font-size:1.2rem;
+            background:#f1ece4;
+            border-radius:30px;
+            padding:0.3rem 0.7rem;
+            cursor:pointer;
+        }
+        .menu-panel{
+            position:fixed; top:0; right:-280px; width:260px;
+            height:100%; background:#fffaf5;
+            box-shadow:-4px 0 12px rgba(0,0,0,0.1);
+            transition:right 0.2s;
+            z-index:200;
+            padding:1.2rem;
+            display:flex;
+            flex-direction:column;
+            gap:1rem;
+            border-left:1px solid #e2d7cc;
+        }
+        .menu-panel.open{ right:0; }
+        .menu-overlay{
+            position:fixed; inset:0; background:rgba(0,0,0,0.2);
+            z-index:150; display:none;
+        }
+        .menu-overlay.open{ display:block; }
+        .stats-line{ font-size:0.75rem; background:#f1ece4; padding:0.5rem; border-radius:16px; }
+        .mode-container{
+            max-width:1200px;
+            margin:1rem auto;
+            padding:0 1rem;
+        }
+        .alphabet-row{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:0.3rem;
+            margin-bottom:1rem;
+        }
+        .alpha-letter{
+            background:#e9dfd3;
+            border-radius:20px;
+            padding:0.2rem 0.6rem;
+            font-size:0.8rem;
+            cursor:pointer;
+        }
+        .alpha-letter.active{ background:#b8a086; color:white; }
+        .filter-sources{
+            display:flex;
+            flex-wrap:wrap;
+            gap:0.8rem;
+            align-items:center;
+            margin-bottom:1rem;
+            background:#f1ece4;
+            padding:0.5rem;
+            border-radius:24px;
+        }
+        .filter-sources label{
+            font-size:0.75rem;
+            display:inline-flex;
+            align-items:center;
+            gap:0.3rem;
+            cursor:pointer;
+        }
+        .word-list{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.6rem;
+            max-height: 65vh;
+            overflow-y: auto;
+            padding: 0.2rem;
+        }
+        .word-item{
+            background:white;
+            border-radius:20px;
+            padding:0.6rem 0.8rem;
+            border:1px solid #ede3d8;
+            cursor:pointer;
+            font-weight:500;
+            text-align: center;
+            transition: all 0.1s;
+        }
+        .word-item:hover{ background:#f1ece4; transform:translateY(-2px); }
+        .card{
+            background:white;
+            border-radius:28px;
+            padding:1rem;
+            margin-bottom:1rem;
+            border:1px solid #ede3d8;
+        }
+        .search-field{
+            display:flex;
+            background:white;
+            border-radius:60px;
+            border:1px solid #e2d7cc;
+            padding:0.2rem 0.2rem 0.2rem 1rem;
+            margin-bottom:0.5rem;
+            position:relative;
+        }
+        .search-field input{
+            flex:1;
+            border:none;
+            padding:0.6rem 0;
+            font-size:0.9rem;
+            background:transparent;
+            outline:none;
+        }
+        .search-field button{
+            background:#e2d4c8;
+            border:none;
+            border-radius:40px;
+            padding:0.4rem 1rem;
+            font-weight:500;
+        }
+        .autocomplete-list{
+            position:absolute;
+            top:100%;
+            left:0;
+            right:0;
+            background:white;
+            border:1px solid #e2d7cc;
+            border-radius:20px;
+            max-height:200px;
+            overflow-y:auto;
+            z-index:50;
+            display:none;
+        }
+        .autocomplete-list.show{ display:block; }
+        .autocomplete-item{
+            padding:0.4rem 1rem;
+            cursor:pointer;
+        }
+        .autocomplete-item:hover{ background:#f1ece4; }
+        .search-options{
+            display:flex;
+            gap:0.5rem;
+            margin-bottom:1rem;
+            flex-wrap:wrap;
+        }
+        .opt-btn{
+            font-size:0.7rem;
+            background:#f1ece4;
+            border-radius:20px;
+            padding:0.2rem 0.8rem;
+            cursor:pointer;
+        }
+        .opt-btn.active{ background:#b8a086; color:white; }
+        .create-fab{
+            position:fixed;
+            bottom:1.5rem;
+            right:1.5rem;
+            background:#b8a086;
+            color:white;
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 4px 12px rgba(0,0,0,0.2);
+            cursor:pointer;
+            z-index:90;
+        }
+        .hidden{ display:none; }
+        .modal{
+            position:fixed; inset:0; background:rgba(0,0,0,0.6);
+            display:flex; align-items:center; justify-content:center;
+            z-index:300;
+        }
+        .modal-card{
+            background:white;
+            max-width:90%;
+            width:550px;
+            border-radius:32px;
+            padding:1.2rem;
+            max-height:85%;
+            overflow:auto;
+        }
+        .form-group{ margin-bottom:1rem; }
+        .form-group label{ font-weight:600; display:block; margin-bottom:0.3rem; font-size:0.8rem; }
+        .form-group input, .form-group textarea{ width:100%; padding:0.5rem; border-radius:16px; border:1px solid #ddd; font-family:inherit; }
+        .spinner{ border:2px solid #f3f3f3; border-top:2px solid #b8a086; border-radius:50%; width:20px; height:20px; animation:spin 0.8s linear infinite; display:inline-block; margin-left:8px; vertical-align:middle; }
+        @keyframes spin{ 0%{ transform:rotate(0deg); } 100%{ transform:rotate(360deg); } }
+        /* модалка инструкции */
+        .help-modal .help-modal-content{
+            background:#fffaf5;
+            max-width:600px;
+            width:90%;
+            max-height:80%;
+            overflow-y:auto;
+            border-radius:32px;
+            padding:1.5rem;
+            position:relative;
+        }
+        body.dark .help-modal-content{ background:#2a2622; color:#e2e0dd; }
+        .help-tabs{ display:flex; gap:0.5rem; margin-bottom:1rem; border-bottom:1px solid #e2d7cc; }
+        .help-tab{ padding:0.3rem 0.8rem; cursor:pointer; border-radius:20px 20px 0 0; }
+        .help-tab.active{ background:#b8a086; color:white; }
+        .help-content{ display:none; }
+        .help-content.active{ display:block; }
+        @media (max-width:600px){
+            .top-bar{ padding:0.3rem 0.8rem; }
+            .logo{ font-size:1rem; }
+            .mini-btn{ padding:0.2rem 0.5rem; font-size:0.65rem; }
+            .modal-card{ width:95%; padding:1rem; }
+            .word-list{ grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="logo">✦ символон <small>админка</small></div>
+    <div class="tool-group">
+        <button id="modeListBtn" class="mini-btn active"><i class="fas fa-list"></i> <span>Список</span></button>
+        <button id="modeCardBtn" class="mini-btn"><i class="fas fa-id-card"></i> <span>Карточка</span></button>
+        <div style="width:1px; background:#ccc; margin:0 2px;"></div>
+        <button id="themeToggle" class="mini-btn"><i class="fas fa-sun"></i> Тема</button>
+        <div class="burger" id="burgerBtn"><i class="fas fa-bars"></i></div>
+    </div>
+</div>
+<div class="menu-overlay" id="menuOverlay"></div>
+<div id="menuPanel" class="menu-panel">
+    <h4 style="font-size:1rem;">📊 Техническая информация</h4>
+    <div id="techStats" class="stats-line">⚙️ Данные не загружены</div>
+    <button id="loadFileBtn" class="mini-btn" style="background:#e2d4c8;"><i class="fas fa-upload"></i> Загрузить JSON</button>
+    <button id="loadCsvBtn" class="mini-btn"><i class="fas fa-file-csv"></i> Импорт CSV</button>
+    <button id="exportDataBtn" class="mini-btn"><i class="fas fa-download"></i> Экспорт JSON</button>
+    <button id="exportCsvBtn" class="mini-btn"><i class="fas fa-file-csv"></i> Экспорт CSV</button>
+    <div id="extraStats" class="stats-line"></div>
+    <hr>
+    <button id="showHelpBtn" class="mini-btn"><i class="fas fa-book-open"></i> 📖 Инструкция</button>
+    <hr>
+    <div><strong>📚 Исходники книг</strong></div>
+    <div><a href="#" id="book1Link" target="_blank" style="color:#b8a086;">The Divinity Code (PDF)</a></div>
+    <div><a href="#" id="book2Link" target="_blank" style="color:#b8a086;">Вторая книга (скоро)</a></div>
+    <hr>
+    <button id="closeMenuBtn" class="mini-btn">Закрыть</button>
+</div>
+
+<div class="mode-container">
+    <div id="listModeView">
+        <div class="filter-sources" id="filterSourcesContainer"></div>
+        <div class="alphabet-row" id="alphabetRow"></div>
+        <div id="wordListContainer" class="word-list"></div>
+        <div id="noDataMessage" class="stats-line hidden">📭 Нет записей. Создайте первую через кнопку +</div>
+    </div>
+    <div id="cardModeView" class="hidden">
+        <div class="search-field">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Искать символ или алиас...">
+            <button id="searchBtn"><i class="fas fa-arrow-right"></i></button>
+            <div id="autocompleteList" class="autocomplete-list"></div>
+        </div>
+        <div class="search-options" id="searchOptions">
+            <span data-opt="symbol" class="opt-btn active">📖 Название</span>
+            <span data-opt="desc" class="opt-btn">📄 Описание</span>
+            <span data-opt="notes" class="opt-btn">📝 Заметки</span>
+            <span data-opt="all" class="opt-btn">🔍 Везде</span>
+        </div>
+        <div id="resultCard" class="card"><div style="color:#aaa;">Введите слово для поиска</div></div>
+    </div>
+</div>
+<div class="create-fab" id="createFab"><i class="fas fa-plus"></i></div>
+
+<script>
+    (function(){
+        // --- состояние
+        let db = [];
+        let currentMode = "list";
+        let searchMode = "symbol";
+        let theme = localStorage.getItem("theme") || "light";
+        let unsavedChanges = false;
+        let activeLetter = null;
+        let currentSearchQuery = "";
+        let activeSourceFilters = new Set(); // выбранные источники
+
+        // DOM
+        const listDiv = document.getElementById("listModeView");
+        const cardDiv = document.getElementById("cardModeView");
+        const modeListBtn = document.getElementById("modeListBtn");
+        const modeCardBtn = document.getElementById("modeCardBtn");
+        const themeToggle = document.getElementById("themeToggle");
+        const burgerBtn = document.getElementById("burgerBtn");
+        const menuPanel = document.getElementById("menuPanel");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const closeMenuBtn = document.getElementById("closeMenuBtn");
+        const loadFileBtn = document.getElementById("loadFileBtn");
+        const loadCsvBtn = document.getElementById("loadCsvBtn");
+        const exportDataBtn = document.getElementById("exportDataBtn");
+        const exportCsvBtn = document.getElementById("exportCsvBtn");
+        const techStats = document.getElementById("techStats");
+        const extraStats = document.getElementById("extraStats");
+        const createFab = document.getElementById("createFab");
+        const noDataMessage = document.getElementById("noDataMessage");
+        const searchInput = document.getElementById("searchInput");
+        const searchBtn = document.getElementById("searchBtn");
+        const autocompleteList = document.getElementById("autocompleteList");
+        const showHelpBtn = document.getElementById("showHelpBtn");
+        const filterSourcesContainer = document.getElementById("filterSourcesContainer");
+
+        // helpers
+        function escapeHtml(str) { if(!str) return ""; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+        function updateTechStats() {
+            if(!db.length) { techStats.innerHTML = "⚙️ База пуста"; extraStats.innerHTML = ""; return; }
+            const totalChars = JSON.stringify(db).length;
+            const kb = (totalChars / 1024).toFixed(1);
+            techStats.innerHTML = `📊 Записей: ${db.length}<br>📦 Вес: ${kb} КБ<br>🕒 Последняя загрузка: ${new Date().toLocaleTimeString()}`;
+            extraStats.innerHTML = `🔢 Объём JSON: ${totalChars} символов`;
+        }
+
+        function markUnsaved() { unsavedChanges = true; }
+
+        async function confirmLoad() {
+            if(unsavedChanges) {
+                return confirm("Есть несохранённые изменения! Загрузить новые данные? Все неэкспортированные изменения будут потеряны.");
+            }
+            return true;
+        }
+
+        // --- экспорт/импорт
+        function exportJSON() {
+            if(!db.length) { alert("Нет данных для экспорта"); return; }
+            const dataStr = JSON.stringify(db, null, 2);
+            const blob = new Blob([dataStr], {type:"application/json"});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            const now = new Date();
+            const dateStr = now.toISOString().slice(0,19).replace(/:/g, '-');
+            a.download = `symbols_${dateStr}.json`;
+            a.href = url;
+            a.click();
+            URL.revokeObjectURL(url);
+            unsavedChanges = false;
+        }
+
+        function exportCSV() {
+            if(!db.length) { alert("Нет данных для экспорта"); return; }
+            const headers = ["id","symbol","aliases","description","source","date_added","tags","notes"];
+            const rows = db.map(item => [
+                item.id,
+                item.symbol,
+                (item.aliases || []).join(";"),
+                item.description || "",
+                item.source || "",
+                item.date_added || "",
+                (item.tags || []).join(";"),
+                item.notes || ""
+            ]);
+            const csvContent = [headers, ...rows].map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+            const blob = new Blob(["\uFEFF" + csvContent], {type:"text/csv;charset=utf-8;"});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.download = `symbols_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`;
+            a.href = url;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importCSV(file) {
+            if(!confirmLoad()) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const text = e.target.result;
+                    const lines = text.split("\n").filter(l => l.trim());
+                    const headers = lines[0].split(",").map(h => h.replace(/^"|"$/g, ''));
+                    const records = [];
+                    for(let i=1; i<lines.length; i++) {
+                        const values = lines[i].split(",").map(v => v.replace(/^"|"$/g, '').replace(/""/g, '"'));
+                        if(values.length < headers.length) continue;
+                        let obj = {};
+                        headers.forEach((h,idx) => { obj[h] = values[idx] || ""; });
+                        obj.id = parseInt(obj.id) || Date.now() + i;
+                        obj.aliases = obj.aliases ? obj.aliases.split(";").map(s=>s.trim()).filter(s=>s) : [];
+                        obj.tags = obj.tags ? obj.tags.split(";").map(s=>s.trim()).filter(s=>s) : [];
+                        records.push(obj);
+                    }
+                    if(records.length) db = records;
+                    else throw new Error("Нет валидных записей");
+                    updateTechStats();
+                    renderSourceFilters(); // обновить фильтры
+                    renderCurrentMode();
+                    unsavedChanges = true;
+                    alert(`Импортировано ${db.length} записей из CSV`);
+                } catch(err) { alert("Ошибка импорта CSV: "+err.message); }
+            };
+            reader.readAsText(file, "UTF-8");
+        }
+
+        function loadJSON(file) {
+            if(!confirmLoad()) return;
+            const start = performance.now();
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if(!Array.isArray(data)) throw new Error("Не массив");
+                    for(let item of data) {
+                        if(typeof item !== 'object' || !item.symbol) throw new Error("Объект должен содержать поле symbol");
+                    }
+                    db = data;
+                    const end = performance.now();
+                    const time = (end - start).toFixed(2);
+                    alert(`Загружено ${db.length} записей за ${time} мс`);
+                    updateTechStats();
+                    renderSourceFilters();
+                    renderCurrentMode();
+                    unsavedChanges = false;
+                } catch(err) { alert("Ошибка JSON: " + err.message); }
+            };
+            reader.readAsText(file);
+        }
+
+        // --- фильтры по источникам
+        function renderSourceFilters() {
+            const sourcesSet = new Set();
+            db.forEach(item => { if(item.source) sourcesSet.add(item.source); });
+            const sources = Array.from(sourcesSet).sort();
+            if(sources.length === 0) {
+                filterSourcesContainer.innerHTML = '<span style="font-size:0.75rem;">Нет источников</span>';
+                return;
+            }
+            filterSourcesContainer.innerHTML = `
+                <span style="font-size:0.7rem; font-weight:500;">📂 Фильтр по источнику:</span>
+                ${sources.map(src => `
+                    <label>
+                        <input type="checkbox" value="${escapeHtml(src)}" ${activeSourceFilters.has(src) ? 'checked' : ''}>
+                        <span>${escapeHtml(src)}</span>
+                    </label>
+                `).join('')}
+                <button id="clearSourceFiltersBtn" class="mini-btn" style="margin-left:auto;">Сбросить</button>
+            `;
+            filterSourcesContainer.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    if(e.target.checked) activeSourceFilters.add(e.target.value);
+                    else activeSourceFilters.delete(e.target.value);
+                    renderCurrentMode();
+                });
+            });
+            const clearBtn = filterSourcesContainer.querySelector('#clearSourceFiltersBtn');
+            if(clearBtn) clearBtn.addEventListener('click', () => {
+                activeSourceFilters.clear();
+                renderSourceFilters();
+                renderCurrentMode();
+            });
+        }
+
+        function getFilteredDb() {
+            if(activeSourceFilters.size === 0) return db;
+            return db.filter(item => activeSourceFilters.has(item.source));
+        }
+
+        function renderCurrentMode() {
+            if(currentMode === "list") renderAlphabetList();
+            else renderCardBySearch();
+        }
+
+        // --- алфавитный список (все слова + фильтр по букве)
+        let groupedCache = null;
+        function getGrouped(filteredDb) {
+            const words = filteredDb.map(item => ({ id: item.id, symbol: item.symbol, first: item.symbol.charAt(0).toUpperCase() }));
+            const grouped = {};
+            for(let w of words) {
+                let letter = /[А-ЯЁ]/.test(w.first) ? w.first : "#";
+                if(!grouped[letter]) grouped[letter] = [];
+                grouped[letter].push(w);
+            }
+            for(let l in grouped) grouped[l].sort((a,b)=>a.symbol.localeCompare(b.symbol));
+            return grouped;
+        }
+
+        function renderAlphabetList() {
+            const filteredDb = getFilteredDb();
+            if(!filteredDb.length) {
+                noDataMessage.classList.remove("hidden");
+                document.getElementById("alphabetRow").innerHTML = "";
+                document.getElementById("wordListContainer").innerHTML = "";
+                return;
+            }
+            noDataMessage.classList.add("hidden");
+            const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".split("");
+            const container = document.getElementById("alphabetRow");
+            const grouped = getGrouped(filteredDb);
+            container.innerHTML = alphabet.map(l => `<span class="alpha-letter ${activeLetter===l ? 'active' : ''}" data-letter="${l}">${l} ${grouped[l] ? '('+grouped[l].length+')' : ''}</span>`).join("") + `<span class="alpha-letter ${activeLetter===null ? 'active' : ''}" data-letter="all">📖 Все (${filteredDb.length})</span>`;
+            function showLetter(letter) {
+                activeLetter = (letter === 'all') ? null : letter;
+                document.querySelectorAll(".alpha-letter").forEach(el => el.classList.remove("active"));
+                const activeBtn = document.querySelector(`.alpha-letter[data-letter="${letter}"]`);
+                if(activeBtn) activeBtn.classList.add("active");
+                let items = [];
+                if(letter === 'all') {
+                    items = filteredDb.map(item => ({ id: item.id, symbol: item.symbol }));
+                } else {
+                    items = grouped[letter] || [];
+                }
+                const wordContainer = document.getElementById("wordListContainer");
+                if(items.length === 0) { wordContainer.innerHTML = "<div class='stats-line'>Нет символов</div>"; return; }
+                const pageSize = 50;
+                let currentPage = 0;
+                function renderPage() {
+                    const start = currentPage * pageSize;
+                    const end = start + pageSize;
+                    const pageItems = items.slice(start, end);
+                    wordContainer.innerHTML = pageItems.map(item => `<div class="word-item" data-id="${item.id}">${escapeHtml(item.symbol)}</div>`).join("");
+                    if(items.length > pageSize) {
+                        const paginationDiv = document.createElement("div");
+                        paginationDiv.style.display = "flex";
+                        paginationDiv.style.justifyContent = "center";
+                        paginationDiv.style.gap = "0.5rem";
+                        paginationDiv.style.marginTop = "0.5rem";
+                        paginationDiv.style.gridColumn = "1/-1";
+                        const prevBtn = document.createElement("button");
+                        prevBtn.innerText = "◀ Назад";
+                        prevBtn.className = "mini-btn";
+                        prevBtn.disabled = currentPage === 0;
+                        prevBtn.onclick = () => { if(currentPage>0){ currentPage--; renderPage(); } };
+                        const nextBtn = document.createElement("button");
+                        nextBtn.innerText = "Вперёд ▶";
+                        nextBtn.className = "mini-btn";
+                        nextBtn.disabled = end >= items.length;
+                        nextBtn.onclick = () => { if(end < items.length){ currentPage++; renderPage(); } };
+                        paginationDiv.append(prevBtn, nextBtn);
+                        wordContainer.appendChild(paginationDiv);
+                    }
+                    document.querySelectorAll(".word-item").forEach(el => {
+                        el.addEventListener("click", () => showCardById(parseInt(el.dataset.id)));
+                    });
+                }
+                renderPage();
+                wordContainer.scrollTop = 0;
+            }
+            // если активная буква all или null, показываем все
+            if(activeLetter === null) showLetter('all');
+            else if(activeLetter && grouped[activeLetter]) showLetter(activeLetter);
+            else {
+                const firstLetter = Object.keys(grouped)[0];
+                if(firstLetter) showLetter(firstLetter);
+                else showLetter('all');
+            }
+            document.querySelectorAll(".alpha-letter").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const letter = btn.dataset.letter;
+                    showLetter(letter);
+                });
+            });
+        }
+
+        function showCardById(id) {
+            const record = db.find(r => r.id === id);
+            if(!record) return;
+            if(currentMode !== "card") {
+                currentMode = "card";
+                modeListBtn.classList.remove("active");
+                modeCardBtn.classList.add("active");
+                listDiv.classList.add("hidden");
+                cardDiv.classList.remove("hidden");
+            }
+            searchInput.value = record.symbol;
+            currentSearchQuery = record.symbol;
+            renderCardBySearch();
+        }
+
+        // --- поиск с автодополнением
+        function updateAutocomplete() {
+            const query = searchInput.value.trim().toLowerCase();
+            if(!query) { autocompleteList.classList.remove("show"); return; }
+            const matches = db.filter(item => item.symbol.toLowerCase().includes(query) || (item.aliases && item.aliases.some(a=>a.toLowerCase().includes(query)))).slice(0,10);
+            if(matches.length) {
+                autocompleteList.innerHTML = matches.map(m => `<div class="autocomplete-item" data-symbol="${escapeHtml(m.symbol)}">${escapeHtml(m.symbol)}</div>`).join("");
+                autocompleteList.classList.add("show");
+                document.querySelectorAll(".autocomplete-item").forEach(el => {
+                    el.addEventListener("click", () => {
+                        searchInput.value = el.dataset.symbol;
+                        currentSearchQuery = el.dataset.symbol;
+                        autocompleteList.classList.remove("show");
+                        renderCardBySearch();
+                    });
+                });
+            } else autocompleteList.classList.remove("show");
+        }
+
+        function renderCardBySearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            currentSearchQuery = query;
+            if(!query) { document.getElementById("resultCard").innerHTML = "<div style='color:#aaa;'>Введите слово для поиска</div>"; return; }
+            let filtered = [];
+            for(let item of db) {
+                let match = false;
+                if(searchMode === "symbol") {
+                    match = item.symbol.toLowerCase().includes(query) || (item.aliases && item.aliases.some(alias => alias.toLowerCase().includes(query)));
+                } else if(searchMode === "desc") {
+                    match = (item.description || "").toLowerCase().includes(query);
+                } else if(searchMode === "notes") {
+                    match = (item.notes || "").toLowerCase().includes(query);
+                } else if(searchMode === "all") {
+                    match = item.symbol.toLowerCase().includes(query) || (item.aliases && item.aliases.some(alias => alias.toLowerCase().includes(query))) ||
+                            (item.description || "").toLowerCase().includes(query) ||
+                            (item.notes || "").toLowerCase().includes(query);
+                }
+                if(match) filtered.push(item);
+            }
+            if(filtered.length === 0) { document.getElementById("resultCard").innerHTML = "<div>😕 Ничего не найдено</div>"; return; }
+            if(filtered.length === 1) displayCard(filtered[0]);
+            else {
+                const container = document.getElementById("resultCard");
+                container.innerHTML = `<div style="margin-bottom:0.5rem;">🔍 Найдено ${filtered.length} совпадений:</div><div class="word-list" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:0.5rem;">${filtered.map(item => `<div class="word-item" data-id="${item.id}">${escapeHtml(item.symbol)}</div>`).join("")}</div>`;
+                filtered.forEach(item => {
+                    const el = container.querySelector(`.word-item[data-id="${item.id}"]`);
+                    if(el) el.addEventListener("click", () => displayCard(item));
+                });
+            }
+        }
+
+        function displayCard(record) {
+            const container = document.getElementById("resultCard");
+            const sourceText = record.source ? `<i class="fas fa-book"></i> ${escapeHtml(record.source)}` : "";
+            const dateText = record.date_added ? `📅 ${record.date_added}` : "";
+            const aliasesText = (record.aliases && record.aliases.length) ? `<div style="font-size:0.7rem; margin:0.3rem 0;"><i class="fas fa-tags"></i> Синонимы: ${record.aliases.map(a=>escapeHtml(a)).join(", ")}</div>` : "";
+            const tagsHtml = (record.tags || []).map(t => `<span style="background:#f1ece4; border-radius:20px; padding:0.1rem 0.5rem; font-size:0.7rem;">${escapeHtml(t)}</span>`).join(" ");
+            const notesHtml = record.notes ? `<div style="margin-top:0.5rem; border-top:1px solid #ddd; padding-top:0.5rem;"><b>📝 Заметка:</b><br>${typeof marked !== 'undefined' ? marked.parse(record.notes) : escapeHtml(record.notes)}</div>` : "";
+            container.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap;">
+                    <h2 style="font-size:1.6rem;">${escapeHtml(record.symbol)}</h2>
+                    <div><button class="mini-btn" id="editFromCardBtn"><i class="fas fa-pen"></i></button></div>
+                </div>
+                ${aliasesText}
+                <div style="font-size:0.75rem; color:#8b715b;">${sourceText} ${dateText}</div>
+                <div style="margin:0.8rem 0;">${escapeHtml(record.description)}</div>
+                <div>🏷️ ${tagsHtml}</div>
+                ${notesHtml}
+                <button id="deleteFromCardBtn" class="mini-btn" style="margin-top:0.8rem; background:#d9c2a8;">🗑 Удалить</button>
+            `;
+            document.getElementById("editFromCardBtn")?.addEventListener("click", () => openEditModal(record));
+            document.getElementById("deleteFromCardBtn")?.addEventListener("click", () => { if(confirm("Удалить запись?")) deleteRecord(record.id); });
+        }
+
+        function deleteRecord(id) {
+            db = db.filter(r => r.id !== id);
+            unsavedChanges = true;
+            if(currentMode === "card" && db.length === 0) {
+                searchInput.value = "";
+                document.getElementById("resultCard").innerHTML = "<div style='color:#aaa;'>База пуста</div>";
+            } else {
+                renderSourceFilters();
+                renderCurrentMode();
+            }
+            updateTechStats();
+            alert("Запись удалена");
+        }
+
+        // --- модалка создания/редактирования
+        let currentMde = null;
+        let currentPicker = null;
+        let modalUnsaved = false;
+
+        function openEditModal(record = null) {
+            const isNew = !record;
+            const modalDiv = document.createElement("div");
+            modalDiv.className = "modal";
+            const aliasesStr = record?.aliases ? record.aliases.join(", ") : "";
+            modalDiv.innerHTML = `
+                <div class="modal-card">
+                    <h3>${isNew ? "➕ Новая запись" : "✏️ Редактирование"}</h3>
+                    <div class="form-group"><label>Символ *</label><input id="editSymbol" value="${record ? escapeHtml(record.symbol) : ""}"></div>
+                    <div class="form-group"><label>Алиасы (синонимы, через запятую)</label><input id="editAliases" value="${escapeHtml(aliasesStr)}" placeholder="например: машина, авто"></div>
+                    <div class="form-group"><label>Описание</label><textarea id="editDesc" rows="4">${record ? escapeHtml(record.description) : ""}</textarea></div>
+                    <div class="form-group"><label>Источник</label><input id="editSource" value="${record ? escapeHtml(record.source) : ""}"></div>
+                    <div class="form-group"><label>Дата</label><input id="editDate" value="${record ? record.date_added : ""}" placeholder="ГГГГ-ММ-ДД"></div>
+                    <div class="form-group"><label>Теги (через запятую)</label><input id="editTags" value="${record ? (record.tags || []).join(", ") : ""}"></div>
+                    <div class="form-group"><label>Заметка (Markdown)</label><textarea id="editNotes" rows="3">${record ? (record.notes || "") : ""}</textarea></div>
+                    <button id="modalSaveBtn" class="mini-btn" style="background:#b8a086; color:white;">💾 Сохранить</button>
+                    <button id="modalCancelBtn" class="mini-btn">Отмена</button>
+                </div>
+            `;
+            document.body.appendChild(modalDiv);
+            const dateInput = modalDiv.querySelector("#editDate");
+            if(dateInput) { if(currentPicker) currentPicker.destroy(); currentPicker = flatpickr(dateInput, { dateFormat: "Y-m-d", allowInput: true }); }
+            const notesArea = modalDiv.querySelector("#editNotes");
+            if(currentMde) currentMde.toTextArea();
+            currentMde = new EasyMDE({ element: notesArea, spellChecker: false, toolbar: ["bold","italic","heading","quote","unordered-list","link","preview"] });
+            modalUnsaved = false;
+            const inputs = modalDiv.querySelectorAll("input, textarea");
+            inputs.forEach(inp => inp.addEventListener("input", () => modalUnsaved = true));
+            window.modalCloseHandler = () => { if(modalUnsaved && !confirm("Несохранённые изменения. Закрыть?")) return; modalDiv.remove(); if(currentMde) currentMde.toTextArea(); window.removeEventListener("keydown", escHandler); };
+            const escHandler = (e) => { if(e.key === "Escape") modalDiv.querySelector("#modalCancelBtn")?.click(); };
+            window.addEventListener("keydown", escHandler);
+            modalDiv.querySelector("#modalSaveBtn").onclick = () => {
+                const symbol = modalDiv.querySelector("#editSymbol").value.trim();
+                if(!symbol) { alert("Символ обязателен"); return; }
+                const dateVal = modalDiv.querySelector("#editDate").value;
+                if(dateVal && !/^\d{4}-\d{2}-\d{2}$/.test(dateVal)) { alert("Дата должна быть в формате ГГГГ-ММ-ДД"); return; }
+                const aliasesRaw = modalDiv.querySelector("#editAliases").value;
+                const aliases = aliasesRaw.split(",").map(s=>s.trim()).filter(s=>s);
+                const tagsRaw = modalDiv.querySelector("#editTags").value;
+                const tags = tagsRaw.split(",").map(t=>t.trim()).filter(t=>t !== "");
+                const newRecord = {
+                    id: isNew ? (db.length ? Math.max(...db.map(r=>r.id)) + 1 : 1) : record.id,
+                    symbol: symbol,
+                    aliases: aliases,
+                    description: modalDiv.querySelector("#editDesc").value,
+                    source: modalDiv.querySelector("#editSource").value,
+                    date_added: dateVal,
+                    tags: tags,
+                    notes: currentMde.value()
+                };
+                if(isNew) db.push(newRecord);
+                else { const idx = db.findIndex(r=>r.id === record.id); if(idx!==-1) db[idx] = newRecord; }
+                unsavedChanges = true;
+                updateTechStats();
+                renderSourceFilters();
+                renderCurrentMode();
+                if(currentMde) currentMde.toTextArea();
+                modalDiv.remove();
+                window.removeEventListener("keydown", escHandler);
+                alert("Сохранено");
+            };
+            modalDiv.querySelector("#modalCancelBtn").onclick = () => {
+                if(modalUnsaved && !confirm("Несохранённые изменения. Закрыть?")) return;
+                if(currentMde) currentMde.toTextArea();
+                modalDiv.remove();
+                window.removeEventListener("keydown", escHandler);
+            };
+        }
+
+        // --- инструкция
+        function showHelpModal() {
+            const modal = document.createElement("div");
+            modal.className = "modal help-modal";
+            modal.innerHTML = `
+                <div class="help-modal-content">
+                    <div style="display:flex; justify-content:flex-end;"><button id="closeHelpBtn" class="mini-btn">✖ Закрыть</button></div>
+                    <div class="help-tabs">
+                        <div class="help-tab active" data-lang="ru">🇷🇺 Русский (перевод)</div>
+                        <div class="help-tab" data-lang="en">🇬🇧 English (original)</div>
+                    </div>
+                    <div id="helpRu" class="help-content active">
+                        <div style="background:#fff3e0; padding:0.3rem; border-radius:12px; margin-bottom:1rem;">
+                            ⚠️ <strong>ВНИМАНИЕ! ПЕРЕВЕДЕНО С ПОМОЩЬЮ ИИ. ВОЗМОЖНЫ НЕТОЧНОСТИ.</strong>
+                        </div>
+                        <h3>📖 Как пользоваться словарём</h3>
+                        <p><strong>Элемент (сон состоит из нескольких элементов)</strong></p>
+                        <p><strong>Curtains (занавесы):</strong> (1) Плотская завеса; (2) Сердце; (3) Небеса; (4) Покрытие; (5) Окончание; (6) Смерть.<br>
+                        <em>См. также Veil (завеса).</em><br>
+                        (1) Евр.10:20; (2) 2Кор.3:15; (3) Пс.103:2; Ис.40:22; (6) «его занавесы»</p>
+                        <ul>
+                            <li>• Нумерованные толкования (1), (2), (3) и т.д. расположены от наиболее вероятного к наименее.</li>
+                            <li>• Скобки после толкования уточняют контекст или смысл.</li>
+                            <li>• Перекрёстные ссылки на другие слова для дополнительных вариантов.</li>
+                        </ul>
+                        <hr>
+                        <p><strong>Life Raft (спасательный плот):</strong> (1) Нужда в спасении; (2) Потерянный; (3) В опасности потерять спасение; (4) Ковчег (Христос).<br>
+                        <em>См. также Adrift, Boat, Sea.</em><br>
+                        (1-2) Мф.18:11; (2) Лк.15:3-32; (3) Лк.9:25; Деян.27:30-31; (4) Быт.6:13-16; Мф.24:37-39; (ср. Лк.17:26 и след.) Евр.11:7.</p>
+                        <ul>
+                            <li>• Подчёркнутые стихи обычно показывают ключевое значение элемента.</li>
+                            <li>• cf. означает «сравни с цитируемыми стихами».</li>
+                            <li>• ff. означает «смотри этот стих и следующие».</li>
+                        </ul>
+                        <hr>
+                        <p><strong>Mouse/Mice (мышь/мыши):</strong> (1) Скрытый нечистый дух; (2) Показатель духовного обслуживания; (3) Неверующий (нечистый); (4) Малый; (5) Язва; (6) Суд.<br>
+                        <em>См. также Rat (крыса).</em><br>
+                        (1) Мф.10:1; (ср. Откр.16:13); (2) Лк.11:24-25; (3-4) Лев.11:29; (5-6) (ср. 1Цар.5:12 & 1Цар.6:5).</p>
+                        <p>«&» означает объединить стихи для получения толкования.</p>
+                    </div>
+                    <div id="helpEn" class="help-content">
+                        <h3>📖 Understanding the Dictionary</h3>
+                        <p><strong>Element (a dream is made up of several elements)</strong></p>
+                        <p><strong>Curtains:</strong> (1) The fleshly veil; (2) The heart (beyond a curtain); (3) Heaven; (4) Cover; (5) Ending (closing curtain); (6) Death.<br>
+                        <em>Also see entries under Veil.</em><br>
+                        (1) Heb. 10:20; (2) 2Cor. 3:15; (3) Ps. 104:2; Isa. 40:22; (6) As in, ‘its curtains’</p>
+                        <ul>
+                            <li>• The numbered interpretations (1), (2), (3), etc. are assembled in order of greatest to least likelihood of suitability.</li>
+                            <li>• The brackets after an interpretation further refine the use of the element in its context or help convey meaning.</li>
+                            <li>• Cross-references to similar dictionary entries that may provide further interpretive options.</li>
+                        </ul>
+                        <hr>
+                        <p><strong>Life Raft:</strong> (1) Needing salvation; (2) Lost; (3) In danger of losing salvation; (4) Ark (Christ).<br>
+                        <em>Also see entries under Adrift, Boat and Sea.</em><br>
+                        (1-2) Matt 18:11; (2) Lk. 15:3-32; (3) Lk. 9:25; Acts 27:30-31; (4) Gen. 6:13-16; Matt.24:37-39; (cf. Lk. 17:26ff.) Heb. 11:7.</p>
+                        <ul>
+                            <li>• Underlined scriptures generally display the key meaning of an element.</li>
+                            <li>• cf. means to compare the scriptures quoted.</li>
+                            <li>• ff. means to look at this verse and the following verses.</li>
+                        </ul>
+                        <hr>
+                        <p><strong>Mouse/Mice:</strong> (1) Hidden unclean spirit; (2) Indicator of a spiritual maintenance; (3) Unbeliever (unclean); (4) Small; (5) Plague; (6) Judgment.<br>
+                        <em>Also see entries under Rat.</em><br>
+                        (1) Matt. 10:1; (cf. Rev. 16:13); (2) Lk. 11:24-25; (3-4) Lev. 11:29; (5-6) (cf. 1 Sam. 5:12 & 1 Sam. 6:5(KJV)).</p>
+                        <p>‘&’ means to combine the scriptures to gain the interpretation.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            const closeBtn = modal.querySelector("#closeHelpBtn");
+            const closeModal = () => modal.remove();
+            closeBtn.addEventListener("click", closeModal);
+            modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+            modal.querySelectorAll(".help-tab").forEach(tab => {
+                tab.addEventListener("click", () => {
+                    const lang = tab.dataset.lang;
+                    modal.querySelectorAll(".help-tab").forEach(t => t.classList.remove("active"));
+                    tab.classList.add("active");
+                    modal.querySelectorAll(".help-content").forEach(c => c.classList.remove("active"));
+                    modal.querySelector(`#help${lang==='ru'?'Ru':'En'}`).classList.add("active");
+                });
+            });
+        }
+
+        // --- тема
+        function setTheme(th) { theme = th; localStorage.setItem("theme", theme); if(theme === "dark") document.body.classList.add("dark"); else document.body.classList.remove("dark"); }
+        themeToggle.onclick = () => setTheme(theme === "light" ? "dark" : "light");
+        setTheme(theme);
+
+        // --- обработчики
+        modeListBtn.onclick = () => { currentMode = "list"; modeListBtn.classList.add("active"); modeCardBtn.classList.remove("active"); listDiv.classList.remove("hidden"); cardDiv.classList.add("hidden"); renderAlphabetList(); };
+        modeCardBtn.onclick = () => { currentMode = "card"; modeCardBtn.classList.add("active"); modeListBtn.classList.remove("active"); listDiv.classList.add("hidden"); cardDiv.classList.remove("hidden"); renderCardBySearch(); };
+        searchInput.addEventListener("input", () => { updateAutocomplete(); renderCardBySearch(); });
+        searchBtn.addEventListener("click", () => { autocompleteList.classList.remove("show"); renderCardBySearch(); });
+        document.querySelectorAll("[data-opt]").forEach(opt => {
+            opt.addEventListener("click", () => {
+                document.querySelectorAll("[data-opt]").forEach(o => o.classList.remove("active"));
+                opt.classList.add("active");
+                searchMode = opt.dataset.opt;
+                renderCardBySearch();
+            });
+        });
+        function toggleMenu(open) { if(open) { menuPanel.classList.add("open"); menuOverlay.classList.add("open"); } else { menuPanel.classList.remove("open"); menuOverlay.classList.remove("open"); } }
+        burgerBtn.onclick = () => toggleMenu(true);
+        closeMenuBtn.onclick = () => toggleMenu(false);
+        menuOverlay.onclick = () => toggleMenu(false);
+        loadFileBtn.onclick = () => { const inp = document.createElement("input"); inp.type="file"; inp.accept="application/json"; inp.onchange=e=>{ if(e.target.files[0]) loadJSON(e.target.files[0]); }; inp.click(); };
+        loadCsvBtn.onclick = () => { const inp = document.createElement("input"); inp.type="file"; inp.accept=".csv"; inp.onchange=e=>{ if(e.target.files[0]) importCSV(e.target.files[0]); }; inp.click(); };
+        exportDataBtn.onclick = () => exportJSON();
+        exportCsvBtn.onclick = () => exportCSV();
+        createFab.onclick = () => openEditModal(null);
+        showHelpBtn.onclick = () => showHelpModal();
+
+        document.getElementById("book1Link").href = "The_Divinity_Code_to_Understanding_Your_Dreams_and_Visions_PDF_Room.pdf";
+        // document.getElementById("book2Link").href = "вторая_книга.pdf";
+
+        window.addEventListener("beforeunload", (e) => {
+            if(unsavedChanges) {
+                e.preventDefault();
+                e.returnValue = "Есть несохранённые изменения. Уверены?";
+                return "Есть несохранённые изменения. Уверены?";
+            }
+        });
+
+        // demo data
+        if(!db.length){
+            db = [
+                { id:1, symbol:"автомобиль", aliases:["машина","авто"], description:"Символ жизненного пути. Исправный – контроль, сломанный – препятствия.", source:"Книга 1", date_added:"2025-01-20", tags:["транспорт","путь"], notes:"" },
+                { id:2, symbol:"бабочка", aliases:["мотылёк"], description:"Преображение, воскресение.", source:"Книга 2", date_added:"2025-03-10", tags:["насекомые","преображение"], notes:"Личный опыт: увидел бабочку после покаяния." },
+                { id:3, symbol:"запад", aliases:["западный","вест"], description:"Закат, завершение цикла.", source:"Энциклопедия", date_added:"2025-04-01", tags:["направление"], notes:"" }
+            ];
+            updateTechStats();
+            renderSourceFilters();
+            renderCurrentMode();
+        } else {
+            updateTechStats();
+            renderSourceFilters();
+            renderCurrentMode();
+        }
+    })();
+</script>
+</body>
+</html>
