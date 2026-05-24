@@ -391,7 +391,7 @@
         async function loadBuiltinDatabase() {
             resultCard.innerHTML = `<div class="loader"></div><div style="text-align:center">${t("loading")}</div>`;
             try {
-                const files = ["/data/bd1.json", "/data/bd2.json", "/data/bd3.json"];
+                const files = ["/data/bd2.json"];
                 const promises = files.map(async (url) => {
                     try {
                         const response = await fetch(url);
