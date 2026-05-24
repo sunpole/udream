@@ -379,36 +379,48 @@
             statsPanel.innerHTML = t("stats", { count: db.length, size: kb });
         }
         
-        // загрузка встроенной базы
-        async function loadBuiltinDatabase() {
+        
+
+
+                async function loadBuiltinDatabase() {
             resultCard.innerHTML = `<div class="loader"></div><div style="text-align:center">${t("loading")}</div>`;
             try {
-                const response = await fetch("data/symbols.json");
-                if(!response.ok) throw new Error("HTTP "+response.status);
-                const data = await response.json();
-                if(Array.isArray(data) && data.length) {
-                    db = data;
-                    // собрать все теги
+                // Абсолютные пути от корня сайта (GitHub Pages)
+                const files = ["/data/bd1.json", "/data/bd2.json", "/data/bd3.json"];
+                const promises = files.map(async (url) => {
+                    try {
+                        const response = await fetch(url);
+                        if (!response.ok) return [];
+                        const data = await response.json();
+                        return Array.isArray(data) ? data : [];
+                    } catch (err) {
+                        console.warn(`Не удалось загрузить ${url}:`, err);
+                        return [];
+                    }
+                });
+                const results = await Promise.all(promises);
+                const combined = results.flat(); // объединяем все записи
+                if (combined.length) {
+                    db = combined;
                     allTags.clear();
-                    db.forEach(item => { if(item.tags) item.tags.forEach(tag => allTags.add(tag)); });
+                    db.forEach(item => { if (item.tags) item.tags.forEach(tag => allTags.add(tag)); });
                     updateStatsUI();
                     renderAlphabet();
-                    if(db.length) {
-                        const first = db[0];
-                        showRecord(first);
-                        addToHistory(first);
-                    } else {
-                        resultCard.innerHTML = `<div>${t("empty")}</div>`;
-                    }
-                } else throw new Error("Invalid data");
+                    const first = db[0];
+                    showRecord(first);
+                    addToHistory(first);
+                } else {
+                    throw new Error("No data loaded");
+                }
             } catch(e) {
                 console.warn(e);
-                resultCard.innerHTML = `<div>⚠️ Ошибка загрузки базы. Попробуйте позже.</div>`;
+                resultCard.innerHTML = `<div>⚠️ Ошибка загрузки базы. Убедитесь, что файлы bd1.json, bd2.json, bd3.json лежат в папке <code>/data/</code> в корне репозитория.</div>`;
                 db = [];
                 updateStatsUI();
             }
         }
-        
+
+
         // отображение записи
         function showRecord(record) {
             if(!record) return;
