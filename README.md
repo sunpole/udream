@@ -6,13 +6,13 @@
 
 <p align="left">
   <a href="https://sunpole.github.io/udream/005/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/демо-005-blue?logo=github" alt="Демо (текущая версия дизайна)">
+    <img src="https://img.shields.io/badge/демо-005-blue?logo=github" alt="Демо">
   </a>
   <a href="https://sunpole.github.io/udream/admin7/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/админка-v7.0-blue?logo=github" alt="Админка v7.0">
+    <img src="https://img.shields.io/badge/админка-v7.0-blue?logo=github" alt="Админка">
   </a>
   <a href="https://sunpole.github.io/udream/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/все_версии-002–005-lightgrey" alt="Все версии дизайна">
+    <img src="https://img.shields.io/badge/все_версии-002–005-lightgrey" alt="Все версии">
   </a>
   <a href="LICENSE" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="Лицензия">
