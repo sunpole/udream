@@ -1,4 +1,4 @@
-// script.js — UDREAM v13.3 (исправлена загрузка базы)
+// script.js — UDREAM v13.4 (исправлена загрузка базы)
 (function() {
     // --- состояние
     let db = [];
@@ -180,48 +180,58 @@
         reader.readAsText(file);
     }
 
-    // Автоматическая загрузка базы (как в v12 + дополнительный путь)
-    async function loadMainDatabase() {
-        resultCard.innerHTML = `<div class="loader"></div><div style="text-align:center">${t("loading")}</div>`;
-        const paths = [
-            "/data/db.json",
-            "./data/db.json",
-            "../data/db.json",
-            "/udream/data/db.json"
-        ];
-        for (let url of paths) {
-            try {
-                const response = await fetch(url);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (Array.isArray(data) && data.length) {
-                        db = data;
-                        currentDbName = url.split('/').pop();
-                        updateStatsUI(); updateDbInfoPanel();
-                        buildAlphabetRows();
-                        rebuildTagsCloud();
-                        if (db.length) {
-                            showRecord(db[0]);
-                            addToHistory(db[0]);
-                        } else {
-                            resultCard.innerHTML = `<div>${t("empty")}</div>`;
-                        }
-                        return;
+    // Автоматическая загрузка базы (исправленная для папки /udream/013.2/)
+async function loadMainDatabase() {
+    resultCard.innerHTML = `<div class="loader"></div><div style="text-align:center">${t("loading")}</div>`;
+    // Упорядочиваем пути: сначала самые вероятные для вашей структуры
+    const paths = [
+        "../data/db.json",               // из 013.2 поднимаемся в udream/data/db.json
+        "/udream/data/db.json",          // абсолютный путь от корня сайта
+        "./data/db.json",                // на случай, если файл лежит рядом (не ваш случай)
+        "/data/db.json"                  // корень сайта (маловероятно)
+    ];
+    for (let url of paths) {
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                const data = await response.json();
+                if (Array.isArray(data) && data.length) {
+                    db = data;
+                    currentDbName = url.split('/').pop();
+                    updateStatsUI();
+                    updateDbInfoPanel();
+                    buildAlphabetRows();
+                    rebuildTagsCloud();
+                    if (db.length) {
+                        showRecord(db[0]);
+                        addToHistory(db[0]);
+                    } else {
+                        resultCard.innerHTML = `<div>${t("empty")}</div>`;
                     }
+                    return;
                 }
-            } catch(e) {}
+            }
+        } catch(e) {
+            // просто пробуем следующий путь
         }
-        db = [];
-        updateStatsUI(); updateDbInfoPanel();
-        resultCard.innerHTML = `<div>⚠️ ${t("empty")}<br><button id="manualLoadBtn" class="mini-btn" style="margin-top:1rem;">📂 ${t("upload")}</button></div>`;
-        document.getElementById("manualLoadBtn")?.addEventListener("click", () => {
-            const inp = document.createElement("input"); inp.type="file"; inp.accept="application/json";
-            inp.onchange = e => { if(e.target.files[0]) loadJSONFromFile(e.target.files[0]); };
-            inp.click();
-        });
-        buildAlphabetRows();
-        rebuildTagsCloud();
     }
+    // Если ничего не загрузилось – ручная загрузка
+    db = [];
+    updateStatsUI();
+    updateDbInfoPanel();
+    resultCard.innerHTML = `<div>⚠️ ${t("empty")}<br><button id="manualLoadBtn" class="mini-btn" style="margin-top:1rem;">📂 ${t("upload")}</button></div>`;
+    document.getElementById("manualLoadBtn")?.addEventListener("click", () => {
+        const inp = document.createElement("input");
+        inp.type = "file";
+        inp.accept = "application/json";
+        inp.onchange = e => {
+            if (e.target.files[0]) loadJSONFromFile(e.target.files[0]);
+        };
+        inp.click();
+    });
+    buildAlphabetRows();
+    rebuildTagsCloud();
+}
 
     function escapeHtml(str) { if(!str) return ""; return str.replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':m==='>'?'&gt;':m); }
 
