@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/badge/license-MIT-green" alt="Лицензия">
   </a>
 </p>
-<a href="https://example.com" target="_blank">Текст ссылки</a>
+
 ---
 
 ## Зачем это нужно
