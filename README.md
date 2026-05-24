@@ -1,140 +1,97 @@
-# ✦ udream — сонник по Библии
+# udream
 
-> Христианский сонник: поиск символов, библейские толкования, адаптивный интерфейс / Christian dream symbols search.
+Christian dream-symbol dictionary for GitHub Pages.
 
-**Коротко:** находите христианские толкования снов. Введите слово — получите описание, библейский стих и теги.
+The project is a static browser app: no server, no login, no database engine. It loads a JSON dictionary, lets the user search symbols, aliases, descriptions, notes, and tags, and shows the result as readable cards.
 
-<p align="left">
-  <a href="https://sunpole.github.io/udream/005/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/демо-005-blue?logo=github" alt="Демо">
-  </a>
-  <a href="https://sunpole.github.io/udream/admin7/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/админка-v7.0-blue?logo=github" alt="Админка">
-  </a>
-  <a href="https://sunpole.github.io/udream/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/все_версии-002–005-lightgrey" alt="Все версии">
-  </a>
-  <a href="LICENSE" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/license-MIT-green" alt="Лицензия">
-  </a>
-</p>
+## Live Site
 
----
+GitHub Pages:
 
-## Зачем это нужно
+https://sunpole.github.io/udream/
 
-У нас были две книги на английском с толкованиями символов. Искать в них через Ctrl+F — неудобно (ищет куски слов). Вместо этого я сделал два инструмента:
+## Current Structure
 
-1. **Просмотр символов** — быстрый поиск по базе, удобный на любом устройстве.
-2. **Админка** — для загрузки/редактирования базы, добавления новых символов, экспорта в JSON/CSV.
-
-Никакого сервера, никакой регистрации. Всё работает в браузере, данные остаются у вас.
-
----
-
-## Эволюция дизайна (живые демо)
-
-Я перебрал четыре варианта интерфейса для просмотра символов. Посмотреть и сравнить можно по ссылкам:
-
-| Версия | Ссылка | Особенности |
-|--------|--------|--------------|
-| **002** | [посмотреть](https://sunpole.github.io/udream/002/) | Современный, с гамбургер-меню |
-| **003** | [посмотреть](https://sunpole.github.io/udream/003/) | Крупный, контрастный, для людей 40+ |
-| **004** | [посмотреть](https://sunpole.github.io/udream/004/) | «Стеклянный» стиль, компактные переключатели |
-| **005** ⭐ | [посмотреть](https://sunpole.github.io/udream/005/) | **Финальный**: улучшенный контраст, плотные карточки, удобные теги |
-
-**Административная панель** (редактирование базы) доступна в отдельных версиях. Актуальная — [admin7](https://sunpole.github.io/udream/admin7/).
-
----
-
-## Как это выглядит (финальная версия 005)
-
-| Телефон | Ноутбук |
-|---------|---------|
-| ![мобильная версия](screenshot-mobile.jpg) | ![десктоп версия](screenshot-desktop.jpg) |
-
-> Скриншоты будут добавлены позже. Пока можно открыть [демо](https://sunpole.github.io/udream/005/) на своём устройстве.
-
----
-
-## Возможности
-
-**Просмотр символов (версии 002–005):**
-- **Поиск с подсказками** — начинаете печатать, появляются варианты
-- **Карточка символа** — кратко или подробно, с библейской ссылкой
-- **Тёмная / светлая тема** (в плане — реализуется)
-- **Теги** — группировка символов
-- **Адаптивность** — работает на телефонах и компьютерах
-
-**Админка (admin7):**
-- Загрузка и экспорт базы в JSON / CSV
-- Добавление, редактирование, удаление символов
-- Поиск по названию, описанию и заметкам
-- Алфавитный указатель (A–Z и А–Я)
-- Фильтрация по источникам книг
-- Markdown-заметки с визуальным редактором
-- Темная тема
-- Автодополнение при поиске
-
----
-
-## Технологии (без фанатизма)
-
-- HTML / CSS (Flex, Grid, медиазапросы)
-- JavaScript (ванильный, без фреймворков)
-- SQLite через sql.js — база данных прямо в браузере (в планах)
-- GitHub Pages — бесплатный хостинг
-- Flatpickr (выбор даты), EasyMDE (Markdown), Marked (парсер)
-
----
-
-## 📁 Структура репозитория
-
-```
+```text
 udream/
-├── 002/               # первая версия дизайна (гамбургер)
-├── 003/               # вторая версия (крупный, контрастный)
-├── 004/               # третья версия (стеклянный стиль)
-├── 005/               # финальная версия дизайна
-├── admin1/ … admin6/  # промежуточные версии админки
-├── admin7/            # актуальная версия админки
-├── index.html         # корневой редирект (опционально)
-├── README.md
+├── index.html          # current public app
+├── script.js           # app logic and JSON loading
+├── manifest.json       # PWA metadata
+├── data/
+│   └── bd2.json        # current dictionary database
+├── _archive/           # old experiments and source/reference files
+├── .nojekyll           # disables Jekyll processing on GitHub Pages
 ├── LICENSE
-├── screenshot-mobile.jpg
-├── screenshot-desktop.jpg
-├── The_Divinity_Code_to_Understanding_Your_Dreams_and_Visions_PDF_Room.pdf
-└── Unlocking-Your-Dream-Student-Ma.pdf
+└── README.md
 ```
 
----
+## Database
 
-## Как запустить локально
+The live database is:
+
+```text
+data/bd2.json
+```
+
+Each record uses this shape:
+
+```json
+{
+  "id": 1,
+  "symbol": "example",
+  "aliases": [],
+  "description": "...",
+  "source": "DivinityCode",
+  "date_added": "2026-05-24",
+  "tags": [],
+  "notes": "..."
+}
+```
+
+The app currently auto-loads `data/bd2.json`. Older database files were moved to `_archive/old-data/`.
+
+## Features
+
+- Search by symbol, aliases, description, tags, or all fields.
+- Autocomplete while typing.
+- Tag cloud and tag filtering.
+- Alphabet browsing.
+- History and breadcrumbs.
+- Share/export card helpers.
+- Works as a static GitHub Pages site.
+
+## Archive
+
+Old UI experiments, admin prototypes, screenshots, PDFs, and previous database files are kept in `_archive/` so the live site root stays clean.
+
+```text
+_archive/
+├── legacy-versions/    # old numbered app versions
+├── admin-versions/     # old admin prototypes
+├── old-data/           # previous JSON databases
+└── source-files/       # PDFs and screenshots
+```
+
+These files are not required for the public app to run.
+
+## Local Preview
+
+From the repository folder:
 
 ```bash
-git clone https://github.com/sunpole/udream.git
-cd udream
-# для просмотра дизайна:
-cd 005
-# для админки:
-cd admin7
-# затем откройте index.html в браузере
+python -m http.server 8019
 ```
 
-Или через локальный сервер: `npx serve .`
+Then open:
 
----
-
-## Лицензия
-
-MIT — делайте что хотите, только упомяните автора.
-
----
+```text
+http://localhost:8019/
 ```
-## Благодарности
 
-Супруге — за идею и тестирование. @olgamago @olanitsy
-Вам — если дочитали до сюда. @SunPole @xcve33
-@FamilyOfGod.Minsk
-**Живите с миром.**
-```
+## Notes
+
+The dictionary content is intended as a reference/search tool. Interpretations should be handled carefully and checked against the original source and Scripture context.
+
+## License
+
+MIT. See `LICENSE`.
