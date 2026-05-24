@@ -1,0 +1,58 @@
+records: 4086
+sections: {'symbol': 2768, 'name-place': 1318}
+letters: {'A': 231, 'B': 338, 'C': 394, 'D': 214, 'E': 112, 'F': 206, 'G': 143, 'H': 169, 'I': 63, 'J': 107, 'K': 71, 'L': 176, 'M': 243, 'N': 102, 'O': 73, 'P': 238, 'Q': 19, 'R': 197, 'S': 436, 'T': 256, 'U': 46, 'V': 56, 'W': 149, 'X': 2, 'Y': 26, 'Z': 19}
+
+top_tags:
+  name-place: 1318
+  dictionary-name-place: 1318
+  name: 1171
+  cross-reference: 1019
+  body: 580
+  church: 542
+  sin: 521
+  reference: 401
+  places: 399
+  communication: 386
+  holy-spirit: 385
+  work: 362
+  jesus: 319
+  directions: 309
+  nature: 277
+  heaven: 271
+  life: 242
+  emotions: 238
+  numbers: 236
+  family: 219
+  judgment: 215
+  food: 212
+  animals: 191
+  authority: 189
+  demonic: 179
+  scripture: 178
+  colors: 170
+  spiritual-warfare: 169
+  death: 167
+  place: 135
+  warning: 119
+  protection: 109
+  relationships: 103
+  deliverance: 103
+  time: 103
+  wealth: 102
+  transport: 91
+  prayer: 90
+  wisdom: 89
+  mind: 89
+  clothing: 74
+  healing: 43
+  brand: 12
+
+suspicious_count: 8
+- id=691 symbol=cupboard desc=(1) Heart; (2) Storage; (3) Thoughts (mind); (4) Delay; (5) Reserve or preserve; (6) Abundance: (7) Accumulated; (8) Hidden. Also see Closet. (1) Prov. 13:12; Amos 3:10; (2) 2 Chron. 11:11; 1 Cor. 16:2; (3) 1 Chron. 29:1
+- id=769 symbol=dividing desc=(1) Separating: (2) Separating between soul and spirit; (3) Between truth and lies; (4) Between believer and unbeliever; (5) Between husband and wife (divorce); (6) Between family members; (7) About to fall over. (1-2) H
+- id=1441 symbol=limousine desc=(1) Glamour; (2) Opulence: (3) High profile. (1-3) Song. 3:9-10.
+- id=1468 symbol=lost and found (found) desc=(1) Repentance or salvation; (2) Spiritually alive; (3) Revelation; (4-6) Joy and/or celebration (could symbolize Holy Spirit infilling); (7) Grace or Spirit. (1) Luke 15:4-7; (2) Luke 15:32; (3) 1 Sam. 9:20; (4) Luke 15
+- id=1919 symbol=raven desc=There are two main lines of interpretation: (1) Unbeliever: (2) Cared for by God; (3) Support from the world; (4) Evil spirit/demon: (5) Taker of spiritual sight. Also see Bird/s. (1) (Gen. 8:7 & Isa. 57:21); Lev. 11:13,
+- id=1979 symbol=roar desc=[A] (1) God’s voice; (2) Loud voice; (3) A leader’s anger; (4) Fearless (as a lion); (5) Territorial warfare (lion’s roar). [B] The spiritual enemies of God trying to paralyze their prey: (6) Voice of the spiritual enemi
+- id=2276 symbol=stalled vehicle desc=(1) Ministry in limbo; (2) On hold; (3) Doing things your way, not God’s way; (4) Stumbling; (5) Heart preparation (test); (6) Awaiting the timing of God; (7) Fear; (8) Not seeing in the Spirit (wrong perception); (9) A 
+- id=2695 symbol=whirlwind desc=Open Heaven bringing: (1) Rapture; (2) Revelation (hearing the Word of God); (3) Resurrection; (4) Destruction; (5) Judgment. Also see Dust Storm and Tornado. (1) 2 Kings 2:1, 11; (2) Job 38:1; Ezek. 1:4ff; (3) Job 40:6-
