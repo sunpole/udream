@@ -1,0 +1,1802 @@
+[
+  {
+    "id": 3,
+    "symbol": "mouse/mice",
+    "aliases": ["rat"],
+    "description": "1) Hidden unclean spirit (Matt. 10:1; cf. Rev. 16:13); 2) Indicator of a spiritual maintenance (Lk. 11:24-25); 3) Unbeliever (unclean); 4) Small (Lev. 11:29); 5) Plague; 6) Judgment (cf. 1 Sam. 5:12 & 1 Sam. 6:5 KJV).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-15",
+    "tags": ["animals", "unclean", "spiritual", "judgment"],
+    "notes": "& means to combine the scriptures to gain the interpretation. Also see entries under Rat."
+  },
+  {
+    "id": 4,
+    "symbol": "aardvark",
+    "aliases": ["ant-eater"],
+    "description": "1) Ant-eater (destroyer of the diligent) (Prov. 6:6-8); 2) Nosey (as a physical attribute).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-15",
+    "tags": ["animals", "diligence", "character"],
+    "notes": ""
+  },
+  {
+  "id": 5,
+  "symbol": "life raft",
+  "aliases": ["raft"],
+  "description": "1) Needing salvation (Matt. 18:11); 2) Lost (Lk. 15:3-32); 3) In danger of losing salvation (Lk. 9:25; Acts 27:30-31); 4) Ark (Christ) (Gen. 6:13-16; Matt. 24:37-39; cf. Lk. 17:26ff.; Heb. 11:7).",
+  "source": "DivinityCode",
+  "date_added": "2025-04-15",
+  "tags": ["salvation", "danger", "ark", "boat"],
+  "notes": "Underlined scriptures display key meaning. cf. = compare scriptures; ff. = and following verses. Also see entries under Adrift, Boat and Sea."
+  },
+  {
+  "id": 6,
+  "symbol": "abominable snow man",
+  "aliases": ["bigfoot"],
+  "description": "1) Abuse (horrible cold-hearted person) (Exod. 1:22; 7:14).",
+  "source": "DivinityCode",
+  "date_added": "2025-04-16",
+  "tags": ["mythical creatures", "abuse", "cold-hearted"],
+  "notes": "Also see entries under Bigfoot."
+  },
+  {
+  "id": 7,
+  "symbol": "aboriginal/s",
+  "aliases": ["black man", "first nations peoples", "foreigner", "native/s"],
+  "description": "See Black Man, First Nations Peoples, Foreigner, and Native/s.",
+  "source": "DivinityCode",
+  "date_added": "2025-04-16",
+  "tags": ["reference", "indigenous", "foreigner"],
+  "notes": ""
+  },
+  {
+  "id": 8,
+  "symbol": "abortion",
+  "aliases": [],
+  "description": "1) Warning of an attempt to kill the promise (Herod spirit) (Exod. 1:16; Matt. 2:16; Rev. 12:4); 2) Actual abortion.",
+  "source": "DivinityCode",
+  "date_added": "2025-04-16",
+  "tags": ["pregnancy", "warning", "spiritual warfare", "promise"],
+  "notes": "Also see entries under Birth and Child."
+  },
+  {
+  "id": 9,
+  "symbol": "above and below",
+  "aliases": [],
+  "description": "1) Heaven and earth; 2) Spiritual and earthly (worldly); 3) Heaven and hell; 4) Head and feet; 5) Head and tail; 6) Heaven and the Deep; 7) Victorious and defeated. (1-2) Exod. 20:4; Deut. 4:39; 5:8; 28:23; Josh. 2:11; John 8:23; Acts 2:19; (3) Job 11:8; Ps. 139:8; Amos 9:2; Matt. 11:23; (4) Eph. 1:22; (5) Deut. 28:13; (6) Gen. 49:25; (7) Deut. 28:13.",
+  "source": "DivinityCode",
+  "date_added": "2025-04-16",
+  "tags": ["contrasts", "spiritual", "heaven", "earth", "victory"],
+  "notes": "Also see entries under Under and Underwater."
+  },
+  {
+    "id": 10,
+    "symbol": "accelerator pedal",
+    "aliases": [],
+    "description": "1) Need to get in the Spirit (be quickened) (John 6:63; Rom. 8:11; 1 Cor. 15:45); 2) Need to speed up (1 Sam. 20:38; 2 Sam. 15:14); 3) Go for it! (Rev. 3:8).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["speed", "spirit", "action"],
+    "notes": ""
+  },
+  {
+    "id": 11,
+    "symbol": "acid",
+    "aliases": [],
+    "description": "1) Cutting or corrosive words (Ps. 64:3; Prov. 25:18); 2) Bitter; 3) Revenge (as in carrying an offense) (Acts 8:23; Heb. 12:15).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["words", "bitterness", "revenge"],
+    "notes": ""
+  },
+  {
+    "id": 12,
+    "symbol": "acorn",
+    "aliases": [],
+    "description": "See Seed.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 13,
+    "symbol": "actions",
+    "aliases": [],
+    "description": "See Individual Movement and Directions.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 14,
+    "symbol": "adder",
+    "aliases": [],
+    "description": "See Snake.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 15,
+    "symbol": "adding",
+    "aliases": [],
+    "description": "1) Spiritual growth (2 Pet. 1:5); 2) Salvations (Gen. 50:20 (Joseph’s name means “adding”)).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["growth", "salvation"],
+    "notes": ""
+  },
+  {
+    "id": 16,
+    "symbol": "adorn",
+    "aliases": [],
+    "description": "See Wearing.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 17,
+    "symbol": "adrift",
+    "aliases": ["boat", "life raft", "sea", "ship"],
+    "description": "1) Aimless (Prov. 29:18; 2 Pet. 2:17; Jude 1:12-13); 2) Without direction (Isa. 2:3; Mark 6:34); 3) Doubting (James 1:6); 4) Needing power (Acts 1:4, 8); 5) Driven by circumstance/troubles (Acts 27:15).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["direction", "doubt", "power", "circumstances"],
+    "notes": "Also see Boat, Life Raft, Sea, and Ship."
+  },
+  {
+    "id": 18,
+    "symbol": "adultery",
+    "aliases": ["fornication", "sex"],
+    "description": "1) Intimately sharing your heart with another who is not your spouse (Prov. 6:32; Matt. 5:28); 2) Worldliness (James 4:4); 3) Spiritual adultery (worship of other gods) (Jer. 3:8-9, 7:9; Ezek. 16:31-32; Hos. 4:13; Rev. 2:22); 4) Lacking judgment (Prov. 6:32); 5) Snare or trap (Prov. 7:23); 6) Literal adultery (Exod. 20:14; Jer. 29:23); 7) Lust issue (Matt. 5:28); 8) Heart stronghold (Matt. 15:19; 2 Pet. 2:14); 9) Work of the flesh (Gal. 5:19).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["sin", "lust", "worldliness", "adultery"],
+    "notes": "Also see Fornication and Sex."
+  },
+  {
+    "id": 19,
+    "symbol": "adversary/ies",
+    "aliases": [],
+    "description": "1) devil (1 Pet. 5:8); 2) Human opposition (Matt. 5:25; Luke 12:58; 18:3; 21:15-16; Phil. 1:28); 3) demon spirits (1 Cor. 16:9); 4) Religious leaders (Luke 13:14-17); 5) Self (the flesh) (Acts 18:6 (KJV); 2 Tim. 2:25-26 (KJV)); 6) the world (John 16:33; 2 Pet. 2:20; 1 John 5:4-5).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["enemy", "opposition", "devil", "flesh", "world"],
+    "notes": ""
+  },
+  {
+    "id": 20,
+    "symbol": "adversity",
+    "aliases": [],
+    "description": "1) Test/trial (Prov. 17:17); 2) Tribulation (1 Sam. 10:19; 2 Chron. 15:6; Ps. 10:6); 3) Trouble (Ps. 31:7; Prov. 24:10); 4) Suffering (Heb. 13:3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["trial", "trouble", "suffering"],
+    "notes": ""
+  },
+  {
+    "id": 21,
+    "symbol": "advisor",
+    "aliases": [],
+    "description": "1) The Holy Spirit (John 14:26).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["holy spirit", "guidance"],
+    "notes": ""
+  },
+  {
+    "id": 22,
+    "symbol": "advocate",
+    "aliases": [],
+    "description": "1) Holy Spirit; 2) One who comes alongside (“Helper” John 14:16); 3) Jesus Christ (Heb. 7:25, 9:24; 1 John 2:1); 4) Someone who speaks for another/representation; 5) A positive witness.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["holy spirit", "jesus", "intercessor"],
+    "notes": ""
+  },
+  {
+    "id": 23,
+    "symbol": "aeroplane",
+    "aliases": [],
+    "description": "1) New heights (Isa. 40:31); 2) Spiritual ministry or church (Isa. 60:8-9; Ezek. 3:14; 83; 11:1, 24; Acts 8:39); 3) High profile ministry (or high flyer) (Gal. 2:9); 4) Freedom in the Spirit (Ps. 51:12; Rom. 8:2; 1 Cor. 2:12; 2 Cor. 3:17); 5) Human-made imitation of the spiritual/spiritual things/church (Eph. 6:12b & Mark 8:33); 6) Travel (Acts 8:39-40); 7) Human-made structure (Mark 14:58).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ministry", "spirit", "travel", "church"],
+    "notes": "Also see Airplane."
+  },
+  {
+    "id": 24,
+    "symbol": "aeroplane landing",
+    "aliases": [],
+    "description": "1) Descending spiritually (2 Sam. 1:4, 19; Rom. 11:12); 2) From Heaven (Isa. 14:12); 3) Coming to town (Luke 8:1; 10:38).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["landing", "spiritual", "descent", "heaven"],
+    "notes": ""
+  },
+  {
+    "id": 25,
+    "symbol": "aeroplane (large passenger plane)",
+    "aliases": [],
+    "description": "1) Church; 2) Big ministry (Ezek. 11:1 & Acts 11:26).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["church", "ministry", "large"],
+    "notes": ""
+  },
+  {
+    "id": 26,
+    "symbol": "aeroplane (fighter plane)",
+    "aliases": [],
+    "description": "1) Spiritual warfare (Isa. 31:5); 2) Evangelist; 3) Evangelistic ministry (Acts 8:5-6, 12, 39); 4) Literal war plane (Hab. 1:8).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["warfare", "evangelism", "fighter"],
+    "notes": ""
+  },
+  {
+    "id": 27,
+    "symbol": "aeroplane (freight plane)",
+    "aliases": [],
+    "description": "See Freight.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 28,
+    "symbol": "affair",
+    "aliases": ["adultery"],
+    "description": "1) Person or church seduced by the world (Hos. 2:5); 2) Sharing your spouse with work, church, or a hobby (1 Pet. 2:14-15).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["adultery", "worldliness", "seduction"],
+    "notes": "Also see Adultery."
+  },
+  {
+    "id": 29,
+    "symbol": "african",
+    "aliases": [],
+    "description": "See Black Man and First Nations Peoples.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 30,
+    "symbol": "after (behind)",
+    "aliases": ["back", "backward", "behind"],
+    "description": "1) Past (Phil. 3:13); 2) Following (Matt. 10:38; 16:24); 3) Later (John 13:36); 4) Seeking after (Rom. 9:31; 1 Cor. 14:1).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["time", "direction", "following"],
+    "notes": "Also see Back, Backward, and Behind."
+  },
+  {
+    "id": 31,
+    "symbol": "age",
+    "aliases": ["baby", "grey", "old", "young", "youth"],
+    "description": "1) Literal years; 2) Generational association (1 John 2:12-14); 3) Age may also indicate a characteristic portrayed by the number of years (i.e. 15 may portray innocence; 18 may mean complete putting off of the old self; 92 may mean judgment and separation); 4) A woman’s age could be the age of a person or church.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["age", "years", "generational", "numbers"],
+    "notes": "Also see Baby, Grey, Individual Numbers, Old, Young, and Youth."
+  },
+  {
+    "id": 32,
+    "symbol": "ahead",
+    "aliases": [],
+    "description": "See Before.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 33,
+    "symbol": "air-conditioner",
+    "aliases": [],
+    "description": "1) Holy Spirit (Acts 2:2, 4a); 2) Full Gospel ministry (John 3:8).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["holy spirit", "ministry"],
+    "notes": "Faulty air-conditioner: (1) Hindering the Holy Spirit (John 3:8; Acts 7:51)."
+  },
+  {
+    "id": 34,
+    "symbol": "air force",
+    "aliases": [],
+    "description": "1) Ministering angel/s; 2) Spirit (good or evil); 3) Heaven (Rev. 8:13; 14:6; 19:17).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["angels", "spirits", "heaven"],
+    "notes": ""
+  },
+  {
+    "id": 35,
+    "symbol": "air force one",
+    "aliases": [],
+    "description": "1) Ministry with Christ on board (Matt. 28:18-20).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ministry", "christ", "presence"],
+    "notes": ""
+  },
+  {
+    "id": 36,
+    "symbol": "air freshener",
+    "aliases": [],
+    "description": "1) The anointing of the Holy Spirit (Isa. 61:1-3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["anointing", "holy spirit"],
+    "notes": ""
+  },
+  {
+    "id": 37,
+    "symbol": "air mattress (airbed)",
+    "aliases": [],
+    "description": "1) Holy Spirit (John 3:5, 8; Rom. 8:16; 1 John 5:6b).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["holy spirit", "rest"],
+    "notes": ""
+  },
+  {
+    "id": 38,
+    "symbol": "airplane",
+    "aliases": [],
+    "description": "See Aeroplane.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 39,
+    "symbol": "airport",
+    "aliases": ["railway station"],
+    "description": "1) Waiting for destiny or ministry (Isa. 40:31; Luke 2:25); 2) Transfer of ministries (Acts 15:35-37, 40); 3) Spiritual grounding (Acts 2:42; 2 Tim. 3:16-17); 4) Spiritual refueling (Acts 4:31; 6:3; 7:55; 11:24; 13:2-3, 9); 5) Waiting on the Holy Spirit (Acts 2:1).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["waiting", "ministry", "transfer", "refueling"],
+    "notes": "Also see Railway Station."
+  },
+  {
+    "id": 40,
+    "symbol": "alarm",
+    "aliases": ["fire", "smoke", "trumpet"],
+    "description": "1) Warning (Amos 3:6); 2) Warning of spiritual attack (smoke alarm) (Rev. 9:2-3); 3) Warning of judgment (fire alarm) (Ezek. 16:41; 2 Pet. 3:7); 4) Conscience (Rom. 2:15; 13:4-5).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["warning", "judgment", "conscience", "attack"],
+    "notes": "Also see Fire, Smoke, and Trumpet."
+  },
+  {
+    "id": 41,
+    "symbol": "alcohol",
+    "aliases": ["drunk", "wine"],
+    "description": "1) False anointing (Eph. 5:18); 2) Getting drunk on the spirit of the world (John 14:17; 1 Cor. 2:12; Eph. 2:2; 1 John 4:1); 3) Getting drunk with worldly power (Rev. 14:8; 18:3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["alcohol", "false anointing", "worldliness"],
+    "notes": "Also see Drunk and Wine."
+  },
+  {
+    "id": 42,
+    "symbol": "aliens",
+    "aliases": ["foreigner", "stranger"],
+    "description": "1) Unbelievers (Eph. 2:12; 4:18; Heb. 11:34); 2) Fallen angels or familiar spirits (Gen. 6:2; Gal. 1:8; Heb. 11:34); 3) Christians (Heb. 11:13 (NIV)); 4) Angels or messengers from Heaven (Heb. 13:2); 5) Outcast or scorned person (Job 19:15; Ps. 69:8); 6) Lying spirit (alien imitating a person) (1 Kings 22:22); 7) Antichrist (1 John 4:1-3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["unbelievers", "angels", "antichrist", "spirits"],
+    "notes": "Also see Foreigner and Stranger."
+  },
+  {
+    "id": 43,
+    "symbol": "alley",
+    "aliases": ["back door"],
+    "description": "1) Going through tough times (1 Sam. 22:1); 2) Not on God’s path or not yet on God’s path (Ps. 119:105); 3) Unprepared heart (Isa. 40:3); 4) Sidelined (Acts 15:37-38); 5) Backslidden (Prov. 14:14); 6) Low profile path (Luke 14:23); 7) Having something to hide; 8) Backstreet (Judg. 5:6); 9) demonic path (Ps. 23:4).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["path", "backsliding", "hidden", "demonic"],
+    "notes": "Also see Back Door."
+  },
+  {
+    "id": 44,
+    "symbol": "alligator",
+    "aliases": [],
+    "description": "See Crocodile.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 45,
+    "symbol": "allowance",
+    "aliases": [],
+    "description": "1) Deposit of faith (Luke 12:42; Rom. 12:3b; Eph. 2:8).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["faith", "provision"],
+    "notes": ""
+  },
+  {
+    "id": 46,
+    "symbol": "almond",
+    "aliases": [],
+    "description": "1) Fruitfulness (Num. 17:8); 2) Chosen (Num. 17:5); 3) Watching (almond tree) (Jer. 1:11-12).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["fruitfulness", "chosen", "watchfulness"],
+    "notes": ""
+  },
+  {
+    "id": 47,
+    "symbol": "alms",
+    "aliases": [],
+    "description": "1) Good deeds (Matt. 6:1); 2) Gifts God takes note of (Acts 10:4); 3) Gifts (Acts 24:17).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["giving", "good deeds", "gifts"],
+    "notes": ""
+  },
+  {
+    "id": 48,
+    "symbol": "aloes",
+    "aliases": [],
+    "description": "1) Fragrance (Ps. 45:8; Song. 4:14).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["fragrance", "perfume"],
+    "notes": ""
+  },
+  {
+    "id": 49,
+    "symbol": "aloe vera",
+    "aliases": [],
+    "description": "1) Healing; 2) Holy Spirit anointing (healing balm) (Jer. 8:22; 51:8).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["healing", "anointing", "holy spirit"],
+    "notes": ""
+  },
+  {
+    "id": 50,
+    "symbol": "alpha",
+    "aliases": [],
+    "description": "1) First; 2) Beginning; 3) Jesus Christ (Rev, 1:8, 11; 21:6; 22:13).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["alpha", "jesus", "beginning"],
+    "notes": ""
+  },
+  {
+    "id": 51,
+    "symbol": "altar",
+    "aliases": [],
+    "description": "1) Place of sacrifice and incense; 2) A place with God (Gen. 12:7; 2 Chron. 20:7b); 3) The human heart (Jer. 17:1).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["altar", "sacrifice", "heart", "worship"],
+    "notes": ""
+  },
+  {
+    "id": 52,
+    "symbol": "altered",
+    "aliases": ["changed"],
+    "description": "1) Changed or exchanged (Lev. 27:10; Ezra 6:11); 2) Glorified (Luke 9:29).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["change", "transformation", "glorified"],
+    "notes": "Also see Changed."
+  },
+  {
+    "id": 53,
+    "symbol": "alternative therapist",
+    "aliases": [],
+    "description": "1) Faith ministry/church (Prov. 13:17b (NKJV); Matt. 9:22; Luke 17:19; Acts 14:9).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["healing", "faith", "ministry"],
+    "notes": ""
+  },
+  {
+    "id": 54,
+    "symbol": "aluminum",
+    "aliases": [],
+    "description": "1) Powerful Spirit-led ministry (quick and maneuverable) (Rom. 8:14); 2) Sensitive ministry/person (Acts 13:13).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ministry", "spirit-led", "sensitivity"],
+    "notes": ""
+  },
+  {
+    "id": 55,
+    "symbol": "aluminum foil",
+    "aliases": ["bake", "baker"],
+    "description": "1) Insulated (Prov. 1:30).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["insulation", "protection"],
+    "notes": "Also see Bake and Baker."
+  },
+  {
+    "id": 56,
+    "symbol": "ambassador",
+    "aliases": [],
+    "description": "1) A representative of God, satan, or a nation (Ezek. 17:15; 2 Cor. 5:20); 2) Peaceseeker (Isa. 33:7; Luke 14:32); 3) Messenger (Isa. 18:2); 4) Trouble or health (Prov. 13:17); 5) Spy (2 Chron. 32:31); 6) Deception (Josh. 9:4).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["representative", "messenger", "peace", "deception"],
+    "notes": ""
+  },
+  {
+    "id": 57,
+    "symbol": "amber",
+    "aliases": ["orange"],
+    "description": "1) Glory of God (Ezek. 1:4; 8:2); 2) Caution; 3) Slow down or stop (as with traffic lights); 4) Fading glory (1 Sam. 4:21-22; Ezek. 10:4; cf. Matt. 17:2).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["glory", "caution", "warning"],
+    "notes": "Also see Orange."
+  },
+  {
+    "id": 58,
+    "symbol": "ambulance",
+    "aliases": ["paramedic"],
+    "description": "1) Warning of sickness (Ezek. 33:5; Mark 6:55); 2) Warning of serious accident (1 Kings 22:34b; Ezek. 33:5); 3) Warning of death (1 Kings 22:35; Ezek. 33:5); 4) Someone who brings sinners to meet Christ (Mark 2:4-5); 5) Need of prayer help (James 5:13-16); 6) Emergency (ambulance with siren) (Amos 3:6); 7) Urgency (Exod. 12:33 KJV).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["warning", "emergency", "sickness", "death", "urgency"],
+    "notes": "Also see Paramedic."
+  },
+  {
+    "id": 59,
+    "symbol": "ambush",
+    "aliases": ["hijack"],
+    "description": "1) Surprise demonic attack (Luke 10:30 & John 10:10); 2) Going down wrong thought pathways can lead to the enemy ambushing your thought life (John 13:27; 2 Cor. 10:3-5).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["attack", "demonic", "thoughts", "enemy"],
+    "notes": "Also see Hijack."
+  },
+  {
+    "id": 60,
+    "symbol": "amen",
+    "aliases": [],
+    "description": "1) Truly (John 1:51; 3:3, 5, 11); 2) So be it; 3) Yes (1 Cor. 14:16; 2 Cor. 1:20); 4) Conclusion (Matt. 28:28; Mark 16:20).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["amen", "truth", "conclusion", "affirmation"],
+    "notes": ""
+  },
+  {
+    "id": 61,
+    "symbol": "america",
+    "aliases": [],
+    "description": "1) In the Spirit (eagle) (Isa. 40:31); 2) Babylon (Rev. 17:5).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["america", "spirit", "babylon", "eagle"],
+    "notes": ""
+  },
+  {
+    "id": 62,
+    "symbol": "amethyst",
+    "aliases": ["python", "precious stones"],
+    "description": "This stone which is blue (heavenly) in color relates to the tribe of Issachar (partnership). Therefore this stone means: (1) Heavenly partnership (Exod. 28:19; 39:12; Rev. 21:20); (2) Python or divination spirit (as in the “amethyst python”).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["stone", "partnership", "python", "divination"],
+    "notes": "Also see Python and Precious Stones."
+  },
+  {
+    "id": 63,
+    "symbol": "amphetamines",
+    "aliases": ["drugs"],
+    "description": "1) Hype (false excitement) (Rom. 10:2); 2) Speed (2 Kings 9:20).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["drugs", "speed", "false excitement"],
+    "notes": "Also see Drugs."
+  },
+  {
+    "id": 64,
+    "symbol": "amphibious vehicle",
+    "aliases": ["hovercraft", "sea"],
+    "description": "1) Evangelistic ministry (Matt. 4:19); 2) Ministry in the Spirit (Rom. 8:14; Rev. 1:10).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["evangelism", "ministry", "spirit"],
+    "notes": "Also see Hovercraft and Sea."
+  },
+  {
+    "id": 65,
+    "symbol": "amplifier",
+    "aliases": [],
+    "description": "1) The Divinity Code to Understanding Your Dreams and Visions (makes the message clearer) (Num. 12:6; Deut. 4:36); 2) Revelation (voice of God) (Exod. 19:16; Rev. 10:3; 14:7).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["revelation", "voice", "message"],
+    "notes": ""
+  },
+  {
+    "id": 66,
+    "symbol": "anaconda",
+    "aliases": [],
+    "description": "See Python.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 67,
+    "symbol": "anchor",
+    "aliases": [],
+    "description": "1) Jesus Christ; 2) Security; 3) Hope (Heb. 6:19-20); 4) Brake (Acts 27:29); 5) Slow down (as a “sea anchor” is used to slow a vessel).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["jesus", "hope", "security", "brake"],
+    "notes": ""
+  },
+  {
+    "id": 68,
+    "symbol": "anchovy/ies",
+    "aliases": [],
+    "description": "1) School child/ren (small school fish) (Matt. 4:19, 19:14); 2) Something that puts a bad taste in your mouth (2 Kings 4:40-41); 3) Someone who hasn’t lost their saltiness (Matt. 5:13).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["children", "salt", "taste"],
+    "notes": ""
+  },
+  {
+    "id": 69,
+    "symbol": "ancient",
+    "aliases": ["antique", "old"],
+    "description": "1) Very old; 2) Lasting (Deut. 33:15; Judg. 5:21; Ps. 119:100); 3) Forefather (1 Sam. 24:13; Ezra 3:12); 4) Long ago (2 Kings 19:25; Ps. 77:5); 5) Wisdom (Job 12:12).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ancient", "wisdom", "old", "forefather"],
+    "notes": "Also see Antique and Old."
+  },
+  {
+    "id": 70,
+    "symbol": "angel/s",
+    "aliases": ["feather/s", "wings"],
+    "description": "1) Messenger of God (Dan. 10:11, 14; Luke 2:19-20); 2) Guardian (Ps. 91:11; Matt. 18:10); 3) Minister (Matt. 4:11; Luke 22:43); 4) God’s Presence (Luke 9:26; 15:10); 5) God’s servants (Matt. 13:41); 6) Spirits (good) (Ps. 104:4; Matt. 25:41; Heb. 1:7, 14; Rev. 12:9); 7) Reapers (Matt. 13:39); 8) Assistant (Heb. 1:14); 9) Spiritual warriors (Dan. 10:13); 10) Worshippers (Heb. 1:6); 11) Familiar spirit (morphing angel) (1 Sam. 28:7); 12) Jesus (Angel of the Lord) (Exod. 3:2-5, 14).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["angel", "messenger", "guardian", "worship", "warrior"],
+    "notes": "Also see Feather/s and Wings."
+  },
+  {
+    "id": 71,
+    "symbol": "angels ascending and descending",
+    "aliases": [],
+    "description": "1) Portal/open Heaven (Gen. 28:12); 2) Establishing the Kingdom on earth (Matt. 6:10).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["angels", "heaven", "kingdom", "portal"],
+    "notes": ""
+  },
+  {
+    "id": 72,
+    "symbol": "anger",
+    "aliases": [],
+    "description": "1) Literal anger (Matt. 5:22); 2) Fear (Ps. 20:2); 3) Frustration (Luke 14:21); 4) Insecurity (1 Sam. 18:8); 5) Blocked goal (1 Sam. 20:30); 6) Jealousy (Luke 15:28; Rom. 10:19); 7) Grief (Mark 3:5); 8) Provocation (Col. 3:21).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["anger", "fear", "jealousy", "grief"],
+    "notes": ""
+  },
+  {
+    "id": 73,
+    "symbol": "angler",
+    "aliases": [],
+    "description": "See Fisherman.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 74,
+    "symbol": "animals",
+    "aliases": [],
+    "description": "As a very general rule, domestic animals may represent: (1) Christ (Lev. 4:3, 14, 23); (2) Believers (Isa. 53:6); (3) Israel. Wild animals may represent: (4) Gentile nations (Jer. 50:17); (5) Unbelievers (Dan. 7:3ff; 8:3, 20); (6) People who return to the ways of the world (2 Pet. 2:12-15; Jude 10-11); (7) Demon powers (Scripturally unclean animals may represent demonic powers).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["animals", "symbolism", "believers", "demonic"],
+    "notes": "Also see entries under individual animal names."
+  },
+  {
+    "id": 75,
+    "symbol": "ankle",
+    "aliases": [],
+    "description": "1) Walk (Ezek. 47:3); 2) Support; 3) Base/foundation (Acts 3:7); 4) New standing; 5) Preaching the Gospel with strength (Ps. 147:10 & Rom. 10:15; 1 Cor. 4:20); 6) Strained relationship (sprained ankle) (Eph. 4:16); 7) Ineffective preaching (sprained ankle) (1 Sam. 3:19); 8) Unfaithful person (sprained ankle) (Prov. 25:19); 9) Relationship; 10) Broken relationship (broken ankle) (Eph. 4:16).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["walk", "foundation", "relationship", "preaching"],
+    "notes": ""
+  },
+  {
+    "id": 76,
+    "symbol": "ankle-deep",
+    "aliases": [],
+    "description": "1) First-steps; 2) Shallow; 3) Uncommitted (Ezek. 47:3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["shallow", "uncommitted", "first steps"],
+    "notes": ""
+  },
+  {
+    "id": 77,
+    "symbol": "anniversary",
+    "aliases": [],
+    "description": "1) Revival (Ps. 85:6); 2) Revival of memories; 3) Memorial or reminder (Exod. 12:14; Lev. 23:24; Num. 10:10).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["anniversary", "revival", "reminder"],
+    "notes": ""
+  },
+  {
+    "id": 78,
+    "symbol": "anointing",
+    "aliases": ["perfume", "spray"],
+    "description": "1) The Holy Spirit (Acts 10:38); 2) Consecration (Exod. 28:41; 29:29; 30:30); 3) Spiritual Coronation (1 Sam. 15:1 & 1 Sam. 10:1 & 11:15; 1 Sam. 16:13 & 2 Sam. 2); 4) Divine equipping (Exod. 28:41; 2 Cor. 1:21); 5) Leadership (1 Sam. 10:1).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["anointing", "holy spirit", "leadership", "equipping"],
+    "notes": "Also see Perfume and Spray."
+  },
+  {
+    "id": 79,
+    "symbol": "anorexia",
+    "aliases": [],
+    "description": "1) Without spiritual revelation; 2) Depleted spiritually (no anointing/fat) (Prov. 28:25; Isa. 58:11); 3) Lying spirit (1 Kings 22:22); 4) Selfish heart (Prov. 11:25; 28:25); 5) Possible sign of abuse (verbal, emotional, sexual); 6) Stress (Dan. 6:18); 7) Actual anorexia.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["anorexia", "spiritual depletion", "lying spirit", "abuse"],
+    "notes": ""
+  },
+  {
+    "id": 80,
+    "symbol": "ant",
+    "aliases": ["termites"],
+    "description": "1) Diligence (Prov. 6:6); 2) Wise one; 3) Small (Prov. 30:24-25); 4) Insignificant (Prov. 30:25).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ant", "diligence", "wisdom", "small"],
+    "notes": "Also see Termites."
+  },
+  {
+    "id": 81,
+    "symbol": "antenna",
+    "aliases": [],
+    "description": "1) Spiritual sensitivity or senses (Matt. 11:15); 2) Prophetic gifting (Jer. 29:19; Zech. 7:12).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["sensitivity", "prophetic", "gift"],
+    "notes": ""
+  },
+  {
+    "id": 82,
+    "symbol": "ant hill",
+    "aliases": [],
+    "description": "1) Lowest mountain (Isa. 40:4); 2) Works of the flesh (Gal. 5:19-21).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["mountain", "flesh", "works"],
+    "notes": ""
+  },
+  {
+    "id": 83,
+    "symbol": "antique",
+    "aliases": ["ancient", "old"],
+    "description": "1) Very old (Job 12:12; Ps. 77:5); 2) Valuable (Matt. 13:52); 3) Collection (Luke 12:33); 4) Out of date (1 Sam. 2:22 & 4:18); 5) Respect (Job 32:6).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["antique", "old", "valuable", "respect"],
+    "notes": "Also see Ancient and Old."
+  },
+  {
+    "id": 84,
+    "symbol": "antlers",
+    "aliases": [],
+    "description": "See Horns.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 85,
+    "symbol": "anus",
+    "aliases": [],
+    "description": "1) Seeing someone’s anus may mean that you have been offended by them (Gen. 20:9b); 2) Abomination (Lev. 18:22; 1 Cor. 6:9; Rom. 1:27).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["offense", "abomination"],
+    "notes": ""
+  },
+  {
+    "id": 86,
+    "symbol": "ape",
+    "aliases": [],
+    "description": "See Monkey.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 87,
+    "symbol": "apostle",
+    "aliases": [],
+    "description": "1) Christ (Heb. 3:1); 2) A “sent-out one” (from the Greek: Apostolos means “sent forth, one sent”); 3) Church-planter (1 Cor. 9:1); 4) Miracle-worker (Acts 5:12; 2 Cor. 12:12).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["apostle", "sent", "church", "miracle"],
+    "notes": ""
+  },
+  {
+    "id": 88,
+    "symbol": "apple",
+    "aliases": [],
+    "description": "1) Love (Ps. 17:8; Song. 2:5; Zech. 2:8); 2) Temptation; 3) Fruit (Gen. 3:6 loosely portrayed as an apple); 4) Health (as in, “an apple a day keeps the doctor away”); 5) Precious (apple of the eye) (Deut. 32:10; Ps. 17:8; Prov. 7:2; Lam. 2:18); 6) Prized possession (apple of the eye) (Zech 2:8); 7) New York (known as the “Big Apple”).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["apple", "love", "temptation", "health", "precious"],
+    "notes": ""
+  },
+  {
+    "id": 89,
+    "symbol": "apple tree",
+    "aliases": [],
+    "description": "1) Young man; 2) Lover; 3) Christ (Song. 2:3); 4) One who bears good or bad fruit (Matt. 7:17).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["tree", "fruit", "christ", "lover"],
+    "notes": ""
+  },
+  {
+    "id": 90,
+    "symbol": "apron",
+    "aliases": [],
+    "description": "1) Slave; 2) Serving (John 13:4); 3) Lay person (Acts 6:1-7).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["apron", "serving", "lay person"],
+    "notes": ""
+  },
+  {
+    "id": 91,
+    "symbol": "aqua",
+    "aliases": [],
+    "description": "As aqua is Latin for “water,” see Water.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 92,
+    "symbol": "archer",
+    "aliases": ["arrows", "bow"],
+    "description": "1) Hateful person who uses piercing words; 2) User of hurtful words (Gen. 49:23); 2) Ps. 64:3; 3) Wounder (1 Sam. 31:3; 2 Chron. 35:23; Job 16:13); 4) Man or woman of the flesh/world (Gen. 25:27 & 27:3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["archer", "words", "hurt", "flesh"],
+    "notes": "Also see Arrows and Bow."
+  },
+  {
+    "id": 93,
+    "symbol": "architect",
+    "aliases": ["plan/s"],
+    "description": "1) God (Ps. 127:1; 1 Cor. 3:9, 16).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["god", "architect", "builder"],
+    "notes": "Also see Plan/s."
+  },
+  {
+    "id": 94,
+    "symbol": "archway",
+    "aliases": ["circle", "domed roof"],
+    "description": "1) Godly opportunity; 2) Open Heaven (Gen. 9:13).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["opportunity", "heaven", "open door"],
+    "notes": "Also see Circle and Domed Roof."
+  },
+  {
+    "id": 95,
+    "symbol": "arena",
+    "aliases": ["spotlight", "stage"],
+    "description": "See Spotlight and Stage.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 96,
+    "symbol": "ark",
+    "aliases": [],
+    "description": "1) Christ (Exod. 25:10; Josh. 3:13, 16; Col. 2:9); 2) Presence of God (2 Sam. 6:11-12); 3) Throne (Ps. 80:1; Rev. 11:19); 4) Vessel of Salvation (Gen. 6); 5) Mercy seat (Heb. 9:4).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["christ", "presence", "throne", "salvation", "mercy"],
+    "notes": ""
+  },
+  {
+    "id": 97,
+    "symbol": "arm",
+    "aliases": ["left", "right", "limbs", "legs"],
+    "description": "1) Christ (Isa. 40:10; 59:16; 63:5); 2) God (Jer. 32:17-18); 3) Ministry assistant (as in, “my right hand man”; Matt. 5:30); 4) Church member (1 Cor. 12:14-15); 5) Arms impaired indicates works affected (Isa. 44:12a); 6) Unable to assist (arms tied) (Dan. 6:14-16; as in, “my hands are tied”); 7) Strength or influence; 8) God’s judgment (broken arm) (Ps. 18:34; Ezek. 30:21; Zech. 11:17).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["christ", "ministry", "strength", "judgment"],
+    "notes": "Also see Left and Right, Limbs, and Legs."
+  },
+  {
+    "id": 98,
+    "symbol": "armchair",
+    "aliases": ["chair", "sofa"],
+    "description": "1) God (as a place of rest) (Deut. 12:9; 2 Chron. 14:11; Isa. 30:15; Heb. 4:10); 2) You as God’s resting place (2 Chron. 6:41; Acts 7:49); 3) The throne of God (1 Kings 10:19); 4) Lazy know-all (armchair expert) (Prov. 26:16).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["rest", "throne", "lazy", "expert"],
+    "notes": "Also see Chair and Sofa."
+  },
+  {
+    "id": 99,
+    "symbol": "armor",
+    "aliases": [],
+    "description": "1) Christ (Rom. 13:12-14); 2) Divine protection (Rom. 13:12; Eph 6:10-18); 3) Natural reasoning (non-faith); 4) Protection; 5) Insurance; 6) Rejecting individual talents (forcing conformity) (1 Sam. 17:38-39); 7) Human intervention (Isa. 22:8); 8) Arguments (Luke 11:22); 9) Right standing with God (2 Cor. 6:7).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["protection", "christ", "faith", "righteousness"],
+    "notes": ""
+  },
+  {
+    "id": 100,
+    "symbol": "army",
+    "aliases": [],
+    "description": "1) Spiritual force; 2) God’s people; 3) Spiritual warfare (2 Kings 6:16-17; Eph. 6:12); 4) Those spiritually in step (who keep rank, same heart) (1 Chron. 12:33, 38; Joel 2:7).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["army", "spiritual warfare", "unity"],
+    "notes": ""
+  },
+  {
+    "id": 101,
+    "symbol": "arriving",
+    "aliases": [],
+    "description": "1) Entering your destiny/Promised Land (arriving in vehicle) (Josh. 1:11).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["destiny", "promised land", "arrival"],
+    "notes": ""
+  },
+  {
+    "id": 102,
+    "symbol": "arrow/s",
+    "aliases": ["darts", "archer"],
+    "description": "1) Piercing words (Ps. 38:2; 64:3; Prov. 25:18); 2) False witness (Prov. 25:18; Jer. 9:8); 3) Evil words (Ps. 11:2; 91:5); 4) Children (Ps. 127:4-5); 5) An individual as a ministry (Isa. 49:2); 6) Conviction (Job 6:4); 7) Judgment (Deut. 32:23; Ps. 64:7); 8) Adversity (Ezek. 5:16; Job 6:4); 9) Deliverance (2 Kings 13:17); 10) Stay or depart (1 Sam. 20:20-22); 11) Prophetic words (victory arrows); 12) On earth as in Heaven (2 Kings 13:17-18; Matt. 6:10).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["words", "judgment", "children", "prophetic"],
+    "notes": "Also see Darts and Archer."
+  },
+  {
+    "id": 103,
+    "symbol": "art class",
+    "aliases": [],
+    "description": "1) Prophetic school (2 Kings 2:5; 6:1).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["prophetic", "school", "training"],
+    "notes": ""
+  },
+  {
+    "id": 104,
+    "symbol": "art gallery",
+    "aliases": [],
+    "description": "1) Prophetic conference (2 Kings 2:3); 2) Recognized prophetic ministry (Gen. 37:3; 41:12; Dan. 5:11-12); 3) Recognized creative anointing (1 Sam. 13:14 & 16:13); 4) Anointed to be creative (Exod. 31:2-4).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["prophetic", "creative", "anointing", "conference"],
+    "notes": ""
+  },
+  {
+    "id": 105,
+    "symbol": "arthritis",
+    "aliases": [],
+    "description": "1) Sin (Lev. 21:17-19 NIV); 2) Inflamed within (Eccl. 7:26; Jer. 4:18; James 3:14); 3) Incapacitated (Eph. 4:16 contrasted with; Col. 2:19); 4) Stiff/rigid/religious; 5) Bitterness/unforgiveness (Acts 8:23); 6) Bondage (Matt. 22:13; John 11:44; Acts 21:11); 7) Need for the Word of God (medicine) (Heb. 4:12).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["disease", "sin", "bitterness", "bondage"],
+    "notes": ""
+  },
+  {
+    "id": 106,
+    "symbol": "artifacts (ancient)",
+    "aliases": [],
+    "description": "1) Foundational Bible truths; 2) Things that tell of ancient ways of life; 3) Made by skilled artificers (inventors) (2 Chron. 34:11-14 (craftsmen = artificers), note that when they set about faithfully (v. 12) rebuilding the temple, God gave them the spiritual flooring, pillars, and roofing (v. 14) to truly rebuild: the Word of God!) (Also see 2 Kings 22:8-11; 1 Chron. 29:5; Neh. 3:6 [Old Gate]).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ancient", "truth", "word of god"],
+    "notes": ""
+  },
+  {
+    "id": 107,
+    "symbol": "artist",
+    "aliases": [],
+    "description": "1) Creatively anointed (Exod. 31:3; 35:31); 2) Seer prophet (expressing what is seen in a vision or painting pictures with words) (Dan. 7:1; 8:26; Matt. 17:9).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["artist", "prophet", "creative", "seer"],
+    "notes": ""
+  },
+  {
+    "id": 108,
+    "symbol": "ascend/ing",
+    "aliases": [],
+    "description": "1) Rising spiritually (Gen. 12:10-13:1); 2) Turning to God (opposite of Jon. 1:3, 5); 3) New position/authority (Eph. 2:6); 4) Progress (Ps. 24:3); 5) Rising with self-effort/religion (Gen. 11:4; Gal. 1:13-14); 6) Spiritual gift (Eph. 4:8).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ascend", "spiritual growth", "authority"],
+    "notes": ""
+  },
+  {
+    "id": 109,
+    "symbol": "ash/es",
+    "aliases": [],
+    "description": "1) Worthlessness (Gen. 18:27); 2) Judgment (Exod. 9:8-9; 2 Pet. 2:6); 3) Shame (2 Sam. 13:19); 4) Repentance and sorrow (Jon. 3:6-10); 5) Contrasted with prosperity (Job 13:12; Isa. 61:3); 6) Tread down (Mal. 4:3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ashes", "judgment", "repentance", "worthlessness"],
+    "notes": ""
+  },
+  {
+    "id": 110,
+    "symbol": "ashtray",
+    "aliases": ["smoking"],
+    "description": "1) Dealing with sorrow (Esther 4:1; Isa. 61:3; Jer. 6:26; Ezek. 27:30); 2) Disposing of oppression (Deut. 4:20 & 26:7-8); 3) Odorous (bitter) (Gen. 27:34 (burned by his brother); Exod. 1:14; 15:23-24 (murmuring); Dan. 3:27b); 4) Spiritually devastated (Neh. 4:2b).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["sorrow", "oppression", "bitter", "devastation"],
+    "notes": "Also see Smoking."
+  },
+  {
+    "id": 111,
+    "symbol": "asian",
+    "aliases": [],
+    "description": "See Indigenous.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 112,
+    "symbol": "asleep",
+    "aliases": [],
+    "description": "See Sleeping.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 113,
+    "symbol": "asp",
+    "aliases": [],
+    "description": "See Snake.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 114,
+    "symbol": "ass",
+    "aliases": [],
+    "description": "See Donkey.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 115,
+    "symbol": "assassin",
+    "aliases": ["contract killer", "kill/ing", "mafia", "murder", "sniper"],
+    "description": "1) Spirit of death (Ps. 10:8, 94:6 & John 10:10); 2) False witness (character assassin) (1 Kings 21:10; Ps. 27:12; 35:11).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["death", "false witness", "assassin"],
+    "notes": "Also see Contract Killer, Kill/ing, Mafia, Murder, and Sniper."
+  },
+  {
+    "id": 116,
+    "symbol": "assistant",
+    "aliases": [],
+    "description": "1) Ministering angel (Heb. 1:14); 2) One’s partner (Gen. 2:18, 20); 3) The Holy Spirit (John 14:16-17).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["angel", "holy spirit", "helper"],
+    "notes": ""
+  },
+  {
+    "id": 117,
+    "symbol": "asthma",
+    "aliases": [],
+    "description": "1) Dying for want of the Spirit (Job 33:4; Isa. 42:5); 2) Dying spiritually (Job 15:30b); 3) Needing God (Ps. 104:29; Isa. 42:5).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["asthma", "spirit", "death", "need"],
+    "notes": ""
+  },
+  {
+    "id": 118,
+    "symbol": "asteroid",
+    "aliases": ["meteor"],
+    "description": "1) Message from Heaven (Rev. 8:10a, 9:1); 2) Message of destruction/judgment; 3) Christ’s return (Matt. 24:29; Rev. 6:13).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["asteroid", "judgment", "message", "christ"],
+    "notes": "Also see Meteor."
+  },
+  {
+    "id": 119,
+    "symbol": "astray",
+    "aliases": [],
+    "description": "1) Sin (Isa. 53:6); 2) Without God (Ps. 119:67; Jer. 50:6; Ezek. 14:11); 3) Lawless or unrighteousness (Ps. 119:176; Prov. 28:10); 4) Wrong teaching (Jer. 50:6); 5) Off the path of life (Ps. 119:67; Prov. 5:21-23); 6) Lies (Ps. 58:3); 7) Lost (Ps. 119:176).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["sin", "lost", "deception", "path"],
+    "notes": ""
+  },
+  {
+    "id": 120,
+    "symbol": "astronaut",
+    "aliases": ["space suit"],
+    "description": "1) Jesus; 2) Spiritual person raised up; 3) In the place of authority; 4) Abounding in spiritual blessings (Acts 1:11; Eph. 1:3, 20; 2:6); 5) Enemy principalities or powers (foreign or threatening astronaut) (Eph. 6:12b).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["astronaut", "jesus", "authority", "enemy"],
+    "notes": "Also see Space Suit."
+  },
+  {
+    "id": 121,
+    "symbol": "atomic bomb",
+    "aliases": [],
+    "description": "1) Power of the Spirit (Luke 3:16-17; Acts 4:31); 2) Consuming fire (Lev. 9:24; Num. 16:35; Mic. 1:4; Heb. 12:29); 3) Outpouring (Rev. 14:10; 16:1-9); 4) The Day of the Lord/Judgment day (Joel 2:30-31; Rev. 16:8); 5) Sudden destruction (Zech. 14:12; Jer. 4:20; 1 Thess. 5:3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bomb", "judgment", "spirit", "destruction"],
+    "notes": ""
+  },
+  {
+    "id": 122,
+    "symbol": "atonement",
+    "aliases": [],
+    "description": "1) Covering (Gen. 6:14 (the word pitch means “atonement”)); 2) Make peace (Lev. 4:26, 31, 35); 3) To make “at-one” (as in, “At-one-ment”).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["atonement", "covering", "peace", "reconciliation"],
+    "notes": ""
+  },
+  {
+    "id": 123,
+    "symbol": "attic",
+    "aliases": [],
+    "description": "1) Head/mind (2 Cor. 5:1 & Gen. 40:17, 19); 2) Remembered (memories) (Acts 10:4; 2 Cor. 10:5); 3) Heaven (Gen. 28:12; Matt. 6:20); 4) Place where old things are stored away (Matt. 6:20).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["attic", "mind", "memories", "heaven"],
+    "notes": ""
+  },
+  {
+    "id": 124,
+    "symbol": "audit",
+    "aliases": [],
+    "description": "1) Test; 2) Financial test (Acts 5:8); 3) Being examined (Luke 13:9; 1 Pet. 5:8); 4) Being assessed (Heb. 4:13); 5) Weighed in the balance (Dan. 5:27); 6) Judgment (Dan. 5:28); 7) Need to put your affairs in order (Luke 12:20).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["audit", "test", "judgment", "examination"],
+    "notes": ""
+  },
+  {
+    "id": 125,
+    "symbol": "aunt",
+    "aliases": [],
+    "description": "1) Married Christian sister; 2) Actual aunt; 3) An aunt could speak about her character, name, or profession (Lev. 18:14 (Father’s brother’s wife)).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["aunt", "family", "relative"],
+    "notes": ""
+  },
+  {
+    "id": 126,
+    "symbol": "aura",
+    "aliases": [],
+    "description": "See Halo.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 127,
+    "symbol": "author",
+    "aliases": [],
+    "description": "1) Originator; 2) Jesus Christ (Heb. 12:2); 3) Writer (Job 19:23; Ps. 45:1b); 4) God (Gen. 1:1).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["author", "jesus", "god", "originator"],
+    "notes": ""
+  },
+  {
+    "id": 128,
+    "symbol": "automobile",
+    "aliases": ["auto accident", "auto stolen", "bus", "driver", "parked auto", "reversing vehicle", "stalled vehicle", "taxi"],
+    "description": "1) Ministry or ministry gift (Prov. 18:16 & Eph. 4:8, 11; Eph. 3:6-7); 2) Person (an individual) (Acts 20:24; Rom. 1:1 (Paul is a servant and bearer of the Gospel)); 3) Church (Heb. 11:7); 4) Business (Jer. 18:3 KJV); 5) Powerful ministry (sports pack); 6) Authority issue (auto with no roof) (Matt. 8:8-9); 7) Family unit (Gen. 45:19); 8) The “old self” (vintage car) (Matt. 9:17; Rom. 6:6); 9) The ministry of God’s Generals (1940-50s car) (Isa. 61:4; Heb. 11:32-33); 10) Not conforming to the religious system (unregistered auto) (Acts 4:13, 19).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["automobile", "ministry", "church", "person", "authority"],
+    "notes": "Also see Auto Accident and Auto Stolen, Bus, Driver, Parked Auto, Reversing Vehicle, Stalled Vehicle, and Taxi."
+  },
+  {
+    "id": 129,
+    "symbol": "auto accident",
+    "aliases": ["overtaking", "shipwreck"],
+    "description": "1) Warning; 2) Ministry threat, mistake, or catastrophe (Acts 20:23-24; 21:11); 3) Potential clash of ministries; 4) Confrontation or conflict; 4) An attack on the destiny of a ministry (Acts 15:36-40; 1 Kings 19:2-3).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["accident", "warning", "ministry", "conflict"],
+    "notes": "Also see Overtaking and Shipwreck."
+  },
+  {
+    "id": 130,
+    "symbol": "auto engine (under the hood)",
+    "aliases": ["engine"],
+    "description": "1) Heart (Lam. 1:20 (KJV); Luke 1:17a).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["engine", "heart"],
+    "notes": "Also see Engine."
+  },
+  {
+    "id": 131,
+    "symbol": "auto interior",
+    "aliases": [],
+    "description": "1) Heart of the ministry; 2) The type of interior determines what type of ministry. i.e. if the interior is worn out, it means the ministry is old, needing renewal (Acts 13:22; Eph. 3:16-17; 1 Pet 3:4 (KJV)).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["interior", "ministry", "heart", "renewal"],
+    "notes": ""
+  },
+  {
+    "id": 132,
+    "symbol": "auto stolen",
+    "aliases": [],
+    "description": "1) Robbed by the devil; 2) Promise or destiny stolen; 3) Ministry stolen (Gen. 27:36; Matt. 16:22-23; John 10:10).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["stolen", "destiny", "ministry", "devil"],
+    "notes": ""
+  },
+  {
+    "id": 133,
+    "symbol": "auto trunk",
+    "aliases": [],
+    "description": "1) Heart (Deut. 9:5; Prov. 14:14; 22:15; Heb. 13:9 (KJV)); 2) Baggage (Matt. 23:4; Luke 11:46; Acts 15:28).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["trunk", "heart", "baggage"],
+    "notes": ""
+  },
+  {
+    "id": 134,
+    "symbol": "autumn",
+    "aliases": [],
+    "description": "1) End (Jer. 8:20); 2) Fading; 3) Carried away; 4) Sin (Isa. 64:6); 5) Moving toward winter.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["autumn", "end", "sin", "fading"],
+    "notes": ""
+  },
+  {
+    "id": 135,
+    "symbol": "aviary",
+    "aliases": [],
+    "description": "1) Stronghold of the enemy (Ps. 91:3a; 124:7); 2) Restricted in the things of the Spirit (Isa. 40:31).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["aviary", "stronghold", "restriction"],
+    "notes": ""
+  },
+  {
+    "id": 136,
+    "symbol": "awake",
+    "aliases": [],
+    "description": "1) Alert (Isa. 52:1; 1 Cor. 15:34; Eph. 5:14); 2) Watchful (Matt. 26:40; Rev. 16:15); 3) Resurrection (John 11:11); 4) Salvation (Eph. 5:8-14); 5) Stirred spiritually (Hag. 1:14; Acts 17:16).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["awake", "alert", "resurrection", "salvation"],
+    "notes": ""
+  },
+  {
+    "id": 137,
+    "symbol": "awl",
+    "aliases": ["earrings"],
+    "description": "1) Piercing; 2) Earmark; 3) Having loving (hearing) ears for (Exod. 21:1-6).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["awl", "piercing", "ears", "obedience"],
+    "notes": "Also see Earrings."
+  },
+  {
+    "id": 138,
+    "symbol": "axe",
+    "aliases": [],
+    "description": "1) Weighty/heavy/impacting word of warning (Dan. 4:14; Matt. 3:7-12); 2) Repentance; 3) Forgiveness; 4) Judgment; 5) Instrument of judgment (Matt. 3:10-11); 5) Matt. 3:10-11 & Acts 8:22; Luke 17:3-4 (there is a link between repentance and forgiveness); 6) Chopper (1 Chron. 20:3; Isa. 10:15); 7) The Word of God (Matt. 3:10-11).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["axe", "judgment", "repentance", "word of god"],
+    "notes": ""
+  },
+  {
+    "id": 139,
+    "symbol": "baboon",
+    "aliases": [],
+    "description": "See Monkey.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["reference"],
+    "notes": ""
+  },
+  {
+    "id": 140,
+    "symbol": "baby",
+    "aliases": ["birthing", "boy", "girl", "pregnancy", "twins"],
+    "description": "(1) God’s promise; (2) Holy Spirit (God’s Promise); (3) New ministry; (4) Immature; (5) New/young Christian; (6) Immature church; (7) New/young church; (8) Birth or fulfillment of promise by faith (unexpected baby); (9) Future; (10) Blessing (newborn baby); (11) The promise has arrived, but immature in the things of the Spirit (premature baby).\n(1) Acts 1:4, 7:5, 17; (2) Luke 24:49; (3) Rev. 12:2-4; (4) 1 John 2:12-14; Heb. 5:12-13; (5-7) Matt. 1:25; 21:16; Luke 2:12 & Acts 1:1; (8) 1 Sam. 1:17; Heb. 11:11; Gal. 4:23b; (9) Isa. 7:14; Acts 7:19; (10) Deut. 7:13; (11) Gal. 4:4-6.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["baby", "promise", "holy spirit", "ministry", "church"],
+    "notes": "Also see Birthing, Boy, Girl, Pregnancy, and Twins."
+  },
+  {
+    "id": 141,
+    "symbol": "babylon",
+    "aliases": [],
+    "description": "(1) Place of captivity; (2) Place of fornication/harlotry; (3) Habitation of devils and foul spirits; (4) Speaks of abundance, luxury, and riches; (5) Facing the wrath of God; (6) Facing torment; (7) Symbolizes rebellion; (8) The world system and false church; (9) Enticement; (10) Prostitution/ prostitute.\n(1) Matt. 1:17; (2) Rev. 14:8; 17:5; (3) Rev. 18:2; (4) Rev. 18:3, 12-14; (5) Rev. 16:19; 18:9; (6) Rev. 18:10; (7) Isa. 13:1-22; (8) Rev. 17:5; Isa. 13:11; (9) Josh. 7:21; (10) Rev. 17:5.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["babylon", "captivity", "world system", "judgment"],
+    "notes": ""
+  },
+  {
+    "id": 142,
+    "symbol": "babysitting",
+    "aliases": [],
+    "description": "(1) Holding on to a promise; (2) Nurturing a new church/ministry; (3) Caretaking a young church.\n(1) Heb. 10:23; (2) Exod. 2:2; 1 Sam. 1:23; (3) 1 Tim. 1:3; 6:20a.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["babysitting", "promise", "nurturing", "church"],
+    "notes": ""
+  },
+  {
+    "id": 143,
+    "symbol": "back",
+    "aliases": ["backpack", "backwards", "before", "behind"],
+    "description": "(1) Past; (2) Reverse; (3) Behind; (4) Secret exit; (5) Burden; (6) Return; (7) Trying to steer you (on your back); (8) Persistent (on your back); (9) Ignoring/ignorant to (back to someone/thing); (10) Moving away (back to you); (11) Not able/wanting to face you (back to you).\n(1) Phil. 3:13; (2) Gen. 9:23; (3) Phil. 3:13; (4) Acts 27:30-32; (5) Matt. 23:4; Acts 15:28; (6) 1 Kings 13:16, 19; (7) Matt. 16:22; (8) As in, “on your back about something”; (9) 1 Sam. 15:11; 1 Kings 14:9; (10) Exod. 23:27; Josh. 7:8, 12; (11) Exod. 33:23; Judg. 18:26.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["back", "past", "burden", "return"],
+    "notes": "Also see Backpack, Backwards, Before, and Behind."
+  },
+  {
+    "id": 144,
+    "symbol": "back door",
+    "aliases": [],
+    "description": "(1) Past; (2) Doubt/unbelief; (3) Undercover (hidden) entry/exit; (4) Not coming in the recognized way; (5) Backsliding; (6) Low profile entry/ exit; (7) Desertion; (8) Secret sin.\n(1-2) Gen. 18:10, 12-13; (3) Gen. 31:27; Jer. 39:4; (4) John 10:1; (5) Jer. 2:19; 5:6b; John 16:32; (6) Matt. 1:19; (7) John 10:12; (8) Luke 12:2.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["back door", "sin", "backsliding", "hidden"],
+    "notes": ""
+  },
+  {
+    "id": 145,
+    "symbol": "back massage/rub",
+    "aliases": [],
+    "description": "(1) Nurturing; (2) Care; (3) Serving the needs of another; (4) Imparting the anointing and breaking yokes.\n(1-3) Isa. 9:4; 10:27; Matt. 11:30; (4) Isa. 10:27.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["massage", "nurturing", "anointing", "care"],
+    "notes": ""
+  },
+  {
+    "id": 146,
+    "symbol": "backpack",
+    "aliases": ["bag"],
+    "description": "(1) Carrying baggage; (2) Burden; (3) Heart; (4) Burden on your heart.\n(1) Job 14:17a; (2) Matt. 11:29-30; (3) Matt. 16:9 (understanding is a heart issue); (4) Isa. 19:1 (The word burden in Hebrew has a double meaning: a burden that is carried and the oracle of a prophet.)",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["backpack", "burden", "heart"],
+    "notes": "Also see Bag."
+  },
+  {
+    "id": 147,
+    "symbol": "backpackers hostel",
+    "aliases": ["youth hostel"],
+    "description": "(1) People coming and going with burdens or issues.\n(1) Luke 11:46.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["hostel", "burdens", "travel"],
+    "notes": "Also see Youth Hostel."
+  },
+  {
+    "id": 148,
+    "symbol": "backstage",
+    "aliases": ["spotlight", "stage"],
+    "description": "(1) What is happening in the inner self (behind the scenes); (2) Giving Christ the glory.\n(1) 1 Pet. 3:4; (2) Col. 3:3.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["backstage", "inner self", "glory"],
+    "notes": "Also see Spotlight and Stage."
+  },
+  {
+    "id": 149,
+    "symbol": "backward",
+    "aliases": [],
+    "description": "(1) Past; (2) Backslidden; (3) Turned away from God; (4) Not ready/ preparation needed; (5) Retreat; (6) Need for introspection; (7) Not knowing where you are going.\n(1) Gen. 9:23 (covering the past); Phil. 3:12; (2) Isa. 1:4; (3) Jer. 7:24; 15:6; Lam. 1:8; (4-5) Josh. 7:5, 10-11.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["backward", "past", "backslidden", "retreat"],
+    "notes": ""
+  },
+  {
+    "id": 150,
+    "symbol": "backyard (garden)",
+    "aliases": ["front yard", "garden"],
+    "description": "(1) That which is private; (2) Concerning you or your own family; (3) Past issues; (4) Hidden.\n(1) Acts 5:2; (2) As in, “take a look in your own backyard”; Mark 9:28; 13:3; (3) Phil. 3:13; (4) Gen. 3:8, 10; Song. 6:2.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["backyard", "private", "family", "hidden"],
+    "notes": "Also see Front Yard and Garden."
+  },
+  {
+    "id": 151,
+    "symbol": "bacon",
+    "aliases": ["pig"],
+    "description": "(1) Flesh.\n(1) Isa. 65:4.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bacon", "flesh"],
+    "notes": "Also see Pig."
+  },
+  {
+    "id": 152,
+    "symbol": "bag",
+    "aliases": ["backpack"],
+    "description": "(1) Carrying baggage/burdens; (2) Heart; (3) Money; (4) Security; (5) Treasure; (6) Business; (7) Treasurer; (8) Thief; (9) Carrying; (10) Fashion accessory; (11) Putting yourself before God (bag with holes); (12) Carrying oppression or issues; (13) Carrying the anointing/mantle (a blue bag); (14) Heart full of faith (bag of money).\n(1) Job 14:17; Luke 11:46; Acts 8:18-20, 22-23; (2) Matt. 6:21; (3) 2 Kings 5:23; 12:10; Prov. 7:20; Isa. 46:6; (4-5) Luke 12:33; (6) Deut. 25:13; Mic. 6:11; (7) John 13:29; (8) John 12:6; 13:29; (9) 1 Sam. 17:40, 49; (10) Josh. 9:4-5; (11) Hag. 1:6; (12) Isa. 9:4 (NIV); (13) 1 Sam. 16:1; (14) 1 Sam. 2:35; Neh. 9:7-8; Rom. 10:8.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bag", "burden", "heart", "money", "anointing"],
+    "notes": "Also see Backpack."
+  },
+  {
+    "id": 153,
+    "symbol": "bait",
+    "aliases": ["fishing", "poison", "worm/s"],
+    "description": "(1) Temptation; (2) Trap/snare; (3) Potential offense; (4) Wrongly using the Word of God; (5) Word of God; (6) Signs and wonders; (7) Revelation; (8) The Gospel.\n(1) Luke 4:1b-2a, 13; 1 Cor. 10:13; (2-3) Isa. 8:14; 29:21; Matt. 13:57; 18:6; (4) 2 Cor. 2:17; 1 Pet. 1:23; 2 Pet. 2:1; (5-6) Heb. 2:3-4; (7) Matt. 16:15-18; (8) Matt. 4:19b.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bait", "temptation", "gospel", "revelation"],
+    "notes": "Also see Fishing, Poison, and Worm/s."
+  },
+  {
+    "id": 154,
+    "symbol": "bake",
+    "aliases": ["baker", "cook"],
+    "description": "(1) Something of your own making; (2) Concocting or scheming something.\n(1) Gen. 40:16-18; Jer. 17:9; Hos. 7:6a; (2) 2 Sam. 15:3-6; 1 Cor. 4:5; 2 Cor. 2:11.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bake", "scheming", "heart"],
+    "notes": "Also see Baker and Cook."
+  },
+  {
+    "id": 155,
+    "symbol": "baked beans",
+    "aliases": [],
+    "description": "(1) Revelation (seed in sauce).\n(1) Exod. 29:7 & Luke 8:11.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["baked beans", "revelation", "seed"],
+    "notes": ""
+  },
+  {
+    "id": 156,
+    "symbol": "baker",
+    "aliases": ["bake", "bakery", "oven"],
+    "description": "(1) devil; (2) Someone who causes things to rise by sowing sin; (3) Schemer; (4) Someone who appeals to the senses, but has something else in the heart (oven); (5) Craftsman of own heart; (6) One who has something to hide; (7) Angry person.\n(1-2) Gen. 3:1; Hos. 7:4; (3) Gen. 40:22; (4) Gen. 40:1ff; (5) Hos. 7:6; (6) Gen. 40:16; (7) Hos. 7:6.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["baker", "devil", "sin", "schemer"],
+    "notes": "Also see Bake, Bakery, and Oven."
+  },
+  {
+    "id": 157,
+    "symbol": "bakery",
+    "aliases": [],
+    "description": "(1) Your heart.\n(1) Hos. 7:6.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bakery", "heart"],
+    "notes": ""
+  },
+  {
+    "id": 158,
+    "symbol": "balaclava",
+    "aliases": ["terrorist"],
+    "description": "(1) Spirit of fear; (2) Thief; (3) Unaware of the devil’s schemes (unknown assailant).\n(1) Rom. 8:15; (2) John 10:10; (3) 2 Cor. 2:11; Eph. 6:11.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["balaclava", "fear", "thief", "schemes"],
+    "notes": "Also see Terrorist."
+  },
+  {
+    "id": 159,
+    "symbol": "balances (scales)",
+    "aliases": [],
+    "description": "(1) Judgment (weighed); (2) Justice; (3) Business; (4) Integrity; (5) Divide; (6) Deceit; (7) Falsehood; (8) Purchase; (9) Considered; (10) Vanity.\n(1) Dan. 5:27; Rev. 6:5; (2) Lev. 19:36; Prov. 16:11; Ezek. 45:10; (3) Isa. 46:6; Hos. 12:7; (4) Job 31:6; (5) Ezek. 5:1; (6) Hos. 12:7; Amos 8:5; Mic. 6:11; (7) Prov. 11:1; 20:23; Hos. 12:7; (8) Jer. 32:10; (9) Job 6:2; (10) Ps. 62:9.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["balances", "judgment", "justice", "deceit"],
+    "notes": ""
+  },
+  {
+    "id": 160,
+    "symbol": "balcony",
+    "aliases": [],
+    "description": "(1) Prophetic vision; (2) Position of a prophet.\n(1) Num. 22:41; (2) Num. 22:41; 1 Sam. 9:19.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["balcony", "prophetic", "vision", "prophet"],
+    "notes": ""
+  },
+  {
+    "id": 161,
+    "symbol": "baldness",
+    "aliases": ["hair", "hair cut off", "head", "razor", "shave", "skinhead", "vulture"],
+    "description": "Appears to have two predominant lines of thought, based on: (1) Humbling and humility; (+) (2) A sign of the cutting away of the flesh; (-) (4) Shame or humiliation; (5) Judgment; (6) Mourning; (7) Fully bald man, like a vulture, could be a demon if unfriendly.\nIt may be that naturally occurring baldness signifies the former (+), and shaved baldness the latter (-).\n(1) Isa. 22:12; Mic. 1:16; (2) Lev. 13:40-41; 2 Kings 2:23; (4) Lev. 21:5; Ezek. 7:18; (5) Isa. 15:2; Jer. 47:5; (6) Amos 8:10; (7) Mic. 1:16.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["baldness", "humility", "judgment", "mourning"],
+    "notes": "Also see Hair, Hair Cut Off, Head, Razor, Shave, Skinhead, and Vulture."
+  },
+  {
+    "id": 162,
+    "symbol": "ball (catching ball)",
+    "aliases": ["catcher's mitt"],
+    "description": "(1) Listening; (2) Taking hold of someone’s words; (3) Trying to catch you out in your words.\n(1) Matt. 13:19; Mark 12:13; (2) Luke 20:20, 26 (KJV); (3) Mark 12:13.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "catching", "words", "listening"],
+    "notes": "Also see Catcher's Mitt."
+  },
+  {
+    "id": 163,
+    "symbol": "ball (deflated ball)",
+    "aliases": [],
+    "description": "(1) Words without power; (2) Words without the Spirit; (3) Losing the Spirit.\n(1-2) Job 33:4; 1 Cor. 2:4; 4:20; 1 Thess. 1:5; Heb. 1:3; (cf. Luke 4:32); (3) Judg. 16:20.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "deflated", "words", "spirit"],
+    "notes": ""
+  },
+  {
+    "id": 164,
+    "symbol": "ball (hitting ball)",
+    "aliases": [],
+    "description": "(1) Effective speaking; (2) Authoritative speaking.\n(1) 1 Sam. 3:19; (2) Acts 5:40; 16:22.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "hitting", "speaking"],
+    "notes": ""
+  },
+  {
+    "id": 165,
+    "symbol": "ball (kicking ball)",
+    "aliases": [],
+    "description": "(1) Passing on the message; (2) Going for goal; (3) Persecution; (4) Going against God; (5) Being proud and forgetting God.\n(1) Judg. 11:17; 19; 2 Tim. 2:2; (3-4) Acts 9:5; 26:14; (5) Deut 32:15, 18; 1 Sam. 2:29.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "kicking", "message", "persecution"],
+    "notes": ""
+  },
+  {
+    "id": 166,
+    "symbol": "ball (passing ball)",
+    "aliases": [],
+    "description": "(1) Teaching (passing on knowledge).\n(1) John 8:20; Acts 15:35.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "passing", "teaching"],
+    "notes": ""
+  },
+  {
+    "id": 167,
+    "symbol": "ball (rolling ball)",
+    "aliases": [],
+    "description": "(1) Writing words; (2) Written words.\n(1-2) Ezra 6:1-2; Isa. 8:1; 34:4; Jer. 36:2ff; Ezek. 3:1-3; Zech. 5:1-2.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "rolling", "writing", "words"],
+    "notes": ""
+  },
+  {
+    "id": 168,
+    "symbol": "ball (scoring)",
+    "aliases": [],
+    "description": "(1) Winning souls.\n(1) Acts 2:41.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "scoring", "souls"],
+    "notes": ""
+  },
+  {
+    "id": 169,
+    "symbol": "ball (spinning ball)",
+    "aliases": [],
+    "description": "(1) Lying; (2) Deceptive words; (3) Spinning yarns (story-telling).\n(1) Prov. 6:19, 10:18, 12:19, 22, 14:5, 25, 19:5, 9, 21:6, 26:28, 30:6.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "spinning", "lying", "deception"],
+    "notes": ""
+  },
+  {
+    "id": 170,
+    "symbol": "ball (throwing ball)",
+    "aliases": [],
+    "description": "(1) Speaking; (2) Passing on to others; (3) Casting away.\n(1) Ps. 50:17; (2) 2 Tim. 2:2; (3) Isa. 22:18; Mark 12:13.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "throwing", "speaking"],
+    "notes": ""
+  },
+  {
+    "id": 171,
+    "symbol": "ball (transparent ball)",
+    "aliases": [],
+    "description": "(1) Words without substance (no heart or spirit).\n(1) 1 Sam. 3:19.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ball", "transparent", "words"],
+    "notes": ""
+  },
+  {
+    "id": 172,
+    "symbol": "ballet",
+    "aliases": [],
+    "description": "(1) Full of grace (graceful); (2) Love.\n(1) Gen. 6:8; John 1:14b; (2) 2 Cor. 8:7; 13:14.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["ballet", "grace", "love"],
+    "notes": ""
+  },
+  {
+    "id": 173,
+    "symbol": "balloon/s",
+    "aliases": ["ball"],
+    "description": "(1) Celebration; (2) Words; (3) Prophecy: as words that lift (helium balloons); (4) In the Spirit; (5) Filled with the Holy Spirit; (6) Childlike faith; (7) Relief, freedom.\n(1) Luke 15:23-24; (2) Ps. 33:6 (words are carried on one’s breath); Prov. 1:23; John 6:63; (3) 1 Cor. 14:3; (4) Rev. 17:3a; (5) Luke 4:1; (6) Matt. 18:3; (7) Matt. 11:30.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["balloon", "celebration", "words", "prophecy", "holy spirit"],
+    "notes": "Also see Ball."
+  },
+  {
+    "id": 174,
+    "symbol": "bamboo",
+    "aliases": [],
+    "description": "(1) Young Christian; (2) Hollow Christian (no heart); (3) China; (4) Discipline.\n(1) Prov. 11:28; Isa. 60:21; (2) Isa. 29:13; Matt. 15:8; (3) As in “the Bamboo Curtain”; (4) Prov. 23:13 (the rod or cane).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bamboo", "christian", "discipline"],
+    "notes": ""
+  },
+  {
+    "id": 175,
+    "symbol": "bananas",
+    "aliases": ["fruit", "yellow"],
+    "description": "(1) Fruit; (2) Wages (fruit of the hands).\n(1) Deut. 1:25; (2) Prov. 31:16, 31 (KJV).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bananas", "fruit", "wages"],
+    "notes": "Also see Fruit and Yellow."
+  },
+  {
+    "id": 176,
+    "symbol": "banana skin",
+    "aliases": [],
+    "description": "(1) Watch your step.\n(1) Ps. 73:2.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["banana", "skin", "warning"],
+    "notes": ""
+  },
+  {
+    "id": 177,
+    "symbol": "band (rock)",
+    "aliases": ["rock 'n roll"],
+    "description": "(1) Powerful worship; (2) False worship; (3) Rejoicing; (4) Revival.\n(1) 1 Chron. 6:31-32; 15:16; (2) Exod. 32:17-19; (3) 1 Sam. 18:6; (4) 2 Chron. 5:13-14.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["band", "worship", "revival"],
+    "notes": "Also see Rock 'n Roll."
+  },
+  {
+    "id": 178,
+    "symbol": "bank",
+    "aliases": ["riverbank"],
+    "description": "(1) Your heart; (2) Heaven (God’s treasury); (3) Jesus; (4) Reserve; (5) Sure thing; (6) Wealth/money; (7) Storehouse; (8) Interest; (9) Your place of employment (where you receive financially).\n(1) Matt. 12:35; Luke 6:45; 12:34; 21:1-4; Rom. 2:5; 2 Cor. 4:7; (2) Matt. 6:19-20; Mark 10:21; Luke 12:33; 18:22; (3) Col. 2:2-3; Heb. 11:26; (4) Acts 5:3; (5) As in, “You can bank on that”; (6) Luke 19:23; (7) 2 Chron. 32:27; (8) Luke 19:23; (9) Matt. 20:2.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bank", "heart", "heaven", "wealth"],
+    "notes": "Also see Riverbank."
+  },
+  {
+    "id": 179,
+    "symbol": "banner",
+    "aliases": [],
+    "description": "(1) Flag; (2) The protection of God; (3) Love; (4) Fearsome army; (5) A warning; (6) Memorial; (7) Victory.\n(1-2) Ps. 20:5; 60:4; (3) Song. 2:4; (4) Song. 6:4, 10; (5) Isa. 13:2; (6) Exod. 17:14-15; (7) Ps. 20:5 (NIV).",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["banner", "protection", "victory"],
+    "notes": ""
+  },
+  {
+    "id": 180,
+    "symbol": "banqueting",
+    "aliases": ["party"],
+    "description": "(1) Intimate communion; (2) Sumptuous feast; (3) Joy; (4) To feed on; (5) Fleshly indulgence (drinking parties).\n(1) Song. 2:4; (2) Esther 5:4-6; (3) Esther 5:6; 7:2, 7 (wine = joy); (4) Job 41:6; (5) 1 Pet. 4:3.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["banqueting", "communion", "joy", "indulgence"],
+    "notes": "Also see Party."
+  },
+  {
+    "id": 181,
+    "symbol": "baptise/d",
+    "aliases": [],
+    "description": "(1) Burial of old life; (2) Death and resurrection; (3) Death to sin; (4) Burial of a sinful aspect of one’s life.\n(1-4) Rom. 6:1-11; Col. 2:12-13.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["baptism", "death", "resurrection", "sin"],
+    "notes": ""
+  },
+  {
+    "id": 182,
+    "symbol": "bar (nightclub)",
+    "aliases": ["nightclub"],
+    "description": "(1) Church/altar (as the communal place where we drink of the Spirit); (2) The world; (3) Haunt of the workers of the flesh; (4) Gathering place for lovers of darkness.\n(1) Eph. 5:18; (2) 1 John 2:16; (3) Gal. 5:19-21; (4) 1 Thess. 5:5-7.",
+    "source": "DivinityCode",
+    "date_added": "2025-04-17",
+    "tags": ["bar", "church", "world", "darkness"],
+    "notes": "Also see Nightclub."
+  }
+]
