@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>UDREAM — христианский сонник</title>
+    <!-- PWA manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5efe7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* ---------- CSS переменные (темы) ---------- */
+        :root {
+            --bg-body: #f5efe7;
+            --text-body: #2c2825;
+            --bg-card: #fffaf5;
+            --border-card: #ede3d8;
+            --bg-element: #f1ece4;
+            --text-element: #2c2825;
+            --bg-input: white;
+            --text-input: #1a1a1a;
+            --border-input: #d4c9bd;
+            --bg-active: #b8a086;
+            --text-active: white;
+            --bg-highlight: #e4d9ce;
+            --shadow: 0 8px 20px rgba(0,0,0,0.05);
+            --warning-bg: #fef1e0;
+            --warning-text: #b85c00;
+        }
+        body.dark {
+            --bg-body: #1e1b18;
+            --text-body: #e2e0dd;
+            --bg-card: #2a2622;
+            --border-card: #3e3a36;
+            --bg-element: #3e3a36;
+            --text-element: #e2e0dd;
+            --bg-input: #3b3630;
+            --text-input: #f0f0f0;
+            --border-input: #5a524a;
+            --bg-active: #6b5843;
+            --text-active: white;
+            --bg-highlight: #4a3f36;
+            --shadow: 0 8px 20px rgba(0,0,0,0.2);
+            --warning-bg: #3e2a1c;
+            --warning-text: #ffaa66;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family:'Inter',sans-serif;
+            background: var(--bg-body);
+            color: var(--text-body);
+            line-height:1.5;
+            transition: background 0.2s, color 0.2s;
+            padding-bottom: 70px;
+        }
+        /* общие */
+        .card, .search-field, .top-bar, .menu-panel, .word-item, .autocomplete-list {
+            background: var(--bg-card);
+            border-color: var(--border-card);
+            color: var(--text-body);
+        }
+        input, .search-field input, .autocomplete-item {
+            background: var(--bg-input);
+            color: var(--text-input);
+            border-color: var(--border-input);
+        }
+        .mini-btn, .opt-btn, .alpha-letter, .stats-line, .tag, .breadcrumb-item {
+            background: var(--bg-element);
+            color: var(--text-element);
+        }
+        .mini-btn.active, .opt-btn.active, .alpha-letter.active {
+            background: var(--bg-active);
+            color: var(--text-active);
+        }
+        /* layout */
+        .top-bar {
+            position: sticky; top:0; z-index:100;
+            background: rgba(250,247,242,0.96); backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-card);
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        body.dark .top-bar { background: rgba(30,27,24,0.96); }
+        .logo { font-size: 1.2rem; font-weight: 600; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+        .logo h1 { font-size: 1.2rem; font-weight: 600; }
+        .logo small { font-size: 0.6rem; font-weight: 400; margin-left: 0.3rem; }
+        .db-status {
+            font-size: 0.65rem;
+            background: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+            white-space: nowrap;
+        }
+        .tool-group {
+            display: flex; gap: 0.3rem;
+            align-items: center;
+            background: var(--bg-element);
+            border-radius: 40px;
+            padding: 0.2rem;
+        }
+        .mini-btn {
+            border: none; padding: 0.3rem 0.7rem; border-radius: 30px;
+            font-size: 0.7rem; font-weight: 500;
+            display: inline-flex; align-items: center; gap: 0.2rem;
+            cursor: pointer; transition: 0.1s;
+        }
+        .burger {
+            font-size: 1.2rem; background: var(--bg-element);
+            border-radius: 30px; padding: 0.3rem 0.7rem; cursor: pointer;
+        }
+        .menu-panel {
+            position: fixed; top:0; right:-280px; width:260px;
+            height:100%; background: var(--bg-card); box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+            transition: right 0.2s; z-index:200;
+            padding: 1.2rem; display: flex; flex-direction: column; gap: 1rem;
+            border-left: 1px solid var(--border-card);
+        }
+        .menu-panel.open { right:0; }
+        .menu-overlay {
+            position: fixed; inset:0; background: rgba(0,0,0,0.2);
+            z-index:150; display: none;
+        }
+        .menu-overlay.open { display: block; }
+        .stats-line {
+            font-size: 0.75rem; padding:0.5rem; border-radius: 16px;
+            background: var(--bg-element);
+        }
+        .mode-container { max-width: 1200px; margin: 1rem auto; padding: 0 1rem; }
+        /* алфавит */
+        .alphabet-row {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.3rem; margin-bottom: 1rem;
+        }
+        .alphabet-section {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.3rem; width:100%; margin-bottom: 0.5rem;
+        }
+        .alpha-letter {
+            border-radius: 20px; padding: 0.2rem 0.6rem;
+            font-size: 0.8rem; cursor: pointer;
+        }
+        /* хлебные крошки */
+        .breadcrumbs {
+            display: flex; flex-wrap: wrap; align-items: center;
+            gap: 0.5rem; margin: 0.5rem 0; font-size: 0.75rem;
+            padding: 0.3rem 0; overflow-x: auto;
+        }
+        .breadcrumb-item {
+            background: var(--bg-element); border-radius: 20px;
+            padding: 0.2rem 0.6rem; cursor: pointer;
+            white-space: nowrap;
+        }
+        .breadcrumb-arrow { color: var(--text-body); opacity: 0.6; }
+        .history-nav {
+            display: flex; gap: 0.5rem; margin-left: auto;
+        }
+        /* поиск */
+        .search-field {
+            display: flex; border-radius: 60px; padding: 0.2rem 0.2rem 0.2rem 1rem;
+            margin: 0.5rem 0; position: relative;
+            border: 1px solid var(--border-card);
+        }
+        .search-field input {
+            flex:1; border: none; padding: 0.7rem 0;
+            font-size: 0.9rem; background: transparent; outline: none;
+        }
+        .search-field button {
+            border: none; border-radius: 40px; padding: 0.4rem 1.2rem;
+            background: var(--bg-element); color: var(--text-element);
+            cursor: pointer;
+        }
+        .autocomplete-list {
+            position: absolute; top:100%; left:0; right:0;
+            border:1px solid var(--border-card); border-radius:20px;
+            max-height:200px; overflow-y: auto; z-index:50; display:none;
+        }
+        .autocomplete-list.show { display:block; }
+        .autocomplete-item { padding:0.4rem 1rem; cursor:pointer; }
+        .autocomplete-item:hover { background: var(--bg-element); }
+        .search-options {
+            position: sticky; top: 70px; z-index: 80;
+            display: flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;
+            background: var(--bg-body); padding: 0.2rem 0;
+        }
+        .opt-btn {
+            font-size:0.7rem; border-radius:20px; padding:0.2rem 0.8rem; cursor:pointer;
+        }
+        /* теги и фильтры */
+        .tag-list {
+            display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0;
+        }
+        .tag {
+            padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.7rem;
+            cursor: pointer;
+        }
+        /* карточка */
+        .card {
+            border-radius: 28px; padding: 1.2rem; margin-bottom: 1.2rem;
+            border: 1px solid var(--border-card);
+            box-shadow: var(--shadow);
+        }
+        .symbol-name { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .meta { font-size: 0.7rem; opacity: 0.8; margin: 0.3rem 0; }
+        .aliases, .tags { margin: 0.5rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+        .desc { margin: 0.8rem 0; line-height: 1.55; white-space: pre-wrap; }
+        .notes { margin-top: 0.8rem; border-top: 1px solid var(--border-card); padding-top: 0.5rem; font-size: 0.85rem; }
+        .word-list {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
+            gap: 0.5rem; margin-top: 1rem;
+        }
+        .word-item {
+            padding: 0.5rem; border-radius: 20px; cursor: pointer; text-align: center;
+            border: 1px solid var(--border-card);
+        }
+        .create-fab {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: var(--bg-active); color: var(--text-active);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index:90;
+        }
+        .footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.7rem;
+            border-top: 1px solid var(--border-card);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            color: var(--text-body);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.75rem;
+        }
+        .social-links a:hover { opacity: 0.8; }
+        .hidden { display: none; }
+        .loader {
+            border: 2px solid var(--border-card);
+            border-top: 2px solid var(--bg-active);
+            border-radius: 50%;
+            width: 24px; height: 24px;
+            animation: spin 0.8s linear infinite;
+            margin: 1rem auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @media (max-width: 600px) {
+            .symbol-name { font-size: 1.4rem; }
+            .card { padding: 1rem; }
+            .top-bar { padding: 0.3rem 0.8rem; }
+            .logo h1 { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="logo">
+        <h1>✦ UDREAM</h1>
+        <small>v9</small>
+        <span id="dbStatusIndicator" class="db-status" style="display:none;"></span>
+    </div>
+    <div class="tool-group">
+        <button id="langToggle" class="mini-btn"><i class="fas fa-globe"></i> <span id="langToggleText">EN</span></button>
+        <button id="themeToggle" class="mini-btn"><i class="fas fa-sun"></i> Тема</button>
+        <div class="burger" id="burgerBtn"><i class="fas fa-bars"></i></div>
+    </div>
+</div>
+<div class="menu-overlay" id="menuOverlay"></div>
+<div id="menuPanel" class="menu-panel">
+    <h4 id="menuStatsTitle">📊 Статистика</h4>
+    <div id="statsPanel" class="stats-line">Загрузка...</div>
+    <hr>
+    <div><strong data-i18n="books">📚 Книги</strong></div>
+    <div><a href="#" id="book1Link" target="_blank" style="color:var(--bg-active);">The Divinity Code (PDF)</a></div>
+    <div><a href="#" id="book2Link" target="_blank" style="color:var(--bg-active);">Unlocking Your Dream (PDF)</a></div>
+    <hr>
+    <button id="showHelpBtn" class="mini-btn"><i class="fas fa-book-open"></i> <span data-i18n="instructions">📖 Инструкция</span></button>
+    <button id="closeMenuBtn" class="mini-btn"><span data-i18n="close">Закрыть</span></button>
+</div>
+
+<div class="mode-container">
+    <!-- хлебные крошки + история -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div id="breadcrumbs" class="breadcrumbs"></div>
+        <div class="history-nav">
+            <button id="backBtn" class="mini-btn" disabled><i class="fas fa-arrow-left"></i> <span data-i18n="back">Назад</span></button>
+            <button id="forwardBtn" class="mini-btn" disabled><i class="fas fa-arrow-right"></i> <span data-i18n="forward">Вперёд</span></button>
+        </div>
+    </div>
+    <!-- алфавитный указатель -->
+    <div id="alphabetRow" class="alphabet-row"></div>
+    <!-- поиск -->
+    <div class="search-field">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Найти символ, алиас или тег...">
+        <button id="searchBtn"><i class="fas fa-arrow-right"></i> <span data-i18n="searchBtn">Найти</span></button>
+        <div id="autocompleteList" class="autocomplete-list"></div>
+    </div>
+    <div class="search-options" id="searchOptions">
+        <span data-opt="symbol" class="opt-btn active">📖 <span data-i18n="optSymbol">Название</span></span>
+        <span data-opt="aliases" class="opt-btn">🏷️ <span data-i18n="optAliases">Алиасы</span></span>
+        <span data-opt="desc" class="opt-btn">📄 <span data-i18n="optDesc">Описание</span></span>
+        <span data-opt="tags" class="opt-btn">🔖 <span data-i18n="optTags">Теги</span></span>
+        <span data-opt="all" class="opt-btn">🔍 <span data-i18n="optAll">Везде</span></span>
+    </div>
+    <div id="resultCard" class="card">
+        <div class="loader"></div>
+    </div>
+</div>
+<div class="create-fab" id="reloadFab"><i class="fas fa-sync-alt"></i></div>
+
+<footer class="footer">
+    <div class="social-links">
+        <a href="https://t.me/olgamago" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> @olgamago</a>
+        <a href="https://instagram.com/olanitsy" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> @olanitsy</a>
+        <a href="https://t.me/SunPole" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> @SunPole</a>
+        <a href="https://instagram.com/xcve33" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> @xcve33</a>
+        <a href="https://instagram.com/FamilyOfGod.Minsk" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> FamilyOfGod.Minsk</a>
+    </div>
+    <div data-i18n="thanks">Супруге — за идею и тестирование. Вам — если дочитали до сюда. Церковь «Семья Божья», Минск. Живите с миром.</div>
+</footer>
+
+<script>
+    (function(){
+        // --- Глобальное состояние
+        let db = [];
+        let currentMode = "symbol";
+        let theme = localStorage.getItem("clientTheme") || "light";
+        let lang = localStorage.getItem("clientLang") || "ru";
+        let historyStack = [];
+        let historyIndex = -1;
+        let allTags = new Set();
+        let lastDisplayedRecord = null;
+        let loadedFilesCount = 0;
+        const totalFiles = 3;
+        
+        // DOM elements
+        const themeToggle = document.getElementById("themeToggle");
+        const langToggle = document.getElementById("langToggle");
+        const langToggleText = document.getElementById("langToggleText");
+        const burgerBtn = document.getElementById("burgerBtn");
+        const menuPanel = document.getElementById("menuPanel");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const closeMenuBtn = document.getElementById("closeMenuBtn");
+        const statsPanel = document.getElementById("statsPanel");
+        const showHelpBtn = document.getElementById("showHelpBtn");
+        const alphabetRow = document.getElementById("alphabetRow");
+        const searchInput = document.getElementById("searchInput");
+        const searchBtn = document.getElementById("searchBtn");
+        const autocompleteList = document.getElementById("autocompleteList");
+        const resultCard = document.getElementById("resultCard");
+        const backBtn = document.getElementById("backBtn");
+        const forwardBtn = document.getElementById("forwardBtn");
+        const breadcrumbsDiv = document.getElementById("breadcrumbs");
+        const reloadFab = document.getElementById("reloadFab");
+        const book1Link = document.getElementById("book1Link");
+        const book2Link = document.getElementById("book2Link");
+        const dbStatusIndicator = document.getElementById("dbStatusIndicator");
+
+        // Локализация
+        const i18n = {
+            ru: {
+                stats: "📊 Записей: {count} | 📦 Вес: {size} КБ",
+                loading: "Загрузка базы...",
+                empty: "База пуста. Обновите страницу или свяжитесь с администратором.",
+                notFound: "😕 Ничего не найдено",
+                enterQuery: "Введите слово для поиска",
+                tagFound: "🔍 Найдено {count} символов с тегом \"{tag}\":",
+                aliasNotFound: "Символ \"{sym}\" не найден в базе",
+                back: "Назад", forward: "Вперёд",
+                optSymbol: "Название", optAliases: "Алиасы", optDesc: "Описание", optTags: "Теги", optAll: "Везде",
+                searchPlaceholder: "Найти символ, алиас или тег...",
+                searchBtn: "Найти",
+                books: "📚 Книги",
+                instructions: "📖 Инструкция",
+                close: "Закрыть",
+                thanks: "Супруге — за идею и тестирование. Вам — если дочитали до сюда. Церковь «Семья Божья», Минск. Живите с миром.",
+                dbStatusOk: "✅ Базы данных: {loaded}/{total}",
+                dbStatusWarn: "⚠️ Загружено {loaded} из {total} БД"
+            },
+            en: {
+                stats: "📊 Records: {count} | 📦 Size: {size} KB",
+                loading: "Loading database...",
+                empty: "Database is empty. Refresh or contact admin.",
+                notFound: "😕 Nothing found",
+                enterQuery: "Enter a symbol to search",
+                tagFound: "🔍 Found {count} symbols with tag \"{tag}\":",
+                aliasNotFound: "Symbol \"{sym}\" not found in database",
+                back: "Back", forward: "Forward",
+                optSymbol: "Title", optAliases: "Aliases", optDesc: "Description", optTags: "Tags", optAll: "All",
+                searchPlaceholder: "Search symbol, alias or tag...",
+                searchBtn: "Search",
+                books: "📚 Books",
+                instructions: "📖 Instructions",
+                close: "Close",
+                thanks: "Thanks to my wife for the idea and testing. To you — if you read this far. Family of God Church, Minsk. Live in peace.",
+                dbStatusOk: "✅ Databases: {loaded}/{total}",
+                dbStatusWarn: "⚠️ Loaded {loaded} of {total} DBs"
+            }
+        };
+
+        function t(key, vars = {}) {
+            let str = i18n[lang][key] || i18n.ru[key] || key;
+            for(let k in vars) str = str.replace(`{${k}}`, vars[k]);
+            return str;
+        }
+        
+        function applyLocalization() {
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.dataset.i18n;
+                if(key) el.textContent = t(key);
+            });
+            searchInput.placeholder = t("searchPlaceholder");
+            const searchSpan = document.querySelector("#searchBtn span");
+            if(searchSpan) searchSpan.textContent = t("searchBtn");
+            document.querySelector("#menuStatsTitle").textContent = t("stats").replace(/\s.*/, "📊 Stats");
+            updateStatsUI();
+            updateDbStatusIndicator();
+            const thanksDiv = document.querySelector(".footer div:last-child");
+            if(thanksDiv) thanksDiv.innerHTML = t("thanks");
+        }
+        
+        function updateLangToggleButton() {
+            if(lang === "ru") {
+                langToggleText.textContent = "EN";
+                langToggle.title = "Switch to English";
+            } else {
+                langToggleText.textContent = "RU";
+                langToggle.title = "Переключить на русский";
+            }
+        }
+        
+        function setLang(l) {
+            lang = l;
+            localStorage.setItem("clientLang", l);
+            updateLangToggleButton();
+            applyLocalization();
+            if (lastDisplayedRecord) showRecord(lastDisplayedRecord);
+        }
+        
+        langToggle.onclick = () => setLang(lang === "ru" ? "en" : "ru");
+        
+        // обновление UI статистики
+        function updateStatsUI() {
+            const totalChars = JSON.stringify(db).length;
+            const kb = (totalChars / 1024).toFixed(1);
+            statsPanel.innerHTML = t("stats", { count: db.length, size: kb });
+        }
+        
+        function updateDbStatusIndicator() {
+            if(loadedFilesCount === totalFiles) {
+                dbStatusIndicator.textContent = t("dbStatusOk", { loaded: loadedFilesCount, total: totalFiles });
+                dbStatusIndicator.style.display = "inline-block";
+                dbStatusIndicator.style.background = "var(--bg-element)";
+                dbStatusIndicator.style.color = "var(--text-element)";
+            } else if(loadedFilesCount > 0) {
+                dbStatusIndicator.textContent = t("dbStatusWarn", { loaded: loadedFilesCount, total: totalFiles });
+                dbStatusIndicator.style.display = "inline-block";
+                dbStatusIndicator.style.background = "var(--warning-bg)";
+                dbStatusIndicator.style.color = "var(--warning-text)";
+            } else {
+                dbStatusIndicator.style.display = "none";
+            }
+        }
+        
+        // загрузка всех трёх JSON-файлов
+        async function loadBuiltinDatabase() {
+            resultCard.innerHTML = `<div class="loader"></div><div style="text-align:center">${t("loading")}</div>`;
+            const files = ["/data/bd1.json", "/data/bd2.json", "/data/bd3.json"];
+            let allData = [];
+            let successCount = 0;
+            const results = await Promise.all(files.map(async (url) => {
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) return [];
+                    const data = await response.json();
+                    if(Array.isArray(data) && data.length) {
+                        successCount++;
+                        return data;
+                    }
+                    return [];
+                } catch (err) {
+                    console.warn(`Не удалось загрузить ${url}:`, err);
+                    return [];
+                }
+            }));
+            loadedFilesCount = successCount;
+            updateDbStatusIndicator();
+            allData = results.flat();
+            if (allData.length) {
+                db = allData;
+                allTags.clear();
+                db.forEach(item => { if (item.tags) item.tags.forEach(tag => allTags.add(tag)); });
+                updateStatsUI();
+                renderAlphabet();
+                const first = db[0];
+                showRecord(first);
+                addToHistory(first);
+            } else {
+                resultCard.innerHTML = `<div>⚠️ ${t("empty")}</div>`;
+                db = [];
+                updateStatsUI();
+            }
+        }
+
+        // отображение записи
+        function showRecord(record) {
+            if(!record) return;
+            lastDisplayedRecord = record;
+            const sourceText = record.source ? `<i class="fas fa-book"></i> ${escapeHtml(record.source)}` : "";
+            const dateText = record.date_added ? `📅 ${record.date_added}` : "";
+            const aliasesHtml = (record.aliases && record.aliases.length) ? `
+                <div class="aliases"><strong>🔗 ${lang==='ru'?'Синонимы':'Aliases'}:</strong> ${record.aliases.map(a => `<span class="tag alias-tag" data-symbol="${escapeHtml(a)}">${escapeHtml(a)}</span>`).join(" ")}</div>
+            ` : "";
+            const tagsHtml = (record.tags && record.tags.length) ? `
+                <div class="tags"><strong>🏷️ ${lang==='ru'?'Теги':'Tags'}:</strong> ${record.tags.map(t => `<span class="tag tag-filter" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</span>`).join(" ")}</div>
+            ` : "";
+            const notesHtml = record.notes ? `<div class="notes"><b>📝 ${lang==='ru'?'Заметка':'Notes'}:</b><br>${typeof marked !== 'undefined' ? marked.parse(record.notes) : escapeHtml(record.notes)}</div>` : "";
+            resultCard.innerHTML = `
+                <div class="symbol-name">${escapeHtml(record.symbol)}</div>
+                <div class="meta">${sourceText} ${dateText}</div>
+                ${aliasesHtml}
+                <div class="desc">${escapeHtml(record.description)}</div>
+                ${tagsHtml}
+                ${notesHtml}
+            `;
+            // обработка кликов по алиасам
+            document.querySelectorAll(".alias-tag").forEach(el => {
+                el.addEventListener("click", () => {
+                    const sym = el.dataset.symbol;
+                    const found = db.find(r => r.symbol.toLowerCase() === sym.toLowerCase());
+                    if(found) { showRecord(found); addToHistory(found); }
+                    else alert(t("aliasNotFound", { sym }));
+                });
+            });
+            // обработка кликов по тегам
+            document.querySelectorAll(".tag-filter").forEach(el => {
+                el.addEventListener("click", () => {
+                    const tag = el.dataset.tag;
+                    const filtered = db.filter(r => r.tags && r.tags.includes(tag));
+                    if(filtered.length) {
+                        resultCard.innerHTML = `<div>${t("tagFound", { count: filtered.length, tag })}</div><div class="word-list">${filtered.map(r => `<div class="word-item" data-id="${r.id}">${escapeHtml(r.symbol)}</div>`).join("")}</div>`;
+                        document.querySelectorAll(".word-item").forEach(el => {
+                            const id = parseInt(el.dataset.id);
+                            el.addEventListener("click", () => {
+                                const rec = db.find(r => r.id === id);
+                                if(rec) { showRecord(rec); addToHistory(rec); }
+                            });
+                        });
+                    } else alert("Нет символов с таким тегом");
+                });
+            });
+        }
+        
+        // История
+        function addToHistory(record) {
+            if(!record) return;
+            historyStack = historyStack.slice(0, historyIndex+1);
+            historyStack.push({ symbol: record.symbol, id: record.id });
+            historyIndex = historyStack.length-1;
+            updateHistoryNav();
+            renderBreadcrumbs();
+        }
+        function updateHistoryNav() {
+            backBtn.disabled = historyIndex <= 0;
+            forwardBtn.disabled = historyIndex >= historyStack.length-1;
+        }
+        function goBack() {
+            if(historyIndex > 0) {
+                historyIndex--;
+                const rec = db.find(r => r.id === historyStack[historyIndex].id);
+                if(rec) showRecord(rec);
+            }
+        }
+        function goForward() {
+            if(historyIndex < historyStack.length-1) {
+                historyIndex++;
+                const rec = db.find(r => r.id === historyStack[historyIndex].id);
+                if(rec) showRecord(rec);
+            }
+        }
+        function renderBreadcrumbs() {
+            const start = Math.max(0, historyIndex - 9);
+            const items = historyStack.slice(start, historyIndex+1);
+            breadcrumbsDiv.innerHTML = items.map((item, idx) => {
+                const isLast = (start+idx === historyIndex);
+                return `<span class="breadcrumb-item" data-id="${item.id}">${escapeHtml(item.symbol)}</span>${!isLast ? '<span class="breadcrumb-arrow"> → </span>' : ''}`;
+            }).join("");
+            document.querySelectorAll(".breadcrumb-item").forEach(el => {
+                el.addEventListener("click", () => {
+                    const id = parseInt(el.dataset.id);
+                    const rec = db.find(r => r.id === id);
+                    if(rec) showRecord(rec);
+                });
+            });
+        }
+        
+        // алфавитный указатель
+        function renderAlphabet() {
+            if(!db.length) { alphabetRow.innerHTML = ""; return; }
+            const latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+            const cyrillic = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".split("");
+            const grouped = {};
+            db.forEach(item => {
+                let first = item.symbol.charAt(0).toUpperCase();
+                let letter = /[A-Z]/i.test(first) ? first.toUpperCase() : (/[А-ЯЁ]/i.test(first) ? first.toUpperCase() : "#");
+                if(!grouped[letter]) grouped[letter] = [];
+                grouped[letter].push(item);
+            });
+            alphabetRow.innerHTML = `
+                <div class="alphabet-section"><span class="alphabet-label">🇬🇧 A–Z</span>${latin.map(l => `<span class="alpha-letter" data-letter="${l}">${l} ${grouped[l] ? '('+grouped[l].length+')' : ''}</span>`).join('')}</div>
+                <div class="alphabet-section"><span class="alphabet-label">🇷🇺 А–Я</span>${cyrillic.map(l => `<span class="alpha-letter" data-letter="${l}">${l} ${grouped[l] ? '('+grouped[l].length+')' : ''}</span>`).join('')}</div>
+                <div class="alphabet-section"><span class="alpha-letter" data-letter="all">📖 ${lang==='ru'?'Все':'All'} (${db.length})</span></div>
+            `;
+            document.querySelectorAll(".alpha-letter").forEach(el => {
+                el.addEventListener("click", () => {
+                    const letter = el.dataset.letter;
+                    let filtered = [];
+                    if(letter === "all") filtered = db;
+                    else filtered = grouped[letter] || [];
+                    if(filtered.length) {
+                        resultCard.innerHTML = `<div>🔍 ${lang==='ru'?'Символы на букву':'Symbols starting with'} ${letter}:</div><div class="word-list">${filtered.map(r => `<div class="word-item" data-id="${r.id}">${escapeHtml(r.symbol)}</div>`).join("")}</div>`;
+                        document.querySelectorAll(".word-item").forEach(el => {
+                            const id = parseInt(el.dataset.id);
+                            el.addEventListener("click", () => {
+                                const rec = db.find(r => r.id === id);
+                                if(rec) { showRecord(rec); addToHistory(rec); }
+                            });
+                        });
+                    } else resultCard.innerHTML = "<div>Нет символов</div>";
+                });
+            });
+        }
+        
+        // поиск с автодополнением
+        function updateAutocomplete() {
+            const q = searchInput.value.trim().toLowerCase();
+            if(!q) { autocompleteList.classList.remove("show"); return; }
+            const matches = db.filter(item => item.symbol.toLowerCase().includes(q) || (item.aliases && item.aliases.some(a=>a.toLowerCase().includes(q)))).slice(0,8);
+            if(matches.length) {
+                autocompleteList.innerHTML = matches.map(m => `<div class="autocomplete-item" data-id="${m.id}">${escapeHtml(m.symbol)}</div>`).join("");
+                autocompleteList.classList.add("show");
+                document.querySelectorAll(".autocomplete-item").forEach(el => {
+                    el.addEventListener("click", () => {
+                        const id = parseInt(el.dataset.id);
+                        const rec = db.find(r => r.id === id);
+                        if(rec) { showRecord(rec); addToHistory(rec); }
+                        autocompleteList.classList.remove("show");
+                    });
+                });
+            } else autocompleteList.classList.remove("show");
+        }
+        
+        function performSearch() {
+            const q = searchInput.value.trim().toLowerCase();
+            if(!q) { resultCard.innerHTML = `<div>${t("enterQuery")}</div>`; return; }
+            let filtered = [];
+            for(let item of db) {
+                let match = false;
+                if(currentMode === "symbol") match = item.symbol.toLowerCase().includes(q) || (item.aliases && item.aliases.some(a=>a.toLowerCase().includes(q)));
+                else if(currentMode === "aliases") match = item.aliases && item.aliases.some(a=>a.toLowerCase().includes(q));
+                else if(currentMode === "desc") match = (item.description || "").toLowerCase().includes(q);
+                else if(currentMode === "tags") match = item.tags && item.tags.some(t=>t.toLowerCase().includes(q));
+                else if(currentMode === "all") match = item.symbol.toLowerCase().includes(q) || (item.aliases && item.aliases.some(a=>a.toLowerCase().includes(q))) || (item.description || "").toLowerCase().includes(q) || (item.tags && item.tags.some(t=>t.toLowerCase().includes(q)));
+                if(match) filtered.push(item);
+            }
+            if(filtered.length === 0) { resultCard.innerHTML = `<div>${t("notFound")}</div>`; return; }
+            if(filtered.length === 1) { showRecord(filtered[0]); addToHistory(filtered[0]); }
+            else {
+                resultCard.innerHTML = `<div>🔍 ${lang==='ru'?`Найдено ${filtered.length} совпадений`:`Found ${filtered.length} matches`}:</div><div class="word-list">${filtered.map(r => `<div class="word-item" data-id="${r.id}">${escapeHtml(r.symbol)}</div>`).join("")}</div>`;
+                document.querySelectorAll(".word-item").forEach(el => {
+                    const id = parseInt(el.dataset.id);
+                    el.addEventListener("click", () => {
+                        const rec = db.find(r => r.id === id);
+                        if(rec) { showRecord(rec); addToHistory(rec); }
+                    });
+                });
+            }
+        }
+        
+        // инструкция
+        function showHelpModal() {
+            const modal = document.createElement("div");
+            modal.className = "modal";
+            Object.assign(modal.style, {position:"fixed", inset:0, background:"rgba(0,0,0,0.6)", display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000});
+            modal.innerHTML = `<div style="background: var(--bg-card); max-width:500px; width:90%; border-radius:32px; padding:1.5rem; max-height:80%; overflow:auto;">
+                <div style="display:flex; justify-content:flex-end;"><button id="closeModalBtn" class="mini-btn">✖</button></div>
+                <h3>📖 ${lang==='ru'?'Как пользоваться словарём':'How to use the dictionary'}</h3>
+                <p><strong>Curtains (занавесы):</strong> (1) Плотская завеса; (2) Сердце; (3) Небеса; (4) Покрытие; (5) Окончание; (6) Смерть.<br><em>См. также Veil.</em><br>(1) Евр.10:20; (2) 2Кор.3:15; (3) Пс.103:2; Ис.40:22</p>
+                <ul><li>• Нумерованные толкования от наиболее вероятного к наименее.</li><li>• Скобки уточняют контекст.</li><li>• Перекрёстные ссылки.</li></ul>
+                <p><strong>Life Raft:</strong> (1) Нужда в спасении; (2) Потерянный; (3) В опасности потерять спасение; (4) Ковчег (Христос).<br><em>См. также Adrift, Boat, Sea.</em></p>
+                <p>• cf. = сравни, ff. = и следующие.</p>
+                <p><strong>Mouse/Mice:</strong> (1) Скрытый нечистый дух; (2) Показатель духовного обслуживания; (3) Неверующий (нечистый); (4) Малый; (5) Язва; (6) Суд.<br>‘&’ = объединить стихи.</p>
+            </div>`;
+            document.body.appendChild(modal);
+            modal.querySelector("#closeModalBtn").onclick = () => modal.remove();
+            modal.addEventListener("click", (e) => { if(e.target === modal) modal.remove(); });
+        }
+        
+        // тема
+        function setTheme(th) { theme = th; localStorage.setItem("clientTheme", th); if(th === "dark") document.body.classList.add("dark"); else document.body.classList.remove("dark"); }
+        themeToggle.onclick = () => setTheme(theme === "light" ? "dark" : "light");
+        
+        // обработчики событий
+        searchInput.addEventListener("input", () => { updateAutocomplete(); performSearch(); });
+        searchBtn.addEventListener("click", () => { autocompleteList.classList.remove("show"); performSearch(); });
+        document.querySelectorAll("[data-opt]").forEach(opt => {
+            opt.addEventListener("click", () => {
+                document.querySelectorAll("[data-opt]").forEach(o => o.classList.remove("active"));
+                opt.classList.add("active");
+                currentMode = opt.dataset.opt;
+                performSearch();
+            });
+        });
+        function toggleMenu(open) { if(open) { menuPanel.classList.add("open"); menuOverlay.classList.add("open"); } else { menuPanel.classList.remove("open"); menuOverlay.classList.remove("open"); } }
+        burgerBtn.onclick = () => toggleMenu(true);
+        closeMenuBtn.onclick = () => toggleMenu(false);
+        menuOverlay.onclick = () => toggleMenu(false);
+        showHelpBtn.onclick = () => showHelpModal();
+        backBtn.onclick = () => goBack();
+        forwardBtn.onclick = () => goForward();
+        reloadFab.onclick = () => loadBuiltinDatabase();
+        book1Link.href = "/The_Divinity_Code_to_Understanding_Your_Dreams_and_Visions_PDF_Room.pdf";
+        book2Link.href = "/Unlocking-Your-Dream-Student-Ma.pdf";
+        
+        function escapeHtml(str) { if(!str) return ""; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+        
+        // начальная загрузка
+        setTheme(theme);
+        updateLangToggleButton();
+        setLang(lang);
+        loadBuiltinDatabase();
+    })();
+</script>
+</body>
+</html>
