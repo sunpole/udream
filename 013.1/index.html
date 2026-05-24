@@ -1,1 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>UDREAM — христианский сонник v13.1</title>
+    <!-- PWA manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5efe7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Ccircle cx='96' cy='96' r='96' fill='%23b8a086'/%3E%3Ctext x='96' y='136' font-size='90' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'%3EU%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ---------- CSS переменные (темы) ---------- */
+        :root {
+            --bg-body: #f5efe7;
+            --text-body: #2c2825;
+            --bg-card: #fffaf5;
+            --border-card: #ede3d8;
+            --bg-element: #f1ece4;
+            --text-element: #2c2825;
+            --bg-input: white;
+            --text-input: #1a1a1a;
+            --border-input: #d4c9bd;
+            --bg-active: #b8a086;
+            --text-active: white;
+            --bg-highlight: #e4d9ce;
+            --shadow: 0 8px 20px rgba(0,0,0,0.05);
+            --warning-bg: #fef1e0;
+            --warning-text: #b85c00;
+        }
+        body.dark {
+            --bg-body: #1e1b18;
+            --text-body: #e2e0dd;
+            --bg-card: #2a2622;
+            --border-card: #3e3a36;
+            --bg-element: #3e3a36;
+            --text-element: #e2e0dd;
+            --bg-input: #3b3630;
+            --text-input: #f0f0f0;
+            --border-input: #5a524a;
+            --bg-active: #6b5843;
+            --text-active: white;
+            --bg-highlight: #4a3f36;
+            --shadow: 0 8px 20px rgba(0,0,0,0.2);
+            --warning-bg: #3e2a1c;
+            --warning-text: #ffaa66;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family:'Inter',sans-serif;
+            background: var(--bg-body);
+            color: var(--text-body);
+            line-height:1.5;
+            transition: background 0.2s, color 0.2s;
+            padding-bottom: 70px;
+        }
+        body.no-select {
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* общие */
+        .card, .search-field, .top-bar, .menu-panel, .word-item, .autocomplete-list, .tags-cloud {
+            background: var(--bg-card);
+            border-color: var(--border-card);
+            color: var(--text-body);
+        }
+        input, .search-field input, .autocomplete-item {
+            background: var(--bg-input);
+            color: var(--text-input);
+            border-color: var(--border-input);
+        }
+        .mini-btn, .opt-btn, .alpha-letter, .stats-line, .tag, .breadcrumb-item {
+            background: var(--bg-element);
+            color: var(--text-element);
+        }
+        .mini-btn.active, .opt-btn.active, .alpha-letter.active {
+            background: var(--bg-active);
+            color: var(--text-active);
+        }
+        /* шапка – узкая, всё в строку */
+        .top-bar {
+            position: sticky; top:0; z-index:100;
+            background: rgba(250,247,242,0.96); backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-card);
+            padding: 0.3rem 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.3rem;
+            flex-wrap: nowrap;
+        }
+        body.dark .top-bar { background: rgba(30,27,24,0.96); }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: inherit;
+            font-family: inherit;
+        }
+        .tool-group {
+            display: flex; gap: 0.2rem;
+            align-items: center;
+            background: var(--bg-element);
+            border-radius: 40px;
+            padding: 0.1rem 0.2rem;
+        }
+        .mini-btn {
+            border: none; padding: 0.2rem 0.5rem; border-radius: 30px;
+            font-size: 0.7rem; font-weight: 500;
+            display: inline-flex; align-items: center; gap: 0.2rem;
+            cursor: pointer; transition: 0.1s;
+        }
+        .burger {
+            font-size: 1rem; background: var(--bg-element);
+            border-radius: 30px; padding: 0.2rem 0.5rem; cursor: pointer;
+        }
+        /* меню (гамбургер) */
+        .menu-panel {
+            position: fixed; top:0; right:-280px; width:260px;
+            height:100%; background: var(--bg-card); box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+            transition: right 0.2s; z-index:200;
+            padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem;
+            border-left: 1px solid var(--border-card);
+            overflow-y: auto;
+        }
+        .menu-panel.open { right:0; }
+        .menu-overlay {
+            position: fixed; inset:0; background: rgba(0,0,0,0.2);
+            z-index:150; display: none;
+        }
+        .menu-overlay.open { display: block; }
+        .menu-section { border-top: 1px solid var(--border-card); padding-top: 0.5rem; }
+        .menu-section:first-of-type { border-top: none; padding-top: 0; }
+        .switch-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.3rem; }
+        .stats-line {
+            font-size: 0.7rem; padding:0.4rem; border-radius: 16px;
+            background: var(--bg-element);
+        }
+        /* алфавит – три строки, без скролла, буквы масштабируются */
+        .alphabet-container {
+            width: 100%;
+            margin: 0.3rem 0;
+        }
+        .alphabet-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.2rem;
+            margin-bottom: 0.3rem;
+        }
+        .alpha-letter {
+            border-radius: 20px; padding: 0.15rem 0.5rem;
+            font-size: clamp(0.6rem, 3vw, 0.8rem);
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        /* хлебные крошки */
+        .breadcrumbs {
+            display: flex; flex-wrap: wrap; align-items: center;
+            gap: 0.3rem; margin: 0.2rem 0; font-size: 0.7rem;
+            font-stretch: condensed;
+            padding: 0.2rem 0; overflow-x: auto;
+        }
+        .breadcrumb-item {
+            background: var(--bg-element); border-radius: 20px;
+            padding: 0.1rem 0.5rem; cursor: pointer;
+            white-space: nowrap;
+        }
+        .history-nav {
+            display: flex; gap: 0.3rem;
+        }
+        .mode-container { max-width: 1200px; margin: 0.5rem auto; padding: 0 0.8rem; }
+        /* поиск */
+        .search-field {
+            display: flex; border-radius: 60px; padding: 0.1rem 0.1rem 0.1rem 1rem;
+            margin: 0.3rem 0; position: relative;
+            border: 1px solid var(--border-card);
+        }
+        .search-field input {
+            flex:1; border: none; padding: 0.5rem 0;
+            font-size: 0.85rem; background: transparent; outline: none;
+        }
+        .search-field button {
+            border: none; border-radius: 40px; padding: 0.3rem 1rem;
+            background: var(--bg-element); color: var(--text-element);
+            cursor: pointer;
+        }
+        .autocomplete-list {
+            position: absolute; top:100%; left:0; right:0;
+            border:1px solid var(--border-card); border-radius:20px;
+            max-height:200px; overflow-y: auto; z-index:50; display:none;
+        }
+        .autocomplete-list.show { display:block; }
+        .autocomplete-item { padding:0.3rem 1rem; cursor:pointer; }
+        .autocomplete-item:hover { background: var(--bg-element); }
+        .search-options {
+            position: sticky; top: 60px; z-index: 80;
+            display: flex; gap:0.3rem; margin-bottom:0.5rem; flex-wrap:wrap;
+            background: var(--bg-body); padding: 0.1rem 0;
+        }
+        .opt-btn {
+            font-size:0.65rem; border-radius:20px; padding:0.15rem 0.7rem; cursor:pointer;
+        }
+        /* теги в облаке */
+        .tags-cloud {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 28px;
+            border: 1px solid var(--border-card);
+        }
+        .tags-cloud-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .tag {
+            padding: 0.15rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+        .tag-cloud-item {
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .tag-cloud-item:hover {
+            opacity: 0.8;
+        }
+        /* карточка */
+        .card {
+            border-radius: 28px; padding: 1rem; margin-bottom: 1rem;
+            border: 1px solid var(--border-card);
+            box-shadow: var(--shadow);
+        }
+        .symbol-name { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .meta { font-size: 0.65rem; opacity: 0.8; margin: 0.2rem 0; }
+        .aliases, .tags { margin: 0.3rem 0; display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; }
+        .desc { margin: 0.5rem 0; line-height: 1.5; font-size: 0.9rem; white-space: pre-wrap; }
+        .notes { margin-top: 0.5rem; border-top: 1px solid var(--border-card); padding-top: 0.4rem; font-size: 0.8rem; }
+        .word-list {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+            gap: 0.4rem; margin-top: 0.8rem;
+        }
+        .word-item {
+            padding: 0.4rem; border-radius: 20px; cursor: pointer; text-align: center;
+            border: 1px solid var(--border-card);
+            font-size: 0.8rem;
+        }
+        .create-fab {
+            position: fixed; bottom: 1.2rem; right: 1.2rem;
+            width: 45px; height: 45px; border-radius: 50%;
+            background: var(--bg-active); color: var(--text-active);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index:90;
+        }
+        .footer {
+            margin-top: 1rem;
+            padding: 0.6rem;
+            text-align: center;
+            font-size: 0.65rem;
+            border-top: 1px solid var(--border-card);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            color: var(--text-body);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.7rem;
+        }
+        .loader {
+            border: 2px solid var(--border-card);
+            border-top: 2px solid var(--bg-active);
+            border-radius: 50%;
+            width: 24px; height: 24px;
+            animation: spin 0.8s linear infinite;
+            margin: 1rem auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .eye-icon {
+            cursor: pointer;
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+            background: none;
+            border: none;
+            color: var(--text-element);
+        }
+        .collapsed { display: none; }
+        .stats-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 0.3rem;
+        }
+        @media (max-width: 600px) {
+            .symbol-name { font-size: 1.3rem; }
+            .card { padding: 0.8rem; }
+            .alpha-letter { padding: 0.1rem 0.3rem; }
+            .logo { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <button class="logo" id="logoHomeBtn">✦ UDREAM <small>v13.1</small></button>
+    <div class="tool-group">
+        <button id="langToggle" class="mini-btn"><i class="fas fa-globe"></i> <span id="langToggleText">EN</span></button>
+        <button id="themeToggle" class="mini-btn"><i class="fas fa-sun"></i></button>
+        <div class="burger" id="burgerBtn"><i class="fas fa-bars"></i></div>
+    </div>
+</div>
+<div class="menu-overlay" id="menuOverlay"></div>
+<div id="menuPanel" class="menu-panel">
+    <div id="statsPanel" class="stats-line">Загрузка...</div>
+    <div id="dbInfoPanel" class="stats-line"></div>
+    <div class="menu-section">
+        <div><strong>🔤 Отображение алфавита</strong></div>
+        <div class="switch-group">
+            <button id="toggleLatinBtn" class="mini-btn active">🇬🇧 Latin</button>
+            <button id="toggleCyrillicBtn" class="mini-btn active">🇷🇺 Cyrillic</button>
+            <button id="toggleDigitsBtn" class="mini-btn active">🔢 0-9 & Color</button>
+        </div>
+    </div>
+    <div class="menu-section">
+        <div><strong>✋ Выделение текста</strong></div>
+        <div class="switch-group">
+            <button id="toggleSelectBtn" class="mini-btn active">🚫 Запретить</button>
+        </div>
+    </div>
+    <hr>
+    <div><strong>📚 Книги</strong></div>
+    <div><a href="#" id="book1Link" target="_blank" style="color:var(--bg-active);">The Divinity Code (PDF)</a></div>
+    <div><a href="#" id="book2Link" target="_blank" style="color:var(--bg-active);">Unlocking Your Dream (PDF)</a></div>
+    <hr>
+    <button id="loadFileBtn" class="mini-btn"><i class="fas fa-upload"></i> <span id="uploadBtnText">Загрузить JSON</span></button>
+    <button id="showHelpBtn" class="mini-btn"><i class="fas fa-book-open"></i> <span id="helpBtnText">Инструкция</span></button>
+    <button id="closeMenuBtn" class="mini-btn"><span id="closeBtnText">Закрыть</span></button>
+</div>
 
+<div class="mode-container">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div id="breadcrumbs" class="breadcrumbs"></div>
+        <div class="history-nav">
+            <button id="backBtn" class="mini-btn" disabled><i class="fas fa-arrow-left"></i> <span data-i18n="back">Назад</span></button>
+            <button id="forwardBtn" class="mini-btn" disabled><i class="fas fa-arrow-right"></i> <span data-i18n="forward">Вперёд</span></button>
+        </div>
+    </div>
+    <div class="alphabet-container">
+        <div id="latinRow" class="alphabet-row"></div>
+        <div id="cyrillicRow" class="alphabet-row"></div>
+        <div id="digitsRow" class="alphabet-row"></div>
+    </div>
+    <div id="showAllWrapper" style="text-align: center; margin: 0.3rem 0;"></div>
+    <div id="tagsCloud" class="tags-cloud" style="display: none;">
+        <div class="tags-cloud-title">🏷️ Все теги <button id="closeTagsCloud" class="mini-btn" style="padding:0.1rem 0.4rem;">✖</button></div>
+        <div id="tagsList" class="tags-list"></div>
+    </div>
+    <div class="search-field">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Найти символ, алиас или тег...">
+        <button id="searchBtn"><i class="fas fa-arrow-right"></i> <span>Найти</span></button>
+        <div id="autocompleteList" class="autocomplete-list"></div>
+    </div>
+    <div class="search-options" id="searchOptions">
+        <span data-opt="symbol" class="opt-btn active">📖 <span data-i18n="optSymbol">Название</span></span>
+        <span data-opt="aliases" class="opt-btn">🏷️ <span data-i18n="optAliases">Алиасы</span></span>
+        <span data-opt="desc" class="opt-btn">📄 <span data-i18n="optDesc">Описание</span></span>
+        <span data-opt="tags" class="opt-btn">🔖 <span data-i18n="optTags">Теги</span></span>
+        <span data-opt="all" class="opt-btn">🔍 <span data-i18n="optAll">Везде</span></span>
+    </div>
+    <div id="resultCard" class="card">
+        <div class="loader"></div>
+    </div>
+</div>
+<div class="create-fab" id="reloadFab"><i class="fas fa-sync-alt"></i></div>
+
+<footer class="footer">
+    <div class="social-links">
+        <a href="https://t.me/olgamago" target="_blank"><i class="fab fa-telegram"></i> @olgamago</a>
+        <a href="https://instagram.com/olanitsy" target="_blank"><i class="fab fa-instagram"></i> @olanitsy</a>
+        <a href="https://t.me/SunPole" target="_blank"><i class="fab fa-telegram"></i> @SunPole</a>
+        <a href="https://instagram.com/xcve33" target="_blank"><i class="fab fa-instagram"></i> @xcve33</a>
+        <a href="https://instagram.com/FamilyOfGod.Minsk" target="_blank"><i class="fab fa-instagram"></i> FamilyOfGod.Minsk</a>
+    </div>
+    <div data-i18n="thanks">Супруге — за идею и тестирование. Вам — если дочитали до сюда. Церковь «Семья Божья», Минск. Живите с миром.</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
