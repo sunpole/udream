@@ -160,11 +160,11 @@
         return str;
     }
 
-    // Полная локализация интерфейса
+        // Полная локализация интерфейса
     function applyLocalization() {
         document.querySelectorAll("[data-i18n]").forEach(el => {
             const key = el.dataset.i18n;
-            if (key) el.textContent = t(key);
+            if (key) el.innerHTML = t(key);   // ← было textContent, стало innerHTML
         });
         const placeholderEl = document.querySelector("[data-i18n-placeholder]");
         if (placeholderEl) placeholderEl.placeholder = t(placeholderEl.dataset.i18nPlaceholder);
