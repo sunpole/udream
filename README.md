@@ -9,6 +9,21 @@
 [![Все версии дизайна](https://img.shields.io/badge/все_версии-002–005-lightgrey)](https://sunpole.github.io/udream/)
 [![Лицензия](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
+<p>
+  <a href="https://sunpole.github.io/udream/005/" target="_blank">
+    <img src="https://img.shields.io/badge/демо-005-blue?logo=github" alt="Демо (текущая версия дизайна)">
+  </a>
+  <a href="https://sunpole.github.io/udream/admin7/" target="_blank">
+    <img src="https://img.shields.io/badge/админка-v7.0-blue?logo=github" alt="Админка v7.0">
+  </a>
+  <a href="https://sunpole.github.io/udream/" target="_blank">
+    <img src="https://img.shields.io/badge/все_версии-002–005-lightgrey" alt="Все версии дизайна">
+  </a>
+  <a href="LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/license-MIT-green" alt="Лицензия">
+  </a>
+</p>****
+
 ---
 
 ## Зачем это нужно
