@@ -680,5 +680,17 @@
 
     function setTheme(th) { theme = th; localStorage.setItem("clientTheme", th); document.body.classList.toggle("dark", th==="dark"); }
 
-    init();
+        init();
+
+    // ---------- РЕГИСТРАЦИЯ SERVICE WORKER ----------
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/udream/sw.js').then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+            }).catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+        });
+    }
+    
 })();
