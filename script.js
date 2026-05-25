@@ -536,21 +536,62 @@
         if(showTagsCloud && db.length) buildTagCloud();
     }
 
-    // ---------- ИНСТРУКЦИЯ ----------
+        // ---------- ИНСТРУКЦИЯ ----------
     function showDefaultInstructions() {
         instructionVisible = true;
         const card = document.createElement("div");
         card.className = "card";
         card.style.position = "relative";
-        card.innerHTML = `
-            <button class="close-instruction-btn" id="closeInstructionBtn">&times;</button>
-            <h3>📖 ${lang==='ru'?'Как пользоваться словарём':'How to use the dictionary'}</h3>
-            <p style="margin:0.5rem 0; font-size:0.85rem;">${lang==='ru'?'Откройте меню (гамбургер) — там можно включить дополнительные элементы навигации.':'Open menu (hamburger) to enable extra navigation elements.'}</p>
-            <p><strong>Curtains (занавесы):</strong> (1) Плотская завеса; (2) Сердце; (3) Небеса; (4) Покрытие; (5) Окончание; (6) Смерть.<br><em>См. также Veil.</em><br>(1) Евр.10:20; (2) 2Кор.3:15; (3) Пс.103:2; Ис.40:22</p>
-            <ul><li>• Нумерованные толкования от наиболее вероятного к наименее.</li><li>• Скобки уточняют контекст.</li><li>• Перекрёстные ссылки.</li></ul>
-            <p><strong>Life Raft:</strong> (1) Нужда в спасении; (2) Потерянный; (3) В опасности потерять спасение; (4) Ковчег (Христос).<br><em>См. также Adrift, Boat, Sea.</em></p>
-            <p>• cf. = сравни, ff. = и следующие.</p>
-            <p><strong>Mouse/Mice:</strong> (1) Скрытый нечистый дух; (2) Показатель духовного обслуживания; (3) Неверующий (нечистый); (4) Малый; (5) Язва; (6) Суд.<br>‘&’ = объединить стихи.</p>`;
+        
+        // Текст инструкции на русском и английском
+        let instructionHtml = '';
+        if (lang === 'ru') {
+            instructionHtml = `
+                <button class="close-instruction-btn" id="closeInstructionBtn">&times;</button>
+                <h3>📖 Как пользоваться сайтом</h3>
+                <p><strong>🔍 Поиск</strong> — введите слово в строку поиска. Выберите область поиска: название, алиасы, описание, теги или везде. Работает автодополнение.</p>
+                <p><strong>📚 Алфавит</strong> — кликните на букву, чтобы увидеть все символы, начинающиеся с неё. Можно включить/отключить латиницу, кириллицу, цифры и цвета в меню.</p>
+                <p><strong>🏷️ Облако тегов</strong> — показывает все теги с количеством символов. Сортировка по алфавиту или по частоте. Нажмите на тег, чтобы найти все связанные записи.</p>
+                <p><strong>📜 История просмотров</strong> — сохраняет все просмотренные карточки с датой и временем. Можно вернуться к любому ранее просмотренному символу.</p>
+                <p><strong>🍞 Хлебные крошки</strong> — показывают последние 10 просмотренных символов для быстрой навигации. Кнопки «Назад» и «Вперёд» работают как в браузере.</p>
+                <p><strong>🌙 Тёмная тема</strong> — переключается кнопкой в верхней панели. Сохраняется в памяти устройства.</p>
+                <p><strong>🌐 Два языка</strong> — русский и английский. Интерфейс и переводы словаря переключаются мгновенно.</p>
+                <p><strong>📱 Установка приложения</strong> — сайт можно установить на телефон как PWA (работает офлайн). Кнопка «Установить» появляется в браузере после нескольких посещений.</p>
+                <p><strong>🔧 Дополнительные настройки</strong> — в меню (☰) можно включить/отключить: латиницу, кириллицу, цифры и цвета, облако тегов, историю, широкий скроллбар, выделение текста.</p>
+                <hr>
+                <h3>📖 Как пользоваться словарём</h3>
+                <p>Откройте меню (гамбургер) — там можно включить дополнительные элементы навигации.</p>
+                <p><strong>Curtains (занавесы):</strong> (1) Плотская завеса; (2) Сердце; (3) Небеса; (4) Покрытие; (5) Окончание; (6) Смерть.<br><em>См. также Veil.</em><br>(1) Евр.10:20; (2) 2Кор.3:15; (3) Пс.103:2; Ис.40:22</p>
+                <ul><li>• Нумерованные толкования от наиболее вероятного к наименее.</li><li>• Скобки уточняют контекст.</li><li>• Перекрёстные ссылки.</li></ul>
+                <p><strong>Life Raft:</strong> (1) Нужда в спасении; (2) Потерянный; (3) В опасности потерять спасение; (4) Ковчег (Христос).<br><em>См. также Adrift, Boat, Sea.</em></p>
+                <p>• cf. = сравни, ff. = и следующие.</p>
+                <p><strong>Mouse/Mice:</strong> (1) Скрытый нечистый дух; (2) Показатель духовного обслуживания; (3) Неверующий (нечистый); (4) Малый; (5) Язва; (6) Суд.<br>‘&’ = объединить стихи.</p>
+            `;
+        } else {
+            instructionHtml = `
+                <button class="close-instruction-btn" id="closeInstructionBtn">&times;</button>
+                <h3>📖 How to use the site</h3>
+                <p><strong>🔍 Search</strong> — type a word. Choose search scope: title, aliases, description, tags, or all. Autocomplete works.</p>
+                <p><strong>📚 Alphabet</strong> — click a letter to see all symbols starting with it. You can enable/disable Latin, Cyrillic, digits & colors in the menu.</p>
+                <p><strong>🏷️ Tag cloud</strong> — shows all tags with counts. Sort by alphabet or frequency. Click a tag to find all related entries.</p>
+                <p><strong>📜 Browsing history</strong> — saves all viewed cards with date and time. You can return to any previously viewed symbol.</p>
+                <p><strong>🍞 Breadcrumbs</strong> — show the last 10 viewed symbols for quick navigation. Back/Forward buttons work like in a browser.</p>
+                <p><strong>🌙 Dark theme</strong> — toggle button in the top bar. Saved in device memory.</p>
+                <p><strong>🌐 Two languages</strong> — Russian and English. Interface and dictionary translations switch instantly.</p>
+                <p><strong>📱 Install app</strong> — the site can be installed as PWA (works offline). The "Install" button appears after a few visits.</p>
+                <p><strong>🔧 Additional settings</strong> — in the menu (☰) you can enable/disable: Latin, Cyrillic, digits & colors, tag cloud, history, wide scrollbar, text selection.</p>
+                <hr>
+                <h3>📖 How to use the dictionary</h3>
+                <p>Open the menu (hamburger) — you can enable extra navigation elements there.</p>
+                <p><strong>Curtains:</strong> (1) Fleshly veil; (2) Heart; (3) Heavens; (4) Covering; (5) End; (6) Death.<br><em>See also Veil.</em><br>(1) Heb.10:20; (2) 2Cor.3:15; (3) Ps.104:2; Is.40:22</p>
+                <ul><li>• Numbered interpretations from most likely to least.</li><li>• Parentheses clarify context.</li><li>• Cross-references.</li></ul>
+                <p><strong>Life Raft:</strong> (1) Need for salvation; (2) Lost; (3) In danger of losing salvation; (4) Ark (Christ).<br><em>See also Adrift, Boat, Sea.</em></p>
+                <p>• cf. = compare, ff. = and following.</p>
+                <p><strong>Mouse/Mice:</strong> (1) Hidden unclean spirit; (2) Indicator of spiritual service; (3) Unbeliever (unclean); (4) Small; (5) Plague; (6) Judgment.<br>‘&’ = combine verses.</p>
+            `;
+        }
+        
+        card.innerHTML = instructionHtml;
         resultCard.innerHTML = "";
         resultCard.appendChild(card);
         document.getElementById("closeInstructionBtn").addEventListener("click", () => {
