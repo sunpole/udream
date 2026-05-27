@@ -641,7 +641,8 @@
     // ---------- ЗАГРУЗКА БД ----------
     async function tryAutoLoad() {
         resultCard.innerHTML = `<div class="card"><div class="loader"></div><div style="text-align:center">${t("loading")}</div></div>`;
-        const paths = ["/udream/data/bd2.json", "data/bd2.json", "../data/bd2.json"];
+        // const paths = ["/udream/data/bd2.json", "data/bd2.json", "../data/bd2.json"];
+        const paths = ["/udream/data/divinity_code_ru.json", "data/divinity_code_ru.json", "../data/divinity_code_ru.json"];
         for(let url of paths) {
             try {
                 const resp = await fetch(url);
