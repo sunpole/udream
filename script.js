@@ -8,7 +8,8 @@
     let historyIndex = -1;
     let lastDisplayedRecord = null;
     let dbLoaded = false;
-    let currentDbName = "bd2.json";
+    // let currentDbName = "bd2.json";
+    let currentDbName = "divinity_code_ru.json";
 
     let fullHistory = JSON.parse(localStorage.getItem("fullHistory") || "[]");
 
