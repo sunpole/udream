@@ -13,6 +13,17 @@
 - [x] Add uNews patchnote rules and GitHub Actions validation.
 - [x] Separate the MIT-licensed software from third-party content in public documentation.
 
+## Active: modularization without a build step
+
+- [x] Define the staged ES-module migration plan.
+- [x] M1: extract pure search/autocomplete matching and add regression tests.
+- [ ] M2: extract data loading and application state.
+- [ ] M3: extract history and local settings.
+- [ ] M4: extract presentation and localization.
+- [ ] M5: isolate PWA registration and complete Android offline verification.
+
+See `docs/MODULARIZATION_PLAN.md`.
+
 ## Next: verification and consistency
 
 - [ ] Test PWA installation and offline reload on Android.
