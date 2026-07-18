@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — v3.4.0
+
+- Extracted pure navigation, breadcrumb-window and full-history operations into `src/history.js`.
+- Extracted typed localStorage reads, writes, JSON serialization and removal into `src/storage.js`.
+- Made invalid or partially written saved history fall back safely instead of blocking application startup.
+- Added regression tests for navigation branches, boundaries, breadcrumb limits, history grouping and storage serialization.
+- Added the M3 modules to the PWA cache and CI syntax checks.
+- Kept the active 4,086-record database, search behavior, interface and saved versions unchanged.
+
 ## Unreleased — v3.3.0
 
 - Extracted automatic database fallback loading and manual JSON parsing into `src/data.js`.

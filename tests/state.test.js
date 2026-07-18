@@ -28,7 +28,7 @@ test("initial state restores persisted preferences", () => {
   const state = createInitialState(storageFrom({
     clientTheme: "dark",
     clientLang: "en",
-    fullHistory: '[{"id":4,"symbol":"Water"}]',
+    fullHistory: '[{"id":4,"symbol":"Water","timestamp":"2026-07-19T10:00:00.000Z"}]',
     showLatin: "true",
     showCyrillic: "true",
     showDigits: "true",
@@ -45,5 +45,17 @@ test("initial state restores persisted preferences", () => {
   assert.equal(state.showBreadcrumbs, false);
   assert.equal(state.showLatin, true);
   assert.equal(state.tagSortMode, "frequency");
-  assert.deepEqual(state.fullHistory, [{ id: 4, symbol: "Water" }]);
+  assert.deepEqual(state.fullHistory, [{
+    id: 4,
+    symbol: "Water",
+    timestamp: "2026-07-19T10:00:00.000Z",
+  }]);
+});
+
+test("invalid stored history no longer prevents application startup", () => {
+  const state = createInitialState(storageFrom({
+    fullHistory: "{broken",
+  }));
+
+  assert.deepEqual(state.fullHistory, []);
 });

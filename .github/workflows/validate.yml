@@ -42,9 +42,13 @@ jobs:
           node --check script.js
           node --check src/search.js
           node --check src/data.js
+          node --check src/history.js
           node --check src/state.js
+          node --check src/storage.js
           node --check tests/data.test.js
+          node --check tests/history.test.js
           node --check tests/state.test.js
+          node --check tests/storage.test.js
           node --check tests/search.test.js
           node --check sw.js
           node --check versions/v3.0.0/script.js

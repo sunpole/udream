@@ -11,6 +11,8 @@ index.html
     ↓
 script.js ──import──> src/search.js
     ├─import──> src/data.js ──fetch──> data/divinity_code_ru.json
+    ├─import──> src/history.js
+    ├─import──> src/storage.js
     └─import──> src/state.js
     ↓
 DOM + localStorage + Web Share APIs
@@ -35,8 +37,8 @@ There is no server-side application code. GitHub Pages serves files; the browser
 - JSON loading;
 - autocomplete UI, tag, alphabet, color, and digit behavior;
 - result-card rendering;
-- history and breadcrumbs;
-- theme and UI preferences in `localStorage`;
+- history and breadcrumb DOM rendering;
+- theme and UI preference DOM effects;
 - sharing helpers;
 - service-worker registration.
 
@@ -55,9 +57,24 @@ There is no server-side application code. GitHub Pages serves files; the browser
 
 ### `src/state.js`
 
-- creates the initial application state from defaults and `localStorage`;
-- does not own later UI mutations or persistence, which are handled in M3–M4;
+- creates the initial application state from defaults and the storage module;
+- normalizes restored full-history data before the UI starts;
+- does not own later UI mutations, which remain in `script.js` until M4;
 - can be tested without a browser.
+
+### `src/history.js`
+
+- owns pure navigation-stack and breadcrumb-window operations;
+- appends and normalizes persistent history entries;
+- groups full history by day without touching the DOM;
+- preserves navigation branch truncation and back/forward boundaries.
+
+### `src/storage.js`
+
+- owns string, boolean and JSON reads from browser storage;
+- owns browser-compatible serialization and removal;
+- returns documented defaults when storage is unavailable or JSON is malformed;
+- contains no application UI or database logic.
 
 The staged migration plan is documented in `docs/MODULARIZATION_PLAN.md`.
 
