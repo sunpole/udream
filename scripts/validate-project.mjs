@@ -53,6 +53,8 @@ async function validateRuntimeFiles() {
     "index.html",
     "script.js",
     "src/search.js",
+    "src/data.js",
+    "src/state.js",
     "package.json",
     "manifest.json",
     "sw.js",
