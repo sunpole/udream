@@ -1,82 +1,120 @@
-# UDREAM
+<p align="center">
+  <img src="icon-192.png" width="112" height="112" alt="Логотип uDream">
+</p>
 
-UDREAM is a static Christian dream-symbol reference and search tool published on GitHub Pages. It replaces manual PDF searching with a mobile-friendly interface for symbols, aliases, descriptions, notes, tags, history, and alphabet navigation.
+<h1 align="center">uDream · UDREAM</h1>
 
-## Live site
+<p align="center">
+  Христианский справочник символов снов с быстрым поиском, историей и установкой как PWA.
+</p>
 
-- Current site: https://sunpole.github.io/udream/
-- Saved versions: https://sunpole.github.io/udream/versions/
-- Repository: https://github.com/sunpole/udream
+<p align="center">
+  <a href="https://sunpole.github.io/udream/"><img alt="GitHub Pages" src="https://img.shields.io/badge/Открыть_сайт-GitHub_Pages-222222?logo=github"></a>
+  <a href="https://github.com/sunpole/udream/releases"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/sunpole/udream?display_name=tag&sort=semver"></a>
+  <a href="https://github.com/sunpole/udream/actions/workflows/validate.yml"><img alt="Проверка проекта" src="https://github.com/sunpole/udream/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="https://t.me/uNewsLog"><img alt="Новости в Telegram" src="https://img.shields.io/badge/Telegram-@uNewsLog-26A5E4?logo=telegram&logoColor=white"></a>
+  <a href="LICENSE"><img alt="Лицензия кода MIT" src="https://img.shields.io/badge/код-MIT-green"></a>
+</p>
 
-## Current state
+![Предварительный вид uDream](preview.jpg)
 
-- Release checkpoint: `v3.0.0`
-- Legacy interface label: `v19`
-- Default branch: `main`
-- Runtime: static HTML, CSS, and JavaScript; no backend or build step
-- Active database: `data/divinity_code_ru.json`
-- Hosting: GitHub Pages
-- PWA files: `manifest.json` and `sw.js`
+## О проекте
 
-The `v3.0.0` release preserves the working site before the documentation and repository-ordering pass. The interface label `v19` is historical and is not the Git release number.
+uDream — статическое веб-приложение для поиска и чтения толкований символов из христианской литературы о снах и видениях. Оно заменяет ручной поиск по большим PDF-файлам удобным мобильным интерфейсом.
 
-## Repository map
+Проект работает непосредственно в браузере: сервер, регистрация и база данных на стороне сервера не требуются. Интерфейс исторически показывает название `UDREAM v19`; в семействе проектов и публикациях uNews используется имя `uDream`.
+
+### Возможности
+
+- поиск по символам, синонимам, описаниям и тегам;
+- подсказки при вводе и алфавитная навигация;
+- карточки символов, перекрёстные ссылки и хлебные крошки;
+- история просмотров, светлая и тёмная темы;
+- русский и английский интерфейс;
+- установка на устройство как PWA;
+- каталог сохранённых рабочих версий.
+
+## Открыть
+
+- [Текущий сайт](https://sunpole.github.io/udream/)
+- [Сохранённые версии](https://sunpole.github.io/udream/versions/)
+- [Релизы](https://github.com/sunpole/udream/releases)
+- [Новости разработки в Telegram](https://t.me/uNewsLog)
+
+## Текущее состояние
+
+| Параметр | Значение |
+|---|---|
+| Стабильная точка восстановления | `v3.0.0` |
+| Текущая линия разработки | `v3.1.0-dev` |
+| Историческая метка интерфейса | `v19` |
+| Активная база | `data/divinity_code_ru.json` |
+| Количество записей | 4 086 |
+| Публикация | GitHub Pages из ветки `main` |
+| Технологии | HTML, CSS, JavaScript, JSON, PWA |
+
+## Структура репозитория
 
 ```text
 udream/
-├── index.html                   # current public app
-├── script.js                    # current app logic
-├── manifest.json                # current PWA metadata
-├── sw.js                        # current service worker
-├── data/
-│   ├── divinity_code_ru.json    # active runtime database
-│   ├── bd2.json                 # retained data variant
-│   ├── db.json                  # retained data variant
-│   └── report.txt               # database-generation report
-├── versions/
-│   ├── index.html               # version launcher
-│   └── v3.0.0/                  # runnable frozen checkpoint
-├── _archive/                    # historical versions and source files
-├── docs/                        # project documentation
-├── AGENTS.md                    # rules for future development work
-├── VERSION.md
-├── CHANGELOG.md
-└── ROADMAP.md
+├── index.html, script.js        # текущий сайт
+├── manifest.json, sw.js         # PWA и автономная работа
+├── favicon.svg, icon-*.png      # оформление сайта
+├── data/                        # текущая база и сохранённые варианты данных
+├── versions/                    # запускаемые контрольные версии
+├── news/                        # патчноуты для uNews и Telegram
+├── docs/                        # документация проекта
+├── scripts/                     # автоматические проверки репозитория
+├── _archive/                    # исторические версии и исходные материалы
+├── AGENTS.md                    # обязательные правила разработки
+├── CHANGELOG.md                 # история изменений
+├── ROADMAP.md                   # планы
+└── VERSION.md                   # состояние версий
 ```
 
-The live site must not depend on `_archive/` except for deliberate reference downloads. Old experiments are retained for history and are not current application code.
+Файлы текущего сайта намеренно находятся в корне: GitHub Pages публикует их напрямую. Исторические эксперименты хранятся отдельно в `_archive/` и не являются рабочим приложением.
 
-## Local preview
+Подробная карта находится в [docs/FILE_MAP.md](docs/FILE_MAP.md).
 
-From the repository root:
+## Локальный запуск
 
 ```bash
 python3 -m http.server 8019
 ```
 
-Open:
+После этого откройте `http://localhost:8019/`. Запуск простым открытием `index.html` через `file://` не считается корректной проверкой: браузеры ограничивают `fetch()` и service worker.
 
-```text
-http://localhost:8019/
+Проверка структуры, базы и патчноутов:
+
+```bash
+node scripts/validate-project.mjs
 ```
 
-Directly opening `index.html` as a local file is not a reliable test because browsers restrict `fetch()` and service workers on `file://` URLs.
+## Новости и патчноуты
 
-## Documentation
+Каждое пользовательски заметное изменение сопровождается файлом в `news/`. Система [uNews](https://github.com/sunpole/uNews) проверяет новые патчноуты из публичной ветки `main` и через GitHub Actions публикует их в Telegram-канале [@uNewsLog](https://t.me/uNewsLog).
 
-- [Current project state](docs/PROJECT_STATE.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Database format](docs/DATABASE_FORMAT.md)
-- [File map](docs/FILE_MAP.md)
-- [Release and rollback](docs/RELEASE_AND_ROLLBACK.md)
-- [Recovered historical context](docs/HISTORICAL_CONTEXT.md)
-- [Roadmap](ROADMAP.md)
-- [Changelog](CHANGELOG.md)
+Правила оформления описаны в [docs/NEWS_PUBLISHING.md](docs/NEWS_PUBLISHING.md). Секреты Telegram в этом репозитории не хранятся.
 
-## Content note
+## Авторство, лицензия и исходные книги
 
-UDREAM is a reference/search tool. Interpretations should be checked against the original source material and Scripture context; the application does not establish doctrine or replace pastoral discernment.
+© 2026 Антон Магомедов. Программная оболочка, поисковая логика, структура интерфейса и оригинальная документация uDream распространяются по лицензии [MIT](LICENSE).
 
-## License
+Тексты книг, выдержки, словарные толкования, иллюстрации и PDF-файлы третьих лиц **не становятся MIT-контентом** и не объявляются собственностью автора приложения. Права на них сохраняются за соответствующими авторами и правообладателями. Репозиторий не является официальным изданием исходных книг.
 
-MIT. See [LICENSE](LICENSE).
+Подробнее: [права на код и материалы](docs/CONTENT_AND_RIGHTS.md) и [уведомления о сторонних материалах](THIRD_PARTY_NOTICES.md).
+
+## Документация
+
+- [Текущее состояние](docs/PROJECT_STATE.md)
+- [Архитектура](docs/ARCHITECTURE.md)
+- [Формат базы](docs/DATABASE_FORMAT.md)
+- [Карта файлов](docs/FILE_MAP.md)
+- [Публикация новостей](docs/NEWS_PUBLISHING.md)
+- [Права на код и материалы](docs/CONTENT_AND_RIGHTS.md)
+- [Релизы и восстановление](docs/RELEASE_AND_ROLLBACK.md)
+- [Исторический контекст](docs/HISTORICAL_CONTEXT.md)
+- [План развития](ROADMAP.md)
+- [История изменений](CHANGELOG.md)
+
+Вклад в проект принимается по правилам [CONTRIBUTING.md](CONTRIBUTING.md).

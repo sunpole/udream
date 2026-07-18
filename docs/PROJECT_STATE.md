@@ -1,6 +1,6 @@
 # Current project state
 
-Verified against `main` at commit `94c14db5321edea3036d896b727790db5f6aec27` and release `v3.0.0`.
+The restoration checkpoint was verified at commit `94c14db5321edea3036d896b727790db5f6aec27` and release `v3.0.0`. Repository-ordering work was merged to `main` at commit `50bb686217ef97b5cf96759e7e7f222a311f93f8`.
 
 ## What UDREAM is
 
@@ -35,7 +35,13 @@ The page is labelled `v19` in its title and header. This is a legacy interface i
 - automatic JSON loading with manual-file fallback;
 - PWA manifest and service-worker registration.
 
-These are code-level findings. They do not replace a current browser and offline regression test.
+The current site, search for `Water` and `Mouse`, result cards, menu, version launcher, and runnable `v3.0.0` snapshot were visually checked on a Samsung Galaxy A57 5G after the repository-ordering merge. PWA installation and a deliberate offline reload remain separate tests.
+
+## Development news
+
+User-visible changes are documented in `news/`. The public uNews repository automatically discovers new uDream patchnotes after they reach `main`, validates them, and publishes previously unseen entries to `@uNewsLog` through GitHub Actions.
+
+uDream stores no Telegram credentials. The publication contract is documented in `docs/NEWS_PUBLISHING.md`.
 
 ## Data
 
@@ -70,6 +76,7 @@ Historical files are deliberately preserved and are not the source of truth for 
 - External CDN dependencies are required for fonts, icons, Markdown rendering, and image capture.
 - Accessibility has not been formally audited.
 - Bundled source-PDF distribution status should be confirmed.
+- Automatic uNews publication should be observed for the first uDream patchnote before treating the integration as fully proven end to end.
 
 ## Safe restoration point
 

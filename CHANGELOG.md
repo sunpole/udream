@@ -9,6 +9,12 @@
 - Added a versions link to the current site menu.
 - Aligned the current service-worker database cache with `data/divinity_code_ru.json`.
 - Corrected README references that previously named `data/bd2.json` as the active database.
+- Redesigned the public README with project links, badges, screenshot, status, structure and rights notice.
+- Added explicit separation between original MIT-licensed software and third-party book-derived content.
+- Added `THIRD_PARTY_NOTICES.md`, contribution guidance and citation metadata.
+- Added the uNews patchnote workflow and the first uDream patchnote under `news/`.
+- Added GitHub Actions validation for runtime files, JSON data, record IDs and patchnote assets.
+- Added CODEOWNERS and a Pull Request checklist.
 
 ## v3.0.0 — 2026-07-18
 

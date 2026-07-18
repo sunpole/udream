@@ -1,0 +1,43 @@
+name: Validate uDream
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate repository, data and patchnotes
+        run: node scripts/validate-project.mjs
+
+      - name: Require a new uNews patchnote for Pull Request changes
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/validate-patchnote-diff.mjs
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check script.js
+          node --check sw.js
+          node --check versions/v3.0.0/script.js
+          node --check versions/v3.0.0/sw.js
+          node --check scripts/validate-patchnote-diff.mjs

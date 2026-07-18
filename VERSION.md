@@ -13,7 +13,7 @@
 
 `v3.1.0-dev`
 
-This line adds repository documentation, a runnable release snapshot, a version launcher, and alignment between the active database and the PWA cache. It does not rename the historical `v19` label shown in the interface.
+This line adds repository documentation, a runnable release snapshot, a version launcher, alignment between the active database and the PWA cache, public repository presentation, rights notices, automated validation, and uNews patchnote publication. It does not rename the historical `v19` label shown in the interface.
 
 ## Version systems
 
