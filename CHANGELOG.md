@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — v3.3.0
+
+- Extracted automatic database fallback loading and manual JSON parsing into `src/data.js`.
+- Extracted initial application defaults and persisted preference restoration into `src/state.js`.
+- Added regression tests for data loading, invalid/empty databases and browser-state defaults.
+- Added both modules to the PWA cache and CI syntax checks.
+- Kept the active 4,086-record database, search behavior, interface and saved versions unchanged.
+
 ## Unreleased — v3.2.0
 
 - Added the staged native ES-module plan in `docs/MODULARIZATION_PLAN.md`.
