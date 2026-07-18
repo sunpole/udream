@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — v3.1.1
+
+- Synchronized `AGENTS.md` and `docs/NEWS_PUBLISHING.md` with the verified uNews v0.3.4 FIFO queue.
+- Documented four-hour polling, 61-second Telegram spacing, immediate checkpoints, isolated project errors, health state and automatic alerts.
+
 ## Unreleased — v3.1.0
 
 - Added repository-wide development rules in `AGENTS.md`.

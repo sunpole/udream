@@ -11,9 +11,9 @@
 
 ## Current development line
 
-`v3.1.0-dev`
+`v3.1.1-dev`
 
-This line adds repository documentation, a runnable release snapshot, a version launcher, alignment between the active database and the PWA cache, public repository presentation, rights notices, automated validation, and uNews patchnote publication. It does not rename the historical `v19` label shown in the interface.
+This line includes the v3.1 repository organization work and synchronizes the project instructions with the verified uNews v0.3.4 FIFO queue: four-hour polling, 61-second spacing, per-post checkpoints, isolated project errors, and automatic Telegram publication. It does not rename the historical `v19` label shown in the interface.
 
 ## Version systems
 
