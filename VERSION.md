@@ -11,9 +11,9 @@
 
 ## Current development line
 
-`v3.1.1-dev`
+`v3.2.0-dev`
 
-This line includes the v3.1 repository organization work and synchronizes the project instructions with the verified uNews v0.3.4 FIFO queue: four-hour polling, 61-second spacing, per-post checkpoints, isolated project errors, and automatic Telegram publication. It does not rename the historical `v19` label shown in the interface.
+This line begins the staged native ES-module migration. M1 extracts pure search and autocomplete matching into `src/search.js`, adds dependency-free regression tests, and preserves the existing static GitHub Pages/PWA runtime. It does not rename the historical `v19` label shown in the interface.
 
 ## Version systems
 

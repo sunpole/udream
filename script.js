@@ -1,3 +1,5 @@
+import { matchesAutocomplete, matchesSearch } from "./src/search.js";
+
 (function(){
     // ---------- СОСТОЯНИЕ ----------
     let db = [];
@@ -469,20 +471,10 @@
     }
 
     // ---------- ПОИСК И АВТОДОПОЛНЕНИЕ ----------
-    function filterByMode(item, query) {
-        const q = query.toLowerCase();
-        if(currentMode === "symbol") return item.symbol.toLowerCase().startsWith(q) || (item.aliases && item.aliases.some(a => a.toLowerCase().startsWith(q)));
-        if(currentMode === "aliases") return item.aliases && item.aliases.some(a => a.toLowerCase().startsWith(q));
-        if(currentMode === "desc") return (item.description || "").toLowerCase().startsWith(q);
-        if(currentMode === "tags") return item.tags && item.tags.some(t => t.toLowerCase().startsWith(q));
-        if(currentMode === "all") return item.symbol.toLowerCase().startsWith(q) || (item.aliases && item.aliases.some(a => a.toLowerCase().startsWith(q))) || (item.description || "").toLowerCase().startsWith(q) || (item.tags && item.tags.some(t => t.toLowerCase().startsWith(q)));
-        return false;
-    }
-
     function updateAutocomplete() {
         const q = searchInput.value.trim();
         if(!q) { autocompleteList.classList.remove("show"); autocompleteSpacer.style.height = "0"; return; }
-        const matches = db.filter(item => filterByMode(item, q)).slice(0, 7);
+        const matches = db.filter(item => matchesAutocomplete(item, q, currentMode)).slice(0, 7);
         if(matches.length) {
             autocompleteList.innerHTML = matches.map(m => `<div class="autocomplete-item" data-id="${m.id}">${escapeHtml(m.symbol)}</div>`).join("");
             autocompleteList.classList.add("show");
@@ -506,13 +498,7 @@
             else resultCard.innerHTML = `<div class="card">${t("enterQuery")}</div>`;
             return;
         }
-        let filtered = db.filter(item => {
-            if(currentMode === "symbol") return item.symbol.toLowerCase().includes(q) || (item.aliases && item.aliases.some(a => a.toLowerCase().includes(q)));
-            if(currentMode === "aliases") return item.aliases && item.aliases.some(a => a.toLowerCase().includes(q));
-            if(currentMode === "desc") return (item.description || "").toLowerCase().includes(q);
-            if(currentMode === "tags") return item.tags && item.tags.some(t => t.toLowerCase().includes(q));
-            return item.symbol.toLowerCase().includes(q) || (item.aliases && item.aliases.some(a => a.toLowerCase().includes(q))) || (item.description || "").toLowerCase().includes(q) || (item.tags && item.tags.some(t => t.toLowerCase().includes(q)));
-        });
+        const filtered = db.filter((item) => matchesSearch(item, q, currentMode));
         if(filtered.length === 0) { resultCard.innerHTML = `<div class="card">${t("notFound")}</div>`; return; }
         if(filtered.length === 1) { showRecord(filtered[0]); addToHistory(filtered[0]); }
         else showWordList(filtered, `${lang==='ru'?'Найдено совпадений':'Matches'}: ${filtered.length}`);

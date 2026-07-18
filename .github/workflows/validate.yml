@@ -25,6 +25,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Run regression tests
+        run: npm test
+
       - name: Validate repository, data and patchnotes
         run: node scripts/validate-project.mjs
 
@@ -37,6 +40,8 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check script.js
+          node --check src/search.js
+          node --check tests/search.test.js
           node --check sw.js
           node --check versions/v3.0.0/script.js
           node --check versions/v3.0.0/sw.js

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — v3.2.0
+
+- Added the staged native ES-module plan in `docs/MODULARIZATION_PLAN.md`.
+- Extracted pure search and autocomplete matching into `src/search.js` without changing their behavior.
+- Added dependency-free Node.js regression tests and CI execution.
+- Switched the main entry script to `type="module"` and added the new module to the PWA cache.
+- Kept the database, interface markup, archived versions and saved v3.0.0 runtime unchanged.
+
 ## Unreleased — v3.1.1
 
 - Synchronized `AGENTS.md` and `docs/NEWS_PUBLISHING.md` with the verified uNews v0.3.4 FIFO queue.

@@ -5,7 +5,10 @@
 | Path | Role | Change risk |
 |---|---|---:|
 | `index.html` | Current page structure and styles | High |
-| `script.js` | Current application logic | High |
+| `script.js` | Current application orchestration and UI logic | High |
+| `src/search.js` | Pure search and autocomplete matching | Medium |
+| `tests/search.test.js` | Search regression tests | Low |
+| `package.json` | Dependency-free test command and ES-module mode | Low |
 | `data/divinity_code_ru.json` | Active database | Critical |
 | `manifest.json` | PWA metadata and icons | Medium |
 | `sw.js` | Offline cache | High |
@@ -69,6 +72,7 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 | `ROADMAP.md` | Priorities and unfinished work |
 | `docs/PROJECT_STATE.md` | Detailed verified state and risks |
 | `docs/ARCHITECTURE.md` | Runtime design |
+| `docs/MODULARIZATION_PLAN.md` | Staged ES-module migration plan |
 | `docs/DATABASE_FORMAT.md` | Data contract and checks |
 | `docs/RELEASE_AND_ROLLBACK.md` | Safe release and recovery procedure |
 | `docs/HISTORICAL_CONTEXT.md` | Recovered earlier project description |
