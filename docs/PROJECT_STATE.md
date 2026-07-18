@@ -36,7 +36,9 @@ The page is labelled `v19` in its title and header. This is a legacy interface i
 - automatic JSON loading with manual-file fallback;
 - PWA manifest and service-worker registration.
 
-The active development line has completed M3 of the native ES-module migration: search, data loading, initial state, navigation history and local storage now have dependency-free regression tests. DOM presentation and localization remain in `script.js` for M4.
+The active development line has completed M4 of the native ES-module migration. Search, data loading, initial state, navigation history, local storage, localization and pure presentation builders now have dependency-free regression tests. Mutable DOM orchestration remains in `script.js`; PWA registration and device-level offline verification remain for M5.
+
+Imported display values are escaped before DOM insertion, including quotes used inside `data-*` attributes. Notes are rendered as plain text with safe paragraphs and line breaks; raw HTML and Markdown from a manually selected JSON file are not interpreted.
 
 The current site, search for `Water` and `Mouse`, result cards, menu, version launcher, and runnable `v3.0.0` snapshot were visually checked on a Samsung Galaxy A57 5G after the repository-ordering merge. PWA installation and a deliberate offline reload remain separate tests.
 
@@ -76,7 +78,7 @@ Historical files are deliberately preserved and are not the source of truth for 
 - The administration workflow is archived rather than part of the maintained runtime.
 - PWA/offline behavior needs device-level verification after the cache alignment.
 - The current UI still uses the historical `v19` label.
-- External CDN dependencies are required for fonts, icons, Markdown rendering, and image capture.
+- External CDN dependencies remain for fonts, icons and image capture; note rendering no longer requires Marked.
 - Accessibility has not been formally audited.
 - Bundled source-PDF distribution status should be confirmed.
 - Automatic uNews publication should be observed for the first uDream patchnote before treating the integration as fully proven end to end.

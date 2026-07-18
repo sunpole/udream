@@ -12,6 +12,8 @@ index.html
 script.js ──import──> src/search.js
     ├─import──> src/data.js ──fetch──> data/divinity_code_ru.json
     ├─import──> src/history.js
+    ├─import──> src/i18n.js
+    ├─import──> src/presentation.js
     ├─import──> src/storage.js
     └─import──> src/state.js
     ↓
@@ -33,10 +35,10 @@ There is no server-side application code. GitHub Pages serves files; the browser
 
 ### `script.js`
 
-- application orchestration, state and localization;
+- application orchestration and mutable UI state;
 - JSON loading;
 - autocomplete UI, tag, alphabet, color, and digit behavior;
-- result-card rendering;
+- DOM event binding for prebuilt presentation fragments;
 - history and breadcrumb DOM rendering;
 - theme and UI preference DOM effects;
 - sharing helpers;
@@ -76,6 +78,19 @@ There is no server-side application code. GitHub Pages serves files; the browser
 - returns documented defaults when storage is unavailable or JSON is malformed;
 - contains no application UI or database logic.
 
+### `src/i18n.js`
+
+- owns the complete RU/EN interface dictionary, language normalization and reviewed instruction HTML;
+- falls back to Russian for missing or corrupted stored language values;
+- marks the single translation that intentionally contains trusted line-break HTML.
+
+### `src/presentation.js`
+
+- owns pure HTML builders for records, lists, history, breadcrumbs, tags, autocomplete, statistics and sharing;
+- escapes text and attribute values from imported JSON, including both quote types;
+- renders notes as safe plain text with paragraphs and line breaks instead of interpreting raw HTML or Markdown;
+- contains no DOM queries, event listeners, browser storage or search logic.
+
 The staged migration plan is documented in `docs/MODULARIZATION_PLAN.md`.
 
 ### `data/divinity_code_ru.json`
@@ -110,10 +125,9 @@ Loaded from CDNs at runtime:
 
 - Google Fonts (`Inter`);
 - Font Awesome;
-- Marked;
 - html2canvas.
 
-The core search remains repository-hosted, but some presentation and sharing features may degrade offline unless these external resources have already been cached by the browser.
+The core search and note rendering remain repository-hosted, but fonts, icons and image-sharing presentation may degrade offline unless the remaining external resources have already been cached by the browser.
 
 ## State and privacy
 

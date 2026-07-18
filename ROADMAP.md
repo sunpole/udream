@@ -19,7 +19,7 @@
 - [x] M1: extract pure search/autocomplete matching and add regression tests.
 - [x] M2: extract data loading and initial application state.
 - [x] M3: extract history and local settings.
-- [ ] M4: extract presentation and localization.
+- [x] M4: extract presentation and localization with safe imported-data rendering.
 - [ ] M5: isolate PWA registration and complete Android offline verification.
 
 See `docs/MODULARIZATION_PLAN.md`.

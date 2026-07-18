@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased — v3.5.0
+
+- Extracted the RU/EN dictionary, language normalization and reviewed instruction content into `src/i18n.js`.
+- Extracted pure card, list, history, tag, autocomplete, sharing and statistics HTML builders into `src/presentation.js`.
+- Escaped text and attribute values from manually imported JSON, including both quote types, before DOM insertion.
+- Replaced raw Markdown/HTML note rendering with safe plain-text paragraphs and removed the unused Marked CDN dependency.
+- Corrected help text so it no longer promises verified offline behavior or translation of dictionary records.
+- Added localization, presentation and hostile-input regression tests; the suite now contains 34 tests.
+- Added the M4 modules to the PWA cache, runtime validator and CI syntax checks.
+- Kept the active 4,086-record database, saved `v3.0.0` runtime and archived files unchanged.
+
 ## Unreleased — v3.4.0
 
 - Extracted pure navigation, breadcrumb-window and full-history operations into `src/history.js`.

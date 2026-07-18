@@ -59,3 +59,9 @@ test("invalid stored history no longer prevents application startup", () => {
 
   assert.deepEqual(state.fullHistory, []);
 });
+
+test("unsupported stored language falls back to Russian", () => {
+  const state = createInitialState(storageFrom({ clientLang: "<script>" }));
+
+  assert.equal(state.lang, "ru");
+});
