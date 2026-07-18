@@ -1,9 +1,11 @@
-const CACHE_NAME = 'udream-v3.2.0-m1';
+const CACHE_NAME = 'udream-v3.3.0-m2';
 const urlsToCache = [
   '/udream/',
   '/udream/index.html',
   '/udream/script.js',
   '/udream/src/search.js',
+  '/udream/src/data.js',
+  '/udream/src/state.js',
   '/udream/manifest.json',
   '/udream/favicon.svg',
   '/udream/icon-192.png',
