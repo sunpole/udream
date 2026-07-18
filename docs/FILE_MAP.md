@@ -35,6 +35,18 @@
 
 The tag is the exact restoration source. The runnable directory has only path/scoping adaptations required to operate below `/versions/v3.0.0/`.
 
+## News and automation
+
+| Path | Role |
+|---|---|
+| `news/*.md` | Factual patchnotes discovered by uNews |
+| `news/*.{jpg,png}` | Telegram visuals stored beside their patchnotes |
+| `scripts/validate-project.mjs` | Repository, database and patchnote validation |
+| `scripts/validate-patchnote-diff.mjs` | Requires a newly added patchnote in each Pull Request |
+| `.github/workflows/validate.yml` | Automatic validation for pushes and Pull Requests |
+| `.github/pull_request_template.md` | Review checklist including uNews publication impact |
+| `.github/CODEOWNERS` | Default repository owner for review routing |
+
 ## Archive
 
 | Path | Role |
@@ -60,3 +72,8 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 | `docs/DATABASE_FORMAT.md` | Data contract and checks |
 | `docs/RELEASE_AND_ROLLBACK.md` | Safe release and recovery procedure |
 | `docs/HISTORICAL_CONTEXT.md` | Recovered earlier project description |
+| `docs/NEWS_PUBLISHING.md` | uNews and Telegram publication workflow |
+| `docs/CONTENT_AND_RIGHTS.md` | Boundary between original code and third-party content |
+| `THIRD_PARTY_NOTICES.md` | Public notice for source works and other third-party material |
+| `CONTRIBUTING.md` | Contribution and Pull Request rules |
+| `CITATION.cff` | GitHub citation metadata for the software project |

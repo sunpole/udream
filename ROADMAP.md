@@ -9,15 +9,18 @@
 - [x] Create the `v3.0.0` restoration checkpoint.
 - [x] Establish project documentation and development rules.
 - [x] Add a launcher for runnable saved versions.
+- [x] Perform a mobile regression check of the current site and saved version launcher.
+- [x] Add uNews patchnote rules and GitHub Actions validation.
+- [x] Separate the MIT-licensed software from third-party content in public documentation.
 
 ## Next: verification and consistency
 
-- [ ] Perform a full mobile browser regression test of the current site.
 - [ ] Test PWA installation and offline reload on Android.
 - [ ] Decide which of `bd2.json`, `db.json`, and `divinity_code_ru.json` are authoritative, derived, or archival.
 - [ ] Document the database generation/translation pipeline.
 - [ ] Validate all 4,086 active records, duplicate IDs, cross-references, and suspicious entries.
-- [ ] Confirm the legal/distribution status of bundled source PDFs.
+- [ ] Archive the original source URLs and exact open-distribution statements for bundled PDFs.
+- [ ] Confirm the first automatic uDream publication appears correctly in `@uNewsLog`.
 
 ## Product completion
 

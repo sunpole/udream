@@ -58,6 +58,12 @@ Contains the saved-version launcher and runnable snapshots. Each snapshot should
 
 Historical/reference storage. The current application must not import scripts or databases from archived numbered versions.
 
+## Repository automation
+
+GitHub Actions runs `scripts/validate-project.mjs` for Pull Requests and pushes to `main`. The check validates runtime assets, manifests, the 4,086-record active database, unique IDs, required record types, and uNews patchnote images. Pull Requests also run `scripts/validate-patchnote-diff.mjs` and must add a new factual file under `news/`.
+
+The uNews publisher is intentionally external to the website runtime. Its scheduled workflow lives in `sunpole/uNews`, scans public repositories owned by `sunpole`, discovers `sunpole/udream/news/*.md`, and publishes previously unseen valid patchnotes to Telegram. Telegram credentials are never required by the uDream site or repository checks.
+
 ## External dependencies
 
 Loaded from CDNs at runtime:

@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "При использовании программной оболочки uDream укажите автора проекта. Сторонние книжные материалы имеют отдельных правообладателей."
+title: "uDream (UDREAM)"
+type: software
+authors:
+  - family-names: "Mahomedov"
+    given-names: "Anton"
+repository-code: "https://github.com/sunpole/udream"
+url: "https://sunpole.github.io/udream/"
+license: MIT
