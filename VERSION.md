@@ -11,9 +11,9 @@
 
 ## Current development line
 
-`v3.4.0-dev`
+`v3.5.0-dev`
 
-This line completes M3 of the staged native ES-module migration. History, breadcrumbs and navigation state now live in `src/history.js`; typed local settings serialization lives in `src/storage.js`. Corrupt saved history safely falls back to an empty history. The database, search behavior, interface and static GitHub Pages/PWA runtime remain unchanged.
+This line completes M4 of the staged native ES-module migration. Localization and language normalization now live in `src/i18n.js`; pure, safely escaped presentation builders live in `src/presentation.js`. Raw HTML and Markdown from manually loaded JSON are no longer interpreted. The active database, search behavior, saved release and static GitHub Pages runtime remain unchanged.
 
 ## Version systems
 

@@ -1,6 +1,7 @@
 // @ts-check
 
 import { normalizeFullHistory } from "./history.js";
+import { normalizeLanguage } from "./i18n.js";
 import { readBoolean, readJson, readString } from "./storage.js";
 
 /**
@@ -18,7 +19,7 @@ export function createInitialState(storage) {
     db: [],
     currentMode: "symbol",
     theme: readString(storage, "clientTheme", "light"),
-    lang: readString(storage, "clientLang", "ru"),
+    lang: normalizeLanguage(readString(storage, "clientLang", "ru")),
     historyStack: [],
     historyIndex: -1,
     lastDisplayedRecord: null,
