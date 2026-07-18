@@ -4,6 +4,7 @@ project: uDream
 series: udream
 title: Порядок в репозитории и прозрачные права на проект
 version: 3.1.0
+queued_at: 2026-07-18T17:32:03Z
 repo_url: https://github.com/sunpole/udream
 web_url: https://sunpole.github.io/udream/
 image: 2026-07-18-udream-v3-1-0-repository-order.jpg
