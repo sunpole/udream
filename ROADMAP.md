@@ -17,7 +17,7 @@
 
 - [x] Define the staged ES-module migration plan.
 - [x] M1: extract pure search/autocomplete matching and add regression tests.
-- [ ] M2: extract data loading and application state.
+- [x] M2: extract data loading and initial application state.
 - [ ] M3: extract history and local settings.
 - [ ] M4: extract presentation and localization.
 - [ ] M5: isolate PWA registration and complete Android offline verification.

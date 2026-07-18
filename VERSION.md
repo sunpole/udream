@@ -11,9 +11,9 @@
 
 ## Current development line
 
-`v3.2.0-dev`
+`v3.3.0-dev`
 
-This line begins the staged native ES-module migration. M1 extracts pure search and autocomplete matching into `src/search.js`, adds dependency-free regression tests, and preserves the existing static GitHub Pages/PWA runtime. It does not rename the historical `v19` label shown in the interface.
+This line completes M2 of the staged native ES-module migration. Database fallback loading and manual JSON parsing now live in `src/data.js`; initial browser state restoration lives in `src/state.js`. The database format, search behavior, interface and static GitHub Pages/PWA runtime remain unchanged.
 
 ## Version systems
 

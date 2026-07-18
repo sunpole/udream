@@ -10,8 +10,8 @@ GitHub Pages
 index.html
     ↓
 script.js ──import──> src/search.js
-    │
-    └─fetch──────> data/divinity_code_ru.json
+    ├─import──> src/data.js ──fetch──> data/divinity_code_ru.json
+    └─import──> src/state.js
     ↓
 DOM + localStorage + Web Share APIs
 ```
@@ -46,6 +46,18 @@ There is no server-side application code. GitHub Pages serves files; the browser
 - preserves prefix matching for autocomplete and substring matching for submitted search;
 - uses JSDoc and `// @ts-check` without a TypeScript build step;
 - is covered by dependency-free Node.js regression tests.
+
+### `src/data.js`
+
+- owns ordered database path fallback and manual JSON parsing;
+- preserves the runtime contract of a non-empty JSON array;
+- returns records plus source metadata without touching the DOM.
+
+### `src/state.js`
+
+- creates the initial application state from defaults and `localStorage`;
+- does not own later UI mutations or persistence, which are handled in M3–M4;
+- can be tested without a browser.
 
 The staged migration plan is documented in `docs/MODULARIZATION_PLAN.md`.
 

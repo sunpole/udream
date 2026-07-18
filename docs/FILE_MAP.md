@@ -7,7 +7,11 @@
 | `index.html` | Current page structure and styles | High |
 | `script.js` | Current application orchestration and UI logic | High |
 | `src/search.js` | Pure search and autocomplete matching | Medium |
+| `src/data.js` | Database fallback loading and manual JSON parsing | Medium |
+| `src/state.js` | Initial state and persisted preference restoration | Medium |
 | `tests/search.test.js` | Search regression tests | Low |
+| `tests/data.test.js` | Database loader and fallback tests | Low |
+| `tests/state.test.js` | Initial-state regression tests | Low |
 | `package.json` | Dependency-free test command and ES-module mode | Low |
 | `data/divinity_code_ru.json` | Active database | Critical |
 | `manifest.json` | PWA metadata and icons | Medium |

@@ -1,32 +1,32 @@
+import { loadFirstAvailableDatabase, parseDatabaseText } from "./src/data.js";
 import { matchesAutocomplete, matchesSearch } from "./src/search.js";
+import { createInitialState } from "./src/state.js";
 
 (function(){
     // ---------- СОСТОЯНИЕ ----------
-    let db = [];
-    let currentMode = "symbol";
-    let theme = localStorage.getItem("clientTheme") || "light";
-    let lang = localStorage.getItem("clientLang") || "ru";
-    let historyStack = [];
-    let historyIndex = -1;
-    let lastDisplayedRecord = null;
-    let dbLoaded = false;
-    // let currentDbName = "bd2.json";
-    let currentDbName = "divinity_code_ru.json";
-
-    let fullHistory = JSON.parse(localStorage.getItem("fullHistory") || "[]");
-
-    // настройки видимости (по умолчанию включены только хлебные крошки)
-    let showLatin = localStorage.getItem("showLatin") === "true";
-    let showCyrillic = localStorage.getItem("showCyrillic") === "true";
-    let showDigits = localStorage.getItem("showDigits") === "true";
-    let showBreadcrumbs = localStorage.getItem("showBreadcrumbs") !== "false"; // true по умолчанию
-    let showTagsCloud = localStorage.getItem("showTagsCloud") === "true";
-    let showHistoryBlock = localStorage.getItem("showHistoryBlock") === "true";
-    let allowSelection = localStorage.getItem("allowSelection") === "true";
-    let wideScrollbar = localStorage.getItem("wideScrollbar") === "true";
-
-    let tagSortMode = localStorage.getItem("tagSortMode") || "alpha";
-    let instructionVisible = true;
+    const initialState = createInitialState(localStorage);
+    let {
+        db,
+        currentMode,
+        theme,
+        lang,
+        historyStack,
+        historyIndex,
+        lastDisplayedRecord,
+        dbLoaded,
+        currentDbName,
+        fullHistory,
+        showLatin,
+        showCyrillic,
+        showDigits,
+        showBreadcrumbs,
+        showTagsCloud,
+        showHistoryBlock,
+        allowSelection,
+        wideScrollbar,
+        tagSortMode,
+        instructionVisible
+    } = initialState;
 
     // ---------- DOM ----------
     const themeToggle = document.getElementById("themeToggle");
@@ -636,36 +636,44 @@ import { matchesAutocomplete, matchesSearch } from "./src/search.js";
     // ---------- ЗАГРУЗКА БД ----------
     async function tryAutoLoad() {
         resultCard.innerHTML = `<div class="card"><div class="loader"></div><div style="text-align:center">${t("loading")}</div></div>`;
-        const paths = ["/udream/data/divinity_code_ru.json", "data/divinity_code_ru.json", "../data/divinity_code_ru.json"];
-        for(let url of paths) {
-            try {
-                const resp = await fetch(url);
-                if(resp.ok) {
-                    const data = await resp.json();
-                    if(Array.isArray(data) && data.length) {
-                        db = data; currentDbName = url.split('/').pop();
-                        updateStatsUI(); renderAlphabet(); updateTagCloudVisibility();
-                        showDefaultInstructions(); dbLoaded = true;
-                        return;
-                    }
-                }
-            } catch(e) {}
+
+        const loaded = await loadFirstAvailableDatabase();
+        if(loaded) {
+            db = loaded.records;
+            currentDbName = loaded.name;
+            updateStatsUI();
+            renderAlphabet();
+            updateTagCloudVisibility();
+            showDefaultInstructions();
+            dbLoaded = true;
+            return;
         }
-        dbLoaded = false; db = [];
+
+        dbLoaded = false;
+        db = [];
         updateStatsUI();
         resultCard.innerHTML = `<div class="card">⚠️ ${t("empty")}<br><button id="manualLoadBtn" class="mini-btn" style="margin-top:1rem;">📂 Загрузить JSON</button></div>`;
         document.getElementById("manualLoadBtn")?.addEventListener("click", () => {
-            const inp = document.createElement("input"); inp.type="file"; inp.accept="application/json";
+            const inp = document.createElement("input");
+            inp.type = "file";
+            inp.accept = "application/json";
             inp.onchange = e => {
-                const file = e.target.files[0]; if(!file) return;
+                const file = e.target.files[0];
+                if(!file) return;
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     try {
-                        const data = JSON.parse(e.target.result);
-                        if(Array.isArray(data) && data.length) {
-                            db = data; currentDbName = file.name; updateStatsUI(); renderAlphabet(); updateTagCloudVisibility(); showDefaultInstructions(); dbLoaded = true;
-                        } else throw new Error("Не массив");
-                    } catch(err) { alert("Ошибка: файл должен быть массивом JSON"); }
+                        const loadedFile = parseDatabaseText(String(e.target.result), file.name);
+                        db = loadedFile.records;
+                        currentDbName = loadedFile.name;
+                        updateStatsUI();
+                        renderAlphabet();
+                        updateTagCloudVisibility();
+                        showDefaultInstructions();
+                        dbLoaded = true;
+                    } catch(err) {
+                        alert("Ошибка: файл должен быть массивом JSON");
+                    }
                 };
                 reader.readAsText(file);
             };
