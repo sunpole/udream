@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5efe7">
+  <title>UDREAM — версии сайта</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f5efe7;
+      --card: #fffaf5;
+      --text: #2c2825;
+      --muted: #6f665e;
+      --line: #e5d9cc;
+      --accent: #765f49;
+      --accent-text: #fff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1e1b18;
+        --card: #2a2622;
+        --text: #eee9e3;
+        --muted: #b9aea3;
+        --line: #463f38;
+        --accent: #b79a7d;
+        --accent-text: #1e1b18;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    main { width: min(760px, 100%); margin: 0 auto; padding: 32px 16px 56px; }
+    header { margin-bottom: 24px; }
+    .back { color: var(--accent); text-decoration: none; font-weight: 650; }
+    h1 { margin: 28px 0 8px; font-size: clamp(2rem, 9vw, 3.4rem); line-height: .95; }
+    .lead { margin: 0; color: var(--muted); line-height: 1.55; }
+    .version-list { display: grid; gap: 14px; margin-top: 26px; }
+    .version {
+      display: grid;
+      gap: 12px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+      box-shadow: 0 12px 30px rgb(0 0 0 / .05);
+    }
+    .version-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .version h2 { margin: 0; font-size: 1.25rem; }
+    .badge { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+    .version p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+    .note { margin-top: 24px; padding: 14px 16px; border-left: 3px solid var(--accent); color: var(--muted); line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <a class="back" href="../">← Вернуться в UDREAM</a>
+      <h1>Версии UDREAM</h1>
+      <p class="lead">Здесь можно открыть текущий сайт или сохранённую рабочую версию. Сохранённые версии не заменяют основной сайт и служат для проверки и восстановления.</p>
+    </header>
+
+    <section class="version-list" aria-label="Доступные версии">
+      <article class="version">
+        <div class="version-head">
+          <h2>Текущая версия</h2>
+          <span class="badge">main</span>
+        </div>
+        <p>Основной сайт, в котором продолжается развитие проекта.</p>
+        <div class="actions">
+          <a class="button primary" href="../">Открыть текущий сайт</a>
+        </div>
+      </article>
+
+      <article class="version">
+        <div class="version-head">
+          <h2>UDREAM v3.0.0</h2>
+          <span class="badge">18 июля 2026</span>
+        </div>
+        <p>Рабочая контрольная точка до наведения порядка. Внутреннее историческое обозначение интерфейса — v19.</p>
+        <div class="actions">
+          <a class="button primary" href="./v3.0.0/">Запустить v3.0.0</a>
+          <a class="button" href="https://github.com/sunpole/udream/releases/tag/v3.0.0">Открыть релиз GitHub</a>
+        </div>
+      </article>
+    </section>
+
+    <p class="note">Тег GitHub хранит точный исходный код релиза. Запускаемая копия содержит только необходимые изменения путей, чтобы работать из отдельной папки.</p>
+  </main>
+</body>
+</html>
