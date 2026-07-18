@@ -28,12 +28,15 @@ The page is labelled `v19` in its title and header. This is a legacy interface i
 - tag cloud and tag filtering;
 - back/forward history and breadcrumbs;
 - persistent history in `localStorage`;
+- safe recovery from malformed or partially written saved history;
 - light/dark themes;
 - Russian/English interface text;
 - text-selection and scrollbar preferences;
 - text and image sharing helpers;
 - automatic JSON loading with manual-file fallback;
 - PWA manifest and service-worker registration.
+
+The active development line has completed M3 of the native ES-module migration: search, data loading, initial state, navigation history and local storage now have dependency-free regression tests. DOM presentation and localization remain in `script.js` for M4.
 
 The current site, search for `Water` and `Mouse`, result cards, menu, version launcher, and runnable `v3.0.0` snapshot were visually checked on a Samsung Galaxy A57 5G after the repository-ordering merge. PWA installation and a deliberate offline reload remain separate tests.
 

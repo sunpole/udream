@@ -1,6 +1,19 @@
 import { loadFirstAvailableDatabase, parseDatabaseText } from "./src/data.js";
+import {
+    appendFullHistory,
+    appendNavigationHistory,
+    getBreadcrumbWindow,
+    groupFullHistoryByDay,
+    moveNavigationHistory
+} from "./src/history.js";
 import { matchesAutocomplete, matchesSearch } from "./src/search.js";
 import { createInitialState } from "./src/state.js";
+import {
+    removeStoredValue,
+    writeBoolean,
+    writeJson,
+    writeString
+} from "./src/storage.js";
 
 (function(){
     // ---------- СОСТОЯНИЕ ----------
@@ -184,7 +197,7 @@ import { createInitialState } from "./src/state.js";
 
     function updateLangToggleButton() { langToggleText.textContent = lang === "ru" ? "EN" : "RU"; }
     function setLang(l) {
-        lang = l; localStorage.setItem("clientLang", l);
+        lang = l; writeString(localStorage, "clientLang", l);
         updateLangToggleButton();
         const scrollY = window.scrollY;
         applyLocalization();
@@ -222,9 +235,9 @@ import { createInitialState } from "./src/state.js";
     // ---------- ИСТОРИЯ ----------
     function addToHistory(record) {
         if(!record) return;
-        historyStack = historyStack.slice(0, historyIndex+1);
-        historyStack.push({ symbol: record.symbol, id: record.id });
-        historyIndex = historyStack.length-1;
+        const navigation = appendNavigationHistory(historyStack, historyIndex, record);
+        historyStack = navigation.stack;
+        historyIndex = navigation.index;
         updateHistoryNav();
         renderBreadcrumbs();
         addToFullHistory(record);
@@ -233,12 +246,18 @@ import { createInitialState } from "./src/state.js";
         backBtn.disabled = historyIndex <= 0;
         forwardBtn.disabled = historyIndex >= historyStack.length-1;
     }
-    function goBack() { if(historyIndex>0){ historyIndex--; const rec=db.find(r=>r.id===historyStack[historyIndex].id); if(rec) showRecord(rec); } }
-    function goForward() { if(historyIndex<historyStack.length-1){ historyIndex++; const rec=db.find(r=>r.id===historyStack[historyIndex].id); if(rec) showRecord(rec); } }
+    function navigateHistory(direction) {
+        const navigation = moveNavigationHistory(historyStack, historyIndex, direction);
+        if(!navigation.entry) return;
+        historyIndex = navigation.index;
+        const rec = db.find(r => r.id === navigation.entry.id);
+        if(rec) showRecord(rec);
+    }
+    function goBack() { navigateHistory(-1); }
+    function goForward() { navigateHistory(1); }
     function renderBreadcrumbs() {
         if(!showBreadcrumbs) { breadcrumbsDiv.innerHTML = ""; return; }
-        const start = Math.max(0, historyIndex - 9);
-        const items = historyStack.slice(start, historyIndex+1);
+        const { start, items } = getBreadcrumbWindow(historyStack, historyIndex);
         breadcrumbsDiv.innerHTML = items.map((item, idx) => `<span class="breadcrumb-item" data-id="${item.id}">${escapeHtml(item.symbol)}</span>${(start+idx!==historyIndex)?' → ':''}`).join("");
         document.querySelectorAll(".breadcrumb-item").forEach(el => {
             el.addEventListener("click", () => {
@@ -255,23 +274,16 @@ import { createInitialState } from "./src/state.js";
     }
 
     function addToFullHistory(record) {
-        const now = new Date();
-        fullHistory.push({ symbol: record.symbol, id: record.id, timestamp: now.toISOString() });
-        localStorage.setItem("fullHistory", JSON.stringify(fullHistory));
+        fullHistory = appendFullHistory(fullHistory, record);
+        writeJson(localStorage, "fullHistory", fullHistory);
         if(showHistoryBlock) renderFullHistory();
     }
     function renderFullHistory() {
         if(!showHistoryBlock) { historyBlock.style.display = 'none'; return; }
         historyBlock.style.display = 'block';
         if(!fullHistory.length) { historyBlock.innerHTML = '<div>История пуста</div>'; return; }
-        const groups = {};
-        fullHistory.slice().reverse().forEach(entry => {
-            const day = entry.timestamp.slice(0,10);
-            if(!groups[day]) groups[day] = [];
-            groups[day].push(entry);
-        });
         let html = '';
-        for(const [day, entries] of Object.entries(groups)) {
+        for(const { day, entries } of groupFullHistoryByDay(fullHistory)) {
             html += `<div class="history-day"><div class="history-day-title">${day}</div>`;
             entries.forEach(e => {
                 const time = e.timestamp.slice(11,19);
@@ -292,7 +304,7 @@ import { createInitialState } from "./src/state.js";
         historyStack = [];
         historyIndex = -1;
         fullHistory = [];
-        localStorage.removeItem("fullHistory");
+        removeStoredValue(localStorage, "fullHistory");
         updateHistoryNav();
         renderBreadcrumbs();
         renderFullHistory();
@@ -516,7 +528,7 @@ import { createInitialState } from "./src/state.js";
         tagCloudBlock.innerHTML = `<button class="tag-sort-btn" id="toggleTagSortBtn">${sortIcon}</button>` + tagsArray.map(({tag, count}) => `<span class="tag tag-cloud-item" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)} (${count})</span>`).join(" ");
         document.getElementById("toggleTagSortBtn").addEventListener("click", () => {
             tagSortMode = tagSortMode === "alpha" ? "count" : "alpha";
-            localStorage.setItem("tagSortMode", tagSortMode);
+            writeString(localStorage, "tagSortMode", tagSortMode);
             buildTagCloud();
         });
         document.querySelectorAll(".tag-cloud-item").forEach(el => {
@@ -616,14 +628,14 @@ import { createInitialState } from "./src/state.js";
         toggleScrollbarCont.classList.toggle("active", wideScrollbar);
     }
     function bindSwitches() {
-        setSwitch(toggleLatinCont, showLatin, v => { showLatin=v; localStorage.setItem("showLatin",v); applyAlphabetVisibility(); });
-        setSwitch(toggleCyrillicCont, showCyrillic, v => { showCyrillic=v; localStorage.setItem("showCyrillic",v); applyAlphabetVisibility(); });
-        setSwitch(toggleDigitsCont, showDigits, v => { showDigits=v; localStorage.setItem("showDigits",v); applyAlphabetVisibility(); });
-        setSwitch(toggleBreadcrumbsCont, showBreadcrumbs, v => { showBreadcrumbs=v; localStorage.setItem("showBreadcrumbs",v); updateBreadcrumbsVisibility(); });
-        setSwitch(toggleTagsCloudCont, showTagsCloud, v => { showTagsCloud=v; localStorage.setItem("showTagsCloud",v); updateTagCloudVisibility(); });
-        setSwitch(toggleHistoryBlockCont, showHistoryBlock, v => { showHistoryBlock=v; localStorage.setItem("showHistoryBlock",v); renderFullHistory(); });
-        setSwitch(toggleSelectionCont, allowSelection, v => { allowSelection=v; localStorage.setItem("allowSelection",v); document.body.classList.toggle("allow-selection", v); });
-        setSwitch(toggleScrollbarCont, wideScrollbar, v => { wideScrollbar=v; localStorage.setItem("wideScrollbar",v); document.body.classList.toggle("custom-scrollbar", v); });
+        setSwitch(toggleLatinCont, showLatin, v => { showLatin=v; writeBoolean(localStorage, "showLatin", v); applyAlphabetVisibility(); });
+        setSwitch(toggleCyrillicCont, showCyrillic, v => { showCyrillic=v; writeBoolean(localStorage, "showCyrillic", v); applyAlphabetVisibility(); });
+        setSwitch(toggleDigitsCont, showDigits, v => { showDigits=v; writeBoolean(localStorage, "showDigits", v); applyAlphabetVisibility(); });
+        setSwitch(toggleBreadcrumbsCont, showBreadcrumbs, v => { showBreadcrumbs=v; writeBoolean(localStorage, "showBreadcrumbs", v); updateBreadcrumbsVisibility(); });
+        setSwitch(toggleTagsCloudCont, showTagsCloud, v => { showTagsCloud=v; writeBoolean(localStorage, "showTagsCloud", v); updateTagCloudVisibility(); });
+        setSwitch(toggleHistoryBlockCont, showHistoryBlock, v => { showHistoryBlock=v; writeBoolean(localStorage, "showHistoryBlock", v); renderFullHistory(); });
+        setSwitch(toggleSelectionCont, allowSelection, v => { allowSelection=v; writeBoolean(localStorage, "allowSelection", v); document.body.classList.toggle("allow-selection", v); });
+        setSwitch(toggleScrollbarCont, wideScrollbar, v => { wideScrollbar=v; writeBoolean(localStorage, "wideScrollbar", v); document.body.classList.toggle("custom-scrollbar", v); });
     }
 
     function handleScroll() {
@@ -723,7 +735,7 @@ import { createInitialState } from "./src/state.js";
         tryAutoLoad();
     }
 
-    function setTheme(th) { theme = th; localStorage.setItem("clientTheme", th); document.body.classList.toggle("dark", th==="dark"); }
+    function setTheme(th) { theme = th; writeString(localStorage, "clientTheme", th); document.body.classList.toggle("dark", th==="dark"); }
 
         init();
 

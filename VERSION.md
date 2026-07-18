@@ -11,9 +11,9 @@
 
 ## Current development line
 
-`v3.3.0-dev`
+`v3.4.0-dev`
 
-This line completes M2 of the staged native ES-module migration. Database fallback loading and manual JSON parsing now live in `src/data.js`; initial browser state restoration lives in `src/state.js`. The database format, search behavior, interface and static GitHub Pages/PWA runtime remain unchanged.
+This line completes M3 of the staged native ES-module migration. History, breadcrumbs and navigation state now live in `src/history.js`; typed local settings serialization lives in `src/storage.js`. Corrupt saved history safely falls back to an empty history. The database, search behavior, interface and static GitHub Pages/PWA runtime remain unchanged.
 
 ## Version systems
 
