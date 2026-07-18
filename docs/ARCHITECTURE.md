@@ -9,7 +9,9 @@ GitHub Pages
     ↓
 index.html
     ↓
-script.js ──fetch──> data/divinity_code_ru.json
+script.js ──import──> src/search.js
+    │
+    └─fetch──────> data/divinity_code_ru.json
     ↓
 DOM + localStorage + Web Share APIs
 ```
@@ -29,14 +31,23 @@ There is no server-side application code. GitHub Pages serves files; the browser
 
 ### `script.js`
 
-- application state and localization;
+- application orchestration, state and localization;
 - JSON loading;
-- search, autocomplete, tag, alphabet, color, and digit behavior;
+- autocomplete UI, tag, alphabet, color, and digit behavior;
 - result-card rendering;
 - history and breadcrumbs;
 - theme and UI preferences in `localStorage`;
 - sharing helpers;
 - service-worker registration.
+
+### `src/search.js`
+
+- pure search and autocomplete matching functions;
+- preserves prefix matching for autocomplete and substring matching for submitted search;
+- uses JSDoc and `// @ts-check` without a TypeScript build step;
+- is covered by dependency-free Node.js regression tests.
+
+The staged migration plan is documented in `docs/MODULARIZATION_PLAN.md`.
 
 ### `data/divinity_code_ru.json`
 
