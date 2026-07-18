@@ -1,97 +1,82 @@
-# udream
+# UDREAM
 
-Christian dream-symbol dictionary for GitHub Pages.
+UDREAM is a static Christian dream-symbol reference and search tool published on GitHub Pages. It replaces manual PDF searching with a mobile-friendly interface for symbols, aliases, descriptions, notes, tags, history, and alphabet navigation.
 
-The project is a static browser app: no server, no login, no database engine. It loads a JSON dictionary, lets the user search symbols, aliases, descriptions, notes, and tags, and shows the result as readable cards.
+## Live site
 
-## Live Site
+- Current site: https://sunpole.github.io/udream/
+- Saved versions: https://sunpole.github.io/udream/versions/
+- Repository: https://github.com/sunpole/udream
 
-GitHub Pages:
+## Current state
 
-https://sunpole.github.io/udream/
+- Release checkpoint: `v3.0.0`
+- Legacy interface label: `v19`
+- Default branch: `main`
+- Runtime: static HTML, CSS, and JavaScript; no backend or build step
+- Active database: `data/divinity_code_ru.json`
+- Hosting: GitHub Pages
+- PWA files: `manifest.json` and `sw.js`
 
-## Current Structure
+The `v3.0.0` release preserves the working site before the documentation and repository-ordering pass. The interface label `v19` is historical and is not the Git release number.
+
+## Repository map
 
 ```text
 udream/
-├── index.html          # current public app
-├── script.js           # app logic and JSON loading
-├── manifest.json       # PWA metadata
+├── index.html                   # current public app
+├── script.js                    # current app logic
+├── manifest.json                # current PWA metadata
+├── sw.js                        # current service worker
 ├── data/
-│   └── bd2.json        # current dictionary database
-├── _archive/           # old experiments and source/reference files
-├── .nojekyll           # disables Jekyll processing on GitHub Pages
-├── LICENSE
-└── README.md
+│   ├── divinity_code_ru.json    # active runtime database
+│   ├── bd2.json                 # retained data variant
+│   ├── db.json                  # retained data variant
+│   └── report.txt               # database-generation report
+├── versions/
+│   ├── index.html               # version launcher
+│   └── v3.0.0/                  # runnable frozen checkpoint
+├── _archive/                    # historical versions and source files
+├── docs/                        # project documentation
+├── AGENTS.md                    # rules for future development work
+├── VERSION.md
+├── CHANGELOG.md
+└── ROADMAP.md
 ```
 
-## Database
+The live site must not depend on `_archive/` except for deliberate reference downloads. Old experiments are retained for history and are not current application code.
 
-The live database is:
+## Local preview
 
-```text
-data/bd2.json
-```
-
-Each record uses this shape:
-
-```json
-{
-  "id": 1,
-  "symbol": "example",
-  "aliases": [],
-  "description": "...",
-  "source": "DivinityCode",
-  "date_added": "2026-05-24",
-  "tags": [],
-  "notes": "..."
-}
-```
-
-The app currently auto-loads `data/bd2.json`. Older database files were moved to `_archive/old-data/`.
-
-## Features
-
-- Search by symbol, aliases, description, tags, or all fields.
-- Autocomplete while typing.
-- Tag cloud and tag filtering.
-- Alphabet browsing.
-- History and breadcrumbs.
-- Share/export card helpers.
-- Works as a static GitHub Pages site.
-
-## Archive
-
-Old UI experiments, admin prototypes, screenshots, PDFs, and previous database files are kept in `_archive/` so the live site root stays clean.
-
-```text
-_archive/
-├── legacy-versions/    # old numbered app versions
-├── admin-versions/     # old admin prototypes
-├── old-data/           # previous JSON databases
-└── source-files/       # PDFs and screenshots
-```
-
-These files are not required for the public app to run.
-
-## Local Preview
-
-From the repository folder:
+From the repository root:
 
 ```bash
-python -m http.server 8019
+python3 -m http.server 8019
 ```
 
-Then open:
+Open:
 
 ```text
 http://localhost:8019/
 ```
 
-## Notes
+Directly opening `index.html` as a local file is not a reliable test because browsers restrict `fetch()` and service workers on `file://` URLs.
 
-The dictionary content is intended as a reference/search tool. Interpretations should be handled carefully and checked against the original source and Scripture context.
+## Documentation
+
+- [Current project state](docs/PROJECT_STATE.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Database format](docs/DATABASE_FORMAT.md)
+- [File map](docs/FILE_MAP.md)
+- [Release and rollback](docs/RELEASE_AND_ROLLBACK.md)
+- [Recovered historical context](docs/HISTORICAL_CONTEXT.md)
+- [Roadmap](ROADMAP.md)
+- [Changelog](CHANGELOG.md)
+
+## Content note
+
+UDREAM is a reference/search tool. Interpretations should be checked against the original source material and Scripture context; the application does not establish doctrine or replace pastoral discernment.
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See [LICENSE](LICENSE).

@@ -76,8 +76,6 @@
             historyBlockSwitch: "История просмотров",
             selectionSwitch: "Выделение текста",
             scrollbarSwitch: "Широкий скроллбар",
-            versions: "🕘 Версии сайта",
-            openVersions: "Открыть сохранённые версии",
             books: "📚 Книги",
             booksNotice: "Все данные взяты из этих книг. Книги в свободном доступе, также доступны в проекте для просмотра и скачивания.",
             contacts: "📞 Контакты",
@@ -122,8 +120,6 @@
             historyBlockSwitch: "Browsing history",
             selectionSwitch: "Text selection",
             scrollbarSwitch: "Wide scrollbar",
-            versions: "🕘 Site versions",
-            openVersions: "Open saved versions",
             books: "📚 Books",
             booksNotice: "All data taken from these books. Books are freely available, also accessible in the project for viewing and downloading.",
             contacts: "📞 Contacts",
@@ -650,7 +646,7 @@
     // ---------- ЗАГРУЗКА БД ----------
     async function tryAutoLoad() {
         resultCard.innerHTML = `<div class="card"><div class="loader"></div><div style="text-align:center">${t("loading")}</div></div>`;
-        const paths = ["/udream/data/divinity_code_ru.json", "data/divinity_code_ru.json", "../data/divinity_code_ru.json"];
+        const paths = ["data/divinity_code_ru.json"];
         for(let url of paths) {
             try {
                 const resp = await fetch(url);
@@ -736,7 +732,7 @@
     // ---------- РЕГИСТРАЦИЯ SERVICE WORKER ----------
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/udream/sw.js').then(function(registration) {
+            navigator.serviceWorker.register('./sw.js').then(function(registration) {
                 console.log('Service Worker registered with scope:', registration.scope);
             }).catch(function(error) {
                 console.log('Service Worker registration failed:', error);

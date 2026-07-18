@@ -1,14 +1,14 @@
-const CACHE_NAME = 'udream-v3.1.0';
+const CACHE_NAME = 'udream-v3.0.0-snapshot';
 const urlsToCache = [
-  '/udream/',
-  '/udream/index.html',
-  '/udream/script.js',
-  '/udream/manifest.json',
-  '/udream/favicon.svg',
-  '/udream/icon-192.png',
-  '/udream/icon-512.png',
-  '/udream/apple-touch-icon.png',
-  '/udream/data/divinity_code_ru.json'
+  './',
+  './index.html',
+  './script.js',
+  './manifest.json',
+  './favicon.svg',
+  './icon-192.png',
+  './icon-512.png',
+  './apple-touch-icon.png',
+  './data/divinity_code_ru.json'
 ];
 
 self.addEventListener('install', event => {
