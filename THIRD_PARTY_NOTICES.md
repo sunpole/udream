@@ -15,8 +15,10 @@ The project currently references material associated with:
 
 Titles are listed only to identify provenance. Copyright and other rights remain with the respective authors, publishers, and rights holders. uDream is an independent search interface and is not an official edition of either work.
 
-## Distribution review
+## Distribution statement
 
-Some historical source files remain under `_archive/source-files/`. Their public distribution status has not yet been confirmed in the project documentation. Do not treat their presence as evidence of a free-content license.
+On 18 July 2026, project owner Anton Mahomedov stated that the PDF files retained under `_archive/source-files/` were obtained from public sources that offered them for open distribution. The repository does not yet preserve the original URLs or exact permission/license text, so it does not assign a specific open-content license to those files without further evidence.
+
+The next provenance step is to record each source URL, access date, and exact distribution statement when available.
 
 See [docs/CONTENT_AND_RIGHTS.md](docs/CONTENT_AND_RIGHTS.md) for the project policy.
