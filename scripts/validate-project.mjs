@@ -52,6 +52,8 @@ async function validateRuntimeFiles() {
     ".nojekyll",
     "index.html",
     "script.js",
+    "src/search.js",
+    "package.json",
     "manifest.json",
     "sw.js",
     "favicon.svg",
