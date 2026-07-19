@@ -1,6 +1,6 @@
 # Current project state
 
-The restoration checkpoint was verified at commit `94c14db5321edea3036d896b727790db5f6aec27` and release `v3.0.0`. Repository-ordering work was merged to `main` at commit `50bb686217ef97b5cf96759e7e7f222a311f93f8`.
+The current restoration checkpoint is release `v3.5.0` at commit `b0ff02d4248f5dcf56137377f510c12c316e4b85`, published on 2026-07-19 after verification of M1–M4. The previous pre-cleanup checkpoint remains `v3.0.0` at commit `94c14db5321edea3036d896b727790db5f6aec27`.
 
 ## What UDREAM is
 
@@ -18,7 +18,7 @@ sw.js
 data/divinity_code_ru.json
 ```
 
-The page is labelled `v19` in its title and header. This is a legacy interface iteration. The current Git restoration checkpoint is `v3.0.0`.
+The page is labelled `v19` in its title and header. This is a legacy interface iteration. The current Git restoration checkpoint is `v3.5.0`.
 
 ## Verified capabilities in code
 
@@ -36,11 +36,11 @@ The page is labelled `v19` in its title and header. This is a legacy interface i
 - automatic JSON loading with manual-file fallback;
 - PWA manifest and service-worker registration.
 
-The active development line has completed M4 of the native ES-module migration. Search, data loading, initial state, navigation history, local storage, localization and pure presentation builders now have dependency-free regression tests. Mutable DOM orchestration remains in `script.js`; PWA registration and device-level offline verification remain for M5.
+Release `v3.5.0` contains the completed M1–M4 native ES-module migration. Search, data loading, initial state, navigation history, local storage, localization and pure presentation builders have dependency-free regression tests. The next development line is `v3.6.0-dev` for M5; no M5 runtime changes have been committed yet.
 
 Imported display values are escaped before DOM insertion, including quotes used inside `data-*` attributes. Notes are rendered as plain text with safe paragraphs and line breaks; raw HTML and Markdown from a manually selected JSON file are not interpreted.
 
-The current site, search for `Water` and `Mouse`, result cards, menu, version launcher, and runnable `v3.0.0` snapshot were visually checked on a Samsung Galaxy A57 5G after the repository-ordering merge. PWA installation and a deliberate offline reload remain separate tests.
+The current root site was locally verified on an Android phone through Ubuntu in UserLAnd after M4. Database loading, search, cards, history, themes, language controls, the version launcher and the runnable `v3.0.0` snapshot were reported working. PWA installation and a deliberate offline reload remain separate M5 tests.
 
 ## Development news
 
@@ -85,4 +85,4 @@ Historical files are deliberately preserved and are not the source of truth for 
 
 ## Safe restoration point
 
-Release `v3.0.0` and its tag preserve the exact pre-cleanup source. The runnable copy under `versions/v3.0.0/` contains path-only adaptations so it can operate from a version subdirectory without depending on the future root database.
+Release `v3.5.0` and its tag preserve the exact verified M4 source at `b0ff02d4248f5dcf56137377f510c12c316e4b85`. The independently runnable fallback remains `versions/v3.0.0/`; no separate runnable `v3.5.0` snapshot was created.

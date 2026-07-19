@@ -16,11 +16,11 @@
 4. Record the tag, SHA, date, purpose, and limitations in `VERSION.md` and `CHANGELOG.md`.
 5. Do not retarget the tag later.
 
-The pre-cleanup checkpoint is:
+The current verified checkpoint is:
 
 ```text
-v3.0.0
-94c14db5321edea3036d896b727790db5f6aec27
+v3.5.0
+b0ff02d4248f5dcf56137377f510c12c316e4b85
 ```
 
 ## Add a runnable saved version
@@ -51,7 +51,7 @@ Create a new branch from the stable tag and open a pull request to restore the r
 
 ### Emergency GitHub Pages restoration
 
-Restore the root runtime files from tag `v3.0.0` in a new commit, then verify Pages. This preserves a visible audit trail.
+Restore the root runtime files from tag `v3.5.0` in a new commit, then verify Pages. This preserves a visible audit trail. If the failure originates in the M1–M4 modularization itself, use the earlier fallback `v3.0.0`.
 
 ### User access during repair
 
