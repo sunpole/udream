@@ -1,9 +1,15 @@
 # Changelog
 
-## Unreleased — v3.5.0
+## Documentation update v3.5.1 — 2026-07-19
+
+- Recorded release `v3.5.0` as the current verified restoration checkpoint across project documentation.
+- Documented the exact release commit, completed checks, rollback path, M5 boundary and matching uNews documentation patchnote.
+
+## v3.5.0 — 2026-07-19
 
 - Extracted the RU/EN dictionary, language normalization and reviewed instruction content into `src/i18n.js`.
 - Extracted pure card, list, history, tag, autocomplete, sharing and statistics HTML builders into `src/presentation.js`.
+- Published the verified release checkpoint at commit `b0ff02d4248f5dcf56137377f510c12c316e4b85` after 34 passing tests and local Android browser verification; PWA installation and offline reload remain for M5.
 - Escaped text and attribute values from manually imported JSON, including both quote types, before DOM insertion.
 - Replaced raw Markdown/HTML note rendering with safe plain-text paragraphs and removed the unused Marked CDN dependency.
 - Corrected help text so it no longer promises verified offline behavior or translation of dictionary records.
@@ -11,7 +17,7 @@
 - Added the M4 modules to the PWA cache, runtime validator and CI syntax checks.
 - Kept the active 4,086-record database, saved `v3.0.0` runtime and archived files unchanged.
 
-## Unreleased — v3.4.0
+## Development milestone v3.4.0 — included in v3.5.0
 
 - Extracted pure navigation, breadcrumb-window and full-history operations into `src/history.js`.
 - Extracted typed localStorage reads, writes, JSON serialization and removal into `src/storage.js`.
@@ -20,7 +26,7 @@
 - Added the M3 modules to the PWA cache and CI syntax checks.
 - Kept the active 4,086-record database, search behavior, interface and saved versions unchanged.
 
-## Unreleased — v3.3.0
+## Development milestone v3.3.0 — included in v3.5.0
 
 - Extracted automatic database fallback loading and manual JSON parsing into `src/data.js`.
 - Extracted initial application defaults and persisted preference restoration into `src/state.js`.
@@ -28,7 +34,7 @@
 - Added both modules to the PWA cache and CI syntax checks.
 - Kept the active 4,086-record database, search behavior, interface and saved versions unchanged.
 
-## Unreleased — v3.2.0
+## Development milestone v3.2.0 — included in v3.5.0
 
 - Added the staged native ES-module plan in `docs/MODULARIZATION_PLAN.md`.
 - Extracted pure search and autocomplete matching into `src/search.js` without changing their behavior.
@@ -36,12 +42,12 @@
 - Switched the main entry script to `type="module"` and added the new module to the PWA cache.
 - Kept the database, interface markup, archived versions and saved v3.0.0 runtime unchanged.
 
-## Unreleased — v3.1.1
+## Development milestone v3.1.1 — included in v3.5.0
 
 - Synchronized `AGENTS.md` and `docs/NEWS_PUBLISHING.md` with the verified uNews v0.3.4 FIFO queue.
 - Documented four-hour polling, 61-second Telegram spacing, immediate checkpoints, isolated project errors, health state and automatic alerts.
 
-## Unreleased — v3.1.0
+## Development milestone v3.1.0 — included in v3.5.0
 
 - Added repository-wide development rules in `AGENTS.md`.
 - Added current-state, architecture, database, file-map, history, and rollback documentation.
