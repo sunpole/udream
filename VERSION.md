@@ -14,9 +14,13 @@
 
 ## Current development line
 
-No functional development version is currently assigned after `v23.7.0`.
+`v23.8.0`
 
-Documentation update `23.7.1` records the published tag, exact release commit and restoration status. It does not change application code, PWA behavior or database records.
+- Branch: `feat/pwa-update-install-v23.8.0`
+- Status: implementation and regression tests prepared; browser and installed-PWA verification are required before merge
+- Scope: forced PWA update activation, uncached version checks, migration from old uDream caches and a persistent installation banner
+- Banner close behavior: the small cross hides it only for the current loaded page; reloading the page shows it again
+- Database: the active 4,086-record JSON database is unchanged
 
 ## Unified version line
 
@@ -27,6 +31,6 @@ The repository previously used two separate counters:
 - Git releases: `v1.0.0`, `v2.0.0`, `v3.0.0`, `v3.5.0`, `v3.6.0`;
 - legacy UI iterations: numbered folders through `019` and the visible interface label `v19`.
 
-The major number `23` deliberately separates the maintained application from both earlier counters. It is a product-version decision rather than an arithmetic sum.
+The product-version decision advanced the legacy visible line from `19` to `20` and combined it with the `3.7.0` development line, producing the unified version `23.7.0`. New maintained releases continue from that unified semantic version.
 
-Historical tags, releases, archived folders and runnable snapshots keep their original numbers. New maintained releases continue from `v23.7.0` using semantic Git tags.
+Historical tags, releases, archived folders and runnable snapshots keep their original numbers.
