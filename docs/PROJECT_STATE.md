@@ -34,13 +34,13 @@ The page is labelled `v19` in its title and header. This is a legacy interface i
 - text-selection and scrollbar preferences;
 - text and image sharing helpers;
 - automatic JSON loading with manual-file fallback;
-- PWA manifest and service-worker registration.
+- PWA manifest and isolated service-worker registration.
 
-Release `v3.5.0` contains the completed M1–M4 native ES-module migration. Search, data loading, initial state, navigation history, local storage, localization and pure presentation builders have dependency-free regression tests. The next development line is `v3.6.0-dev` for M5; no M5 runtime changes have been committed yet.
+The active development line `v3.6.0-dev` completes M5. Service-worker registration now lives in `src/pwa.js`; search, data, state, history, storage, localization, presentation and PWA registration have 37 dependency-free regression tests.
 
 Imported display values are escaped before DOM insertion, including quotes used inside `data-*` attributes. Notes are rendered as plain text with safe paragraphs and line breaks; raw HTML and Markdown from a manually selected JSON file are not interpreted.
 
-The current root site was locally verified on an Android phone through Ubuntu in UserLAnd after M4. Database loading, search, cards, history, themes, language controls, the version launcher and the runnable `v3.0.0` snapshot were reported working. PWA installation and a deliberate offline reload remain separate M5 tests.
+The current root site was verified on Android through Ubuntu in UserLAnd. PWA installation, offline reload and launching the installed application without the local server or internet were confirmed during M5.
 
 ## Development news
 
@@ -76,7 +76,6 @@ Historical files are deliberately preserved and are not the source of truth for 
 - Database provenance and transformation steps are not fully documented.
 - The three current data variants require classification.
 - The administration workflow is archived rather than part of the maintained runtime.
-- PWA/offline behavior needs device-level verification after the cache alignment.
 - The current UI still uses the historical `v19` label.
 - External CDN dependencies remain for fonts, icons and image capture; note rendering no longer requires Marked.
 - Accessibility has not been formally audited.

@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased — v3.6.0
+
+- Isolated service-worker registration in `src/pwa.js` without changing application behavior.
+- Added three PWA registration tests; the full regression suite now contains 37 tests.
+- Updated the offline cache to `udream-v3.6.0-m5` and included the new PWA module.
+- Added the PWA module and tests to repository validation and GitHub Actions syntax checks.
+- Verified PWA installation, offline reload and installed-app launch on Android without the local server or internet.
+- Kept the interface, active 4,086-record database, archived material and runnable `v3.0.0` snapshot unchanged.
+
+
 ## Documentation update v3.5.1 — 2026-07-19
 
 - Recorded release `v3.5.0` as the current verified restoration checkpoint across project documentation.

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'udream-v3.5.0-m4';
+const CACHE_NAME = 'udream-v3.6.0-m5';
 const urlsToCache = [
   '/udream/',
   '/udream/index.html',
@@ -8,6 +8,7 @@ const urlsToCache = [
   '/udream/src/history.js',
   '/udream/src/i18n.js',
   '/udream/src/presentation.js',
+  '/udream/src/pwa.js',
   '/udream/src/state.js',
   '/udream/src/storage.js',
   '/udream/manifest.json',
