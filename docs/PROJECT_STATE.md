@@ -13,17 +13,20 @@ The current site is served from the repository root:
 ```text
 index.html
 script.js
+src/version.js
 manifest.json
 sw.js
 data/divinity_code_ru.json
 ```
 
-The page is labelled `v19` in its title and header. This is a legacy interface iteration. The current Git restoration checkpoint is `v3.6.0`.
+The maintained page is labelled `v23.7.0` in its title, header, menu and footer. The former `v19` label remains only in historical material. The current immutable Git restoration checkpoint remains `v3.6.0` until `v23.7.0` is merged, tagged and released.
 
 ## Verified capabilities in code
 
-- search by symbol, aliases, description, tags, or all fields;
-- autocomplete;
+- strict search by symbol, aliases, description, tags, or all fields;
+- relevance-ranked autocomplete and submitted results;
+- desktop Enter, Return and mobile search submission;
+- exact Russian-alias resolution to the owning primary card;
 - alphabet and number/color navigation;
 - tag cloud and tag filtering;
 - back/forward history and breadcrumbs;
@@ -36,7 +39,7 @@ The page is labelled `v19` in its title and header. This is a legacy interface i
 - automatic JSON loading with manual-file fallback;
 - PWA manifest and isolated service-worker registration.
 
-Release `v3.6.0` completes M5. Service-worker registration lives in `src/pwa.js`; search, data, state, history, storage, localization, presentation and PWA registration have 37 dependency-free regression tests.
+Release `v3.6.0` completes M5 and remains the current restoration checkpoint. Development line `v23.7.0` adds centralized version metadata, strict filters, relevance ranking, Enter submission and alias resolution. Search, runtime versioning, data, state, history, storage, localization, presentation and PWA registration now have 41 dependency-free regression tests.
 
 Imported display values are escaped before DOM insertion, including quotes used inside `data-*` attributes. Notes are rendered as plain text with safe paragraphs and line breaks; raw HTML and Markdown from a manually selected JSON file are not interpreted.
 
@@ -76,7 +79,7 @@ Historical files are deliberately preserved and are not the source of truth for 
 
 - Database provenance and transformation steps are not fully documented.
 - The administration workflow is archived rather than part of the maintained runtime.
-- The current UI still uses the historical `v19` label.
+- Development line `v23.7.0` is not an immutable restoration checkpoint until its merge commit is tagged and released.
 - External CDN dependencies remain for fonts, icons and image capture; note rendering no longer requires Marked.
 - Accessibility has not been formally audited.
 - Bundled source-PDF distribution status should be confirmed.

@@ -15,7 +15,7 @@ test("initial state keeps current defaults", () => {
   const state = createInitialState(storageFrom());
 
   assert.deepEqual(state.db, []);
-  assert.equal(state.currentMode, "symbol");
+  assert.equal(state.currentMode, "all");
   assert.equal(state.theme, "light");
   assert.equal(state.lang, "ru");
   assert.equal(state.currentDbName, "divinity_code_ru.json");

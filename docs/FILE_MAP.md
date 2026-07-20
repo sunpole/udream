@@ -6,7 +6,8 @@
 |---|---|---:|
 | `index.html` | Current page structure and styles | High |
 | `script.js` | Current application orchestration and UI logic | High |
-| `src/search.js` | Pure search and autocomplete matching | Medium |
+| `src/search.js` | Strict search matching, relevance ranking and alias resolution | Medium |
+| `src/version.js` | Central runtime application version and visible title | Low |
 | `src/data.js` | Database fallback loading and manual JSON parsing | Medium |
 | `src/history.js` | Pure navigation, breadcrumbs and full-history operations | Medium |
 | `src/i18n.js` | RU/EN dictionary, language normalization and reviewed instructions | Medium |
@@ -14,7 +15,8 @@
 | `src/pwa.js` | Service-worker registration isolated from application orchestration | Medium |
 | `src/state.js` | Initial state and persisted preference restoration | Medium |
 | `src/storage.js` | Typed localStorage reads, writes and serialization | Medium |
-| `tests/search.test.js` | Search regression tests | Low |
+| `tests/search.test.js` | Search ranking, filter and alias regression tests | Low |
+| `tests/runtime.test.js` | Visible version and form-submission contract tests | Low |
 | `tests/data.test.js` | Database loader and fallback tests | Low |
 | `tests/history.test.js` | Navigation, breadcrumbs and history regression tests | Low |
 | `tests/i18n.test.js` | Language fallback, translation and instruction-claim tests | Low |

@@ -74,7 +74,7 @@ export function buildRecordCardHtml(record, language) {
   const tags = Array.isArray(record.tags) ? record.tags : [];
   const source = record.source ? `<i class="fas fa-book"></i> ${escapeHtml(record.source)}` : "";
   const date = record.date_added ? `📅 ${escapeHtml(record.date_added)}` : "";
-  const aliasesHtml = aliases.length ? `<div class="aliases"><strong>🔗 ${escapeHtml(translate(language, "aliasesLabel"))}:</strong> ${aliases.map((alias) => `<span class="tag alias-tag" data-symbol="${escapeHtml(alias)}">${escapeHtml(alias)}</span>`).join(" ")}</div>` : "";
+  const aliasesHtml = aliases.length ? `<div class="aliases"><strong>🔗 ${escapeHtml(translate(language, "aliasesLabel"))}:</strong> ${aliases.map((alias) => `<span class="tag alias-tag" data-record-id="${escapeHtml(record.id)}">${escapeHtml(alias)}</span>`).join(" ")}</div>` : "";
   const tagsHtml = tags.length ? `<div class="tags"><strong>🏷️ ${escapeHtml(translate(language, "tagsLabel"))}:</strong> ${tags.map((tag) => `<span class="tag tag-filter" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}</span>`).join(" ")}</div>` : "";
   const notes = renderSafeNotesHtml(record.notes);
   const notesHtml = notes ? `<div class="notes"><b>📝 ${escapeHtml(translate(language, "notesLabel"))}:</b><br>${notes}</div>` : "";
