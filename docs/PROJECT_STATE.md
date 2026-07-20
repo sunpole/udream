@@ -1,6 +1,6 @@
 # Current project state
 
-The current restoration checkpoint is release `v3.6.0` at commit `02555f3b0dcc4983cdf6d9e564a1ad68e570d887`, published on 2026-07-20 after verification of M1–M5. The previous checkpoint remains `v3.5.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.
+The current restoration checkpoint is release `v23.7.0` at commit `e32c7b6e9c1057a1fdbb2af68a1b1cf2947e7538`, published on 2026-07-20 after verification of the unified version, search ranking, strict filters, Enter submission and Russian-alias resolution. The previous checkpoint remains `v3.6.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.
 
 ## What UDREAM is
 
@@ -19,7 +19,7 @@ sw.js
 data/divinity_code_ru.json
 ```
 
-The maintained page is labelled `v23.7.0` in its title, header, menu and footer. The former `v19` label remains only in historical material. The current immutable Git restoration checkpoint remains `v3.6.0` until `v23.7.0` is merged, tagged and released.
+The maintained page is labelled `v23.7.0` in its title, header, menu and footer. The former `v19` label remains only in historical material. Release `v23.7.0` is the current immutable Git restoration checkpoint.
 
 ## Verified capabilities in code
 
@@ -39,7 +39,7 @@ The maintained page is labelled `v23.7.0` in its title, header, menu and footer.
 - automatic JSON loading with manual-file fallback;
 - PWA manifest and isolated service-worker registration.
 
-Release `v3.6.0` completes M5 and remains the current restoration checkpoint. Development line `v23.7.0` adds centralized version metadata, strict filters, relevance ranking, Enter submission and alias resolution. Search, runtime versioning, data, state, history, storage, localization, presentation and PWA registration now have 41 dependency-free regression tests.
+Release `v3.6.0` completed M5 and remains the previous checkpoint. Release `v23.7.0` adds centralized version metadata, strict filters, relevance ranking, Enter submission and alias resolution and is now the current restoration checkpoint. Search, runtime versioning, data, state, history, storage, localization, presentation and PWA registration have 41 dependency-free regression tests.
 
 Imported display values are escaped before DOM insertion, including quotes used inside `data-*` attributes. Notes are rendered as plain text with safe paragraphs and line breaks; raw HTML and Markdown from a manually selected JSON file are not interpreted.
 
@@ -79,7 +79,6 @@ Historical files are deliberately preserved and are not the source of truth for 
 
 - Database provenance and transformation steps are not fully documented.
 - The administration workflow is archived rather than part of the maintained runtime.
-- Development line `v23.7.0` is not an immutable restoration checkpoint until its merge commit is tagged and released.
 - External CDN dependencies remain for fonts, icons and image capture; note rendering no longer requires Marked.
 - Accessibility has not been formally audited.
 - Bundled source-PDF distribution status should be confirmed.
@@ -87,4 +86,4 @@ Historical files are deliberately preserved and are not the source of truth for 
 
 ## Safe restoration point
 
-Release `v3.6.0` and its tag preserve the exact verified M5 source at `02555f3b0dcc4983cdf6d9e564a1ad68e570d887`. The independently runnable fallback remains `versions/v3.0.0/`; no separate runnable `v3.6.0` snapshot was created.
+Release `v23.7.0` and its tag preserve the exact verified source at `e32c7b6e9c1057a1fdbb2af68a1b1cf2947e7538`. Release `v3.6.0` remains the previous modularization checkpoint. The independently runnable fallback remains `versions/v3.0.0/`; no separate runnable `v23.7.0` snapshot was created.

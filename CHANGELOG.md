@@ -1,5 +1,15 @@
 # Changelog
 
+## Documentation update v23.7.1 — 2026-07-20
+
+- Recorded published release `v23.7.0` as the current restoration checkpoint.
+- Recorded exact release commit `e32c7b6e9c1057a1fdbb2af68a1b1cf2947e7538`.
+- Confirmed that the Git tag, GitHub Release target and merged `main` commit are identical.
+- Replaced release-candidate wording with the completed release state.
+- Added a real screenshot of the GitHub Release page for the matching uNews documentation patchnote.
+- Kept application code, PWA behavior and all 4,086 active database records unchanged.
+
+
 ## v23.7.0 — 2026-07-20
 
 - Replaced the historical visible `v19` label with the unified application version `v23.7.0`.
