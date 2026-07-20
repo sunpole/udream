@@ -1,0 +1,109 @@
+name: Publish uDream v23.8.0
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/publish-v23.8.0.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-udream-v23.8.0
+  cancel-in-progress: false
+
+env:
+  RELEASE_TAG: v23.8.0
+  RELEASE_VERSION: 23.8.0
+  TARGET_SHA: 24dece593bea679485057d7551a2583f7f1f5acf
+  RELEASE_TITLE: uDream v23.8.0
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout exact release source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: 24dece593bea679485057d7551a2583f7f1f5acf
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Verify exact release source and versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          test "$(node -p "require('./package.json').version")" = "$RELEASE_VERSION"
+          node --input-type=module -e 'import { APP_VERSION } from "./src/version.js"; if (APP_VERSION !== process.env.RELEASE_VERSION) { throw new Error(`src/version.js is ${APP_VERSION}, expected ${process.env.RELEASE_VERSION}`); }'
+          node -e 'const fs = require("fs"); const value = JSON.parse(fs.readFileSync("version.json", "utf8")).version; if (value !== process.env.RELEASE_VERSION) throw new Error(`version.json is ${value}, expected ${process.env.RELEASE_VERSION}`);'
+
+      - name: Run release checks
+        run: |
+          npm test
+          node scripts/validate-project.mjs
+          node --check script.js
+          node --check src/pwa.js
+          node --check sw.js
+
+      - name: Create or verify immutable tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags origin
+          if git rev-parse "$RELEASE_TAG" >/dev/null 2>&1; then
+            existing_sha="$(git rev-list -n 1 "$RELEASE_TAG")"
+            if [ "$existing_sha" != "$TARGET_SHA" ]; then
+              echo "Tag $RELEASE_TAG already points to $existing_sha instead of $TARGET_SHA" >&2
+              exit 1
+            fi
+            echo "Tag $RELEASE_TAG already exists on the correct commit."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a "$RELEASE_TAG" "$TARGET_SHA" -m "$RELEASE_TITLE"
+            git push origin "$RELEASE_TAG"
+          fi
+
+      - name: Create GitHub Release if missing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "GitHub Release $RELEASE_TAG already exists."
+            exit 0
+          fi
+
+          cat > /tmp/release-notes.md <<'EOF'
+          ## uDream v23.8.0
+
+          Исправлено зависание сайта и установленной PWA на старой версии из кэша.
+
+          - новый Service Worker активируется сразу;
+          - версия проверяется через `version.json` без HTTP-кэша;
+          - старые кэши удаляются только внутри семейства `udream-*`;
+          - HTML, JavaScript, manifest и JSON используют network-first с offline fallback;
+          - сайт заметно предлагает установить PWA;
+          - маленький крестик скрывает баннер только до перезагрузки страницы;
+          - в установленном standalone-приложении баннер не показывается;
+          - активная база из 4 086 записей не изменена.
+
+          Release commit: `24dece593bea679485057d7551a2583f7f1f5acf`.
+
+          Rollback: создать новую ветку от тега `v23.8.0` или восстановить предыдущий релиз `v23.7.0` через отдельный Pull Request. Существующие теги не перемещаются.
+          EOF
+
+          gh release create "$RELEASE_TAG" \
+            --verify-tag \
+            --title "$RELEASE_TITLE" \
+            --notes-file /tmp/release-notes.md
