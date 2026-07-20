@@ -11,6 +11,7 @@
 | `src/history.js` | Pure navigation, breadcrumbs and full-history operations | Medium |
 | `src/i18n.js` | RU/EN dictionary, language normalization and reviewed instructions | Medium |
 | `src/presentation.js` | Safe pure HTML builders for imported records and UI lists | High |
+| `src/pwa.js` | Service-worker registration isolated from application orchestration | Medium |
 | `src/state.js` | Initial state and persisted preference restoration | Medium |
 | `src/storage.js` | Typed localStorage reads, writes and serialization | Medium |
 | `tests/search.test.js` | Search regression tests | Low |
@@ -18,6 +19,7 @@
 | `tests/history.test.js` | Navigation, breadcrumbs and history regression tests | Low |
 | `tests/i18n.test.js` | Language fallback, translation and instruction-claim tests | Low |
 | `tests/presentation.test.js` | HTML escaping and hostile imported-data regression tests | Low |
+| `tests/pwa.test.js` | Service-worker registration and failure-handling tests | Low |
 | `tests/state.test.js` | Initial-state regression tests | Low |
 | `tests/storage.test.js` | localStorage serialization and fallback tests | Low |
 | `package.json` | Dependency-free test command and ES-module mode | Low |

@@ -20,13 +20,13 @@
 - [x] M2: extract data loading and initial application state.
 - [x] M3: extract history and local settings.
 - [x] M4: extract presentation and localization with safe imported-data rendering.
-- [ ] M5: isolate PWA registration and complete Android offline verification.
+- [x] M5: isolate PWA registration and complete Android offline verification.
 
 See `docs/MODULARIZATION_PLAN.md`.
 
 ## Next: verification and consistency
 
-- [ ] Test PWA installation and offline reload on Android.
+- [x] Test PWA installation and offline reload on Android.
 - [ ] Decide which of `bd2.json`, `db.json`, and `divinity_code_ru.json` are authoritative, derived, or archival.
 - [ ] Document the database generation/translation pipeline.
 - [ ] Validate all 4,086 active records, duplicate IDs, cross-references, and suspicious entries.

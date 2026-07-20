@@ -14,6 +14,7 @@ script.js ──import──> src/search.js
     ├─import──> src/history.js
     ├─import──> src/i18n.js
     ├─import──> src/presentation.js
+     ├─import──> src/pwa.js ──register──> sw.js
     ├─import──> src/storage.js
     └─import──> src/state.js
     ↓
@@ -42,7 +43,6 @@ There is no server-side application code. GitHub Pages serves files; the browser
 - history and breadcrumb DOM rendering;
 - theme and UI preference DOM effects;
 - sharing helpers;
-- service-worker registration.
 
 ### `src/search.js`
 
@@ -83,6 +83,13 @@ There is no server-side application code. GitHub Pages serves files; the browser
 - owns the complete RU/EN interface dictionary, language normalization and reviewed instruction HTML;
 - falls back to Russian for missing or corrupted stored language values;
 - marks the single translation that intentionally contains trusted line-break HTML.
+
+### `src/pwa.js`
+
+- owns service-worker registration after the browser `load` event;
+- safely does nothing when service workers are unavailable;
+- reports registration success or failure without blocking application startup;
+- is covered by dependency-free Node.js regression tests.
 
 ### `src/presentation.js`
 

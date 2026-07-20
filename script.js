@@ -1,3 +1,4 @@
+import { registerServiceWorkerOnLoad } from "./src/pwa.js";
 import { loadFirstAvailableDatabase, parseDatabaseText } from "./src/data.js";
 import {
     appendFullHistory,
@@ -573,15 +574,6 @@ import {
 
         init();
 
-    // ---------- РЕГИСТРАЦИЯ SERVICE WORKER ----------
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/udream/sw.js').then(function(registration) {
-                console.log('Service Worker registered with scope:', registration.scope);
-            }).catch(function(error) {
-                console.log('Service Worker registration failed:', error);
-            });
-        });
-    }
-    
+    registerServiceWorkerOnLoad();
+
 })();

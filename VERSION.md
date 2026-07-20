@@ -16,7 +16,7 @@
 
 `v3.6.0-dev`
 
-This line is reserved for M5: isolating service-worker registration and completing Android installation and offline-reload verification. No M5 runtime changes have been committed yet.
+M5 implementation is complete on the development branch: service-worker registration is isolated in `src/pwa.js`, 37 tests pass, and PWA installation plus offline launch were verified on Android without the local server or internet. Publication through Pull Request and release `v3.6.0` remain.
 
 ## Version systems
 

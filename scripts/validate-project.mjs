@@ -58,6 +58,7 @@ async function validateRuntimeFiles() {
     "src/history.js",
     "src/i18n.js",
     "src/presentation.js",
+    "src/pwa.js",
     "src/storage.js",
     "package.json",
     "manifest.json",
