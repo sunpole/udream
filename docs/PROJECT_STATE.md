@@ -36,7 +36,7 @@ The page is labelled `v19` in its title and header. This is a legacy interface i
 - automatic JSON loading with manual-file fallback;
 - PWA manifest and isolated service-worker registration.
 
-The active development line `v3.6.0-dev` completes M5. Service-worker registration now lives in `src/pwa.js`; search, data, state, history, storage, localization, presentation and PWA registration have 37 dependency-free regression tests.
+Release `v3.6.0` completes M5. Service-worker registration lives in `src/pwa.js`; search, data, state, history, storage, localization, presentation and PWA registration have 37 dependency-free regression tests.
 
 Imported display values are escaped before DOM insertion, including quotes used inside `data-*` attributes. Notes are rendered as plain text with safe paragraphs and line breaks; raw HTML and Markdown from a manually selected JSON file are not interpreted.
 
