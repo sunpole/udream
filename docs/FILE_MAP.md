@@ -37,10 +37,10 @@
 
 | Path | Status |
 |---|---|
-| `data/divinity_code_ru.json` | Active runtime database |
-| `data/bd2.json` | Retained variant; relationship requires documentation |
-| `data/db.json` | Retained variant; relationship requires documentation |
-| `data/report.txt` | Existing generation/quality summary |
+| `data/divinity_code_ru.json` | Active translated and augmented runtime database |
+| `data/bd2.json` | Retained English reference dataset; not used by current runtime |
+| `data/db.json` | Exact duplicate of `data/bd2.json`; retained pending pipeline documentation |
+| `data/report.txt` | Historical generation/quality summary; not used by current runtime |
 
 ## Versioning
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## Documentation update v3.6.2 — 2026-07-20
+
+- Classified all current files under `data/` from runtime references, hashes and Git history.
+- Confirmed `data/divinity_code_ru.json` as the active runtime database.
+- Confirmed that `data/bd2.json` and `data/db.json` are byte-for-byte identical and unused by the current runtime.
+- Classified `data/report.txt` as a historical generation and quality summary.
+- Kept all databases and historical files unchanged while the exact generation and translation pipeline remains undocumented.
+
 ## v3.6.0 — 2026-07-20
 
 - Isolated service-worker registration in `src/pwa.js` without changing application behavior.

@@ -27,7 +27,7 @@ See `docs/MODULARIZATION_PLAN.md`.
 ## Next: verification and consistency
 
 - [x] Test PWA installation and offline reload on Android.
-- [ ] Decide which of `bd2.json`, `db.json`, and `divinity_code_ru.json` are authoritative, derived, or archival.
+- [x] Classify `divinity_code_ru.json` as the active database, `bd2.json` as the retained English reference dataset, and `db.json` as its exact retained duplicate.
 - [ ] Document the database generation/translation pipeline.
 - [ ] Validate all 4,086 active records, duplicate IDs, cross-references, and suspicious entries.
 - [ ] Archive the original source URLs and exact open-distribution statements for bundled PDFs.
