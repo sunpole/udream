@@ -34,16 +34,24 @@ At the `v3.0.0` checkpoint it contains 4,086 records.
 | `tags` | array of strings | Filtering and category terms |
 | `notes` | string | Additional notes, potentially rendered as Markdown |
 
-## Current variants
+## Current data-file classification
 
-The repository also contains:
+Verified on 2026-07-20:
+
+| Path | Classification | Runtime use |
+|---|---|---|
+| `data/divinity_code_ru.json` | Active translated and augmented database with 4,086 records | Loaded by the application |
+| `data/bd2.json` | Retained English reference dataset with 4,086 records | Not used by the current runtime |
+| `data/db.json` | Exact byte-for-byte duplicate of `data/bd2.json` | Not used by the current runtime |
+| `data/report.txt` | Historical generation and quality summary | Not used by the current runtime |
+
+At the time of the audit, `data/bd2.json` and `data/db.json` had the same size and SHA-256 hash:
 
 ```text
-data/bd2.json
-data/db.json
+4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0
 ```
 
-Each currently has 4,086 records, but the byte content differs. They must not be treated as interchangeable until their provenance and transformation differences are documented.
+Git history shows that `bd2.json` existed before the later addition of `db.json`. The exact generation and translation pipeline that produced `divinity_code_ru.json` remains undocumented, so the retained files must not yet be deleted or rewritten.
 
 ## Validation checklist
 

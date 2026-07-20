@@ -1,6 +1,6 @@
 # Current project state
 
-The current restoration checkpoint is release `v3.5.0` at commit `b0ff02d4248f5dcf56137377f510c12c316e4b85`, published on 2026-07-19 after verification of M1–M4. The previous pre-cleanup checkpoint remains `v3.0.0` at commit `94c14db5321edea3036d896b727790db5f6aec27`.
+The current restoration checkpoint is release `v3.6.0` at commit `02555f3b0dcc4983cdf6d9e564a1ad68e570d887`, published on 2026-07-20 after verification of M1–M5. The previous checkpoint remains `v3.5.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.
 
 ## What UDREAM is
 
@@ -18,7 +18,7 @@ sw.js
 data/divinity_code_ru.json
 ```
 
-The page is labelled `v19` in its title and header. This is a legacy interface iteration. The current Git restoration checkpoint is `v3.5.0`.
+The page is labelled `v19` in its title and header. This is a legacy interface iteration. The current Git restoration checkpoint is `v3.6.0`.
 
 ## Verified capabilities in code
 
@@ -50,15 +50,16 @@ uDream stores no Telegram credentials. The publication contract is documented in
 
 ## Data
 
-All three root data files contain 4,086 records but have different hashes:
+The current data-file classification was verified on 2026-07-20:
 
-```text
-data/bd2.json
-data/db.json
-data/divinity_code_ru.json
-```
+- `data/divinity_code_ru.json` is the active translated and augmented runtime database with 4,086 records;
+- `data/bd2.json` is a retained English reference dataset with 4,086 records;
+- `data/db.json` is an exact byte-for-byte duplicate of `data/bd2.json`;
+- `data/report.txt` is a historical generation and quality summary.
 
-The application currently loads `data/divinity_code_ru.json`. The purpose and generation relationship of the other two variants is not yet fully documented.
+Only `data/divinity_code_ru.json` is referenced by the current application, Service Worker, validation script and state tests. The other files are not part of the current runtime.
+
+The exact generation and translation pipeline for `data/divinity_code_ru.json` is still undocumented. No retained data file should be deleted or rewritten until that pipeline is recovered or replaced by a documented process.
 
 ## Historical material
 
@@ -74,7 +75,6 @@ Historical files are deliberately preserved and are not the source of truth for 
 ## Known risks and unfinished work
 
 - Database provenance and transformation steps are not fully documented.
-- The three current data variants require classification.
 - The administration workflow is archived rather than part of the maintained runtime.
 - The current UI still uses the historical `v19` label.
 - External CDN dependencies remain for fonts, icons and image capture; note rendering no longer requires Marked.
@@ -84,4 +84,4 @@ Historical files are deliberately preserved and are not the source of truth for 
 
 ## Safe restoration point
 
-Release `v3.5.0` and its tag preserve the exact verified M4 source at `b0ff02d4248f5dcf56137377f510c12c316e4b85`. The independently runnable fallback remains `versions/v3.0.0/`; no separate runnable `v3.5.0` snapshot was created.
+Release `v3.6.0` and its tag preserve the exact verified M5 source at `02555f3b0dcc4983cdf6d9e564a1ad68e570d887`. The independently runnable fallback remains `versions/v3.0.0/`; no separate runnable `v3.6.0` snapshot was created.
