@@ -34,9 +34,10 @@ test("record cards render hostile imported JSON as inert text", () => {
   const html = buildRecordCardHtml(hostileRecord, "en");
 
   assert.doesNotMatch(html, /<script[\s>]|<svg[\s/>]|<img[\s/>]/i);
-  assert.doesNotMatch(html, /data-(?:symbol|tag)="[^"]*"\s+on/i);
+  assert.doesNotMatch(html, /data-(?:record-id|tag)="[^"]*"\s+on/i);
   assert.match(html, /&lt;script&gt;alert\(5\)&lt;\/script&gt;/);
-  assert.match(html, /data-symbol="&quot; onclick=&quot;alert\(2\)"/);
+  assert.match(html, /data-record-id="3&quot; onmouseover=&quot;alert\(1\)"/);
+  assert.match(html, /&quot; onclick=&quot;alert\(2\)/);
 });
 
 test("notes preserve paragraphs and line breaks without interpreting Markdown or HTML", () => {

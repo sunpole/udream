@@ -24,6 +24,16 @@
 
 See `docs/MODULARIZATION_PLAN.md`.
 
+## Completed: search and version UX
+
+- [x] Replace the historical visible `v19` label with the unified `v23.7.0` application line.
+- [x] Submit search through Enter, Return and mobile search actions.
+- [x] Rank exact and primary symbol matches before redirect and distant matches.
+- [x] Resolve Russian aliases to their owning primary cards.
+- [x] Make all five search filters strict to their declared fields.
+- [x] Keep search filters above the expanding autocomplete panel.
+- [x] Add release-specific screenshots for the uNews publication.
+
 ## Next: verification and consistency
 
 - [x] Test PWA installation and offline reload on Android.

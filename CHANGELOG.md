@@ -1,5 +1,20 @@
 # Changelog
 
+## v23.7.0 — 2026-07-20
+
+- Replaced the historical visible `v19` label with the unified application version `v23.7.0`.
+- Centralized the runtime version in `src/version.js`.
+- Added form-based search submission for desktop Enter, Return and mobile search actions.
+- Made all five search filters strict to their declared fields and selected all-fields mode by default.
+- Added relevance ranking so exact and primary-symbol matches appear before distant or redirect matches.
+- Made exact Russian aliases open their owning primary record.
+- Fixed alias chips so they no longer search for a nonexistent standalone symbol.
+- Moved search filters above the expanding autocomplete list.
+- Added release-specific Telegram screenshots instead of reusing an unrelated image.
+- Increased the dependency-free regression suite from 37 to 41 tests.
+- Kept all 4,086 active database records unchanged.
+
+
 ## Documentation update v3.6.2 — 2026-07-20
 
 - Classified all current files under `data/` from runtime references, hashes and Git history.

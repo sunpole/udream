@@ -10,6 +10,7 @@ GitHub Pages
 index.html
     ↓
 script.js ──import──> src/search.js
+    ├─import──> src/version.js
     ├─import──> src/data.js ──fetch──> data/divinity_code_ru.json
     ├─import──> src/history.js
     ├─import──> src/i18n.js
@@ -28,7 +29,7 @@ There is no server-side application code. GitHub Pages serves files; the browser
 ### `index.html`
 
 - page structure and inline CSS;
-- current/legacy label `v19`;
+- current `v23.7.0` label populated from centralized runtime version metadata; the former `v19` label is historical only;
 - menu, search controls, history controls, result area, alphabet rows, tags, and footer;
 - external CDN dependencies;
 - links to reference PDFs;
@@ -46,8 +47,10 @@ There is no server-side application code. GitHub Pages serves files; the browser
 
 ### `src/search.js`
 
-- pure search and autocomplete matching functions;
-- preserves prefix matching for autocomplete and substring matching for submitted search;
+- strict per-field search and autocomplete matching;
+- relevance ranking for exact, prefix and substring matches;
+- primary-card preference for aliases shared with short redirect records;
+- direct-result resolution for exact aliases;
 - uses JSDoc and `// @ts-check` without a TypeScript build step;
 - is covered by dependency-free Node.js regression tests.
 

@@ -1,9 +1,10 @@
-const CACHE_NAME = 'udream-v3.6.0-m5';
+const CACHE_NAME = 'udream-v23.7.0-search-ux-r2';
 const urlsToCache = [
   '/udream/',
   '/udream/index.html',
   '/udream/script.js',
   '/udream/src/search.js',
+  '/udream/src/version.js',
   '/udream/src/data.js',
   '/udream/src/history.js',
   '/udream/src/i18n.js',

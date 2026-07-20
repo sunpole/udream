@@ -95,7 +95,7 @@ Do not claim a browser, PWA, offline, or mobile check was completed unless it wa
 ## Versioning and releases
 
 - Public releases use semantic tags such as `v3.0.0`.
-- The historical UI label `v19` is legacy metadata, not the Git release sequence.
+- The historical UI label `v19` is legacy metadata. The maintained application uses the unified `v23.7.0` line, while old tags and archived folders keep their original numbers.
 - Update `VERSION.md` and `CHANGELOG.md` for release-worthy changes.
 - Add a matching uNews patchnote for every release-worthy change.
 - Document rollback steps in `docs/RELEASE_AND_ROLLBACK.md`.

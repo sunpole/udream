@@ -17,7 +17,7 @@ import { readBoolean, readJson, readString } from "./storage.js";
 export function createInitialState(storage) {
   return {
     db: [],
-    currentMode: "symbol",
+    currentMode: "all",
     theme: readString(storage, "clientTheme", "light"),
     lang: normalizeLanguage(readString(storage, "clientLang", "ru")),
     historyStack: [],

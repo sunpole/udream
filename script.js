@@ -7,8 +7,13 @@ import {
     groupFullHistoryByDay,
     moveNavigationHistory
 } from "./src/history.js";
-import { matchesAutocomplete, matchesSearch } from "./src/search.js";
+import {
+    findDirectSearchResult,
+    rankAutocompleteResults,
+    rankSearchResults
+} from "./src/search.js";
 import { createInitialState } from "./src/state.js";
+import { APP_TITLE, APP_VERSION_LABEL } from "./src/version.js";
 import {
     getInstructionHtml,
     isTrustedHtmlTranslation,
@@ -74,8 +79,8 @@ import {
     const cyrillicRow = document.getElementById("cyrillicRow");
     const digitsRow = document.getElementById("digitsRow");
     const showAllBtnContainer = document.getElementById("showAllBtnContainer");
+    const searchForm = document.getElementById("searchForm");
     const searchInput = document.getElementById("searchInput");
-    const searchBtn = document.getElementById("searchBtn");
     const autocompleteList = document.getElementById("autocompleteList");
     const autocompleteSpacer = document.getElementById("autocompleteSpacer");
     const resultCard = document.getElementById("resultCard");
@@ -100,6 +105,13 @@ import {
 
     function t(key, vars = {}) {
         return translate(lang, key, vars);
+    }
+
+    function applyAppVersion() {
+        document.title = APP_TITLE;
+        document.querySelectorAll("[data-app-version]").forEach((element) => {
+            element.textContent = APP_VERSION_LABEL;
+        });
     }
 
         // Полная локализация интерфейса
@@ -328,10 +340,10 @@ import {
 
         card.querySelectorAll(".alias-tag").forEach(el => {
             el.addEventListener("click", () => {
-                const sym = el.dataset.symbol;
-                const found = db.find(r => r.symbol.toLowerCase() === sym.toLowerCase());
-                if(found) { showRecord(found); addToHistory(found); }
-                else alert(t("aliasNotFound", { sym }));
+                const id = Number(el.dataset.recordId);
+                const found = db.find((item) => item.id === id) || record;
+                searchInput.value = el.textContent.trim();
+                showRecord(found);
             });
         });
         card.querySelectorAll(".tag-filter").forEach(el => {
@@ -371,7 +383,7 @@ import {
     function updateAutocomplete() {
         const q = searchInput.value.trim();
         if(!q) { autocompleteList.classList.remove("show"); autocompleteSpacer.style.height = "0"; return; }
-        const matches = db.filter(item => matchesAutocomplete(item, q, currentMode)).slice(0, 7);
+        const matches = rankAutocompleteResults(db, q, currentMode).slice(0, 7);
         if(matches.length) {
             autocompleteList.innerHTML = buildAutocompleteHtml(matches);
             autocompleteList.classList.add("show");
@@ -395,10 +407,16 @@ import {
             else resultCard.innerHTML = `<div class="card">${escapeHtml(t("enterQuery"))}</div>`;
             return;
         }
-        const filtered = db.filter((item) => matchesSearch(item, q, currentMode));
+        const filtered = rankSearchResults(db, q, currentMode);
         if(filtered.length === 0) { resultCard.innerHTML = `<div class="card">${escapeHtml(t("notFound"))}</div>`; return; }
-        if(filtered.length === 1) { showRecord(filtered[0]); addToHistory(filtered[0]); }
-        else showWordList(filtered, t("matches", { count: filtered.length }));
+
+        const directResult = findDirectSearchResult(filtered, q, currentMode);
+        if(directResult) {
+            showRecord(directResult);
+            addToHistory(directResult);
+        } else {
+            showWordList(filtered, t("matches", { count: filtered.length }));
+        }
         instructionVisible = false;
     }
 
@@ -531,6 +549,7 @@ import {
 
     // ---------- ИНИЦИАЛИЗАЦИЯ ----------
     function init() {
+        applyAppVersion();
         setTheme(theme);
         updateLangToggleButton();
         setLang(lang);
@@ -549,7 +568,12 @@ import {
         backBtn.onclick = goBack;
         forwardBtn.onclick = goForward;
         searchInput.addEventListener("input", updateAutocomplete);
-        searchBtn.addEventListener("click", () => { autocompleteList.classList.remove("show"); autocompleteSpacer.style.height="0"; performSearch(); });
+        searchForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            autocompleteList.classList.remove("show");
+            autocompleteSpacer.style.height = "0";
+            performSearch();
+        });
         document.querySelectorAll("[data-opt]").forEach(opt => opt.addEventListener("click", function() {
             document.querySelectorAll("[data-opt]").forEach(o=>o.classList.remove("active"));
             this.classList.add("active");
