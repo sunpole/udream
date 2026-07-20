@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — v3.6.0
+## v3.6.0 — 2026-07-20
 
 - Isolated service-worker registration in `src/pwa.js` without changing application behavior.
 - Added three PWA registration tests; the full regression suite now contains 37 tests.

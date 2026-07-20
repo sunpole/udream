@@ -2,21 +2,20 @@
 
 ## Current release checkpoint
 
-`v3.5.0`
+`v3.6.0`
 
-- Tag commit: `b0ff02d4248f5dcf56137377f510c12c316e4b85`
-- Published: 2026-07-19
-- Purpose: preserve the verified working state after M1–M4 of the native ES-module migration
-- Release: https://github.com/sunpole/udream/releases/tag/v3.5.0
-- Checks: 34/34 tests, project validator, JavaScript syntax, the 4,086-record database and local Android browser verification passed
-- Known limitation: PWA installation and deliberate offline reload remain for M5
-- Previous checkpoint: `v3.0.0`
+- Tag commit: `02555f3b0dcc4983cdf6d9e564a1ad68e570d887`
+- Published: 2026-07-20
+- Purpose: preserve the verified working state after M1–M5 of the native ES-module migration
+- Release: https://github.com/sunpole/udream/releases/tag/v3.6.0
+- Checks: 37/37 tests, project validator, JavaScript syntax, the 4,086-record database, PWA installation and offline launch verification passed
+- Previous checkpoint: `v3.5.0`
 
 ## Current development line
 
-`v3.6.0-dev`
+No development version is currently assigned after `v3.6.0`.
 
-M5 implementation is complete on the development branch: service-worker registration is isolated in `src/pwa.js`, 37 tests pass, and PWA installation plus offline launch were verified on Android without the local server or internet. Publication through Pull Request and release `v3.6.0` remain.
+The next change must start from the current `main`, follow `ROADMAP.md`, and receive its own version after the scope is approved.
 
 ## Version systems
 
