@@ -15,12 +15,12 @@
 
 ## Completed: modularization without a build step
 
-- [x] Define the staged ES-module migration plan.
-- [x] M1: extract pure search/autocomplete matching and add regression tests.
-- [x] M2: extract data loading and initial application state.
-- [x] M3: extract history and local settings.
-- [x] M4: extract presentation and localization with safe imported-data rendering.
-- [x] M5: isolate PWA registration and complete Android offline verification.
+- [x] Define and complete the staged ES-module migration plan M1–M5.
+- [x] Extract search/autocomplete matching and add regression tests.
+- [x] Extract data loading and initial application state.
+- [x] Extract history and local settings.
+- [x] Extract presentation and localization with safe imported-data rendering.
+- [x] Isolate PWA registration and complete Android offline verification.
 
 See `docs/MODULARIZATION_PLAN.md`.
 
@@ -46,28 +46,63 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Create the immutable `v23.8.0` tag on the exact functional merge commit.
 - [x] Add a GitHub Release and documented rollback path.
 
-## Next: verification and consistency
+## Completed: unified documentation baseline v23.8.3
 
-- [x] Test PWA installation and offline reload on Android.
-- [x] Classify `divinity_code_ru.json` as the active database, `bd2.json` as the retained English reference dataset, and `db.json` as its exact retained duplicate.
-- [ ] Document the database generation/translation pipeline.
-- [ ] Validate all 4,086 active records, duplicate IDs, cross-references, and suspicious entries.
-- [ ] Archive the original source URLs and exact open-distribution statements for bundled PDFs.
-- [ ] Confirm the first automatic uDream publication appears correctly in `@uNewsLog`.
+- [x] Add one current product-vision document.
+- [x] Distinguish product mission, verified current state, next phase and later backlog.
+- [x] Synchronize maintained documentation with `v23.8.0`.
+- [x] Record non-destructive preservation rules for source datasets and translation variants.
+- [x] Mark the M1–M5 modularization plan as completed.
+- [x] Update the architecture, file map, database contract, historical context and coding-agent rules.
+- [x] Define the boundary of the next project series before implementation begins.
 
-## Product completion
+## Next approved series: D1 — data provenance and multi-dataset architecture
+
+D1 starts as research, validation design and migration planning. It must not change the active 4,086-record runtime database in its first stage.
+
+### D1.1 — provenance recovery
+
+- [ ] Recover the known generation and translation history of `data/divinity_code_ru.json` from Git history, reports, scripts and retained source files.
+- [ ] Record what is proven, what is inferred and what remains unknown.
+- [ ] Create a source/provenance record for every retained current data file.
+
+### D1.2 — dataset registry design
+
+- [ ] Define stable dataset identifiers, source work, language, edition/translation version and transformation metadata.
+- [ ] Define how original data, translation, aliases, tags and editorial notes remain distinguishable.
+- [ ] Define retention and rollback rules so a new translation never overwrites the previous one.
+
+### D1.3 — data-quality audit design
+
+- [ ] Define automated checks for all 4,086 active records, duplicate IDs, empty fields, cross-references and suspicious entries.
+- [ ] Classify checks that can be automatic versus checks requiring human/source review.
+- [ ] Produce a report format without changing published content.
+
+### D1.4 — two-book product architecture
 
 - [ ] Define the intended relationship between the two source books.
-- [ ] Decide whether users switch databases or search a merged database.
+- [ ] Compare separate-database switching, combined search and side-by-side comparison.
+- [ ] Require visible provenance for every result in any future combined mode.
+- [ ] Approve a migration plan before implementing a user-facing selector or merged index.
+
+## Rights and provenance completion
+
+- [ ] Archive the original source URLs, access dates and exact open-distribution statements for bundled PDFs.
+- [ ] Review the retained PDF set against `docs/CONTENT_AND_RIGHTS.md` and `THIRD_PARTY_NOTICES.md`.
+
+## Product completion after D1
+
 - [ ] Restore or redesign the administration workflow outside the public runtime.
-- [ ] Add automated smoke checks for JSON, asset paths, and page startup.
-- [ ] Review accessibility: keyboard navigation, contrast, focus, screen readers, and text selection.
-- [ ] Review privacy and sharing behavior.
+- [ ] Add automated browser smoke checks for JSON, asset paths, startup and key search flow.
+- [ ] Review accessibility: keyboard navigation, contrast, focus, screen readers and text selection.
+- [ ] Review privacy, local history and sharing behavior.
+- [ ] Confirm automatic uDream publications and operational recovery in `@uNewsLog`.
 
 ## Later options
 
 - [ ] Consider moving inline CSS from `index.html` only if it materially improves maintainability.
 - [ ] Consider a build pipeline only when static-file maintenance becomes a real blocker.
 - [ ] Consider additional languages only after the source and translation workflow is documented.
+- [ ] Consider TypeScript only when JSDoc and `@ts-check` no longer provide sufficient protection.
 
-The roadmap is intentionally conservative: preserve the working static site and avoid introducing a framework or backend without a demonstrated need.
+The roadmap is intentionally conservative: preserve the working static site, current data and restoration points while advancing one clearly bounded series at a time.
