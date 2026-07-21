@@ -13,11 +13,21 @@
 - Database: the active 4,086-record JSON database is unchanged
 - Previous checkpoint: `v23.7.0`
 
+## Documentation baseline
+
+`v23.8.3`
+
+- Status: documentation-only milestone; it does not create a new application build or move the `v23.8.0` tag
+- Purpose: unify the product vision, current state, architecture, roadmap, data-preservation rules and development instructions
+- Product source of truth: `docs/PRODUCT_VISION.md`
+- Next approved series: D1 — data provenance and multi-dataset architecture
+- D1 boundary: research and design first; the active 4,086-record database remains unchanged until a separate migration plan is approved
+
 ## Current development line
 
 No functional development version is assigned after `v23.8.0`.
 
-Documentation updates `23.8.1` and `23.8.2` finalize the immutable tag, GitHub Release and project-state records. They do not change application code, PWA behavior or database records.
+Documentation updates `23.8.1`, `23.8.2` and `23.8.3` finalize the immutable release record and establish a coherent baseline for the next project series. They do not change application runtime, PWA behavior or database records.
 
 ## Unified version line
 
