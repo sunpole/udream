@@ -2,13 +2,13 @@
 
 The current restoration checkpoint is release `v23.8.0` at commit `24dece593bea679485057d7551a2583f7f1f5acf`, published on 2026-07-20 after verification of the PWA update, cache migration, uncached version checks and installation flow. The previous checkpoint remains `v23.7.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.
 
-Documentation update `23.8.3` establishes the unified product vision, non-destructive data rules and the boundary of the next approved series D1. It does not change application runtime or database records.
+Documentation update `23.8.4` establishes the unified product vision, non-destructive data rules, target translation model, safe DeepSeek-assisted workflow and the boundary of the next approved series D1. It does not change application runtime or database records.
 
 ## What UDREAM is
 
 UDREAM is a public, static GitHub Pages application for searching Christian dream-symbol reference material. It has no backend, account system, database server or browser build step.
 
-The current product mission and final direction are defined in `docs/PRODUCT_VISION.md`.
+The current product mission and final direction are defined in `docs/PRODUCT_VISION.md`. Translation variants and API-assisted data preparation are governed by `docs/TRANSLATION_WORKFLOW.md`.
 
 ## Published runtime
 
@@ -54,6 +54,18 @@ Imported display values are escaped before DOM insertion, including quotes used 
 
 The current root site and installed PWA were verified on Android during development of `v23.8.0`. The update path preserves local history, language and theme while moving clients away from stale cached versions.
 
+## Download and installation
+
+The public README now provides:
+
+- the live GitHub Pages application;
+- browser/PWA installation guidance;
+- direct download of the exact stable `v23.8.0` source ZIP;
+- the immutable GitHub Release;
+- the saved-version launcher and Telegram development news.
+
+No APK is published. The user-facing application is installed directly from the browser as a PWA.
+
 ## Development news
 
 User-visible changes are documented in `news/`. The public uNews repository automatically discovers new uDream patchnotes after they reach `main`, validates them, and publishes previously unseen entries to `@uNewsLog` through GitHub Actions.
@@ -71,7 +83,11 @@ The current data-file classification was verified on 2026-07-20:
 
 Only `data/divinity_code_ru.json` is referenced by the current application, Service Worker, validation script and state tests. The other files are not part of the current runtime.
 
+The intended D1 target is one canonical source dataset, one current published Russian translation and up to two independent alternative Russian translations. Exact duplicates do not count as separate variants. When only one reliable Russian translation exists, the smaller set is preferred over artificial duplication.
+
 The exact generation and translation pipeline for `data/divinity_code_ru.json` is still undocumented. No retained data file, source edition or translation variant may be deleted or overwritten until the D1 provenance and multi-dataset architecture is designed and approved.
+
+DeepSeek is only a possible candidate-generation tool. No API client or key is part of the current browser runtime. Any future experiment must create a separate recoverable candidate dataset and use a local environment variable or GitHub encrypted secret.
 
 ## Documentation status
 
@@ -81,8 +97,10 @@ The maintained documentation set now covers:
 - verified current runtime and risks;
 - architecture and file ownership;
 - active data contract and retained variants;
+- target translation topology and duplicate policy;
+- safe AI-assisted translation workflow;
 - completed M1–M5 modularization;
-- versioning, releases and rollback;
+- versioning, releases, download and rollback;
 - uNews publication;
 - rights and third-party materials;
 - next approved series and later backlog.
@@ -103,6 +121,8 @@ Historical files are deliberately preserved and are not the source of truth for 
 ## Known risks and unfinished work
 
 - Database provenance and transformation steps are not fully documented.
+- The canonical source file and reversible duplicate-removal plan are not yet approved.
+- Alternative Russian translations do not yet exist as reviewed datasets.
 - The relationship between the two source books is not yet implemented as a user-selectable data architecture.
 - The administration workflow is archived rather than part of the maintained runtime.
 - External CDN dependencies remain for fonts, icons and image capture; note rendering no longer requires Marked.
