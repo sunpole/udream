@@ -2,9 +2,13 @@
 
 The current restoration checkpoint is release `v23.8.0` at commit `24dece593bea679485057d7551a2583f7f1f5acf`, published on 2026-07-20 after verification of the PWA update, cache migration, uncached version checks and installation flow. The previous checkpoint remains `v23.7.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.
 
+Documentation update `23.8.3` establishes the unified product vision, non-destructive data rules and the boundary of the next approved series D1. It does not change application runtime or database records.
+
 ## What UDREAM is
 
-UDREAM is a public, static GitHub Pages application for searching Christian dream-symbol reference material. It has no backend, account system, database server, package manager, or build step.
+UDREAM is a public, static GitHub Pages application for searching Christian dream-symbol reference material. It has no backend, account system, database server or browser build step.
+
+The current product mission and final direction are defined in `docs/PRODUCT_VISION.md`.
 
 ## Published runtime
 
@@ -44,7 +48,7 @@ The maintained page is labelled `v23.8.0` in its title, header, menu and footer.
 - migration from older `udream-*` caches without affecting other projects on the same origin;
 - install banner with system prompt support, manual instructions and standalone-app suppression.
 
-Release `v3.6.0` completed M5. Release `v23.7.0` added centralized version metadata, strict filters, relevance ranking, Enter submission and alias resolution. Release `v23.8.0` adds the verified PWA update and installation flow and is now the current restoration checkpoint. Runtime tests, project validation, JavaScript syntax checks and version consistency are repeated by the release workflow before publication.
+Release `v3.6.0` completed M5. Release `v23.7.0` added centralized version metadata, strict filters, relevance ranking, Enter submission and alias resolution. Release `v23.8.0` adds the verified PWA update and installation flow and is now the current restoration checkpoint. Runtime tests, project validation, JavaScript syntax checks and version consistency are repeated by repository automation before publication.
 
 Imported display values are escaped before DOM insertion, including quotes used inside `data-*` attributes. Notes are rendered as plain text with safe paragraphs and line breaks; raw HTML and Markdown from a manually selected JSON file are not interpreted.
 
@@ -67,7 +71,23 @@ The current data-file classification was verified on 2026-07-20:
 
 Only `data/divinity_code_ru.json` is referenced by the current application, Service Worker, validation script and state tests. The other files are not part of the current runtime.
 
-The exact generation and translation pipeline for `data/divinity_code_ru.json` is still undocumented. No retained data file should be deleted or rewritten until that pipeline is recovered or replaced by a documented process.
+The exact generation and translation pipeline for `data/divinity_code_ru.json` is still undocumented. No retained data file, source edition or translation variant may be deleted or overwritten until the D1 provenance and multi-dataset architecture is designed and approved.
+
+## Documentation status
+
+The maintained documentation set now covers:
+
+- product mission and final direction;
+- verified current runtime and risks;
+- architecture and file ownership;
+- active data contract and retained variants;
+- completed M1–M5 modularization;
+- versioning, releases and rollback;
+- uNews publication;
+- rights and third-party materials;
+- next approved series and later backlog.
+
+The sources of truth are listed in `AGENTS.md` and mapped in `docs/FILE_MAP.md`.
 
 ## Historical material
 
@@ -83,11 +103,21 @@ Historical files are deliberately preserved and are not the source of truth for 
 ## Known risks and unfinished work
 
 - Database provenance and transformation steps are not fully documented.
+- The relationship between the two source books is not yet implemented as a user-selectable data architecture.
 - The administration workflow is archived rather than part of the maintained runtime.
 - External CDN dependencies remain for fonts, icons and image capture; note rendering no longer requires Marked.
 - Accessibility has not been formally audited.
-- Bundled source-PDF distribution status should be confirmed.
-- Automatic uNews publication should be observed before treating every publication path as fully proven end to end.
+- Bundled source-PDF URLs and exact distribution statements still require archival evidence.
+- Automatic browser smoke tests are not yet implemented.
+- Privacy and sharing behavior require a final documented review.
+
+These are tracked as future work in `ROADMAP.md`; they are not hidden defects in the `v23.8.0` release.
+
+## Next approved series
+
+D1 — data provenance and multi-dataset architecture.
+
+D1 begins with research, inventory, validation design and migration planning. Its first stage must not change the active 4,086-record JSON database or add a user-facing database selector.
 
 ## Safe restoration point
 
