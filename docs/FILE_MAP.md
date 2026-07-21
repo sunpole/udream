@@ -47,6 +47,23 @@
 
 No retained database or translation variant may be destructively replaced. The future D1 phase must assign stable dataset identity, source, language, version and transformation history before any migration or selector is implemented.
 
+The target logical topology is one canonical source dataset, one current Russian translation and up to two independent alternative Russian translations. Exact duplicates are not separate variants. See `docs/TRANSLATION_WORKFLOW.md`.
+
+## Planned translation tooling
+
+No translation API client or batch script is part of the current runtime.
+
+Future D1 tooling may add:
+
+| Planned area | Rule |
+|---|---|
+| local translation script | Must create a separate candidate dataset and support checkpoints |
+| GitHub Actions translation workflow | Must use an encrypted secret and never expose the key in logs or artifacts |
+| `.env.example` | May contain only an empty variable name, never a real key |
+| translation manifests and reports | Must record source hash, model, prompt version, output hash and review status |
+
+Any such tooling belongs under a separate D1 implementation PR and must not be imported by the public browser application.
+
 ## Versioning and restoration
 
 | Path or reference | Role |
@@ -61,6 +78,8 @@ No retained database or translation variant may be destructively replaced. The f
 | Git tag `v23.8.0` | Current immutable functional restoration checkpoint at `24dece593bea679485057d7551a2583f7f1f5acf` |
 
 Git tags are the exact restoration sources. The runnable `v3.0.0` directory contains only path and scope adaptations needed to operate under `/versions/v3.0.0/`.
+
+The direct stable source download is `https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip`.
 
 ## News and automation
 
@@ -91,8 +110,9 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 | Path | Role |
 |---|---|
 | `AGENTS.md` | Binding instructions for future coding agents |
-| `README.md` | Entry point and verified current overview |
+| `README.md` | Entry point, current overview, installation and stable download links |
 | `docs/PRODUCT_VISION.md` | Current mission, final product direction and data-preservation rules |
+| `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, duplicate policy and safe DeepSeek-assisted workflow |
 | `VERSION.md` | Release and development version state |
 | `CHANGELOG.md` | User/project-visible change history |
 | `ROADMAP.md` | Completed work, next approved phase and later backlog |
