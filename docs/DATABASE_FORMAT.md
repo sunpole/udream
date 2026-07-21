@@ -55,6 +55,21 @@ At the time of the audit, `data/bd2.json` and `data/db.json` had the same size a
 
 Git history shows that `bd2.json` existed before the later addition of `db.json`. The exact generation and translation pipeline that produced `divinity_code_ru.json` remains undocumented, so the retained files must not yet be deleted or rewritten.
 
+## Target dataset model for D1
+
+The planned logical model is:
+
+| Logical role | Intended quantity | Notes |
+|---|---:|---|
+| Canonical source dataset | 1 | Original-language or closest retained source representation |
+| Current Russian translation | 1 | Published, reviewed runtime version |
+| Alternative Russian translation A | 0–1 | Independent candidate for comparison |
+| Alternative Russian translation B | 0–1 | Second independent candidate only when quality justifies it |
+
+Two byte-identical files are one logical dataset, not two translations. D1 must identify a canonical path and prepare a reversible migration before a redundant physical copy is removed.
+
+The project does not require two alternative translations at any cost. When only one reliable Russian translation exists, the correct product state is one source dataset plus one Russian translation.
+
 ## Dataset and translation preservation
 
 The current single-file runtime is not permission to overwrite other sources or translation variants.
@@ -68,7 +83,9 @@ Every future dataset or translation variant must have documented metadata coveri
 - version or date;
 - creation or acquisition method;
 - transformation tool and rules;
+- source commit or cryptographic hash;
 - validation result;
+- human-review status;
 - relationship to any previous variant.
 
 A new translation or corrected edition must be introduced as a new recoverable version. The prior version remains available until an explicit retention decision is documented.
@@ -76,6 +93,25 @@ A new translation or corrected edition must be introduced as a new recoverable v
 A future merged search may combine results for users, but it must preserve the source identity of every record and must not destroy separate source datasets.
 
 The planned D1 phase will define the dataset registry, provenance record and safe migration strategy before any user-facing source selector or merged database is implemented.
+
+## AI-assisted candidate datasets
+
+An API-generated translation is stored as a separate candidate dataset. It must never overwrite `data/divinity_code_ru.json` in place.
+
+For every AI-assisted run, record:
+
+- exact input dataset and hash;
+- fields submitted for translation;
+- provider and model identifier;
+- prompt-template version;
+- date and relevant parameters;
+- checkpoint/resume state;
+- raw-output location when retained;
+- normalized candidate hash;
+- automatic validation report;
+- human-review status.
+
+The API key itself is never stored in Git, JSON data, browser code, logs, reports or patchnotes. Full operational rules are in `docs/TRANSLATION_WORKFLOW.md`.
 
 ## Validation checklist
 
@@ -99,3 +135,4 @@ Record-count changes, ID changes, source changes and translation changes must be
 - Record the tool/script and source revision used for bulk transformations.
 - Do not silently merge records from different books or editions.
 - Do not delete retained source or translation variants as routine cleanup.
+- Do not promote an AI-generated candidate without human review and a separate data release.

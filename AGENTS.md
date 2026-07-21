@@ -13,15 +13,17 @@ Before changing files, read:
 5. `docs/PROJECT_STATE.md`
 6. `docs/ARCHITECTURE.md`
 7. `docs/FILE_MAP.md`
-8. `docs/NEWS_PUBLISHING.md`
-9. `docs/CONTENT_AND_RIGHTS.md`
-10. the latest commits, tags and open Pull Requests relevant to the task
+8. `docs/TRANSLATION_WORKFLOW.md` for any data, translation or AI-assisted task
+9. `docs/NEWS_PUBLISHING.md`
+10. `docs/CONTENT_AND_RIGHTS.md`
+11. the latest commits, tags and open Pull Requests relevant to the task
 
 Do not infer the current application from numbered folders under `_archive/`.
 
 ## Sources of truth
 
 - `docs/PRODUCT_VISION.md` defines the product mission, final direction and non-destructive data principles.
+- `docs/TRANSLATION_WORKFLOW.md` defines the target translation variants, duplicate policy and safe API-assisted workflow.
 - `main` is the source for the currently published GitHub Pages site.
 - Git tags and GitHub Releases are immutable restoration checkpoints.
 - Root `index.html`, `script.js`, `manifest.json`, `version.json`, and `sw.js` are the current runtime.
@@ -75,7 +77,19 @@ If documents disagree with executable code, report the conflict before editing a
 - Keep every retained data variant identifiable by source, language, version/date and transformation history.
 - A new translation must be stored as a new version; the previous translation remains recoverable.
 - A future merged search must retain source provenance and must not destroy separate source datasets.
-- Do not delete `data/bd2.json`, `data/db.json`, reports or archived data until the D1 provenance and multi-dataset plan explicitly classifies their migration or retention.
+- Byte-identical files are one logical dataset, not independent translations.
+- Do not delete `data/bd2.json`, `data/db.json`, reports or archived data until D1 proves the canonical file, records the migration and provides a rollback.
+- The target is one canonical source dataset, one current Russian translation and up to two genuinely independent alternatives; do not manufacture variants when only one reliable translation exists.
+
+## AI-assisted translation safety
+
+- DeepSeek or another provider may generate only a separate candidate dataset.
+- Never call a paid translation API from the public browser application or installed PWA.
+- Never commit an API key, place it in browser JavaScript, JSON, logs, artifacts, screenshots or patchnotes.
+- Use a local environment variable or GitHub encrypted secret.
+- Record source hash, model, prompt-template version, parameters, output hash and review status for every run.
+- A translation script must support checkpoints and must never modify the published database in place.
+- AI output requires automatic validation and human review before any data release.
 
 ## Required checks
 

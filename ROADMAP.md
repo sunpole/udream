@@ -46,7 +46,7 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Create the immutable `v23.8.0` tag on the exact functional merge commit.
 - [x] Add a GitHub Release and documented rollback path.
 
-## Completed: unified documentation baseline v23.8.3
+## Completed: unified documentation baseline v23.8.4
 
 - [x] Add one current product-vision document.
 - [x] Distinguish product mission, verified current state, next phase and later backlog.
@@ -55,6 +55,9 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Mark the M1–M5 modularization plan as completed.
 - [x] Update the architecture, file map, database contract, historical context and coding-agent rules.
 - [x] Define the boundary of the next project series before implementation begins.
+- [x] Record the desired source/current/alternative translation model.
+- [x] Document safe DeepSeek API use without exposing the key in the static application.
+- [x] Add direct download links and clearer current-state information to the repository README.
 
 ## Next approved series: D1 — data provenance and multi-dataset architecture
 
@@ -65,11 +68,15 @@ D1 starts as research, validation design and migration planning. It must not cha
 - [ ] Recover the known generation and translation history of `data/divinity_code_ru.json` from Git history, reports, scripts and retained source files.
 - [ ] Record what is proven, what is inferred and what remains unknown.
 - [ ] Create a source/provenance record for every retained current data file.
+- [ ] Reconfirm the hash equality and history of `data/bd2.json` and `data/db.json`.
 
-### D1.2 — dataset registry design
+### D1.2 — dataset registry and duplicate decision
 
 - [ ] Define stable dataset identifiers, source work, language, edition/translation version and transformation metadata.
 - [ ] Define how original data, translation, aliases, tags and editorial notes remain distinguishable.
+- [ ] Design the target set: one canonical source dataset, one current Russian translation and up to two independent alternative Russian translations.
+- [ ] Explicitly allow a smaller set when only one reliable Russian translation exists.
+- [ ] Decide which exact duplicate is canonical and prepare a reversible migration before removing the redundant physical copy.
 - [ ] Define retention and rollback rules so a new translation never overwrites the previous one.
 
 ### D1.3 — data-quality audit design
@@ -84,6 +91,17 @@ D1 starts as research, validation design and migration planning. It must not cha
 - [ ] Compare separate-database switching, combined search and side-by-side comparison.
 - [ ] Require visible provenance for every result in any future combined mode.
 - [ ] Approve a migration plan before implementing a user-facing selector or merged index.
+
+### D1.5 — AI-assisted translation experiment
+
+- [ ] Design a resumable translation script that never modifies the active database in place.
+- [ ] Use DeepSeek only as an optional candidate generator, not as an automatic source of truth.
+- [ ] Keep the API key only in a local environment variable or GitHub encrypted secret.
+- [ ] Record source hash, model, prompt version, parameters, output hash and validation report for every run.
+- [ ] Create a separate candidate dataset and diff report.
+- [ ] Require human review before any candidate can become a published data release.
+
+See `docs/TRANSLATION_WORKFLOW.md`.
 
 ## Rights and provenance completion
 
