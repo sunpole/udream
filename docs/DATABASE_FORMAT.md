@@ -6,7 +6,7 @@
 data/divinity_code_ru.json
 ```
 
-At the `v3.0.0` checkpoint it contains 4,086 records.
+At release `v23.8.0` it contains 4,086 records and remains the active published runtime database.
 
 ## Record schema
 
@@ -32,7 +32,9 @@ At the `v3.0.0` checkpoint it contains 4,086 records.
 | `source` | string | Source identifier |
 | `date_added` | string | Date in `YYYY-MM-DD` form |
 | `tags` | array of strings | Filtering and category terms |
-| `notes` | string | Additional notes, potentially rendered as Markdown |
+| `notes` | string | Additional plain-text notes rendered with safe paragraphs and line breaks |
+
+The maintained application does not interpret record notes as Markdown or raw HTML. Imported display values are escaped before DOM insertion.
 
 ## Current data-file classification
 
@@ -53,6 +55,28 @@ At the time of the audit, `data/bd2.json` and `data/db.json` had the same size a
 
 Git history shows that `bd2.json` existed before the later addition of `db.json`. The exact generation and translation pipeline that produced `divinity_code_ru.json` remains undocumented, so the retained files must not yet be deleted or rewritten.
 
+## Dataset and translation preservation
+
+The current single-file runtime is not permission to overwrite other sources or translation variants.
+
+Every future dataset or translation variant must have documented metadata covering at least:
+
+- stable dataset identifier;
+- source work and source revision;
+- language;
+- translation/editorial variant;
+- version or date;
+- creation or acquisition method;
+- transformation tool and rules;
+- validation result;
+- relationship to any previous variant.
+
+A new translation or corrected edition must be introduced as a new recoverable version. The prior version remains available until an explicit retention decision is documented.
+
+A future merged search may combine results for users, but it must preserve the source identity of every record and must not destroy separate source datasets.
+
+The planned D1 phase will define the dataset registry, provenance record and safe migration strategy before any user-facing source selector or merged database is implemented.
+
 ## Validation checklist
 
 Before committing database changes:
@@ -62,13 +86,16 @@ jq empty data/divinity_code_ru.json
 jq 'length' data/divinity_code_ru.json
 jq 'map(.id) | length == (unique | length)' data/divinity_code_ru.json
 jq 'all(.[]; (.id | type) == "number" and (.symbol | type) == "string" and (.aliases | type) == "array" and (.description | type) == "string" and (.source | type) == "string" and (.date_added | type) == "string" and (.tags | type) == "array" and (.notes | type) == "string")' data/divinity_code_ru.json
+node scripts/validate-project.mjs
 ```
 
-Record-count changes and ID changes must be explained in the commit and changelog.
+Record-count changes, ID changes, source changes and translation changes must be explained in the commit, changelog and matching data-migration document.
 
 ## Content constraints
 
 - Preserve original source meaning and references.
-- Distinguish source text, translation, editorial notes, and generated tags.
+- Distinguish source text, translation, editorial notes, aliases and generated tags.
 - Do not invent biblical references or silently strengthen interpretations.
 - Record the tool/script and source revision used for bulk transformations.
+- Do not silently merge records from different books or editions.
+- Do not delete retained source or translation variants as routine cleanup.
