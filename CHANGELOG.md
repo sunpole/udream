@@ -1,5 +1,16 @@
 # Changelog
 
+## Documentation update v23.8.5 — 2026-07-21
+
+- Added root `WORK_STATUS.md` as the single live handoff for development across phone, Windows, macOS and GitHub agents.
+- Defined explicit `READY`, `IN_PROGRESS`, `PAUSED`, `BLOCKED` and `COMPLETED` states.
+- Required every task to record what was planned, what was actually done, the active branch, last verified commit, checks, pause point and exact next action.
+- Recorded that local notes, chat history and unpushed commits are not valid cross-device handoffs.
+- Updated `AGENTS.md` so every agent reads and updates the handoff before implementation, at pauses and after completion.
+- Exposed the handoff from README and mapped it separately from roadmap, project state and immutable release checkpoints.
+- Recorded the current project signal as `READY`: no unfinished task or open Pull Request; the next approved task is D1.1 provenance recovery.
+- Kept application runtime, PWA behavior, release tag and all 4,086 active database records unchanged.
+
 ## Documentation update v23.8.4 — 2026-07-21
 
 - Added `docs/TRANSLATION_WORKFLOW.md` with the target source/current/alternative translation model.
