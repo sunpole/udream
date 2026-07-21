@@ -59,6 +59,16 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Document safe DeepSeek API use without exposing the key in the static application.
 - [x] Add direct download links and clearer current-state information to the repository README.
 
+## Completed: cross-device work handoff v23.8.5
+
+- [x] Add root `WORK_STATUS.md` as the live handoff between phone, Windows, macOS and GitHub agents.
+- [x] Separate current task state from long-term roadmap, verified project state and immutable release checkpoints.
+- [x] Define `READY`, `IN_PROGRESS`, `PAUSED`, `BLOCKED` and `COMPLETED` states.
+- [x] Require planned work, actual work, branch, commit, checks, blockers and exact next action.
+- [x] Require a pushed handoff before switching devices or pausing unfinished work.
+- [x] Make every future agent read and update the handoff at task start, pause and completion.
+- [x] Record the current signal as `READY`: no unfinished task or open Pull Request.
+
 ## Next approved series: D1 — data provenance and multi-dataset architecture
 
 D1 starts as research, validation design and migration planning. It must not change the active 4,086-record runtime database in its first stage.

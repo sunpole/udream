@@ -50,6 +50,7 @@ function parseFrontMatter(source, label) {
 async function validateRuntimeFiles() {
   const required = [
     ".nojekyll",
+    "WORK_STATUS.md",
     "index.html",
     "script.js",
     "src/search.js",

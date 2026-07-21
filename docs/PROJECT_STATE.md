@@ -2,13 +2,29 @@
 
 The current restoration checkpoint is release `v23.8.0` at commit `24dece593bea679485057d7551a2583f7f1f5acf`, published on 2026-07-20 after verification of the PWA update, cache migration, uncached version checks and installation flow. The previous checkpoint remains `v23.7.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.
 
-Documentation update `23.8.4` establishes the unified product vision, non-destructive data rules, target translation model, safe DeepSeek-assisted workflow and the boundary of the next approved series D1. It does not change application runtime or database records.
+Documentation update `23.8.5` adds the mandatory cross-device work handoff while retaining the unified product vision, non-destructive data rules, target translation model, safe DeepSeek-assisted workflow and the boundary of the next approved series D1. It does not change application runtime or database records.
 
 ## What UDREAM is
 
 UDREAM is a public, static GitHub Pages application for searching Christian dream-symbol reference material. It has no backend, account system, database server or browser build step.
 
 The current product mission and final direction are defined in `docs/PRODUCT_VISION.md`. Translation variants and API-assisted data preparation are governed by `docs/TRANSLATION_WORKFLOW.md`.
+
+## Cross-device work status
+
+`WORK_STATUS.md` is the live source for the current task, branch, actual progress, pause point and exact next action.
+
+At documentation baseline `23.8.5`:
+
+- status is `READY`;
+- no unfinished functional task is recorded;
+- no open Pull Request existed when the handoff was initialized;
+- the last completed major documentation work was PR #18;
+- the next approved series is D1;
+- the next exact task is D1.1 provenance recovery;
+- D1.1 must not modify the active 4,086-record database.
+
+`ROADMAP.md` remains the long-term plan and this file remains the detailed verified state. Neither replaces the live handoff.
 
 ## Published runtime
 
@@ -56,13 +72,14 @@ The current root site and installed PWA were verified on Android during developm
 
 ## Download and installation
 
-The public README now provides:
+The public README provides:
 
 - the live GitHub Pages application;
 - browser/PWA installation guidance;
 - direct download of the exact stable `v23.8.0` source ZIP;
 - the immutable GitHub Release;
-- the saved-version launcher and Telegram development news.
+- the saved-version launcher and Telegram development news;
+- a direct link to `WORK_STATUS.md` before development continues on another device.
 
 No APK is published. The user-facing application is installed directly from the browser as a PWA.
 
@@ -93,6 +110,7 @@ DeepSeek is only a possible candidate-generation tool. No API client or key is p
 
 The maintained documentation set now covers:
 
+- cross-device task start, pause, completion and continuation;
 - product mission and final direction;
 - verified current runtime and risks;
 - architecture and file ownership;

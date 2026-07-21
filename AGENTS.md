@@ -6,22 +6,24 @@ These rules apply to the entire repository.
 
 Before changing files, read:
 
-1. `docs/PRODUCT_VISION.md`
-2. `README.md`
-3. `VERSION.md`
-4. `ROADMAP.md`
-5. `docs/PROJECT_STATE.md`
-6. `docs/ARCHITECTURE.md`
-7. `docs/FILE_MAP.md`
-8. `docs/TRANSLATION_WORKFLOW.md` for any data, translation or AI-assisted task
-9. `docs/NEWS_PUBLISHING.md`
-10. `docs/CONTENT_AND_RIGHTS.md`
-11. the latest commits, tags and open Pull Requests relevant to the task
+1. `WORK_STATUS.md`
+2. `docs/PRODUCT_VISION.md`
+3. `README.md`
+4. `VERSION.md`
+5. `ROADMAP.md`
+6. `docs/PROJECT_STATE.md`
+7. `docs/ARCHITECTURE.md`
+8. `docs/FILE_MAP.md`
+9. `docs/TRANSLATION_WORKFLOW.md` for any data, translation or AI-assisted task
+10. `docs/NEWS_PUBLISHING.md`
+11. `docs/CONTENT_AND_RIGHTS.md`
+12. the latest commits, tags and open Pull Requests relevant to the task
 
 Do not infer the current application from numbered folders under `_archive/`.
 
 ## Sources of truth
 
+- `WORK_STATUS.md` is the live cross-device handoff: active task, branch, actual progress, pause point and exact next action.
 - `docs/PRODUCT_VISION.md` defines the product mission, final direction and non-destructive data principles.
 - `docs/TRANSLATION_WORKFLOW.md` defines the target translation variants, duplicate policy and safe API-assisted workflow.
 - `main` is the source for the currently published GitHub Pages site.
@@ -32,7 +34,7 @@ Do not infer the current application from numbered folders under `_archive/`.
 - `_archive/` is historical material, not current runtime code.
 - `ROADMAP.md` distinguishes completed work, the next approved phase and later backlog.
 
-If documents disagree with executable code, report the conflict before editing and update the documents as part of the approved task.
+If documents disagree with executable code or GitHub facts, report the conflict before editing and update the documents as part of the approved task.
 
 ## Change discipline
 
@@ -45,6 +47,17 @@ If documents disagree with executable code, report the conflict before editing a
 - Prefer relative URLs inside version snapshots so each snapshot remains independently runnable.
 - Never place secrets, access tokens, private contact data, or credentials in the repository.
 - Do not combine a data migration, interface redesign and architecture rewrite in one patch unless an approved plan proves they cannot be separated.
+
+## Cross-device handoff discipline
+
+- Before implementation, update `WORK_STATUS.md` with status `IN_PROGRESS`, start time, environment, branch, one goal, planned files and completion criteria.
+- At meaningful checkpoints, record what is actually complete, the last verified commit and the exact next action.
+- Before switching devices or stopping unfinished work, set status to `PAUSED` or `BLOCKED`, commit the handoff and push it to GitHub.
+- A local note, chat message or unpushed commit is not a valid handoff.
+- When finishing, record planned versus actual work, changed files, checks, PR/merge, risks and the next approved task.
+- After merge, return the file to `READY` and record the latest completed PR/commit.
+- Do not start unrelated work while `WORK_STATUS.md` describes an unresolved `IN_PROGRESS`, `PAUSED` or `BLOCKED` task unless the owner explicitly closes or supersedes it.
+- If `WORK_STATUS.md` conflicts with open PRs or commits, GitHub facts win and the file must be corrected immediately.
 
 ## uNews publication requirement
 
@@ -136,7 +149,7 @@ Keep documentation factual and distinguish:
 
 After a release or major documentation patch, search all maintained documents for stale current-version labels and unresolved development-branch wording.
 
-End each completed task with the files changed, checks run, results, and remaining risks.
+End each completed task with the files changed, checks run, results, remaining risks and an updated `WORK_STATUS.md` handoff.
 
 ## Next approved planning boundary
 

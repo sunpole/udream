@@ -64,10 +64,11 @@ Future D1 tooling may add:
 
 Any such tooling belongs under a separate D1 implementation PR and must not be imported by the public browser application.
 
-## Versioning and restoration
+## Versioning, handoff and restoration
 
 | Path or reference | Role |
 |---|---|
+| `WORK_STATUS.md` | Live cross-device task handoff: active branch, actual progress, pause point and exact next action |
 | `VERSION.md` | Current release and development state |
 | `version.json` | Deployed runtime version check |
 | `versions/index.html` | User-facing saved-version launcher |
@@ -77,7 +78,9 @@ Any such tooling belongs under a separate D1 implementation PR and must not be i
 | Git tag `v23.7.0` | Previous unified-version restoration checkpoint |
 | Git tag `v23.8.0` | Current immutable functional restoration checkpoint at `24dece593bea679485057d7551a2583f7f1f5acf` |
 
-Git tags are the exact restoration sources. The runnable `v3.0.0` directory contains only path and scope adaptations needed to operate under `/versions/v3.0.0/`.
+`WORK_STATUS.md` is intentionally mutable and records current work. Git tags and Releases are immutable restoration sources. These roles must not be confused.
+
+The runnable `v3.0.0` directory contains only path and scope adaptations needed to operate under `/versions/v3.0.0/`.
 
 The direct stable source download is `https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip`.
 
@@ -109,6 +112,7 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 
 | Path | Role |
 |---|---|
+| `WORK_STATUS.md` | Mandatory start/pause/completion record for continuing work across devices and agents |
 | `AGENTS.md` | Binding instructions for future coding agents |
 | `README.md` | Entry point, current overview, installation and stable download links |
 | `docs/PRODUCT_VISION.md` | Current mission, final product direction and data-preservation rules |

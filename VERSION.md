@@ -15,21 +15,24 @@
 
 ## Documentation baseline
 
-`v23.8.4`
+`v23.8.5`
 
 - Status: documentation-only milestone; it does not create a new application build or move the `v23.8.0` tag
-- Purpose: define the target source/current/alternative translation model, duplicate-file decision rules, safe DeepSeek-assisted workflow and refreshed public repository page
+- Purpose: add `WORK_STATUS.md` as the mandatory cross-device handoff for planned work, actual progress, pause points, completion evidence and the exact next action
+- Current handoff status: `READY` — no unfinished active task or open Pull Request
+- Last completed major work: PR #18, documentation baseline `23.8.4`
+- Next approved series: D1 — data provenance and multi-dataset architecture
+- Next exact task: D1.1 provenance recovery without changing the active 4,086-record database
 - Product source of truth: `docs/PRODUCT_VISION.md`
 - Translation source of truth: `docs/TRANSLATION_WORKFLOW.md`
+- Cross-device work source of truth: `WORK_STATUS.md`
 - Repository download: https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip
-- Next approved series: D1 — data provenance and multi-dataset architecture
-- D1 boundary: research and design first; the active 4,086-record database remains unchanged until a separate migration plan is approved
 
 ## Current development line
 
 No functional development version is assigned after `v23.8.0`.
 
-Documentation updates `23.8.1` through `23.8.4` finalize the immutable release record and establish a coherent baseline for the next project series. They do not change application runtime, PWA behavior or database records.
+Documentation updates `23.8.1` through `23.8.5` finalize the immutable release record, establish the product/data baseline and add a durable cross-device work handoff. They do not change application runtime, PWA behavior or database records.
 
 ## Unified version line
 
