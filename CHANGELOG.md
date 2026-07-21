@@ -1,5 +1,32 @@
 # Changelog
 
+## Documentation update v23.8.2 — 2026-07-21
+
+- Recorded published release `v23.8.0` as the current restoration checkpoint across README, version, roadmap, project-state and rollback documentation.
+- Recorded exact release commit `24dece593bea679485057d7551a2583f7f1f5acf` and the immutable `v23.8.0` tag.
+- Replaced stale development-branch and pre-merge wording with the completed release state.
+- Kept application code, PWA behavior, package metadata and all 4,086 active database records unchanged.
+
+## Documentation update v23.8.1 — 2026-07-20
+
+- Added an idempotent release workflow for the already merged `v23.8.0` functional source.
+- Re-ran tests, project validation, syntax checks and version consistency before release publication.
+- Created or verified the immutable `v23.8.0` tag on exact commit `24dece593bea679485057d7551a2583f7f1f5acf`.
+- Added release-specific publication material without changing application code or database records.
+
+## v23.8.0 — 2026-07-20
+
+- Fixed clients remaining on a stale website or installed-PWA version after a new GitHub Pages deployment.
+- Activated updated Service Workers immediately through `skipWaiting()` and `clients.claim()`.
+- Added independent `version.json` checks requested with `cache: no-store`.
+- Added a protected one-time reload when the deployed version differs from the running version.
+- Removed only old `udream-*` caches while leaving unrelated origin caches untouched.
+- Used network-first with offline fallback for HTML, JavaScript, manifest and JSON requests.
+- Added a visible PWA installation banner with system prompt support and manual instructions.
+- Hid the installation banner in standalone mode and made its close button last only for the current loaded page.
+- Synchronized static labels, social metadata, Apple PWA naming, `package.json`, `src/version.js` and `version.json` at `23.8.0`.
+- Kept the active 4,086-record database unchanged.
+
 ## Documentation update v23.7.1 — 2026-07-20
 
 - Recorded published release `v23.7.0` as the current restoration checkpoint.
@@ -8,7 +35,6 @@
 - Replaced release-candidate wording with the completed release state.
 - Added a real screenshot of the GitHub Release page for the matching uNews documentation patchnote.
 - Kept application code, PWA behavior and all 4,086 active database records unchanged.
-
 
 ## v23.7.0 — 2026-07-20
 
@@ -23,7 +49,6 @@
 - Added release-specific Telegram screenshots instead of reusing an unrelated image.
 - Increased the dependency-free regression suite from 37 to 41 tests.
 - Kept all 4,086 active database records unchanged.
-
 
 ## Documentation update v3.6.2 — 2026-07-20
 
@@ -41,7 +66,6 @@
 - Added the PWA module and tests to repository validation and GitHub Actions syntax checks.
 - Verified PWA installation, offline reload and installed-app launch on Android without the local server or internet.
 - Kept the interface, active 4,086-record database, archived material and runnable `v3.0.0` snapshot unchanged.
-
 
 ## Documentation update v3.5.1 — 2026-07-19
 

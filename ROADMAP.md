@@ -13,7 +13,7 @@
 - [x] Add uNews patchnote rules and GitHub Actions validation.
 - [x] Separate the MIT-licensed software from third-party content in public documentation.
 
-## Active: modularization without a build step
+## Completed: modularization without a build step
 
 - [x] Define the staged ES-module migration plan.
 - [x] M1: extract pure search/autocomplete matching and add regression tests.
@@ -33,6 +33,18 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Make all five search filters strict to their declared fields.
 - [x] Keep search filters above the expanding autocomplete panel.
 - [x] Add release-specific screenshots for the uNews publication.
+
+## Completed: PWA update and installation v23.8.0
+
+- [x] Activate a new Service Worker immediately through `skipWaiting()` and `clients.claim()`.
+- [x] Add uncached runtime-version checks through `version.json`.
+- [x] Reload once safely when the deployed version differs from the running version.
+- [x] Remove only old `udream-*` caches and preserve unrelated origin caches.
+- [x] Use network-first with offline fallback for HTML, JavaScript, manifest and JSON.
+- [x] Add a visible install banner with system prompt and manual instructions.
+- [x] Hide the install banner in the standalone PWA.
+- [x] Create the immutable `v23.8.0` tag on the exact functional merge commit.
+- [x] Add a GitHub Release and documented rollback path.
 
 ## Next: verification and consistency
 
