@@ -1,5 +1,17 @@
 # Changelog
 
+## Documentation update v23.8.4 — 2026-07-21
+
+- Added `docs/TRANSLATION_WORKFLOW.md` with the target source/current/alternative translation model.
+- Recorded that byte-identical files are one logical dataset, not separate translation variants.
+- Defined the preferred future set as one canonical source database, one current Russian translation and up to two genuinely independent alternatives.
+- Allowed a smaller final set when only one reliable Russian translation can be produced.
+- Documented safe DeepSeek-assisted translation through local tooling or GitHub encrypted secrets without exposing the API key in the browser application.
+- Required every AI-assisted run to create a separate candidate dataset with source hash, model, prompt version, output hash, validation and human-review status.
+- Refreshed the repository README with current badges, installation guidance, a direct `v23.8.0` ZIP download and clearer D1 status.
+- Synchronized product vision, roadmap, database contract, file map, agent rules and version baseline.
+- Kept application runtime, PWA behavior, package metadata and all 4,086 active database records unchanged.
+
 ## Documentation update v23.8.3 — 2026-07-21
 
 - Added `docs/PRODUCT_VISION.md` as the single current source for the product mission, final direction and next-stage boundary.
