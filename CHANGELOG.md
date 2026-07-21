@@ -1,5 +1,15 @@
 # Changelog
 
+## Documentation update v23.8.3 — 2026-07-21
+
+- Added `docs/PRODUCT_VISION.md` as the single current source for the product mission, final direction and next-stage boundary.
+- Recorded non-destructive preservation rules for source databases, editions and translation variants.
+- Defined D1 — data provenance and multi-dataset architecture — as the next approved series, beginning with research and design rather than data modification.
+- Synchronized `AGENTS.md`, README, roadmap, project state, architecture, file map, database contract, historical context and completed modularization plan.
+- Corrected remaining maintained-document references from `v23.7.0` to the current application release `v23.8.0` where they described current state.
+- Added current citation metadata for release `v23.8.0`.
+- Kept application runtime, PWA behavior, package metadata and all 4,086 active database records unchanged.
+
 ## Documentation update v23.8.2 — 2026-07-21
 
 - Recorded published release `v23.8.0` as the current restoration checkpoint across README, version, roadmap, project-state and rollback documentation.

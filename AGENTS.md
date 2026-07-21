@@ -6,26 +6,29 @@ These rules apply to the entire repository.
 
 Before changing files, read:
 
-1. `README.md`
-2. `VERSION.md`
-3. `ROADMAP.md`
-4. `docs/PROJECT_STATE.md`
-5. `docs/ARCHITECTURE.md`
-6. `docs/FILE_MAP.md`
-7. `docs/NEWS_PUBLISHING.md`
-8. `docs/CONTENT_AND_RIGHTS.md`
-9. the latest commits and tags relevant to the task
+1. `docs/PRODUCT_VISION.md`
+2. `README.md`
+3. `VERSION.md`
+4. `ROADMAP.md`
+5. `docs/PROJECT_STATE.md`
+6. `docs/ARCHITECTURE.md`
+7. `docs/FILE_MAP.md`
+8. `docs/NEWS_PUBLISHING.md`
+9. `docs/CONTENT_AND_RIGHTS.md`
+10. the latest commits, tags and open Pull Requests relevant to the task
 
 Do not infer the current application from numbered folders under `_archive/`.
 
 ## Sources of truth
 
+- `docs/PRODUCT_VISION.md` defines the product mission, final direction and non-destructive data principles.
 - `main` is the source for the currently published GitHub Pages site.
 - Git tags and GitHub Releases are immutable restoration checkpoints.
-- Root `index.html`, `script.js`, `manifest.json`, and `sw.js` are the current runtime.
+- Root `index.html`, `script.js`, `manifest.json`, `version.json`, and `sw.js` are the current runtime.
 - `data/divinity_code_ru.json` is the active database until a documented migration changes it.
 - `versions/<release>/` directories are runnable snapshots and must remain stable.
 - `_archive/` is historical material, not current runtime code.
+- `ROADMAP.md` distinguishes completed work, the next approved phase and later backlog.
 
 If documents disagree with executable code, report the conflict before editing and update the documents as part of the approved task.
 
@@ -39,6 +42,7 @@ If documents disagree with executable code, report the conflict before editing a
 - Keep the project static unless a backend or build system is explicitly approved.
 - Prefer relative URLs inside version snapshots so each snapshot remains independently runnable.
 - Never place secrets, access tokens, private contact data, or credentials in the repository.
+- Do not combine a data migration, interface redesign and architecture rewrite in one patch unless an approved plan proves they cannot be separated.
 
 ## uNews publication requirement
 
@@ -50,7 +54,7 @@ If documents disagree with executable code, report the conflict before editing a
 - Real Telegram publication is performed only by the uNews GitHub Actions workflow. Do not send directly from a local machine.
 - Never describe planned work as completed. Build the patchnote from the actual diff and completed checks.
 - Before merge, run `node scripts/validate-project.mjs`; when practical, also run the uNews dry-run against the patchnote.
-- Merging a new valid file under `news/` into public `main` makes it eligible for automatic publication to `@uNewsLog`. State that consequence before merging.
+- Merging a new valid file under `news/` into public `main` makes it eligible for automatic publication to `@uNewsLog`. State that consequence and the exact text/image before merging.
 
 ## Copyright and third-party content
 
@@ -60,19 +64,25 @@ If documents disagree with executable code, report the conflict before editing a
 - Keep copyright and provenance statements aligned with `docs/CONTENT_AND_RIGHTS.md` and `THIRD_PARTY_NOTICES.md`.
 - Do not add, remove, republish, or replace source PDFs or substantial book-derived content without explicit approval and a rights review.
 
-## Database safety
+## Database safety and variant preservation
 
 - Treat database content changes separately from interface changes.
 - Preserve record IDs unless a documented migration requires otherwise.
 - Validate JSON syntax, array shape, required fields, record count, and duplicate IDs before commit.
 - Do not silently replace source wording or biblical references.
 - Record the source and transformation method for generated or translated data.
+- Never overwrite one source database, translation or editorial variant with another.
+- Keep every retained data variant identifiable by source, language, version/date and transformation history.
+- A new translation must be stored as a new version; the previous translation remains recoverable.
+- A future merged search must retain source provenance and must not destroy separate source datasets.
+- Do not delete `data/bd2.json`, `data/db.json`, reports or archived data until the D1 provenance and multi-dataset plan explicitly classifies their migration or retention.
 
 ## Required checks
 
 For relevant changes, run and report:
 
 ```bash
+npm test
 jq empty data/divinity_code_ru.json
 jq 'length' data/divinity_code_ru.json
 node scripts/validate-project.mjs
@@ -94,8 +104,8 @@ Do not claim a browser, PWA, offline, or mobile check was completed unless it wa
 
 ## Versioning and releases
 
-- Public releases use semantic tags such as `v3.0.0`.
-- The historical UI label `v19` is legacy metadata. The maintained application uses the unified `v23.7.0` line, while old tags and archived folders keep their original numbers.
+- Public releases use semantic tags such as `v23.8.0`.
+- The historical UI label `v19` is legacy metadata. The maintained application currently uses `v23.8.0`; old tags and archived folders keep their original numbers.
 - Update `VERSION.md` and `CHANGELOG.md` for release-worthy changes.
 - Add a matching uNews patchnote for every release-worthy change.
 - Document rollback steps in `docs/RELEASE_AND_ROLLBACK.md`.
@@ -110,7 +120,15 @@ Keep documentation factual and distinguish:
 - planned work;
 - assumptions that still require testing.
 
+After a release or major documentation patch, search all maintained documents for stale current-version labels and unresolved development-branch wording.
+
 End each completed task with the files changed, checks run, results, and remaining risks.
+
+## Next approved planning boundary
+
+The next recommended project series is D1: data provenance and multi-dataset architecture.
+
+D1 begins with documentation, inventory, validation design and migration planning. It must not change the active 4,086-record database or add a user-facing database selector until the architecture is separately reviewed and approved.
 
 ## uNews / тыНовости — обязательный план публикации
 
