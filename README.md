@@ -9,14 +9,33 @@
 </p>
 
 <p align="center">
-  <a href="https://sunpole.github.io/udream/"><img alt="GitHub Pages" src="https://img.shields.io/badge/Открыть_сайт-GitHub_Pages-222222?logo=github"></a>
-  <a href="https://github.com/sunpole/udream/releases"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/sunpole/udream?display_name=tag&sort=semver"></a>
+  <a href="https://sunpole.github.io/udream/"><img alt="Открыть uDream" src="https://img.shields.io/badge/Открыть_uDream-GitHub_Pages-222222?logo=github"></a>
+  <a href="https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip"><img alt="Скачать uDream v23.8.0" src="https://img.shields.io/badge/Скачать-v23.8.0_ZIP-2ea44f?logo=github"></a>
+  <a href="https://github.com/sunpole/udream/releases/tag/v23.8.0"><img alt="GitHub Release v23.8.0" src="https://img.shields.io/badge/release-v23.8.0-blue?logo=github"></a>
+  <img alt="Записей в активной базе" src="https://img.shields.io/badge/записей-4_086-8a2be2">
+  <img alt="PWA" src="https://img.shields.io/badge/PWA-устанавливается-orange?logo=pwa">
+</p>
+
+<p align="center">
   <a href="https://github.com/sunpole/udream/actions/workflows/validate.yml"><img alt="Проверка проекта" src="https://github.com/sunpole/udream/actions/workflows/validate.yml/badge.svg"></a>
   <a href="https://t.me/uNewsLog"><img alt="Новости в Telegram" src="https://img.shields.io/badge/Telegram-@uNewsLog-26A5E4?logo=telegram&logoColor=white"></a>
   <a href="LICENSE"><img alt="Лицензия кода MIT" src="https://img.shields.io/badge/код-MIT-green"></a>
 </p>
 
 ![Предварительный вид uDream](preview.jpg)
+
+## Быстрый старт
+
+| Действие | Ссылка или способ |
+|---|---|
+| Открыть приложение | [sunpole.github.io/udream](https://sunpole.github.io/udream/) |
+| Установить на телефон | Открыть сайт и нажать баннер установки либо выбрать в меню браузера «Установить приложение» / «Добавить на главный экран» |
+| Скачать стабильный исходный код | [uDream v23.8.0 ZIP](https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip) |
+| Посмотреть точный релиз | [GitHub Release v23.8.0](https://github.com/sunpole/udream/releases/tag/v23.8.0) |
+| Открыть сохранённую версию | [Каталог версий](https://sunpole.github.io/udream/versions/) |
+| Следить за обновлениями | [Telegram @uNewsLog](https://t.me/uNewsLog) |
+
+Отдельного APK сейчас нет: uDream устанавливается непосредственно из браузера как PWA. ZIP содержит исходный код точного стабильного релиза и предназначен для разработки, аудита или самостоятельного размещения.
 
 ## О проекте
 
@@ -35,14 +54,8 @@ uDream — статическое веб-приложение для поиск�
 - русский и английский интерфейс;
 - установка на устройство как PWA;
 - автоматическая проверка и получение новой PWA-версии без зависания на старом кэше;
-- каталог сохранённых рабочих версий.
-
-## Открыть
-
-- [Текущий сайт](https://sunpole.github.io/udream/)
-- [Сохранённые версии](https://sunpole.github.io/udream/versions/)
-- [Релизы](https://github.com/sunpole/udream/releases)
-- [Новости разработки в Telegram](https://t.me/uNewsLog)
+- каталог сохранённых рабочих версий;
+- регрессионные тесты и автоматическая проверка базы, runtime-файлов и патчноутов.
 
 ## Текущее состояние
 
@@ -50,7 +63,7 @@ uDream — статическое веб-приложение для поиск�
 |---|---|
 | Стабильная точка восстановления | `v23.8.0` |
 | Текущая версия приложения | `v23.8.0` |
-| Документационный baseline | `v23.8.3` — единое видение и согласованная документация |
+| Документационный baseline | `v23.8.4` — переводческие варианты, AI-workflow и обновлённая страница репозитория |
 | Следующая утверждённая серия | `D1` — происхождение данных и архитектура нескольких наборов |
 | Историческая метка интерфейса | `v19` — только архив |
 | Активная база | `data/divinity_code_ru.json` |
@@ -59,6 +72,20 @@ uDream — статическое веб-приложение для поиск�
 | Технологии | HTML, CSS, JavaScript ES Modules, JSON, PWA |
 
 Первый этап D1 является исследованием и проектированием. Он не должен менять активные 4 086 записей, пока отдельно не утверждены происхождение данных, реестр вариантов и безопасная миграция.
+
+## План данных и переводов
+
+Целевая модель после D1:
+
+- одна каноническая исходная база;
+- один текущий опубликованный русский перевод;
+- до двух самостоятельных альтернативных русских переводов, только когда их качество и происхождение можно проверить.
+
+Точные дубликаты не считаются отдельными переводами. Для `data/bd2.json` и `data/db.json` сначала будет доказан канонический вариант и подготовлен обратимый план миграции. Если надёжно существует только один русский перевод, проект сохранит один перевод вместо создания искусственных вариантов.
+
+DeepSeek API рассматривается как дополнительный инструмент для создания кандидатного перевода. Ключ никогда не встраивается в сайт или PWA; перевод должен выполняться локальным служебным скриптом либо GitHub Actions с encrypted secret. Любой результат сохраняется как отдельная кандидатная версия и проходит автоматическую и человеческую проверку.
+
+Подробнее: [переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md) и [формат данных](docs/DATABASE_FORMAT.md).
 
 ## Структура репозитория
 
@@ -73,7 +100,7 @@ udream/
 ├── data/                        # текущая база и сохранённые варианты данных
 ├── versions/                    # запускаемые контрольные версии
 ├── news/                        # патчноуты для uNews и Telegram
-├── docs/                        # видение, состояние, архитектура и процессы проекта
+├── docs/                        # видение, состояние, архитектура, данные и процессы
 ├── scripts/                     # автоматические проверки репозитория
 ├── _archive/                    # исторические версии и исходные материалы
 ├── AGENTS.md                    # обязательные правила разработки
@@ -105,7 +132,7 @@ node scripts/validate-project.mjs
 
 Каждое пользовательски заметное изменение сопровождается файлом в `news/`. Система [uNews](https://github.com/sunpole/uNews) проверяет новые патчноуты из публичной ветки `main` и через GitHub Actions публикует их в Telegram-канале [@uNewsLog](https://t.me/uNewsLog).
 
-Правила оформления описаны в [docs/NEWS_PUBLISHING.md](docs/NEWS_PUBLISHING.md). Секреты Telegram в этом репозитории не хранятся.
+Правила оформления описаны в [docs/NEWS_PUBLISHING.md](docs/NEWS_PUBLISHING.md). Секреты Telegram и ключи переводческих API в этом репозитории не хранятся.
 
 ## Авторство, лицензия и исходные книги
 
@@ -120,6 +147,7 @@ node scripts/validate-project.mjs
 ## Документация
 
 - [Видение и конечная цель продукта](docs/PRODUCT_VISION.md)
+- [Переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md)
 - [Текущее состояние](docs/PROJECT_STATE.md)
 - [Архитектура](docs/ARCHITECTURE.md)
 - [Формат и сохранение вариантов базы](docs/DATABASE_FORMAT.md)
