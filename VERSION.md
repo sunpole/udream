@@ -2,29 +2,26 @@
 
 ## Current release checkpoint
 
-`v23.7.0`
+`v23.8.0`
 
-- Tag commit: `e32c7b6e9c1057a1fdbb2af68a1b1cf2947e7538`
+- Tag commit: `24dece593bea679485057d7551a2583f7f1f5acf`
 - Published: 2026-07-20
-- Purpose: establish the unified maintained-product line and preserve the verified search, alias and version UX release
-- Release: https://github.com/sunpole/udream/releases/tag/v23.7.0
-- Checks: 41/41 tests, project validator, JavaScript syntax, the unchanged 4,086-record database and browser verification passed
-- Visual verification: two release-specific application screenshots and one GitHub Release screenshot are stored in `news/`
-- Previous checkpoint: `v3.6.0`
+- Purpose: preserve the verified PWA update, cache migration and installation flow release
+- Release: https://github.com/sunpole/udream/releases/tag/v23.8.0
+- Verification: the immutable tag resolves to the exact functional merge commit; the release workflow re-runs tests, project validation, syntax checks and version consistency before publication
+- Runtime version sources: `package.json`, `src/version.js` and `version.json` all contain `23.8.0`
+- Database: the active 4,086-record JSON database is unchanged
+- Previous checkpoint: `v23.7.0`
 
 ## Current development line
 
-`v23.8.0`
+No functional development version is assigned after `v23.8.0`.
 
-- Branch: `feat/pwa-update-install-v23.8.0`
-- Status: implementation and regression tests prepared; browser and installed-PWA verification are required before merge
-- Scope: forced PWA update activation, uncached version checks, migration from old uDream caches and a persistent installation banner
-- Banner close behavior: the small cross hides it only for the current loaded page; reloading the page shows it again
-- Database: the active 4,086-record JSON database is unchanged
+Documentation updates `23.8.1` and `23.8.2` finalize the immutable tag, GitHub Release and project-state records. They do not change application code, PWA behavior or database records.
 
 ## Unified version line
 
-Version `v23.7.0` begins the unified maintained-product line.
+Version `v23.7.0` began the unified maintained-product line; `v23.8.0` is its next feature release.
 
 The repository previously used two separate counters:
 
