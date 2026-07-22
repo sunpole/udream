@@ -142,18 +142,20 @@ The contract and implemented tooling are documented in `docs/SCREENSHOT_AUTOMATI
 
 ## Data
 
-The current data-file classification was verified on 2026-07-20:
+The corrected D1.1 classification was verified on 2026-07-22:
 
-- `data/divinity_code_ru.json` is the active translated and augmented runtime database with 4,086 records;
-- `data/bd2.json` is a retained English reference dataset with 4,086 records;
-- `data/db.json` is an exact byte-for-byte duplicate of `data/bd2.json`;
+- `data/divinity_code_ru.json` is the active mixed-language localized and augmented runtime dataset with 4,086 records;
+- `data/bd2.json` is English source serialization A with 4,086 records;
+- `data/db.json` is English source serialization B: raw bytes differ from `bd2.json`, but parsed and canonical JSON are identical;
 - `data/report.txt` is a historical generation and quality summary.
 
 Only `data/divinity_code_ru.json` is referenced by the current application, Service Worker, validation script and state tests. The other files are not part of the current runtime.
 
-The intended D1 target is one canonical source dataset, one current published Russian translation and up to two independent alternative Russian translations. Exact duplicates do not count as separate variants. When only one reliable Russian translation exists, the smaller set is preferred over artificial duplication.
+The active dataset preserves the same ordered IDs and the fields `symbol`, `description`, `source` and `date_added`; it differs from the English logical dataset in `aliases`, `notes` and `tags`. The exact generation and translation pipeline is not proven.
 
-The exact generation and translation pipeline for `data/divinity_code_ru.json` is still undocumented. No retained data file, source edition or translation variant may be deleted or overwritten until the D1 provenance and multi-dataset architecture is designed and approved.
+D1.1 records the raw hashes, canonical hash, Git history, proven facts, inferences and unknowns in `docs/DATA_PROVENANCE.md`. `scripts/validate-data-provenance.mjs` locks this baseline without changing any data file.
+
+The intended target remains one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations. Equivalent serializations do not count as separate variants. When only one reliable Russian translation exists, the smaller set is preferred over artificial duplication.
 
 DeepSeek is only a possible candidate-generation tool. No API client or key is part of the current browser runtime. Any future experiment must create a separate recoverable candidate dataset and use a local environment variable or GitHub encrypted secret.
 
@@ -168,8 +170,8 @@ The maintained documentation set now covers:
 - product mission and final direction;
 - verified current runtime and risks;
 - architecture and file ownership;
-- active data contract and retained variants;
-- target translation topology and duplicate policy;
+- active data contract, retained serializations and verified provenance;
+- target translation topology and equivalent-serialization policy;
 - safe AI-assisted translation workflow;
 - implemented real Chromium screenshot evidence and artifacts;
 - completed M1–M5 modularization;
@@ -193,8 +195,8 @@ Historical files are deliberately preserved and are not the source of truth for 
 
 ## Known risks and unfinished work
 
-- Database provenance and transformation steps are not fully documented.
-- The canonical source file and reversible duplicate-removal plan are not yet approved.
+- The exact generation and translation pipeline is still not proven even though file-level provenance is now documented.
+- The canonical source path and reversible equivalent-serialization migration are not yet approved.
 - Alternative Russian translations do not yet exist as reviewed datasets.
 - The relationship between the two source books is not yet implemented as a user-selectable data architecture.
 - The administration workflow is archived rather than part of the maintained runtime.
@@ -208,9 +210,9 @@ These are tracked as future work in `ROADMAP.md`; they are not hidden defects in
 
 ## Next approved work
 
-D1.1 — data provenance recovery.
+D1.1 completes the verified provenance baseline without changing data. The next approved step after its merge is D1.2: dataset registry, canonical-path decision and reversible equivalent-serialization migration design.
 
-D1 begins with research, inventory, validation design and migration planning. Its first stage must not change the active 4,086-record JSON database or add a user-facing database selector.
+No user-facing database selector or data deletion is approved by D1.1.
 
 ## Safe restoration point
 
