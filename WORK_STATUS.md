@@ -16,14 +16,14 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — создаётся автоматизация реальных desktop/mobile-скриншотов |
+| Состояние | **IN_PROGRESS** — реализация 23.8.7 завершена, выполняется финальная проверка Pull Request |
 | Рабочая ветка | `ops/playwright-screenshots-v23.8.7` |
-| Открытый Pull Request | ещё не открыт |
+| Открытый Pull Request | draft `#22` — `ops: automate real Playwright screenshots v23.8.7` |
 | Стабильный релиз | `v23.8.0` |
-| Документационный baseline | `v23.8.6` |
-| Последнее завершённое изменение | PR #21, squash merge `58ebaea07ef488e0131bd9c3b5c359a191d6275e`; финальный READY commit `b7d2bcebbf57cf9d99d1503e54310a43966ff290` |
-| Активная задача | `23.8.7` — Playwright Chromium, сценарии и GitHub Actions artifacts |
-| Следующая продуктовая серия после неё | `D1`, начиная с D1.1 — происхождение данных без изменения активной базы |
+| Документационный и automation baseline | кандидат `v23.8.7` — реальные Chromium screenshot artifacts |
+| Последнее завершённое изменение в `main` | PR #21, squash merge `58ebaea07ef488e0131bd9c3b5c359a191d6275e`; READY commit `b7d2bcebbf57cf9d99d1503e54310a43966ff290` |
+| Активная задача | проверить final head PR #22, перевести PR из draft и объединить только после двух успешных workflow |
+| Следующая утверждённая работа после merge | `D1.1` — происхождение данных без изменения активной базы |
 
 ## Текущая точка продолжения
 
@@ -31,41 +31,37 @@
 
 Начато: `2026-07-22 09:55 Europe/Berlin`
 
-Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions`
+Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions + Playwright Chromium`
 
 Ветка: `ops/playwright-screenshots-v23.8.7`
 
-Pull Request: ещё не открыт
+Pull Request: draft `#22`
 
-Цель: добавить изолированную Playwright-систему, которая запускает точный checkout uDream в настоящем Chromium, проверяет ожидаемое состояние, создаёт desktop/mobile PNG и сохраняет их как GitHub Actions artifacts до ручного или агентского одобрения.
+Цель: добавить изолированную Playwright-систему, которая запускает точный checkout uDream в настоящем Chromium, проверяет ожидаемое состояние, создаёт desktop/mobile PNG и сохраняет их как GitHub Actions artifacts до визуального одобрения.
 
 Планировалось:
 
 - изолировать зависимости Playwright от публичного runtime;
-- зафиксировать стабильную версию `@playwright/test` и lockfile;
-- создать общий сценарный runner;
-- добавить реальные сценарии запуска, поиска `water` и русского алиаса `вода`;
-- создавать desktop и mobile PNG с проверкой ожидаемых элементов;
-- запускать локальный HTTP-сервер из точного branch checkout;
-- загружать PNG, manifest и отчёт как workflow artifact;
-- не коммитить artifact автоматически в `main`;
-- документировать локальный и GitHub Actions запуск;
-- добавить новый патчноут `23.8.7` и новое реальное изображение, полученное самой системой;
+- зафиксировать Playwright и lockfile;
+- создать безопасный сценарный runner;
+- добавить реальные desktop/mobile сценарии;
+- запускать точный checkout через локальный HTTP-сервер;
+- сохранять PNG, per-scenario provenance, manifest и test results как artifact;
+- не разрешать постоянному workflow изменять репозиторий;
+- добавить фактический патчноут и новый проверенный PNG;
+- синхронизировать документацию;
 - сохранить runtime, PWA и активную базу без изменений.
 
 Планируемые файлы:
 
 - `WORK_STATUS.md`
-- `tools/screenshots/package.json`
-- `tools/screenshots/package-lock.json`
-- `tools/screenshots/playwright.config.mjs`
-- `tools/screenshots/capture.spec.mjs`
-- `tools/screenshots/scenarios/*.json`
-- `tools/screenshots/README.md`
+- `.gitignore`
 - `.github/workflows/capture-screenshots.yml`
 - `.github/workflows/validate.yml`
+- `tools/screenshots/**`
 - `scripts/validate-project.mjs`
-- `.gitignore`
+- `scripts/validate-screenshot-tooling.mjs`
+- `AGENTS.md`
 - `README.md`
 - `ROADMAP.md`
 - `VERSION.md`
@@ -73,49 +69,68 @@ Pull Request: ещё не открыт
 - `docs/PROJECT_STATE.md`
 - `docs/FILE_MAP.md`
 - `docs/SCREENSHOT_AUTOMATION.md`
-- новый uNews-патчноут и новый PNG
+- `docs/NEWS_PUBLISHING.md`
+- новый uNews-патчноут и новый Playwright PNG
 
 Критерии завершения:
 
-- GitHub Actions устанавливает зависимости через `npm ci`;
+- GitHub Actions устанавливает package через `npm ci`;
 - Chromium и системные зависимости устанавливаются официальной командой Playwright;
-- тесты работают с одним worker для воспроизводимости;
+- сценарии работают с одним worker;
 - точный checkout поднимается через локальный HTTP-сервер;
-- каждый сценарий сначала проверяет ожидаемое состояние и только затем сохраняет PNG;
+- каждый сценарий выполняет assertions до capture;
 - создаются desktop и mobile изображения;
-- результат сохраняется как artifact с manifest и commit SHA;
-- основной repository validator проверяет наличие и структуру screenshot tooling;
-- автоматизация не входит в browser bundle и не меняет PWA;
+- artifact содержит PNG, entries, manifest, results и trace при ошибке;
+- manifest сохраняет все успешные сценарии даже при retry;
+- постоянный workflow имеет только `contents: read`;
+- screenshot tooling отсутствует в browser bundle;
 - активная база остаётся на 4 086 записях;
-- новый патчноут использует новый реальный PNG из Playwright;
-- GitHub Actions PR проходят полностью;
+- новый патчноут использует новый визуально проверенный PNG;
+- основной validator и Chromium workflow проходят на final head;
 - после merge `WORK_STATUS.md` возвращается в `READY`, следующий шаг — D1.1.
 
 Уже сделано:
 
-- завершён и объединён baseline `23.8.6`;
-- проверена официальная Playwright CI-инструкция;
-- выбрана стабильная версия `@playwright/test` `1.61.1`;
-- создана ветка `ops/playwright-screenshots-v23.8.7` от актуального `main`.
+- создан отдельный package `tools/screenshots/`;
+- `@playwright/test`, `playwright` и `playwright-core` закреплены на `1.61.1`;
+- создан read-only workflow `capture-screenshots.yml`;
+- создан JSON-runner без произвольного JavaScript;
+- добавлены четыре сценария: homepage desktop, `water` desktop/mobile, `вода` mobile;
+- добавлена безопасная очистка `artifacts/screenshots/`;
+- добавлены PNG signature, dimensions и minimum-size checks;
+- manifest собирается из per-scenario entries и не теряет успешные результаты при retry;
+- первый неполный run выявил две реальные ошибки runner: strict assertion для множества алиасов и потерю manifest entries при retry;
+- обе ошибки исправлены, не скрыты и повторно проверены;
+- полный Chromium-run для commit `34d2b13c2e0f16b597572701485df24a538609c8` прошёл четыре из четырёх сценариев;
+- artifact скачан, manifest проверен и все четыре PNG визуально открыты;
+- для патчноута выбран mobile-сценарий `russian-alias-mobile`;
+- выбранный PNG повторно создан из commit `d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47` в `2026-07-22T08:22:53Z`;
+- PNG имеет размер `390×844`, 108 002 байта и корректную PNG-сигнатуру;
+- provenance сохранена в `tools/screenshots/v23.8.7-selected-image.json`;
+- добавлен патчноут `news/2026-07-22-udream-v23-8-7-playwright-screenshots.md`;
+- синхронизированы VERSION, CHANGELOG, README, ROADMAP, PROJECT_STATE, FILE_MAP, AGENTS, NEWS_PUBLISHING и SCREENSHOT_AUTOMATION;
+- PR #22 содержит 28 ожидаемых файлов;
+- runtime, PWA, root package metadata, `data/`, `versions/` и `_archive/` отсутствуют в diff;
+- основной `Validate uDream` уже прошёл на commit `3fa856e00b496d786d1ee5cec8c9d9c35b65a6e7`.
 
 Последний проверенный commit:
 
-- `b7d2bcebbf57cf9d99d1503e54310a43966ff290`
+- `3fa856e00b496d786d1ee5cec8c9d9c35b65a6e7` — основной validator success; Chromium final-head run выполнялся до этого handoff commit.
 
 Следующий точный шаг:
 
-- добавить изолированный package, сценарный runner и GitHub Actions workflow; затем получить первый artifact и проверить реальные PNG.
+- дождаться `Validate uDream` и `Capture uDream screenshots` для нового final head; если оба успешны, обновить PR #22, перевести его из draft, объединить squash merge и вернуть `WORK_STATUS.md` в `READY` на `main`.
 
 Что нельзя делать при продолжении:
 
 - не создавать параллельную ветку для `23.8.7`;
-- не начинать D1.1 до завершения этого PR;
+- не начинать D1.1 до завершения PR #22;
 - не добавлять Playwright в корневые runtime-зависимости;
 - не импортировать screenshot tooling из `script.js`, `src/` или `sw.js`;
 - не коммитить browser binaries и временные artifacts;
 - не менять активную базу, ID или переводы;
-- не считать artifact одобренным без проверки изображения;
-- не переиспользовать старый PNG для патчноута.
+- не переиспользовать старый PNG;
+- не объединять PR при неуспешном основном validator или Chromium workflow.
 
 ## Обязательный порядок перед началом работы
 
