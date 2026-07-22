@@ -45,7 +45,7 @@
 | `data/db.json` | Exact duplicate of `data/bd2.json`; retained pending D1 provenance documentation |
 | `data/report.txt` | Historical generation/quality summary; not used by current runtime |
 
-No retained database or translation variant may be destructively replaced. The future D1 phase must assign stable dataset identity, source, language, version and transformation history before any migration or selector is implemented.
+No retained database or translation variant may be destructively replaced. D1 must assign stable dataset identity, source, language, version and transformation history before any migration or selector is implemented.
 
 The target logical topology is one canonical source dataset, one current Russian translation and up to two independent alternative Russian translations. Exact duplicates are not separate variants. See `docs/TRANSLATION_WORKFLOW.md`.
 
@@ -70,7 +70,7 @@ Any such tooling belongs under a separate D1 implementation PR and must not be i
 |---|---|
 | `WORK_STATUS.md` | Live cross-device and cross-chat task lock: active branch, actual progress, pause point and exact next action |
 | `docs/AI_GITHUB_WORKFLOW.md` | Binding priority order and execution protocol for any number of devices, chats and AI agents |
-| `VERSION.md` | Current release and documentation baseline |
+| `VERSION.md` | Current release and documentation/automation baseline |
 | `version.json` | Deployed runtime version check |
 | `versions/index.html` | User-facing saved-version launcher |
 | `versions/v3.0.0/` | Independently runnable pre-cleanup fallback |
@@ -85,21 +85,51 @@ The runnable `v3.0.0` directory contains only path and scope adaptations needed 
 
 The direct stable source download is `https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip`.
 
+## Playwright screenshot tooling
+
+The following files are development and CI tooling only. They are not imported by the public site, PWA or Service Worker.
+
+| Path | Role |
+|---|---|
+| `tools/screenshots/package.json` | Private isolated package, capture scripts and pinned Playwright dependency |
+| `tools/screenshots/package-lock.json` | Exact `1.61.1` lock for `@playwright/test`, `playwright` and `playwright-core` |
+| `tools/screenshots/playwright.config.mjs` | One-worker Chromium configuration, local HTTP server and artifact paths |
+| `tools/screenshots/prepare-artifacts.mjs` | Guarded cleanup and recreation of `artifacts/screenshots/` before a full run |
+| `tools/screenshots/capture.spec.mjs` | Allowlisted JSON scenario runner, assertions, PNG capture and manifest generation |
+| `tools/screenshots/scenarios/*.json` | Factual desktop/mobile startup, search and alias scenarios |
+| `tools/screenshots/README.md` | Local and GitHub Actions usage guide |
+| `tools/screenshots/v23.8.7-selected-image.json` | Exact provenance of the approved patchnote screenshot |
+| `.github/workflows/capture-screenshots.yml` | Permanent read-only Chromium capture and artifact workflow |
+| `scripts/validate-screenshot-tooling.mjs` | Package/lock, workflow, scenario, cleanup and runtime-isolation validation |
+| `.gitignore` | Excludes browser dependencies, reports and screenshot artifacts |
+
+Generated artifacts are stored under `artifacts/screenshots/` and are never committed automatically.
+
+The permanent workflow uploads:
+
+```text
+images/*.png
+entries/*.json
+manifest.json
+playwright-results.json
+test-results/
+```
+
+The selected `23.8.7` image came from scenario `russian-alias-mobile`, source commit `d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47`.
+
 ## News, screenshot evidence and automation
 
 | Path | Role |
 |---|---|
 | `news/*.md` | Factual patchnotes discovered by uNews |
 | `news/*.{jpg,png}` | New real Telegram visuals stored beside their patchnotes |
-| `docs/SCREENSHOT_AUTOMATION.md` | Real-screenshot definition, provenance metadata and Playwright implementation plan |
-| `scripts/validate-project.mjs` | Repository, `WORK_STATUS`, database, patchnote and image-signature validation |
+| `docs/SCREENSHOT_AUTOMATION.md` | Real-screenshot definition, implemented Playwright workflow and review contract |
+| `scripts/validate-project.mjs` | Repository, `WORK_STATUS`, screenshot tooling, database, patchnote and image validation |
 | `scripts/validate-patchnote-diff.mjs` | Requires a new patchnote and newly added screenshot evidence in each Pull Request |
 | `.github/workflows/validate.yml` | Automatic validation for pushes and Pull Requests |
 | `.github/workflows/publish-v23.8.0.yml` | Immutable one-release workflow for tag and GitHub Release publication |
 | `.github/pull_request_template.md` | Review checklist including handoff and screenshot provenance |
 | `.github/CODEOWNERS` | Default repository owner for review routing |
-
-The planned `23.8.7` patch will add isolated Playwright tooling and a screenshot-artifact workflow. It must not become part of the public browser runtime.
 
 ## Archive
 
@@ -119,10 +149,10 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 | `WORK_STATUS.md` | Mandatory start/pause/completion record for continuing work across devices, chats and agents |
 | `docs/AI_GITHUB_WORKFLOW.md` | Unified GitHub-centered operating protocol and conflict recovery |
 | `AGENTS.md` | Binding instructions for future coding agents |
-| `README.md` | Entry point, current overview, installation and stable download links |
+| `README.md` | Entry point, current overview, installation, screenshots and stable download links |
 | `docs/PRODUCT_VISION.md` | Current mission, final product direction and data-preservation rules |
 | `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, duplicate policy and safe DeepSeek-assisted workflow |
-| `docs/SCREENSHOT_AUTOMATION.md` | Real screenshot and future Playwright workflow contract |
+| `docs/SCREENSHOT_AUTOMATION.md` | Real screenshot and implemented Playwright workflow contract |
 | `VERSION.md` | Release and development version state |
 | `CHANGELOG.md` | User/project-visible change history |
 | `ROADMAP.md` | Completed work, next approved phase and later backlog |
