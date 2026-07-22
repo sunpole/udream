@@ -1,0 +1,61 @@
+name: Prepend D1.1 changelog entry
+
+on:
+  push:
+    branches:
+      - docs/data-provenance-d1.1
+    paths:
+      - .github/workflows/prepend-d1-1-changelog.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: docs/data-provenance-d1.1
+          fetch-depth: 0
+
+      - name: Prepend exact v23.8.8 section
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("CHANGELOG.md")
+          source = path.read_text(encoding="utf-8")
+          marker = "# Changelog\n\n"
+          if not source.startswith(marker):
+              raise SystemExit("CHANGELOG.md does not start with the expected marker")
+          if "## Documentation and provenance update v23.8.8" in source:
+              raise SystemExit("v23.8.8 section already exists")
+
+          section = '''## Documentation and provenance update v23.8.8 — 2026-07-22
+
+- Added `docs/DATA_PROVENANCE.md` as the verified file-level provenance source for current data.
+- Corrected the earlier classification of `data/bd2.json` and `data/db.json`: raw bytes and SHA-256 differ, while parsed and canonical JSON are identical.
+- Recorded exact byte sizes, raw hashes, canonical hashes, record schema, ordered IDs and Git introduction history.
+- Confirmed that the active 4,086-record dataset preserves `id`, `symbol`, `description`, `source` and `date_added` while changing `aliases`, `notes` and `tags`.
+- Explicitly invalidated an earlier intermediate comparison that inspected nonexistent field `note` instead of actual field `notes`.
+- Added `scripts/validate-data-provenance.mjs` and integrated it into the main project validator.
+- Synchronized README, database format, project state, file map and translation workflow with the corrected evidence.
+- Kept application runtime, PWA, Service Worker, release tag, saved versions, archives and all maintained data files unchanged.
+- Defined D1.2 as the next step: dataset registry, canonical-path decision and reversible equivalent-serialization migration design.
+
+'''
+          path.write_text(marker + section + source[len(marker):], encoding="utf-8")
+          PY
+
+      - name: Commit and remove one-off workflow
+        run: |
+          git rm .github/workflows/prepend-d1-1-changelog.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "docs: add D1.1 provenance changelog entry"
+          git push origin HEAD:docs/data-provenance-d1.1
