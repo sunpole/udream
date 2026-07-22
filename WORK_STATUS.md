@@ -8,15 +8,14 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — пакет ремонта `23.8.1–23.8.5` реализован, готовится Pull Request |
+| Состояние | **IN_PROGRESS** — PR #24 с ремонтом публикационных изображений проходит финальную проверку |
 | Рабочая ветка | `fix/pending-publication-images-v23.8.1-v23.8.5` |
-| Открытый Pull Request | ещё не открыт |
+| Открытый Pull Request | `#24` — `https://github.com/sunpole/udream/pull/24` |
 | Стабильный релиз | `v23.8.0` |
 | Документационный и automation baseline | `v23.8.7` |
-| Последнее завершённое изменение | PR #23, squash merge `7172d09f6f862927fd3ae4752ef17c7e5767b837`; main handoff `e21bc8b2288591dcfdc6ad2e3d9a2524bd47b0f6` |
 | Уже опубликовано | `uDream 23.8.0`, Telegram message `54`, `https://t.me/uNewsLog/54` |
 | Сохранённая работа | D1.1 branch commit `9527dff75971d86a634ab437618d26cc03c3c87a` |
-| Активная задача | пройти PR-проверки пяти уникальных document-render PNG, затем подтвердить uNews CRC-аудитом и Telegram FIFO |
+| Активная задача | объединить PR #24, затем завершить uNews `0.3.7`, dry-run и Telegram FIFO |
 
 ## Текущая точка продолжения
 
@@ -24,19 +23,19 @@
 
 Начато: `2026-07-22 Europe/Berlin`
 
-Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions + deterministic document render`
+Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions + Playwright Chromium`
 
 Ветка: `fix/pending-publication-images-v23.8.1-v23.8.5`
 
-Pull Request: ещё не открыт
+Pull Request: `https://github.com/sunpole/udream/pull/24`
 
 Цель: устранить все известные технические и содержательные дефекты неопубликованных изображений `23.8.1–23.8.5`, не меняя FIFO-идентичность патчноутов, runtime, PWA, базу, сохранённые версии или архив.
 
 Планируемые файлы:
 
 - пять существующих неопубликованных патчноутов `23.8.1–23.8.5`;
-- пять отдельных PNG в `news/`;
-- пять SVG-источников и manifest в `tools/screenshots/publication-repairs/`;
+- пять отдельных реальных GitHub UI PNG в `news/`;
+- Playwright provenance manifest `tools/screenshots/v23.8.1-v23.8.5-publication-repairs.json`;
 - `scripts/validate-patchnote-diff.mjs`;
 - `scripts/validate-project.mjs`;
 - `docs/NEWS_PUBLISHING.md`;
@@ -46,12 +45,10 @@ Pull Request: ещё не открыт
 
 - пять изображений уникальны и относятся к конкретным патчам;
 - каждый PNG проходит сигнатуру, PNG chunk CRC, декодирование и размерные проверки;
-- документ на снимке соответствует историческому commit своего этапа;
-- body-текст не выходит за границы панели;
-- старое общее изображение больше не используется `23.8.2–23.8.5`;
-- повреждённый `23.8.1` PNG заменён;
+- GitHub UI-страница на снимке соответствует историческому commit своего этапа;
 - FIFO-поля патчноутов не изменены;
 - runtime, PWA, package metadata, `data/`, `versions/` и `_archive/` отсутствуют в diff;
+- PR #24 объединён после зелёных Actions;
 - uNews `0.3.7` dry-run сообщает 0 image errors;
 - Telegram публикует оставшиеся записи с отдельным checkpoint после каждого поста;
 - `health.json` завершает запуск со status success и `last_error: null`;
@@ -61,31 +58,31 @@ Pull Request: ещё не открыт
 Уже сделано:
 
 - `uDream 23.8.0` опубликован как Telegram message `54`; ключ и `published_at` сохранены, дубль исключён;
-- полный uNews CRC-аудит доказал повреждение общего PNG `23.8.1/23.8.2` в chunk `PLTE`;
+- uNews CRC-аудит доказал повреждение общего PNG `23.8.1/23.8.2` в chunk `PLTE`;
 - доказано, что `23.8.3–23.8.5` использовали технически исправное, но нерелевантное общее изображение;
-- определены исторические commits `24dece5`, `de27596`, `75e3e96`, `8adae19`, `ac7dfe6`;
-- созданы пять уникальных SVG document-render источников из точных Git commits и GitHub Release metadata;
-- созданы пять PNG `1200×675`, каждый прошёл `pngcheck` и ImageMagick;
-- при содержательной проверке обнаружено переполнение текста в `23.8.2`;
-- все SVG ограничены десятью строками тела, последняя базовая линия `y=555`, нижняя граница панели `y=587`;
-- PNG повторно отрендерены и проверены;
-- manifest хранит пять unique entries, exact commits, capture time, размеры и byte size;
-- пять патчноутов обновлены без изменения `project`, `series`, `version` и `queued_at`;
+- созданы пять уникальных Playwright Chromium-снимков публичных исторических GitHub-страниц;
+- manifest хранит пять exact URLs, commits, assertions, UTC-времён, размеров `1440×1000` и byte size;
+- пять патчноутов синхронизированы с manifest без изменения `project`, `series`, `version` и `queued_at`;
 - добавлены repair markers `unpublished-invalid-image` и `unpublished-image-upgrade`;
 - PR-validator проверяет пакетный repair, FIFO-поля, уникальность файлов, PNG CRC и исторические commits;
 - project-validator постоянно проверяет repaired images, CRC и provenance;
+- все временные capture, render, diagnostic и cleanup workflow удалены commit `aa9acba743dbdb1a9c5207769c407fa74ee40cfb`;
+- PR #24 открыт на head `1056af845a0b664d8972bbfae7dd6d0c60bd773d`;
+- `Validate uDream` run `29914377019` завершён успешно;
+- `Capture uDream screenshots` run `29914377000` завершён успешно;
+- diff PR #24 не содержит runtime, PWA, package metadata, активную базу, `versions/` или `_archive/`;
 - D1.1 остаётся сохранённым на паузе и не изменяется.
 
 Последний проверенный commit:
 
 - uDream `main`: `e21bc8b2288591dcfdc6ad2e3d9a2524bd47b0f6`;
+- текущий repair head до этого handoff: `1056af845a0b664d8972bbfae7dd6d0c60bd773d`;
 - D1.1 pause commit: `9527dff75971d86a634ab437618d26cc03c3c87a`;
-- uNews saved state after message 54: `ccd3b8b4400deef478411215bb8038de35742300`;
-- последний implementation commit перед этим handoff: `ccb03dd49598009cc12d36066581b33227ebc34b`.
+- uNews saved state after message 54: `ccd3b8b4400deef478411215bb8038de35742300`.
 
 Следующий точный шаг:
 
-- обновить публикационную документацию, удалить одноразовые workflow, проверить итоговый diff и открыть Pull Request; после merge повторить полный uNews CRC dry-run и завершить `0.3.7`.
+- дождаться зелёных Actions на новом head PR #24, объединить PR; затем вернуться в `sunpole/uNews`, завершить `0.3.7`, выполнить полный dry-run и только после нулевого отчёта запустить Telegram FIFO.
 
 Что нельзя делать при продолжении:
 
