@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "project": "uDream",
   "captureBranchCommit": "136f92502066a97d29c9cffe3f928ef33af8fd35",
-  "generatedAt": "2026-07-22T10:37:58Z",
+  "generatedAt": "2026-07-22T10:41:52Z",
   "entries": [
     {
       "id": "v23.8.1-release",
@@ -17,10 +17,11 @@
       "imageSource": "document-render",
       "imageTarget": "GitHub Release API · v23.8.0@24dece593bea679485057d7551a2583f7f1f5acf",
       "imageCommit": "24dece593bea679485057d7551a2583f7f1f5acf",
-      "imageCapturedAt": "2026-07-22T10:37:58Z",
+      "imageCapturedAt": "2026-07-22T10:41:52Z",
       "width": 1200,
       "height": 675,
-      "bytes": 141708
+      "bytes": 141708,
+      "maxBodyBaseline": 555
     },
     {
       "id": "v23.8.2-version-record",
@@ -35,10 +36,11 @@
       "imageSource": "document-render",
       "imageTarget": "VERSION.md@de2759670fc3979ec5ad63f57ab32754b42eb99c",
       "imageCommit": "de2759670fc3979ec5ad63f57ab32754b42eb99c",
-      "imageCapturedAt": "2026-07-22T10:37:58Z",
+      "imageCapturedAt": "2026-07-22T10:41:52Z",
       "width": 1200,
       "height": 675,
-      "bytes": 220468
+      "bytes": 180578,
+      "maxBodyBaseline": 555
     },
     {
       "id": "v23.8.3-product-vision",
@@ -53,10 +55,11 @@
       "imageSource": "document-render",
       "imageTarget": "docs/PRODUCT_VISION.md@75e3e9664d67f9a9e28952eab53cdb1244369ce5",
       "imageCommit": "75e3e9664d67f9a9e28952eab53cdb1244369ce5",
-      "imageCapturedAt": "2026-07-22T10:37:58Z",
+      "imageCapturedAt": "2026-07-22T10:41:52Z",
       "width": 1200,
       "height": 675,
-      "bytes": 211041
+      "bytes": 169931,
+      "maxBodyBaseline": 555
     },
     {
       "id": "v23.8.4-translation-workflow",
@@ -71,10 +74,11 @@
       "imageSource": "document-render",
       "imageTarget": "docs/TRANSLATION_WORKFLOW.md@8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a",
       "imageCommit": "8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a",
-      "imageCapturedAt": "2026-07-22T10:37:58Z",
+      "imageCapturedAt": "2026-07-22T10:41:52Z",
       "width": 1200,
       "height": 675,
-      "bytes": 229565
+      "bytes": 189320,
+      "maxBodyBaseline": 555
     },
     {
       "id": "v23.8.5-work-status",
@@ -89,10 +93,16 @@
       "imageSource": "document-render",
       "imageTarget": "WORK_STATUS.md@ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f",
       "imageCommit": "ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f",
-      "imageCapturedAt": "2026-07-22T10:37:58Z",
+      "imageCapturedAt": "2026-07-22T10:41:52Z",
       "width": 1200,
       "height": 675,
-      "bytes": 211019
+      "bytes": 178704,
+      "maxBodyBaseline": 555
     }
-  ]
+  ],
+  "layoutValidation": {
+    "maxBodyLines": 10,
+    "maxBodyBaseline": 555,
+    "panelBottom": 587
+  }
 }
