@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "project": "uDream",
+  "captureBranchCommit": "144ba5d1adb33ab2ef7cef0fd49d9927c67c2540",
+  "generatedAt": "2026-07-22T10:34:41Z",
+  "source": "github-ui-playwright",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "entries": [
+    {
+      "id": "v23.8.1-release",
+      "version": "23.8.1",
+      "image": "2026-07-20-udream-v23-8-1-release-finalization.png",
+      "imagePath": "news/2026-07-20-udream-v23-8-1-release-finalization.png",
+      "imageSource": "github-ui",
+      "imageTarget": "https://github.com/sunpole/udream/releases/tag/v23.8.0",
+      "imageCommit": "24dece593bea679485057d7551a2583f7f1f5acf",
+      "imageCapturedAt": "2026-07-22T10:34:43Z",
+      "assertions": [
+        "uDream v23.8.0",
+        "v23.8.0"
+      ],
+      "finalUrl": "https://github.com/sunpole/udream/releases/tag/v23.8.0",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 146449
+    },
+    {
+      "id": "v23.8.2-version-record",
+      "version": "23.8.2",
+      "image": "2026-07-21-udream-v23-8-2-release-record.png",
+      "imagePath": "news/2026-07-21-udream-v23-8-2-release-record.png",
+      "imageSource": "github-ui",
+      "imageTarget": "https://github.com/sunpole/udream/blob/de2759670fc3979ec5ad63f57ab32754b42eb99c/VERSION.md",
+      "imageCommit": "de2759670fc3979ec5ad63f57ab32754b42eb99c",
+      "imageCapturedAt": "2026-07-22T10:34:45Z",
+      "assertions": [
+        "Current release checkpoint",
+        "v23.8.0"
+      ],
+      "finalUrl": "https://github.com/sunpole/udream/blob/de2759670fc3979ec5ad63f57ab32754b42eb99c/VERSION.md",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 194347
+    },
+    {
+      "id": "v23.8.3-product-vision",
+      "version": "23.8.3",
+      "image": "2026-07-21-udream-v23-8-3-product-vision.png",
+      "imagePath": "news/2026-07-21-udream-v23-8-3-product-vision.png",
+      "imageSource": "github-ui",
+      "imageTarget": "https://github.com/sunpole/udream/blob/75e3e9664d67f9a9e28952eab53cdb1244369ce5/docs/PRODUCT_VISION.md",
+      "imageCommit": "75e3e9664d67f9a9e28952eab53cdb1244369ce5",
+      "imageCapturedAt": "2026-07-22T10:34:47Z",
+      "assertions": [
+        "Видение продукта uDream",
+        "Миссия"
+      ],
+      "finalUrl": "https://github.com/sunpole/udream/blob/75e3e9664d67f9a9e28952eab53cdb1244369ce5/docs/PRODUCT_VISION.md",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 187447
+    },
+    {
+      "id": "v23.8.4-translation-workflow",
+      "version": "23.8.4",
+      "image": "2026-07-21-udream-v23-8-4-translation-workflow.png",
+      "imagePath": "news/2026-07-21-udream-v23-8-4-translation-workflow.png",
+      "imageSource": "github-ui",
+      "imageTarget": "https://github.com/sunpole/udream/blob/8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a/docs/TRANSLATION_WORKFLOW.md",
+      "imageCommit": "8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a",
+      "imageCapturedAt": "2026-07-22T10:34:49Z",
+      "assertions": [
+        "Переводы и AI-assisted workflow",
+        "Целевой набор данных"
+      ],
+      "finalUrl": "https://github.com/sunpole/udream/blob/8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a/docs/TRANSLATION_WORKFLOW.md",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 229684
+    },
+    {
+      "id": "v23.8.5-work-status",
+      "version": "23.8.5",
+      "image": "2026-07-21-udream-v23-8-5-work-status.png",
+      "imagePath": "news/2026-07-21-udream-v23-8-5-work-status.png",
+      "imageSource": "github-ui",
+      "imageTarget": "https://github.com/sunpole/udream/blob/ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f/WORK_STATUS.md",
+      "imageCommit": "ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f",
+      "imageCapturedAt": "2026-07-22T10:34:51Z",
+      "assertions": [
+        "WORK_STATUS",
+        "READY",
+        "v23.8.5"
+      ],
+      "finalUrl": "https://github.com/sunpole/udream/blob/ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f/WORK_STATUS.md",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 181980
+    }
+  ]
+}
