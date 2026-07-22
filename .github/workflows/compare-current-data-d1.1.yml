@@ -1,0 +1,146 @@
+name: Compare current D1.1 datasets
+
+on:
+  push:
+    branches:
+      - docs/data-provenance-d1.1
+    paths:
+      - .github/workflows/compare-current-data-d1.1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compare:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: docs/data-provenance-d1.1
+          fetch-depth: 0
+
+      - name: Compare records by stable ID
+        run: |
+          mkdir -p diagnostics
+          python3 - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import pathlib
+          from collections import Counter
+          from datetime import datetime, timezone
+
+          paths = {
+              'ru': pathlib.Path('data/divinity_code_ru.json'),
+              'bd2': pathlib.Path('data/bd2.json'),
+              'db': pathlib.Path('data/db.json'),
+          }
+
+          datasets = {name: json.loads(path.read_text('utf-8-sig')) for name, path in paths.items()}
+          by_id = {name: {record['id']: record for record in records} for name, records in datasets.items()}
+          fields = sorted({field for records in datasets.values() for record in records for field in record})
+
+          result = {
+              'schemaVersion': 1,
+              'generatedAt': datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z'),
+              'files': {},
+              'fields': fields,
+              'idSetsEqual': len({tuple(sorted(records)) for records in by_id.values()}) == 1,
+              'pairComparisons': {},
+          }
+
+          for name, path in paths.items():
+              raw = path.read_bytes()
+              result['files'][name] = {
+                  'path': path.as_posix(),
+                  'bytes': len(raw),
+                  'sha256': hashlib.sha256(raw).hexdigest(),
+                  'records': len(datasets[name]),
+                  'ids': len(by_id[name]),
+              }
+
+          def compare(left_name: str, right_name: str) -> dict:
+              left = by_id[left_name]
+              right = by_id[right_name]
+              shared_ids = sorted(set(left) & set(right))
+              left_only = sorted(set(left) - set(right))
+              right_only = sorted(set(right) - set(left))
+              field_diff_counts = Counter()
+              record_diff_count = 0
+              exact_record_count = 0
+              examples = []
+
+              for record_id in shared_ids:
+                  left_record = left[record_id]
+                  right_record = right[record_id]
+                  record_fields = sorted(set(left_record) | set(right_record))
+                  differing_fields = []
+                  for field in record_fields:
+                      if left_record.get(field) != right_record.get(field):
+                          field_diff_counts[field] += 1
+                          differing_fields.append(field)
+                  if differing_fields:
+                      record_diff_count += 1
+                      if len(examples) < 20:
+                          examples.append({
+                              'id': record_id,
+                              'fields': differing_fields,
+                              'left': {field: left_record.get(field) for field in differing_fields},
+                              'right': {field: right_record.get(field) for field in differing_fields},
+                          })
+                  else:
+                      exact_record_count += 1
+
+              return {
+                  'left': left_name,
+                  'right': right_name,
+                  'sharedIds': len(shared_ids),
+                  'leftOnlyIds': left_only,
+                  'rightOnlyIds': right_only,
+                  'exactRecords': exact_record_count,
+                  'differentRecords': record_diff_count,
+                  'fieldDifferenceCounts': dict(sorted(field_diff_counts.items())),
+                  'examples': examples,
+              }
+
+          for left, right in [('bd2', 'db'), ('bd2', 'ru'), ('db', 'ru')]:
+              result['pairComparisons'][f'{left}__{right}'] = compare(left, right)
+
+          pathlib.Path('diagnostics/d1.1-current-data-comparison.json').write_text(
+              json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+
+          summary = [
+              '# D1.1 current data comparison',
+              '',
+              f"Generated: {result['generatedAt']}",
+              f"ID sets equal: {result['idSetsEqual']}",
+              '',
+          ]
+          for key, comparison in result['pairComparisons'].items():
+              summary.extend([
+                  f"## {key}",
+                  f"shared IDs: {comparison['sharedIds']}",
+                  f"exact records: {comparison['exactRecords']}",
+                  f"different records: {comparison['differentRecords']}",
+                  f"field differences: {comparison['fieldDifferenceCounts']}",
+                  '',
+              ])
+          pathlib.Path('diagnostics/d1.1-current-data-comparison.txt').write_text(
+              '\n'.join(summary), encoding='utf-8'
+          )
+          PY
+
+          cat diagnostics/d1.1-current-data-comparison.txt
+
+      - name: Commit comparison evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/d1.1-current-data-comparison.json diagnostics/d1.1-current-data-comparison.txt
+          git commit -m "chore: compare D1.1 current datasets"
+          git push origin HEAD:docs/data-provenance-d1.1
