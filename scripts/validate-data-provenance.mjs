@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { pathToFileURL } from "node:url";
 
 const EXPECTED_FIELDS = [
   "aliases",
@@ -202,7 +203,7 @@ export async function validateDataProvenance(root = process.cwd()) {
   };
 }
 
-if (import.meta.url === new URL(`file://${process.argv[1]}`).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   validateDataProvenance()
     .then((result) => {
       console.log(
