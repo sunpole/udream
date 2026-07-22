@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#071426"/>
+          <stop offset="1" stop-color="#172554"/>
+        </linearGradient>
+        <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#38bdf8"/>
+          <stop offset="1" stop-color="#818cf8"/>
+        </linearGradient>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#020617" flood-opacity="0.45"/>
+        </filter>
+      </defs>
+      <rect width="1200" height="675" fill="url(#bg)"/>
+      <circle cx="1090" cy="70" r="180" fill="#2563eb" opacity="0.15"/>
+      <circle cx="70" cy="650" r="210" fill="#06b6d4" opacity="0.10"/>
+      <text x="72" y="82" fill="#7dd3fc" font-family="DejaVu Sans, Arial, sans-serif" font-size="26" font-weight="700">uDream · проверенный исторический документ</text>
+      <text x="72" y="140" fill="#f8fafc" font-family="DejaVu Sans, Arial, sans-serif" font-size="42" font-weight="800">Стратегия переводов и вариантов базы</text>
+      <text x="72" y="181" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22">TRANSLATION_WORKFLOW.md на историческом merge commit</text>
+      <rect x="72" y="213" width="1056" height="4" rx="2" fill="url(#line)"/>
+      <rect x="72" y="245" width="1056" height="342" rx="28" fill="#0b1224" stroke="#334155" filter="url(#shadow)"/>
+      <text x="92" y="285" fill="#e2e8f0" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="700">Переводы и AI-assisted workflow</text><text x="92" y="315" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Назначение</text><text x="92" y="345" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Этот документ фиксирует целевую модель переводов uDream и безопасный порядок</text><text x="92" y="375" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">экспериментов с API-переводом. Он не означает, что новые переводы уже созданы</text><text x="92" y="405" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">или что активная база должна быть немедленно изменена.</text><text x="92" y="435" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Целевой набор данных</text><text x="92" y="465" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">После завершения D1 проект стремится иметь следующие логически независимые</text><text x="92" y="495" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">наборы:</text><text x="92" y="525" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">1. Исходная база — канонический набор на языке исходного материала, без</text><text x="92" y="555" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">русской переводческой редакции.</text><text x="92" y="585" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">2. Текущий русский перевод — опубликованный и проверенный вариант, который</text><text x="92" y="615" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">сейчас используется приложением.</text><text x="92" y="645" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">3. Альтернативный русский перевод A — отдельный вариант для сравнения качества</text><text x="92" y="675" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">и формулировок.</text><text x="92" y="705" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">4. Альтернативный русский перевод B — второй независимый вариант, если его</text><text x="92" y="735" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">удастся получить и проверить с достаточным качеством.</text><text x="92" y="765" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Это целевая модель, а не требование искусственно создавать лишние копии. Если</text><text x="92" y="795" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">надёжно получается только один русский перевод, проект сохраняет одну русскую</text>
+      <text x="72" y="625" fill="#94a3b8" font-family="DejaVu Sans Mono, monospace" font-size="16">Источник: docs/TRANSLATION_WORKFLOW.md</text>
+      <text x="72" y="651" fill="#64748b" font-family="DejaVu Sans Mono, monospace" font-size="15">commit: 8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a</text>
+    </svg>

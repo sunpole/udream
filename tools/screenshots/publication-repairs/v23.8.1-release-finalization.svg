@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#071426"/>
+          <stop offset="1" stop-color="#172554"/>
+        </linearGradient>
+        <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#38bdf8"/>
+          <stop offset="1" stop-color="#818cf8"/>
+        </linearGradient>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#020617" flood-opacity="0.45"/>
+        </filter>
+      </defs>
+      <rect width="1200" height="675" fill="url(#bg)"/>
+      <circle cx="1090" cy="70" r="180" fill="#2563eb" opacity="0.15"/>
+      <circle cx="70" cy="650" r="210" fill="#06b6d4" opacity="0.10"/>
+      <text x="72" y="82" fill="#7dd3fc" font-family="DejaVu Sans, Arial, sans-serif" font-size="26" font-weight="700">uDream · проверенный исторический документ</text>
+      <text x="72" y="140" fill="#f8fafc" font-family="DejaVu Sans, Arial, sans-serif" font-size="42" font-weight="800">Официальный Release v23.8.0</text>
+      <text x="72" y="181" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22">Фиксация тега, target commit и публичного GitHub Release</text>
+      <rect x="72" y="213" width="1056" height="4" rx="2" fill="url(#line)"/>
+      <rect x="72" y="245" width="1056" height="342" rx="28" fill="#0b1224" stroke="#334155" filter="url(#shadow)"/>
+      <text x="92" y="285" fill="#e2e8f0" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="700">Название: uDream v23.8.0</text><text x="92" y="315" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Git tag: v23.8.0</text><text x="92" y="345" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Target commit: main</text><text x="92" y="375" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Опубликован: 2026-07-20T18:58:44Z</text><text x="92" y="405" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Release URL: https://github.com/sunpole/udream/releases/tag/v23.8.0</text><text x="92" y="435" fill="#cbd5e1" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="400">Тесты, PWA-проверка и неизменность базы зафиксированы в релизной документации.</text>
+      <text x="72" y="625" fill="#94a3b8" font-family="DejaVu Sans Mono, monospace" font-size="16">Источник: GitHub Release API · v23.8.0</text>
+      <text x="72" y="651" fill="#64748b" font-family="DejaVu Sans Mono, monospace" font-size="15">commit: 24dece593bea679485057d7551a2583f7f1f5acf</text>
+    </svg>
