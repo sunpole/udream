@@ -8,95 +8,90 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **PAUSED** — D1.1 сохранён; ожидается подтверждение восстановленной Telegram FIFO-очереди |
-| Рабочая ветка | `docs/data-provenance-d1.1` |
-| Открытый Pull Request | нет |
+| Состояние | **IN_PROGRESS** — ремонтируются все неопубликованные изображения `23.8.1–23.8.5` |
+| Рабочая ветка | `fix/pending-publication-images-v23.8.1-v23.8.5` |
+| Открытый Pull Request | ещё не открыт |
 | Стабильный релиз | `v23.8.0` |
 | Документационный и automation baseline | `v23.8.7` |
-| Последнее завершённое изменение | PR #23, squash merge `7172d09f6f862927fd3ae4752ef17c7e5767b837` |
+| Последнее завершённое изменение | PR #23, squash merge `7172d09f6f862927fd3ae4752ef17c7e5767b837`; main handoff `e21bc8b2288591dcfdc6ad2e3d9a2524bd47b0f6` |
+| Уже опубликовано | `uDream 23.8.0`, Telegram message `54`, `https://t.me/uNewsLog/54` |
 | Сохранённая работа | D1.1 branch commit `9527dff75971d86a634ab437618d26cc03c3c87a` |
-| Внешний контрольный этап | повторный запуск uNews `0.3.5`, подтверждение `message_id`, `post_url`, `published_at`, success health и закрытия Issue №3 |
-| Следующая точная задача после подтверждения | синхронизировать `docs/data-provenance-d1.1` с `main`, вернуть `IN_PROGRESS` и завершить `docs/DATA_PROVENANCE.md` |
+| Активная задача | дать `23.8.1–23.8.5` пять уникальных, реальных и исторически точных GitHub-снимков; затем подтвердить uNews CRC-аудитом и Telegram FIFO |
 
 ## Текущая точка продолжения
 
-Статус: `PAUSED`
+Статус: `IN_PROGRESS`
 
-Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions`
+Начато: `2026-07-22 Europe/Berlin`
 
-Ветка: `docs/data-provenance-d1.1`
+Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions + Playwright Chromium`
+
+Ветка: `fix/pending-publication-images-v23.8.1-v23.8.5`
 
 Pull Request: ещё не открыт
 
-Цель: после доказанного восстановления Telegram-публикации продолжить D1.1 — восстановление происхождения текущих data-файлов без изменения активной базы, runtime, PWA, сохранённых версий и архивов.
+Цель: устранить все известные технические и содержательные дефекты неопубликованных изображений `23.8.1–23.8.5`, не меняя FIFO-идентичность патчноутов, runtime, PWA, базу, сохранённые версии или архив.
 
-Планируемые файлы:
+Планируемые изменения:
 
-- `WORK_STATUS.md`
-- `docs/DATA_PROVENANCE.md`
-- `docs/DATABASE_FORMAT.md`
-- `docs/FILE_MAP.md`
-- `docs/PROJECT_STATE.md`
-- `README.md`
-- `ROADMAP.md`
-- `VERSION.md`
-- `CHANGELOG.md`
-- `scripts/validate-data-provenance.mjs`
-- `scripts/validate-project.mjs`
-- D1.1 патчноут и новый реальный PNG
+- `23.8.1` — заменить PNG с неверным CRC `PLTE` на реальный снимок GitHub Release `v23.8.0`;
+- `23.8.2` — дать отдельный снимок исторического `VERSION.md` с release checkpoint;
+- `23.8.3` — дать отдельный снимок исторического `docs/PRODUCT_VISION.md`;
+- `23.8.4` — дать отдельный снимок исторического `docs/TRANSLATION_WORKFLOW.md`;
+- `23.8.5` — дать отдельный снимок исторического `WORK_STATUS.md` baseline `ac7dfe6b`;
+- сохранить точные `project`, `series`, `version` и `queued_at` каждого патчноута;
+- добавить `image_source`, `image_target`, `image_commit`, `image_captured_at` и repair metadata;
+- расширить CI для пакетного ремонта только неопубликованных изображений с сохранением FIFO-идентичности;
+- пройти uDream validator и полный uNews byte/CRC dry-run;
+- объединить repair PR и продолжить очередь без повторной отправки message `54`.
 
 Критерии завершения:
 
-- Telegram FIFO-пакет опубликован без пропусков и дублей;
-- для каждой записи сохранены `message_id`, `post_url` и `published_at`;
-- `data/health.json` uNews показывает успешную последнюю попытку и `last_error: null`;
-- служебный Issue uNews №3 закрыт после восстановления;
-- D1.1 ветка синхронизирована с актуальным `main`;
-- создан `docs/DATA_PROVENANCE.md` с разделением доказанных фактов, выводов и неизвестного;
-- активные 4 086 записей и их bytes/hash не изменены;
-- runtime, PWA, `versions/` и `_archive/` отсутствуют в D1.1 diff;
-- GitHub Actions проходят;
-- после D1.1 merge статус возвращён в `READY`, следующий этап — D1.2.
+- пять изображений уникальны и относятся к конкретным патчам;
+- каждый PNG проходит сигнатуру, PNG chunk CRC, декодирование и размерные проверки;
+- GitHub UI/документ на снимке соответствует историческому commit своего этапа;
+- старое общее изображение больше не используется `23.8.2–23.8.5`;
+- повреждённый `23.8.1` PNG заменён;
+- FIFO-поля патчноутов не изменены;
+- runtime, PWA, package metadata, `data/`, `versions/` и `_archive/` отсутствуют в diff;
+- uNews `0.3.7` dry-run сообщает 0 image errors;
+- Telegram публикует оставшиеся записи с отдельным checkpoint после каждого поста;
+- `health.json` завершает запуск со status success и `last_error: null`;
+- Issue uNews №3 закрыт;
+- D1.1 возвращён в `IN_PROGRESS` в существующей ветке.
 
-Что уже сделано:
+Уже сделано:
 
-- uNews `0.3.5` объединён в `main`, PR #4, commit `cf69fe7f0264a64709177e674cbd8fec8c5df64c`;
-- восстановлена запись точной фатальной причины до завершения workflow;
-- причина Telegram-блокировки определена как `IMAGE_PROCESS_FAILED` у первого uDream-патчноута;
-- доказано, что прежний файл `23.8.0` не имел PNG-сигнатуры;
-- PR uDream #23 заменил его настоящим Chromium PNG `390×844`, 102 637 байт;
-- сохранены exact source commit `5f7af86864134b608402e8cf2dc9db4071071b64` и capture time `2026-07-22T09:47:22Z`;
-- FIFO-идентичность `project`, `series`, `version`, `queued_at` и имя изображения сохранены;
-- добавлено узкое CI-правило ремонта только доказанно невалидного ещё не опубликованного изображения;
-- PR #23 прошёл `Validate uDream` и `Capture uDream screenshots` и объединён commit `7172d09f6f862927fd3ae4752ef17c7e5767b837`;
-- D1.1 доказательства сохранены в отдельной ветке и не потеряны.
+- `uDream 23.8.0` успешно опубликован как Telegram message `54`; ключ и `published_at` сохранены, дубль исключён;
+- uNews `0.3.6` настроил Git identity до publisher-step и защитил порядок source-check;
+- полный uNews audit проверил все девять оставшихся pending-изображений;
+- доказано: `23.8.1` и `23.8.2` используют один PNG с неверным CRC chunk `PLTE`;
+- доказано: размеры повреждённого PNG `600×315`, но `pngcheck` и ImageMagick decode завершаются ошибкой;
+- доказано: `23.8.3–23.8.5` технически декодируются, но повторно используют старое нерелевантное изображение;
+- определены исторические commits: release target `24dece5`, release docs `de27596`, product vision `75e3e96`, translation `8adae19`, work status `ac7dfe6`;
+- создана отдельная repair-ветка от актуального `main`;
+- D1.1 остаётся сохранённым на паузе и не изменяется.
 
 Последний проверенный commit:
 
-- uDream `main`: `7172d09f6f862927fd3ae4752ef17c7e5767b837`;
-- D1.1 pause commit: `9527dff75971d86a634ab437618d26cc03c3c87a`.
+- uDream `main`: `e21bc8b2288591dcfdc6ad2e3d9a2524bd47b0f6`;
+- D1.1 pause commit: `9527dff75971d86a634ab437618d26cc03c3c87a`;
+- uNews saved state commit after message 54: `ccd3b8b4400deef478411215bb8038de35742300`.
 
 Следующий точный шаг:
 
-- запустить восстановленную uNews-очередь из `main`, проверить последовательные GitHub checkpoints и Telegram URLs; после полного успеха возобновить D1.1 в существующей ветке.
+- запустить один Playwright workflow, получить пять GitHub UI screenshots и provenance manifest; затем обновить пять существующих неопубликованных патчноутов и валидаторы.
 
 Что нельзя делать при продолжении:
 
-- не создавать новую D1.1 ветку;
-- не удалять ветку `docs/data-provenance-d1.1`;
-- не обходить FIFO и не публиковать более новые uDream-версии раньше `23.8.0`;
-- не создавать дублирующий пост для repaired `23.8.0`;
-- не менять активную базу, ID, тексты, runtime, PWA, `versions/` и `_archive/`;
-- не описывать предположение о происхождении данных как доказанный факт.
+- не повторно публиковать `23.8.0`;
+- не менять project, series, version или queued_at старых патчноутов;
+- не создавать пять новых дублирующих новостей вместо ремонта неопубликованных записей;
+- не использовать одно общее изображение для разных патчей;
+- не менять runtime, PWA, Service Worker, package metadata или базу;
+- не создавать новую D1.1 ветку и не удалять `docs/data-provenance-d1.1`;
+- не продолжать D1.1 до подтверждения Telegram recovery.
 
 ## Источник истины
 
 Реальные GitHub-факты — `main`, открытые Pull Request, commits, Actions, uNews `data/published.json`, `data/health.json` и Telegram `post_url` — имеют приоритет над памятью ИИ, старыми чатами и незапушенными локальными изменениями.
-
-## Значения статуса
-
-- `READY` — незавершённой задачи нет.
-- `IN_PROGRESS` — задача выполняется в указанной ветке.
-- `PAUSED` — работа сохранена в GitHub и может быть продолжена после указанного контрольного этапа.
-- `BLOCKED` — продолжение невозможно до устранения препятствия.
-- `COMPLETED` — реализация закончена, но handoff ещё должен быть финализирован.
