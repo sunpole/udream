@@ -13,35 +13,35 @@
 - Database: the active 4,086-record JSON database is unchanged
 - Previous checkpoint: `v23.7.0`
 
-## Documentation and automation baseline
+## Documentation, provenance and automation baseline
 
-`v23.8.7`
+`v23.8.8`
 
-- Status: repository-automation milestone; it does not create a new application build or move the `v23.8.0` tag
-- Purpose: generate factual desktop/mobile screenshots from the exact branch commit in real Chromium before a patchnote can publish them
-- Isolated package: `tools/screenshots/`
-- Pinned version: `@playwright/test`, `playwright` and `playwright-core` `1.61.1`
-- Permanent workflow: `.github/workflows/capture-screenshots.yml`
-- Permissions: read-only `contents: read`; the permanent workflow cannot commit or push
-- Scenarios: homepage desktop, `water` desktop/mobile and Russian alias `вода` mobile
-- Evidence: PNG files, per-scenario entries, manifest and Playwright results are uploaded as GitHub Actions artifacts
-- First successful full run: commit `34d2b13c2e0f16b597572701485df24a538609c8`, four of four scenarios passed
-- Selected patchnote image: scenario `russian-alias-mobile`, source commit `d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47`, captured `2026-07-22T08:22:53Z`
-- Validation: `scripts/validate-screenshot-tooling.mjs` checks package/lock, workflow permissions, scenarios, assertions, artifact cleanup and runtime isolation
-- Previous documentation baseline: `v23.8.6`, PR #21, squash merge `58ebaea07ef488e0131bd9c3b5c359a191d6275e`
+- Status: D1.1 data-provenance milestone; it does not create a new application build or move the `v23.8.0` tag
+- Purpose: recover and lock the verified file-level provenance of the current data files without modifying any database record
+- Provenance source: `docs/DATA_PROVENANCE.md`
+- Permanent validator: `scripts/validate-data-provenance.mjs`, integrated into `scripts/validate-project.mjs`
+- Active dataset: `data/divinity_code_ru.json`, 4,086 records, SHA-256 `1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64`
+- English serialization A: `data/bd2.json`, SHA-256 `814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28`
+- English serialization B: `data/db.json`, SHA-256 `4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0`
+- Canonical English JSON SHA-256: `5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1`
+- Corrected classification: `bd2.json` and `db.json` are byte-different but parsed/canonical-JSON equal, so they are two serializations of one logical source dataset
+- Active-dataset comparison: ordered IDs and `symbol`, `description`, `source`, `date_added` are preserved; `aliases` differ in 4,083 records and `notes`/`tags` differ in all 4,086
+- Historical report: `data/report.txt`, SHA-256 `dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d`
+- Unknown boundary: the exact generation/translation script, prompt, provider sequence and human-review record are not proven
+- Previous documentation and automation baseline: `v23.8.7`, PR #22, squash merge `464b61cf7df8f27ba14bb9a4cf5ed50c8479cef8`
+- Screenshot implementation remains: `tools/screenshots/` and read-only `.github/workflows/capture-screenshots.yml`
 - Live handoff source: `WORK_STATUS.md`
 - Unified execution protocol: `docs/AI_GITHUB_WORKFLOW.md`
-- Screenshot contract and implementation: `docs/SCREENSHOT_AUTOMATION.md`
-- Next approved series: D1, beginning with D1.1 provenance recovery
-- Product source of truth: `docs/PRODUCT_VISION.md`
 - Translation source of truth: `docs/TRANSLATION_WORKFLOW.md`
+- Next approved task after D1.1 merge: D1.2 dataset registry, canonical-path decision and reversible equivalent-serialization migration design
 - Repository download: https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip
 
 ## Current development line
 
 No functional application version is assigned after `v23.8.0`.
 
-Documentation and automation updates `23.8.1` through `23.8.7` finalize the immutable release record, product/data baseline, translation safety, cross-device workflow, screenshot provenance and real Chromium artifact generation. They do not change application runtime, PWA behavior or database records.
+Documentation, provenance and automation updates `23.8.1` through `23.8.8` finalize the immutable release record, product/data baseline, translation safety, cross-device workflow, screenshot provenance, real Chromium artifacts and verified data provenance. They do not change application runtime, PWA behavior or database records.
 
 ## Unified version line
 
