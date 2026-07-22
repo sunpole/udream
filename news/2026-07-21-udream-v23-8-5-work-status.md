@@ -8,12 +8,12 @@ queued_at: 2026-07-21T06:00:00Z
 repo_url: https://github.com/sunpole/udream
 web_url: https://sunpole.github.io/udream/
 image: 2026-07-21-udream-v23-8-5-work-status.png
-image_source: document-render
-image_target: WORK_STATUS.md@ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f
+image_source: github-ui
+image_target: https://github.com/sunpole/udream/blob/ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f/WORK_STATUS.md
 image_commit: ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f
-image_captured_at: 2026-07-22T10:41:52Z
+image_captured_at: 2026-07-22T10:34:51Z
 publication_repair: unpublished-image-upgrade
-publication_repair_reason: replace a reused generic repository image with a dedicated historical WORK_STATUS.md render before publication
+publication_repair_reason: replace a reused generic repository image with a dedicated historical WORK_STATUS.md screenshot before publication
 ---
 
 # uDream 23.8.5: единый статус работы между устройствами
@@ -33,9 +33,9 @@ publication_repair_reason: replace a reused generic repository image with a dedi
 
 Код приложения, PWA и активная база не изменялись.
 
-Изображение — новый документальный рендер исторического `WORK_STATUS.md` на exact baseline commit `ac7dfe6…`. На нём показаны статус `READY`, главные поля handoff и следующий этап D1.1, поэтому кадр относится именно к межустройственной передаче работы.
+Изображение — настоящий Playwright Chromium-снимок исторического `WORK_STATUS.md` на exact baseline commit `ac7dfe6…`. Сценарий подтвердил видимость `WORK_STATUS`, статуса `READY` и baseline `v23.8.5`; точный URL, commit, время, размеры и byte size записаны в `tools/screenshots/v23.8.1-v23.8.5-publication-repairs.json`.
 
-Публикационный upgrade выполнен до первого Telegram-поста. FIFO-идентичность записи сохранена, новый PNG уникален для `23.8.5`, а SVG-источник и provenance находятся в `tools/screenshots/publication-repairs/`.
+Публикационный upgrade выполнен до первого Telegram-поста. FIFO-идентичность записи сохранена, новый PNG уникален для `23.8.5` и не повторяет общую картинку раннего документационного патча.
 
 Короткий текст для Telegram:
 
