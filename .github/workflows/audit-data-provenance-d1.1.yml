@@ -1,0 +1,315 @@
+name: Audit D1.1 data provenance
+
+on:
+  push:
+    branches:
+      - docs/data-provenance-d1.1
+    paths:
+      - .github/workflows/audit-data-provenance-d1.1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout complete Git history
+        uses: actions/checkout@v5
+        with:
+          ref: docs/data-provenance-d1.1
+          fetch-depth: 0
+
+      - name: Generate byte-level and history evidence
+        run: |
+          mkdir -p diagnostics
+          python3 - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import os
+          import pathlib
+          import re
+          import subprocess
+          from collections import defaultdict
+          from datetime import datetime, timezone
+
+          ROOT = pathlib.Path.cwd()
+          CURRENT_DATA = [
+              pathlib.Path('data/divinity_code_ru.json'),
+              pathlib.Path('data/bd2.json'),
+              pathlib.Path('data/db.json'),
+              pathlib.Path('data/report.txt'),
+          ]
+          EVIDENCE_ROOTS = [
+              pathlib.Path('data'),
+              pathlib.Path('_archive/old-data'),
+              pathlib.Path('_archive/source-files'),
+          ]
+
+          def run(*args: str, check: bool = True) -> str:
+              completed = subprocess.run(
+                  args,
+                  cwd=ROOT,
+                  check=check,
+                  text=True,
+                  stdout=subprocess.PIPE,
+                  stderr=subprocess.STDOUT,
+              )
+              return completed.stdout
+
+          def sha256_bytes(data: bytes) -> str:
+              return hashlib.sha256(data).hexdigest()
+
+          def text_metrics(value: object) -> dict[str, int]:
+              text = json.dumps(value, ensure_ascii=False) if not isinstance(value, str) else value
+              return {
+                  'characters': len(text),
+                  'cyrillicCharacters': len(re.findall(r'[А-Яа-яЁё]', text)),
+                  'latinCharacters': len(re.findall(r'[A-Za-z]', text)),
+                  'googleMarkers': text.count('[GOOGLE]'),
+                  'myMemoryMarkers': text.count('[MYMEMORY]'),
+              }
+
+          def inspect_json(path: pathlib.Path, raw: bytes) -> dict[str, object]:
+              value = json.loads(raw.decode('utf-8-sig'))
+              result: dict[str, object] = {
+                  'rootType': type(value).__name__,
+                  'metrics': text_metrics(value),
+              }
+              if isinstance(value, list):
+                  result['records'] = len(value)
+                  object_records = [item for item in value if isinstance(item, dict)]
+                  result['objectRecords'] = len(object_records)
+                  field_names = sorted({key for item in object_records for key in item.keys()})
+                  result['fields'] = field_names
+                  ids = [item.get('id') for item in object_records if isinstance(item.get('id'), int)]
+                  result['integerIds'] = len(ids)
+                  result['uniqueIntegerIds'] = len(set(ids))
+                  result['minimumId'] = min(ids) if ids else None
+                  result['maximumId'] = max(ids) if ids else None
+                  result['firstRecordSummary'] = object_records[0] if object_records else None
+                  result['lastRecordSummary'] = object_records[-1] if object_records else None
+                  if object_records:
+                      field_types: dict[str, set[str]] = defaultdict(set)
+                      for item in object_records:
+                          for key, field_value in item.items():
+                              field_types[key].add(type(field_value).__name__)
+                      result['fieldTypes'] = {
+                          key: sorted(types) for key, types in sorted(field_types.items())
+                      }
+              return result
+
+          def inspect_file(path: pathlib.Path) -> dict[str, object]:
+              raw = path.read_bytes()
+              result: dict[str, object] = {
+                  'path': path.as_posix(),
+                  'bytes': len(raw),
+                  'sha256': sha256_bytes(raw),
+                  'extension': path.suffix.lower(),
+              }
+              if path.suffix.lower() == '.json':
+                  try:
+                      result['json'] = inspect_json(path, raw)
+                  except Exception as error:
+                      result['jsonError'] = f'{type(error).__name__}: {error}'
+              elif path.suffix.lower() in {'.txt', '.md', '.py', '.js', '.mjs'}:
+                  try:
+                      text = raw.decode('utf-8-sig')
+                      result['text'] = {
+                          'lines': len(text.splitlines()),
+                          **text_metrics(text),
+                      }
+                  except Exception as error:
+                      result['textError'] = f'{type(error).__name__}: {error}'
+              return result
+
+          def commit_history(path: pathlib.Path) -> list[dict[str, str]]:
+              format_string = '%H%x1f%aI%x1f%an%x1f%s'
+              output = run('git', 'log', '--follow', f'--format={format_string}', '--', path.as_posix())
+              history = []
+              for line in output.splitlines():
+                  parts = line.split('\x1f')
+                  if len(parts) == 4:
+                      history.append({
+                          'commit': parts[0],
+                          'authorDate': parts[1],
+                          'author': parts[2],
+                          'subject': parts[3],
+                      })
+              return history
+
+          def historical_versions(path: pathlib.Path) -> list[dict[str, object]]:
+              commits = [line.strip() for line in run(
+                  'git', 'log', '--follow', '--format=%H', '--', path.as_posix()
+              ).splitlines() if line.strip()]
+              versions: list[dict[str, object]] = []
+              seen: set[tuple[str, str]] = set()
+              for commit in commits:
+                  blob = subprocess.run(
+                      ['git', 'show', f'{commit}:{path.as_posix()}'],
+                      cwd=ROOT,
+                      stdout=subprocess.PIPE,
+                      stderr=subprocess.DEVNULL,
+                  )
+                  if blob.returncode != 0:
+                      continue
+                  digest = sha256_bytes(blob.stdout)
+                  key = (commit, digest)
+                  if key in seen:
+                      continue
+                  seen.add(key)
+                  item: dict[str, object] = {
+                      'commit': commit,
+                      'bytes': len(blob.stdout),
+                      'sha256': digest,
+                  }
+                  if path.suffix.lower() == '.json':
+                      try:
+                          parsed = json.loads(blob.stdout.decode('utf-8-sig'))
+                          item['records'] = len(parsed) if isinstance(parsed, list) else None
+                          item['rootType'] = type(parsed).__name__
+                          item['metrics'] = text_metrics(parsed)
+                      except Exception as error:
+                          item['jsonError'] = f'{type(error).__name__}: {error}'
+                  versions.append(item)
+              return versions
+
+          inventory_paths: list[pathlib.Path] = []
+          for root in EVIDENCE_ROOTS:
+              if root.exists():
+                  inventory_paths.extend(path for path in root.rglob('*') if path.is_file())
+          inventory_paths = sorted(set(inventory_paths), key=lambda item: item.as_posix().lower())
+
+          inventory = [inspect_file(path) for path in inventory_paths]
+          duplicate_groups: dict[str, list[str]] = defaultdict(list)
+          for item in inventory:
+              duplicate_groups[str(item['sha256'])].append(str(item['path']))
+          exact_duplicates = [
+              {'sha256': digest, 'paths': paths}
+              for digest, paths in sorted(duplicate_groups.items())
+              if len(paths) > 1
+          ]
+
+          current = {}
+          for path in CURRENT_DATA:
+              if not path.exists():
+                  current[path.as_posix()] = {'missing': True}
+                  continue
+              current[path.as_posix()] = {
+                  'file': inspect_file(path),
+                  'history': commit_history(path),
+                  'historicalVersions': historical_versions(path),
+              }
+
+          references_pattern = re.compile(
+              r'(divinity_code_ru|bd2\.json|db\.json|report\.txt|\[GOOGLE\]|\[MYMEMORY\]|'
+              r'DeepSeek|translation|translate|translator|перевод|DivinityCode)',
+              re.IGNORECASE,
+          )
+          reference_hits: list[dict[str, object]] = []
+          excluded_parts = {'.git', 'node_modules', 'artifacts'}
+          for path in sorted((p for p in ROOT.rglob('*') if p.is_file()), key=lambda item: item.as_posix()):
+              if excluded_parts.intersection(path.parts):
+                  continue
+              if path.stat().st_size > 2_000_000:
+                  continue
+              try:
+                  text = path.read_text('utf-8-sig')
+              except Exception:
+                  continue
+              hits = []
+              for number, line in enumerate(text.splitlines(), start=1):
+                  if references_pattern.search(line):
+                      hits.append({'line': number, 'text': line[:500]})
+                      if len(hits) >= 100:
+                          break
+              if hits:
+                  reference_hits.append({'path': path.as_posix(), 'hits': hits})
+
+          script_candidates = []
+          for path in sorted((p for p in ROOT.rglob('*') if p.is_file()), key=lambda item: item.as_posix()):
+              if '.git' in path.parts or 'node_modules' in path.parts:
+                  continue
+              lowered = path.name.lower()
+              if path.suffix.lower() in {'.py', '.js', '.mjs', '.sh', '.ps1', '.bat'} and any(
+                  token in lowered for token in ('data', 'db', 'translat', 'convert', 'generate', 'parse', 'dream')
+              ):
+                  script_candidates.append(path.as_posix())
+
+          report_text = pathlib.Path('data/report.txt').read_text('utf-8-sig') if pathlib.Path('data/report.txt').exists() else None
+
+          evidence = {
+              'schemaVersion': 1,
+              'generatedAt': datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z'),
+              'branch': run('git', 'branch', '--show-current').strip(),
+              'commit': run('git', 'rev-parse', 'HEAD').strip(),
+              'repositoryHistory': {
+                  'rootCommits': run('git', 'rev-list', '--count', 'HEAD').strip(),
+                  'dataLog': run('git', 'log', '--all', '--date=iso-strict', '--format=%H%x09%aI%x09%s', '--', 'data').splitlines(),
+                  'archiveDataLog': run('git', 'log', '--all', '--date=iso-strict', '--format=%H%x09%aI%x09%s', '--', '_archive/old-data', '_archive/source-files').splitlines(),
+              },
+              'currentFiles': current,
+              'inventory': inventory,
+              'exactDuplicateGroups': exact_duplicates,
+              'bd2DbByteEqual': (
+                  pathlib.Path('data/bd2.json').read_bytes() == pathlib.Path('data/db.json').read_bytes()
+                  if pathlib.Path('data/bd2.json').exists() and pathlib.Path('data/db.json').exists()
+                  else None
+              ),
+              'referenceHits': reference_hits,
+              'scriptCandidates': script_candidates,
+              'reportText': report_text,
+          }
+
+          pathlib.Path('diagnostics/d1.1-audit.json').write_text(
+              json.dumps(evidence, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          lines = [
+              '# D1.1 audit summary',
+              '',
+              f"Generated: {evidence['generatedAt']}",
+              f"Commit: {evidence['commit']}",
+              f"Branch: {evidence['branch']}",
+              '',
+              '## Current files',
+          ]
+          for file_path, item in current.items():
+              if item.get('missing'):
+                  lines.append(f'- {file_path}: MISSING')
+                  continue
+              file_info = item['file']
+              json_info = file_info.get('json', {})
+              lines.append(
+                  f"- {file_path}: {file_info['bytes']} bytes, sha256 {file_info['sha256']}, "
+                  f"records {json_info.get('records', 'n/a')}, history commits {len(item['history'])}"
+              )
+          lines.extend([
+              '',
+              f"bd2.json byte-equal db.json: {evidence['bd2DbByteEqual']}",
+              f"inventory files: {len(inventory)}",
+              f"exact duplicate groups: {len(exact_duplicates)}",
+              f"reference-hit files: {len(reference_hits)}",
+              f"script candidates: {len(script_candidates)}",
+              '',
+              'Full machine-readable evidence: diagnostics/d1.1-audit.json',
+          ])
+          pathlib.Path('diagnostics/d1.1-audit.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+          PY
+
+          cat diagnostics/d1.1-audit.txt
+
+      - name: Commit diagnostic evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/d1.1-audit.json diagnostics/d1.1-audit.txt
+          git commit -m "chore: capture D1.1 provenance evidence"
+          git push origin HEAD:docs/data-provenance-d1.1
