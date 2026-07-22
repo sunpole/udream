@@ -16,71 +16,106 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **READY** — незавершённой активной задачи нет |
-| Рабочая ветка | `main` |
-| Открытый Pull Request | нет |
+| Состояние | **IN_PROGRESS** — создаётся автоматизация реальных desktop/mobile-скриншотов |
+| Рабочая ветка | `ops/playwright-screenshots-v23.8.7` |
+| Открытый Pull Request | ещё не открыт |
 | Стабильный релиз | `v23.8.0` |
-| Документационный baseline | `v23.8.6` — единая работа ИИ ↔ GitHub и реальные доказательства скриншотов |
-| Последнее завершённое изменение | PR #21, squash merge `58ebaea07ef488e0131bd9c3b5c359a191d6275e` |
-| Следующая утверждённая работа | `23.8.7` — Playwright desktop/mobile screenshots и GitHub Actions artifacts |
+| Документационный baseline | `v23.8.6` |
+| Последнее завершённое изменение | PR #21, squash merge `58ebaea07ef488e0131bd9c3b5c359a191d6275e`; финальный READY commit `b7d2bcebbf57cf9d99d1503e54310a43966ff290` |
+| Активная задача | `23.8.7` — Playwright Chromium, сценарии и GitHub Actions artifacts |
 | Следующая продуктовая серия после неё | `D1`, начиная с D1.1 — происхождение данных без изменения активной базы |
 
 ## Текущая точка продолжения
 
-Работа `23.8.6` завершена и объединена в `main`.
+Статус: `IN_PROGRESS`
 
-Фактически сделано:
+Начато: `2026-07-22 09:55 Europe/Berlin`
 
-- GitHub-факты назначены источником истины с наивысшим приоритетом;
-- добавлен единый протокол `docs/AI_GITHUB_WORKFLOW.md` для любого количества устройств, чатов и ИИ-агентов;
-- новый чат обязан продолжать указанную активную ветку и не создавать конкурирующую реализацию;
-- подключённый ИИ выполняет доступную GitHub-работу самостоятельно и обращается к владельцу только там, где нужен человек или недоступный инструмент;
-- добавлена спецификация `docs/SCREENSHOT_AUTOMATION.md`;
-- каждый новый патчноут обязан добавить новый PNG/JPEG в том же Pull Request;
-- повторное использование существующей картинки блокируется автоматически;
-- обязательны `image_source`, `image_target`, `image_commit` и `image_captured_at`;
-- `WORK_STATUS.md`, изображения и screenshot metadata проверяются валидатором;
-- Issue №19 обновлён и теперь хранит техническое задание D1.1, а не живое состояние;
-- случайное обрезание старой истории `CHANGELOG.md` было обнаружено до merge и полностью исправлено;
-- историческое изображение с неверным расширением сохранено без переписывания, а строгая проверка применяется к новым патчноутам `23.8.6+`;
-- для патчноута создан новый фактический PNG из сохранённого SVG-источника;
-- runtime, PWA, release tag и активная база из 4 086 записей не изменялись.
+Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions`
 
-Проверки:
+Ветка: `ops/playwright-screenshots-v23.8.7`
 
-- Pull Request #21 — mergeable;
-- GitHub Actions `Validate uDream`, run #50 — success;
-- regression tests — success;
-- repository, database, WORK_STATUS and patchnote validation — success;
-- new patchnote and new screenshot evidence check — success;
-- JavaScript syntax checks — success;
-- изменены только 17 ожидаемых файлов, без `data/`, runtime, PWA, package metadata, `versions/` и `_archive/`.
+Pull Request: ещё не открыт
 
-Pull Request / merge:
+Цель: добавить изолированную Playwright-систему, которая запускает точный checkout uDream в настоящем Chromium, проверяет ожидаемое состояние, создаёт desktop/mobile PNG и сохраняет их как GitHub Actions artifacts до ручного или агентского одобрения.
 
-- PR: `#21` — `docs: unify AI GitHub workflow and screenshot evidence`;
-- merge: `58ebaea07ef488e0131bd9c3b5c359a191d6275e`;
-- способ: squash merge.
+Планировалось:
 
-Публичный материал:
+- изолировать зависимости Playwright от публичного runtime;
+- зафиксировать стабильную версию `@playwright/test` и lockfile;
+- создать общий сценарный runner;
+- добавить реальные сценарии запуска, поиска `water` и русского алиаса `вода`;
+- создавать desktop и mobile PNG с проверкой ожидаемых элементов;
+- запускать локальный HTTP-сервер из точного branch checkout;
+- загружать PNG, manifest и отчёт как workflow artifact;
+- не коммитить artifact автоматически в `main`;
+- документировать локальный и GitHub Actions запуск;
+- добавить новый патчноут `23.8.7` и новое реальное изображение, полученное самой системой;
+- сохранить runtime, PWA и активную базу без изменений.
 
-- патчноут: `news/2026-07-22-udream-v23-8-6-unified-ai-workflow.md`;
-- изображение: `news/2026-07-22-udream-v23-8-6-unified-ai-workflow.png`;
-- источник: `tools/screenshots/v23.8.6-work-status.svg`;
-- после merge патчноут доступен автоматической очереди uNews.
+Планируемые файлы:
+
+- `WORK_STATUS.md`
+- `tools/screenshots/package.json`
+- `tools/screenshots/package-lock.json`
+- `tools/screenshots/playwright.config.mjs`
+- `tools/screenshots/capture.spec.mjs`
+- `tools/screenshots/scenarios/*.json`
+- `tools/screenshots/README.md`
+- `.github/workflows/capture-screenshots.yml`
+- `.github/workflows/validate.yml`
+- `scripts/validate-project.mjs`
+- `.gitignore`
+- `README.md`
+- `ROADMAP.md`
+- `VERSION.md`
+- `CHANGELOG.md`
+- `docs/PROJECT_STATE.md`
+- `docs/FILE_MAP.md`
+- `docs/SCREENSHOT_AUTOMATION.md`
+- новый uNews-патчноут и новый PNG
+
+Критерии завершения:
+
+- GitHub Actions устанавливает зависимости через `npm ci`;
+- Chromium и системные зависимости устанавливаются официальной командой Playwright;
+- тесты работают с одним worker для воспроизводимости;
+- точный checkout поднимается через локальный HTTP-сервер;
+- каждый сценарий сначала проверяет ожидаемое состояние и только затем сохраняет PNG;
+- создаются desktop и mobile изображения;
+- результат сохраняется как artifact с manifest и commit SHA;
+- основной repository validator проверяет наличие и структуру screenshot tooling;
+- автоматизация не входит в browser bundle и не меняет PWA;
+- активная база остаётся на 4 086 записях;
+- новый патчноут использует новый реальный PNG из Playwright;
+- GitHub Actions PR проходят полностью;
+- после merge `WORK_STATUS.md` возвращается в `READY`, следующий шаг — D1.1.
+
+Уже сделано:
+
+- завершён и объединён baseline `23.8.6`;
+- проверена официальная Playwright CI-инструкция;
+- выбрана стабильная версия `@playwright/test` `1.61.1`;
+- создана ветка `ops/playwright-screenshots-v23.8.7` от актуального `main`.
+
+Последний проверенный commit:
+
+- `b7d2bcebbf57cf9d99d1503e54310a43966ff290`
 
 Следующий точный шаг:
 
-- начать отдельную задачу `23.8.7`: создать Playwright-инструменты, реальные Chromium-сценарии desktop/mobile и workflow artifacts; после завершения `23.8.7` перейти к D1.1.
+- добавить изолированный package, сценарный runner и GitHub Actions workflow; затем получить первый artifact и проверить реальные PNG.
 
-Что нельзя делать следующим этапом:
+Что нельзя делать при продолжении:
 
-- не начинать D1.1 параллельно с незавершённым `23.8.7`;
-- не менять runtime uDream только ради screenshot tooling;
-- не коммитить Playwright в публичный browser bundle;
-- не публиковать artifact автоматически без проверки изображения;
+- не создавать параллельную ветку для `23.8.7`;
+- не начинать D1.1 до завершения этого PR;
+- не добавлять Playwright в корневые runtime-зависимости;
+- не импортировать screenshot tooling из `script.js`, `src/` или `sw.js`;
+- не коммитить browser binaries и временные artifacts;
 - не менять активную базу, ID или переводы;
-- не переиспользовать старые изображения.
+- не считать artifact одобренным без проверки изображения;
+- не переиспользовать старый PNG для патчноута.
 
 ## Обязательный порядок перед началом работы
 
