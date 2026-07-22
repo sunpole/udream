@@ -1,0 +1,3172 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T08:49:59Z",
+  "branch": "docs/data-provenance-d1.1",
+  "commit": "bbf2f00e371fe7a5de6a857aa078b26d71fbe58d",
+  "repositoryHistory": {
+    "rootCommits": "185",
+    "dataLog": [
+      "0d1bd292dc00b3c17a6e5736049882486bafe56f\t2026-05-27T19:37:17+03:00\tAdd files via upload",
+      "a885544bbf7943e5943f14e78a6581f236ad97e5\t2026-05-25T00:30:11+03:00\tAdd files via upload",
+      "15da7fd0422405d9ecdd27db8edc7b30cb6016a5\t2026-05-25T00:25:42+03:00\tClean repository structure",
+      "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89\t2026-05-25T00:06:12+03:00\tAdd files via upload",
+      "27a6a5c09937f1f00a49bd0f8ce526927f3748fa\t2026-05-24T10:11:47+03:00\tRename bd.json to db.json",
+      "12f333ddd010adf0c18b0d68b679cb4f2a8bbce3\t2026-05-24T10:08:39+03:00\tRename bd2.json to bd.json",
+      "0d0f6ddddae967e7eb9024610f63f7397c05ac50\t2026-05-24T09:36:33+03:00\tCreate bd2.json"
+    ],
+    "archiveDataLog": [
+      "15da7fd0422405d9ecdd27db8edc7b30cb6016a5\t2026-05-25T00:25:42+03:00\tClean repository structure"
+    ]
+  },
+  "currentFiles": {
+    "data/divinity_code_ru.json": {
+      "file": {
+        "path": "data/divinity_code_ru.json",
+        "bytes": 4688773,
+        "sha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+        "extension": ".json",
+        "json": {
+          "rootType": "list",
+          "metrics": {
+            "characters": 3427128,
+            "cyrillicCharacters": 796924,
+            "latinCharacters": 1023365,
+            "googleMarkers": 4086,
+            "myMemoryMarkers": 2932
+          },
+          "records": 4086,
+          "objectRecords": 4086,
+          "fields": [
+            "aliases",
+            "date_added",
+            "description",
+            "id",
+            "notes",
+            "source",
+            "symbol",
+            "tags"
+          ],
+          "integerIds": 4086,
+          "uniqueIntegerIds": 4086,
+          "minimumId": 1,
+          "maximumId": 4086,
+          "firstRecordSummary": {
+            "id": 1,
+            "symbol": "aardvark",
+            "aliases": [
+              "трубкозуб"
+            ],
+            "description": "(1) Ant-eater (destroyer of the diligent); (2) Nosey. (1) Prov. 6:6-8; (2) As a physical attribute.",
+            "source": "DivinityCode",
+            "date_added": "2026-05-24",
+            "tags": [
+              "translated",
+              "РУССКИЙ"
+            ],
+            "notes": "Scripture references: (1) Prov. 6:6-8; [GOOGLE] (1) Муравьед (разрушитель прилежных); (2) Нуси. (1) Пров. 6:6-8; (2) Как физический атрибут. [MYMEMORY] (1) Муравьед (разрушитель прилежных);(2) Нуси.(1) Пров.6:6-8;(2) Как физический атрибут."
+          },
+          "lastRecordSummary": {
+            "id": 4086,
+            "symbol": "zorka",
+            "aliases": [
+              "зорка"
+            ],
+            "description": "(1) Star of the morning.",
+            "source": "DivinityCode",
+            "date_added": "2026-05-24",
+            "tags": [
+              "name-place",
+              "name",
+              "nature",
+              "time",
+              "dictionary-name-place",
+              "translated",
+              "РУССКИЙ"
+            ],
+            "notes": "[GOOGLE] (1) Звезда утра."
+          },
+          "fieldTypes": {
+            "aliases": [
+              "list"
+            ],
+            "date_added": [
+              "str"
+            ],
+            "description": [
+              "str"
+            ],
+            "id": [
+              "int"
+            ],
+            "notes": [
+              "str"
+            ],
+            "source": [
+              "str"
+            ],
+            "symbol": [
+              "str"
+            ],
+            "tags": [
+              "list"
+            ]
+          }
+        }
+      },
+      "history": [
+        {
+          "commit": "0d1bd292dc00b3c17a6e5736049882486bafe56f",
+          "authorDate": "2026-05-27T19:37:17+03:00",
+          "author": "ANTON MAHOMEDOV",
+          "subject": "Add files via upload"
+        }
+      ],
+      "historicalVersions": [
+        {
+          "commit": "0d1bd292dc00b3c17a6e5736049882486bafe56f",
+          "bytes": 4688773,
+          "sha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+          "records": 4086,
+          "rootType": "list",
+          "metrics": {
+            "characters": 3427128,
+            "cyrillicCharacters": 796924,
+            "latinCharacters": 1023365,
+            "googleMarkers": 4086,
+            "myMemoryMarkers": 2932
+          }
+        }
+      ]
+    },
+    "data/bd2.json": {
+      "file": {
+        "path": "data/bd2.json",
+        "bytes": 2141655,
+        "sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+        "extension": ".json",
+        "json": {
+          "rootType": "list",
+          "metrics": {
+            "characters": 1851579,
+            "cyrillicCharacters": 0,
+            "latinCharacters": 931326,
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          },
+          "records": 4086,
+          "objectRecords": 4086,
+          "fields": [
+            "aliases",
+            "date_added",
+            "description",
+            "id",
+            "notes",
+            "source",
+            "symbol",
+            "tags"
+          ],
+          "integerIds": 4086,
+          "uniqueIntegerIds": 4086,
+          "minimumId": 1,
+          "maximumId": 4086,
+          "firstRecordSummary": {
+            "id": 1,
+            "symbol": "aardvark",
+            "aliases": [],
+            "description": "(1) Ant-eater (destroyer of the diligent); (2) Nosey. (1) Prov. 6:6-8; (2) As a physical attribute.",
+            "source": "DivinityCode",
+            "date_added": "2026-05-24",
+            "tags": [],
+            "notes": "Scripture references: (1) Prov. 6:6-8;"
+          },
+          "lastRecordSummary": {
+            "id": 4086,
+            "symbol": "zorka",
+            "aliases": [],
+            "description": "(1) Star of the morning.",
+            "source": "DivinityCode",
+            "date_added": "2026-05-24",
+            "tags": [
+              "name-place",
+              "name",
+              "nature",
+              "time",
+              "dictionary-name-place"
+            ],
+            "notes": ""
+          },
+          "fieldTypes": {
+            "aliases": [
+              "list"
+            ],
+            "date_added": [
+              "str"
+            ],
+            "description": [
+              "str"
+            ],
+            "id": [
+              "int"
+            ],
+            "notes": [
+              "str"
+            ],
+            "source": [
+              "str"
+            ],
+            "symbol": [
+              "str"
+            ],
+            "tags": [
+              "list"
+            ]
+          }
+        }
+      },
+      "history": [
+        {
+          "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+          "authorDate": "2026-05-25T00:25:42+03:00",
+          "author": "ANTON MAHOMEDOV",
+          "subject": "Clean repository structure"
+        },
+        {
+          "commit": "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89",
+          "authorDate": "2026-05-25T00:06:12+03:00",
+          "author": "ANTON MAHOMEDOV",
+          "subject": "Add files via upload"
+        }
+      ],
+      "historicalVersions": [
+        {
+          "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+          "bytes": 2141655,
+          "sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+          "records": 4086,
+          "rootType": "list",
+          "metrics": {
+            "characters": 1851579,
+            "cyrillicCharacters": 0,
+            "latinCharacters": 931326,
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          }
+        }
+      ]
+    },
+    "data/db.json": {
+      "file": {
+        "path": "data/db.json",
+        "bytes": 2204553,
+        "sha256": "4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0",
+        "extension": ".json",
+        "json": {
+          "rootType": "list",
+          "metrics": {
+            "characters": 1851579,
+            "cyrillicCharacters": 0,
+            "latinCharacters": 931326,
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          },
+          "records": 4086,
+          "objectRecords": 4086,
+          "fields": [
+            "aliases",
+            "date_added",
+            "description",
+            "id",
+            "notes",
+            "source",
+            "symbol",
+            "tags"
+          ],
+          "integerIds": 4086,
+          "uniqueIntegerIds": 4086,
+          "minimumId": 1,
+          "maximumId": 4086,
+          "firstRecordSummary": {
+            "id": 1,
+            "symbol": "aardvark",
+            "aliases": [],
+            "description": "(1) Ant-eater (destroyer of the diligent); (2) Nosey. (1) Prov. 6:6-8; (2) As a physical attribute.",
+            "source": "DivinityCode",
+            "date_added": "2026-05-24",
+            "tags": [],
+            "notes": "Scripture references: (1) Prov. 6:6-8;"
+          },
+          "lastRecordSummary": {
+            "id": 4086,
+            "symbol": "zorka",
+            "aliases": [],
+            "description": "(1) Star of the morning.",
+            "source": "DivinityCode",
+            "date_added": "2026-05-24",
+            "tags": [
+              "name-place",
+              "name",
+              "nature",
+              "time",
+              "dictionary-name-place"
+            ],
+            "notes": ""
+          },
+          "fieldTypes": {
+            "aliases": [
+              "list"
+            ],
+            "date_added": [
+              "str"
+            ],
+            "description": [
+              "str"
+            ],
+            "id": [
+              "int"
+            ],
+            "notes": [
+              "str"
+            ],
+            "source": [
+              "str"
+            ],
+            "symbol": [
+              "str"
+            ],
+            "tags": [
+              "list"
+            ]
+          }
+        }
+      },
+      "history": [
+        {
+          "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+          "authorDate": "2026-05-25T00:30:11+03:00",
+          "author": "ANTON MAHOMEDOV",
+          "subject": "Add files via upload"
+        },
+        {
+          "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+          "authorDate": "2026-05-25T00:25:42+03:00",
+          "author": "ANTON MAHOMEDOV",
+          "subject": "Clean repository structure"
+        },
+        {
+          "commit": "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89",
+          "authorDate": "2026-05-25T00:06:12+03:00",
+          "author": "ANTON MAHOMEDOV",
+          "subject": "Add files via upload"
+        }
+      ],
+      "historicalVersions": [
+        {
+          "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+          "bytes": 2204553,
+          "sha256": "4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0",
+          "records": 4086,
+          "rootType": "list",
+          "metrics": {
+            "characters": 1851579,
+            "cyrillicCharacters": 0,
+            "latinCharacters": 931326,
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          }
+        },
+        {
+          "commit": "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89",
+          "bytes": 72943,
+          "sha256": "1a9ff1d94b743f783fa2f82d6ed41403dd2374f35f0cdc4b011933547fcb1902",
+          "records": 180,
+          "rootType": "list",
+          "metrics": {
+            "characters": 66058,
+            "cyrillicCharacters": 0,
+            "latinCharacters": 34816,
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          }
+        }
+      ]
+    },
+    "data/report.txt": {
+      "file": {
+        "path": "data/report.txt",
+        "bytes": 2963,
+        "sha256": "dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d",
+        "extension": ".txt",
+        "text": {
+          "lines": 58,
+          "characters": 2955,
+          "cyrillicCharacters": 0,
+          "latinCharacters": 1545,
+          "googleMarkers": 0,
+          "myMemoryMarkers": 0
+        }
+      },
+      "history": [
+        {
+          "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+          "authorDate": "2026-05-25T00:30:11+03:00",
+          "author": "ANTON MAHOMEDOV",
+          "subject": "Add files via upload"
+        }
+      ],
+      "historicalVersions": [
+        {
+          "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+          "bytes": 2963,
+          "sha256": "dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d"
+        }
+      ]
+    }
+  },
+  "inventory": [
+    {
+      "path": "_archive/old-data/db.json",
+      "bytes": 72943,
+      "sha256": "1a9ff1d94b743f783fa2f82d6ed41403dd2374f35f0cdc4b011933547fcb1902",
+      "extension": ".json",
+      "json": {
+        "rootType": "list",
+        "metrics": {
+          "characters": 66058,
+          "cyrillicCharacters": 0,
+          "latinCharacters": 34816,
+          "googleMarkers": 0,
+          "myMemoryMarkers": 0
+        },
+        "records": 180,
+        "objectRecords": 180,
+        "fields": [
+          "aliases",
+          "date_added",
+          "description",
+          "id",
+          "notes",
+          "source",
+          "symbol",
+          "tags"
+        ],
+        "integerIds": 180,
+        "uniqueIntegerIds": 180,
+        "minimumId": 3,
+        "maximumId": 182,
+        "firstRecordSummary": {
+          "id": 3,
+          "symbol": "mouse/mice",
+          "aliases": [
+            "rat"
+          ],
+          "description": "1) Hidden unclean spirit (Matt. 10:1; cf. Rev. 16:13); 2) Indicator of a spiritual maintenance (Lk. 11:24-25); 3) Unbeliever (unclean); 4) Small (Lev. 11:29); 5) Plague; 6) Judgment (cf. 1 Sam. 5:12 & 1 Sam. 6:5 KJV).",
+          "source": "DivinityCode",
+          "date_added": "2025-04-15",
+          "tags": [
+            "animals",
+            "unclean",
+            "spiritual",
+            "judgment"
+          ],
+          "notes": "& means to combine the scriptures to gain the interpretation. Also see entries under Rat."
+        },
+        "lastRecordSummary": {
+          "id": 182,
+          "symbol": "bar (nightclub)",
+          "aliases": [
+            "nightclub"
+          ],
+          "description": "(1) Church/altar (as the communal place where we drink of the Spirit); (2) The world; (3) Haunt of the workers of the flesh; (4) Gathering place for lovers of darkness.\n(1) Eph. 5:18; (2) 1 John 2:16; (3) Gal. 5:19-21; (4) 1 Thess. 5:5-7.",
+          "source": "DivinityCode",
+          "date_added": "2025-04-17",
+          "tags": [
+            "bar",
+            "church",
+            "world",
+            "darkness"
+          ],
+          "notes": "Also see Nightclub."
+        },
+        "fieldTypes": {
+          "aliases": [
+            "list"
+          ],
+          "date_added": [
+            "str"
+          ],
+          "description": [
+            "str"
+          ],
+          "id": [
+            "int"
+          ],
+          "notes": [
+            "str"
+          ],
+          "source": [
+            "str"
+          ],
+          "symbol": [
+            "str"
+          ],
+          "tags": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "path": "_archive/old-data/db_v2.json",
+      "bytes": 2141655,
+      "sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+      "extension": ".json",
+      "json": {
+        "rootType": "list",
+        "metrics": {
+          "characters": 1851579,
+          "cyrillicCharacters": 0,
+          "latinCharacters": 931326,
+          "googleMarkers": 0,
+          "myMemoryMarkers": 0
+        },
+        "records": 4086,
+        "objectRecords": 4086,
+        "fields": [
+          "aliases",
+          "date_added",
+          "description",
+          "id",
+          "notes",
+          "source",
+          "symbol",
+          "tags"
+        ],
+        "integerIds": 4086,
+        "uniqueIntegerIds": 4086,
+        "minimumId": 1,
+        "maximumId": 4086,
+        "firstRecordSummary": {
+          "id": 1,
+          "symbol": "aardvark",
+          "aliases": [],
+          "description": "(1) Ant-eater (destroyer of the diligent); (2) Nosey. (1) Prov. 6:6-8; (2) As a physical attribute.",
+          "source": "DivinityCode",
+          "date_added": "2026-05-24",
+          "tags": [],
+          "notes": "Scripture references: (1) Prov. 6:6-8;"
+        },
+        "lastRecordSummary": {
+          "id": 4086,
+          "symbol": "zorka",
+          "aliases": [],
+          "description": "(1) Star of the morning.",
+          "source": "DivinityCode",
+          "date_added": "2026-05-24",
+          "tags": [
+            "name-place",
+            "name",
+            "nature",
+            "time",
+            "dictionary-name-place"
+          ],
+          "notes": ""
+        },
+        "fieldTypes": {
+          "aliases": [
+            "list"
+          ],
+          "date_added": [
+            "str"
+          ],
+          "description": [
+            "str"
+          ],
+          "id": [
+            "int"
+          ],
+          "notes": [
+            "str"
+          ],
+          "source": [
+            "str"
+          ],
+          "symbol": [
+            "str"
+          ],
+          "tags": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "path": "_archive/source-files/screenshot-desktop.jpg",
+      "bytes": 259502,
+      "sha256": "71d96df4d610e8e5c24a59fb2b71f5fe1e29d07bbc010b529f65240baad52bd6",
+      "extension": ".jpg"
+    },
+    {
+      "path": "_archive/source-files/screenshot-mobile.jpg",
+      "bytes": 76321,
+      "sha256": "7dd1db5dbc7b009b87ccb000df2214d549984f389d56934863dd6a83c098dc60",
+      "extension": ".jpg"
+    },
+    {
+      "path": "_archive/source-files/The_Divinity_Code_to_Understanding_Your_Dreams_and_Visions_PDF_Room.pdf",
+      "bytes": 2743570,
+      "sha256": "e8635a7ded68ef161d255f64f3ad2343314dc0daae7dbe159b9a821b2f8ef881",
+      "extension": ".pdf"
+    },
+    {
+      "path": "_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf",
+      "bytes": 740193,
+      "sha256": "edb4127915bf720ee56c96612f825ea4e0ef2f5fc15192a56fb96e5c7ec4745a",
+      "extension": ".pdf"
+    },
+    {
+      "path": "data/bd2.json",
+      "bytes": 2141655,
+      "sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+      "extension": ".json",
+      "json": {
+        "rootType": "list",
+        "metrics": {
+          "characters": 1851579,
+          "cyrillicCharacters": 0,
+          "latinCharacters": 931326,
+          "googleMarkers": 0,
+          "myMemoryMarkers": 0
+        },
+        "records": 4086,
+        "objectRecords": 4086,
+        "fields": [
+          "aliases",
+          "date_added",
+          "description",
+          "id",
+          "notes",
+          "source",
+          "symbol",
+          "tags"
+        ],
+        "integerIds": 4086,
+        "uniqueIntegerIds": 4086,
+        "minimumId": 1,
+        "maximumId": 4086,
+        "firstRecordSummary": {
+          "id": 1,
+          "symbol": "aardvark",
+          "aliases": [],
+          "description": "(1) Ant-eater (destroyer of the diligent); (2) Nosey. (1) Prov. 6:6-8; (2) As a physical attribute.",
+          "source": "DivinityCode",
+          "date_added": "2026-05-24",
+          "tags": [],
+          "notes": "Scripture references: (1) Prov. 6:6-8;"
+        },
+        "lastRecordSummary": {
+          "id": 4086,
+          "symbol": "zorka",
+          "aliases": [],
+          "description": "(1) Star of the morning.",
+          "source": "DivinityCode",
+          "date_added": "2026-05-24",
+          "tags": [
+            "name-place",
+            "name",
+            "nature",
+            "time",
+            "dictionary-name-place"
+          ],
+          "notes": ""
+        },
+        "fieldTypes": {
+          "aliases": [
+            "list"
+          ],
+          "date_added": [
+            "str"
+          ],
+          "description": [
+            "str"
+          ],
+          "id": [
+            "int"
+          ],
+          "notes": [
+            "str"
+          ],
+          "source": [
+            "str"
+          ],
+          "symbol": [
+            "str"
+          ],
+          "tags": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "path": "data/db.json",
+      "bytes": 2204553,
+      "sha256": "4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0",
+      "extension": ".json",
+      "json": {
+        "rootType": "list",
+        "metrics": {
+          "characters": 1851579,
+          "cyrillicCharacters": 0,
+          "latinCharacters": 931326,
+          "googleMarkers": 0,
+          "myMemoryMarkers": 0
+        },
+        "records": 4086,
+        "objectRecords": 4086,
+        "fields": [
+          "aliases",
+          "date_added",
+          "description",
+          "id",
+          "notes",
+          "source",
+          "symbol",
+          "tags"
+        ],
+        "integerIds": 4086,
+        "uniqueIntegerIds": 4086,
+        "minimumId": 1,
+        "maximumId": 4086,
+        "firstRecordSummary": {
+          "id": 1,
+          "symbol": "aardvark",
+          "aliases": [],
+          "description": "(1) Ant-eater (destroyer of the diligent); (2) Nosey. (1) Prov. 6:6-8; (2) As a physical attribute.",
+          "source": "DivinityCode",
+          "date_added": "2026-05-24",
+          "tags": [],
+          "notes": "Scripture references: (1) Prov. 6:6-8;"
+        },
+        "lastRecordSummary": {
+          "id": 4086,
+          "symbol": "zorka",
+          "aliases": [],
+          "description": "(1) Star of the morning.",
+          "source": "DivinityCode",
+          "date_added": "2026-05-24",
+          "tags": [
+            "name-place",
+            "name",
+            "nature",
+            "time",
+            "dictionary-name-place"
+          ],
+          "notes": ""
+        },
+        "fieldTypes": {
+          "aliases": [
+            "list"
+          ],
+          "date_added": [
+            "str"
+          ],
+          "description": [
+            "str"
+          ],
+          "id": [
+            "int"
+          ],
+          "notes": [
+            "str"
+          ],
+          "source": [
+            "str"
+          ],
+          "symbol": [
+            "str"
+          ],
+          "tags": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "path": "data/divinity_code_ru.json",
+      "bytes": 4688773,
+      "sha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+      "extension": ".json",
+      "json": {
+        "rootType": "list",
+        "metrics": {
+          "characters": 3427128,
+          "cyrillicCharacters": 796924,
+          "latinCharacters": 1023365,
+          "googleMarkers": 4086,
+          "myMemoryMarkers": 2932
+        },
+        "records": 4086,
+        "objectRecords": 4086,
+        "fields": [
+          "aliases",
+          "date_added",
+          "description",
+          "id",
+          "notes",
+          "source",
+          "symbol",
+          "tags"
+        ],
+        "integerIds": 4086,
+        "uniqueIntegerIds": 4086,
+        "minimumId": 1,
+        "maximumId": 4086,
+        "firstRecordSummary": {
+          "id": 1,
+          "symbol": "aardvark",
+          "aliases": [
+            "трубкозуб"
+          ],
+          "description": "(1) Ant-eater (destroyer of the diligent); (2) Nosey. (1) Prov. 6:6-8; (2) As a physical attribute.",
+          "source": "DivinityCode",
+          "date_added": "2026-05-24",
+          "tags": [
+            "translated",
+            "РУССКИЙ"
+          ],
+          "notes": "Scripture references: (1) Prov. 6:6-8; [GOOGLE] (1) Муравьед (разрушитель прилежных); (2) Нуси. (1) Пров. 6:6-8; (2) Как физический атрибут. [MYMEMORY] (1) Муравьед (разрушитель прилежных);(2) Нуси.(1) Пров.6:6-8;(2) Как физический атрибут."
+        },
+        "lastRecordSummary": {
+          "id": 4086,
+          "symbol": "zorka",
+          "aliases": [
+            "зорка"
+          ],
+          "description": "(1) Star of the morning.",
+          "source": "DivinityCode",
+          "date_added": "2026-05-24",
+          "tags": [
+            "name-place",
+            "name",
+            "nature",
+            "time",
+            "dictionary-name-place",
+            "translated",
+            "РУССКИЙ"
+          ],
+          "notes": "[GOOGLE] (1) Звезда утра."
+        },
+        "fieldTypes": {
+          "aliases": [
+            "list"
+          ],
+          "date_added": [
+            "str"
+          ],
+          "description": [
+            "str"
+          ],
+          "id": [
+            "int"
+          ],
+          "notes": [
+            "str"
+          ],
+          "source": [
+            "str"
+          ],
+          "symbol": [
+            "str"
+          ],
+          "tags": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "path": "data/report.txt",
+      "bytes": 2963,
+      "sha256": "dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d",
+      "extension": ".txt",
+      "text": {
+        "lines": 58,
+        "characters": 2955,
+        "cyrillicCharacters": 0,
+        "latinCharacters": 1545,
+        "googleMarkers": 0,
+        "myMemoryMarkers": 0
+      }
+    }
+  ],
+  "exactDuplicateGroups": [
+    {
+      "sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+      "paths": [
+        "_archive/old-data/db_v2.json",
+        "data/bd2.json"
+      ]
+    }
+  ],
+  "bd2DbByteEqual": false,
+  "referenceHits": [
+    {
+      "path": "/home/runner/work/udream/udream/.github/pull_request_template.md",
+      "hits": [
+        {
+          "line": 40,
+          "text": "## Данные и варианты перевода"
+        },
+        {
+          "line": 44,
+          "text": "- [ ] существующая база, редакция или версия перевода не перезаписана и не удалена"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/.github/workflows/audit-data-provenance-d1.1.yml",
+      "hits": [
+        {
+          "line": 44,
+          "text": "              pathlib.Path('data/divinity_code_ru.json'),"
+        },
+        {
+          "line": 45,
+          "text": "              pathlib.Path('data/bd2.json'),"
+        },
+        {
+          "line": 46,
+          "text": "              pathlib.Path('data/db.json'),"
+        },
+        {
+          "line": 47,
+          "text": "              pathlib.Path('data/report.txt'),"
+        },
+        {
+          "line": 75,
+          "text": "                  'googleMarkers': text.count('[GOOGLE]'),"
+        },
+        {
+          "line": 76,
+          "text": "                  'myMemoryMarkers': text.count('[MYMEMORY]'),"
+        },
+        {
+          "line": 211,
+          "text": "              r'(divinity_code_ru|bd2\\.json|db\\.json|report\\.txt|\\[GOOGLE\\]|\\[MYMEMORY\\]|'"
+        },
+        {
+          "line": 212,
+          "text": "              r'DeepSeek|translation|translate|translator|перевод|DivinityCode)',"
+        },
+        {
+          "line": 245,
+          "text": "          report_text = pathlib.Path('data/report.txt').read_text('utf-8-sig') if pathlib.Path('data/report.txt').exists() else None"
+        },
+        {
+          "line": 261,
+          "text": "                  pathlib.Path('data/bd2.json').read_bytes() == pathlib.Path('data/db.json').read_bytes()"
+        },
+        {
+          "line": 262,
+          "text": "                  if pathlib.Path('data/bd2.json').exists() and pathlib.Path('data/db.json').exists()"
+        },
+        {
+          "line": 296,
+          "text": "              f\"bd2.json byte-equal db.json: {evidence['bd2DbByteEqual']}\","
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/.github/workflows/capture-screenshots.yml",
+      "hits": [
+        {
+          "line": 12,
+          "text": "      - data/divinity_code_ru.json"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/AGENTS.md",
+      "hits": [
+        {
+          "line": 18,
+          "text": "10. `docs/TRANSLATION_WORKFLOW.md` for any data, translation or AI-assisted task"
+        },
+        {
+          "line": 35,
+          "text": "- `docs/TRANSLATION_WORKFLOW.md` defines the target translation variants, duplicate policy and safe API-assisted workflow."
+        },
+        {
+          "line": 39,
+          "text": "- `data/divinity_code_ru.json` is the active database until a documented migration changes it."
+        },
+        {
+          "line": 73,
+          "text": "Ask the owner only for decisions requiring human judgment, access to an unavailable physical device, secure secret provisioning, translation/content review or an action unavailable to connected tools. Never ask the owner to paste an API key into chat."
+        },
+        {
+          "line": 135,
+          "text": "- Record the source and transformation method for generated or translated data."
+        },
+        {
+          "line": 136,
+          "text": "- Never overwrite one source database, translation or editorial variant with another."
+        },
+        {
+          "line": 138,
+          "text": "- A new translation must be stored as a new version; the previous translation remains recoverable."
+        },
+        {
+          "line": 140,
+          "text": "- Byte-identical files are one logical dataset, not independent translations."
+        },
+        {
+          "line": 141,
+          "text": "- Do not delete `data/bd2.json`, `data/db.json`, reports or archived data until D1 proves the canonical file, records the migration and provides a rollback."
+        },
+        {
+          "line": 142,
+          "text": "- The target is one canonical source dataset, one current Russian translation and up to two genuinely independent alternatives; do not manufacture variants when only one reliable translation exists."
+        },
+        {
+          "line": 145,
+          "text": "## AI-assisted translation safety"
+        },
+        {
+          "line": 147,
+          "text": "- DeepSeek or another provider may generate only a separate candidate dataset."
+        },
+        {
+          "line": 148,
+          "text": "- Never call a paid translation API from the public browser application or installed PWA."
+        },
+        {
+          "line": 152,
+          "text": "- A translation script must support checkpoints and must never modify the published database in place."
+        },
+        {
+          "line": 161,
+          "text": "jq empty data/divinity_code_ru.json"
+        },
+        {
+          "line": 162,
+          "text": "jq 'length' data/divinity_code_ru.json"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/CHANGELOG.md",
+      "hits": [
+        {
+          "line": 44,
+          "text": "- Added `docs/TRANSLATION_WORKFLOW.md` with the target source/current/alternative translation model."
+        },
+        {
+          "line": 45,
+          "text": "- Recorded that byte-identical files are one logical dataset, not separate translation variants."
+        },
+        {
+          "line": 46,
+          "text": "- Defined the preferred future set as one canonical source database, one current Russian translation and up to two genuinely independent alternatives."
+        },
+        {
+          "line": 47,
+          "text": "- Allowed a smaller final set when only one reliable Russian translation can be produced."
+        },
+        {
+          "line": 48,
+          "text": "- Documented safe DeepSeek-assisted translation through local tooling or GitHub encrypted secrets without exposing the API key in the browser application."
+        },
+        {
+          "line": 57,
+          "text": "- Recorded non-destructive preservation rules for source databases, editions and translation variants."
+        },
+        {
+          "line": 117,
+          "text": "- Confirmed `data/divinity_code_ru.json` as the active runtime database."
+        },
+        {
+          "line": 118,
+          "text": "- Confirmed that `data/bd2.json` and `data/db.json` are byte-for-byte identical and unused by the current runtime."
+        },
+        {
+          "line": 119,
+          "text": "- Classified `data/report.txt` as a historical generation and quality summary."
+        },
+        {
+          "line": 120,
+          "text": "- Kept all databases and historical files unchanged while the exact generation and translation pipeline remains undocumented."
+        },
+        {
+          "line": 143,
+          "text": "- Corrected help text so it no longer promises verified offline behavior or translation of dictionary records."
+        },
+        {
+          "line": 185,
+          "text": "- Aligned the current service-worker database cache with `data/divinity_code_ru.json`."
+        },
+        {
+          "line": 186,
+          "text": "- Corrected README references that previously named `data/bd2.json` as the active database."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/CONTRIBUTING.md",
+      "hits": [
+        {
+          "line": 14,
+          "text": "## Данные и переводы"
+        },
+        {
+          "line": 16,
+          "text": "- Не перезаписывайте одну базу, редакцию или версию перевода другой."
+        },
+        {
+          "line": 19,
+          "text": "- Не удаляйте `data/bd2.json`, `data/db.json`, отчёты и архивные варианты как обычную очистку."
+        },
+        {
+          "line": 26,
+          "text": "jq empty data/divinity_code_ru.json"
+        },
+        {
+          "line": 27,
+          "text": "jq 'length' data/divinity_code_ru.json"
+        },
+        {
+          "line": 44,
+          "text": "Не добавляйте книги, PDF, длинные цитаты, словарные данные, изображения или переводы третьих лиц без документированного основания. MIT-лицензия проекта относится к оригинальному коду, а не автоматически ко всему содержимому репозитория."
+        },
+        {
+          "line": 55,
+          "text": "- затрагиваются ли база, варианты перевода, PWA, права на материалы или Telegram-публикация;"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/README.md",
+      "hits": [
+        {
+          "line": 49,
+          "text": "Единая миссия, конечный образ продукта, правила сохранения баз и переводов и граница следующего этапа зафиксированы в [видении продукта](docs/PRODUCT_VISION.md)."
+        },
+        {
+          "line": 77,
+          "text": "| Активная база | `data/divinity_code_ru.json` |"
+        },
+        {
+          "line": 88,
+          "text": "## План данных и переводов"
+        },
+        {
+          "line": 93,
+          "text": "- один текущий опубликованный русский перевод;"
+        },
+        {
+          "line": 94,
+          "text": "- до двух самостоятельных альтернативных русских переводов, только когда их качество и происхождение можно проверить."
+        },
+        {
+          "line": 96,
+          "text": "Точные дубликаты не считаются отдельными переводами. Для `data/bd2.json` и `data/db.json` сначала будет доказан канонический вариант и подготовлен обратимый план миграции. Если надёжно существует только один русский перевод, проект сохранит один перевод вместо создания искусственных вариантов."
+        },
+        {
+          "line": 98,
+          "text": "DeepSeek API рассматривается как дополнительный инструмент для создания кандидатного перевода. Ключ никогда не встраивается в сайт или PWA; перевод должен выполняться локальным служебным скриптом либо GitHub Actions с encrypted secret. Любой результат сохраняется как отдельная кандидатная версия и проходит автоматическую и человеческую проверку."
+        },
+        {
+          "line": 102,
+          "text": "Подробнее: [переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md) и [формат данных](docs/DATABASE_FORMAT.md)."
+        },
+        {
+          "line": 163,
+          "text": "Секреты Telegram и ключи переводческих API в этом репозитории не хранятся."
+        },
+        {
+          "line": 180,
+          "text": "- [Переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md)"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/ROADMAP.md",
+      "hits": [
+        {
+          "line": 54,
+          "text": "- [x] Record non-destructive preservation rules for source datasets and translation variants."
+        },
+        {
+          "line": 58,
+          "text": "- [x] Record the desired source/current/alternative translation model."
+        },
+        {
+          "line": 59,
+          "text": "- [x] Document safe DeepSeek API use without exposing the key in the static application."
+        },
+        {
+          "line": 111,
+          "text": "- [ ] Recover the known generation and translation history of `data/divinity_code_ru.json` from Git history, reports, scripts and retained source files."
+        },
+        {
+          "line": 114,
+          "text": "- [ ] Reconfirm the hash equality and history of `data/bd2.json` and `data/db.json`."
+        },
+        {
+          "line": 118,
+          "text": "- [ ] Define stable dataset identifiers, source work, language, edition/translation version and transformation metadata."
+        },
+        {
+          "line": 119,
+          "text": "- [ ] Define how original data, translation, aliases, tags and editorial notes remain distinguishable."
+        },
+        {
+          "line": 120,
+          "text": "- [ ] Design the target set: one canonical source dataset, one current Russian translation and up to two independent alternative Russian translations."
+        },
+        {
+          "line": 121,
+          "text": "- [ ] Explicitly allow a smaller set when only one reliable Russian translation exists."
+        },
+        {
+          "line": 123,
+          "text": "- [ ] Define retention and rollback rules so a new translation never overwrites the previous one."
+        },
+        {
+          "line": 139,
+          "text": "### D1.5 — AI-assisted translation experiment"
+        },
+        {
+          "line": 141,
+          "text": "- [ ] Design a resumable translation script that never modifies the active database in place."
+        },
+        {
+          "line": 142,
+          "text": "- [ ] Use DeepSeek only as an optional candidate generator, not as an automatic source of truth."
+        },
+        {
+          "line": 148,
+          "text": "See `docs/TRANSLATION_WORKFLOW.md`."
+        },
+        {
+          "line": 167,
+          "text": "- [ ] Consider additional languages only after the source and translation workflow is documented."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/THIRD_PARTY_NOTICES.md",
+      "hits": [
+        {
+          "line": 7,
+          "text": "It does not grant rights to third-party books, PDFs, excerpts, dictionary interpretations, translations, illustrations, or other source material included or referenced by the project."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/VERSION.md",
+      "hits": [
+        {
+          "line": 37,
+          "text": "- Translation source of truth: `docs/TRANSLATION_WORKFLOW.md`"
+        },
+        {
+          "line": 44,
+          "text": "Documentation and automation updates `23.8.1` through `23.8.7` finalize the immutable release record, product/data baseline, translation safety, cross-device workflow, screenshot provenance and real Chromium artifact generation. They do not change application runtime, PWA behavior or database records."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/WORK_STATUS.md",
+      "hits": [
+        {
+          "line": 46,
+          "text": "- изучить Git-историю `data/divinity_code_ru.json`, `data/bd2.json`, `data/db.json` и `data/report.txt`;"
+        },
+        {
+          "line": 48,
+          "text": "- повторно подтвердить или опровергнуть байтовое равенство `data/bd2.json` и `data/db.json`;"
+        },
+        {
+          "line": 49,
+          "text": "- исследовать сохранённые скрипты, отчёты, prompts и упоминания процесса перевода;"
+        },
+        {
+          "line": 75,
+          "text": "- `data/divinity_code_ru.json`"
+        },
+        {
+          "line": 76,
+          "text": "- `data/bd2.json`"
+        },
+        {
+          "line": 77,
+          "text": "- `data/db.json`"
+        },
+        {
+          "line": 78,
+          "text": "- `data/report.txt`"
+        },
+        {
+          "line": 88,
+          "text": "- равенство `bd2.json` и `db.json` повторно проверено актуальными hash и byte comparison;"
+        },
+        {
+          "line": 116,
+          "text": "- не менять `data/divinity_code_ru.json`, его 4 086 записей, ID и тексты;"
+        },
+        {
+          "line": 117,
+          "text": "- не удалять и не переименовывать `data/bd2.json`, `data/db.json`, отчёты и архивные варианты;"
+        },
+        {
+          "line": 120,
+          "text": "- не добавлять API-ключи и не запускать платный переводческий API;"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/admin-versions/admin2/index.html",
+      "hits": [
+        {
+          "line": 130,
+          "text": "        .word-item:hover{ background:#f1ece4; transform:translateY(-2px); }"
+        },
+        {
+          "line": 723,
+          "text": "                        <div class=\"help-tab active\" data-lang=\"ru\">🇷🇺 Русский (перевод)</div>"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/admin-versions/admin3/index.html",
+      "hits": [
+        {
+          "line": 146,
+          "text": "        .word-item:hover{ background:#f1ece4; transform:translateY(-2px); }"
+        },
+        {
+          "line": 797,
+          "text": "                        <div class=\"help-tab active\" data-lang=\"ru\">🇷🇺 Русский (перевод)</div>"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/admin-versions/admin4/index.html",
+      "hits": [
+        {
+          "line": 714,
+          "text": "                        <div class=\"help-tab active\" data-lang=\"ru\">🇷🇺 Русский (перевод)</div>"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/admin-versions/admin5/index.html",
+      "hits": [
+        {
+          "line": 695,
+          "text": "                        <div class=\"help-tab active\" data-lang=\"ru\">🇷🇺 Русский (перевод)</div>"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/admin-versions/admin6/index.html",
+      "hits": [
+        {
+          "line": 873,
+          "text": "                        <div class=\"help-tab active\" data-lang=\"ru\">🇷🇺 Русский (перевод)</div>"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/admin-versions/admin7/index.html",
+      "hits": [
+        {
+          "line": 904,
+          "text": "                        <div class=\"help-tab active\" data-lang=\"ru\">🇷🇺 Русский (перевод)</div>"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/003/index.html",
+      "hits": [
+        {
+          "line": 243,
+          "text": "            transform: translateY(-3px);"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/007/index.html",
+      "hits": [
+        {
+          "line": 389,
+          "text": "                const files = [\"/data/bd1.json\", \"/data/bd2.json\", \"/data/bd3.json\"];"
+        },
+        {
+          "line": 417,
+          "text": "                resultCard.innerHTML = `<div>⚠️ Ошибка загрузки базы. Убедитесь, что файлы bd1.json, bd2.json, bd3.json лежат в папке <code>/data/</code> в корне репозитория.</div>`;"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/008/index.html",
+      "hits": [
+        {
+          "line": 394,
+          "text": "                const files = [\"/data/bd2.json\"];"
+        },
+        {
+          "line": 422,
+          "text": "                resultCard.innerHTML = `<div>⚠️ Ошибка загрузки базы. Убедитесь, что файлы bd1.json, bd2.json, bd3.json лежат в папке <code>/data/</code> в корне репозитория.</div>`;"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/009/index.html",
+      "hits": [
+        {
+          "line": 488,
+          "text": "            const files = [\"/data/bd1.json\", \"/data/bd2.json\", \"/data/bd3.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/010/index.html",
+      "hits": [
+        {
+          "line": 366,
+          "text": "                empty: \"База пуста. Убедитесь, что файл <code>/data/db.json</code> существует в корне сайта.\","
+        },
+        {
+          "line": 385,
+          "text": "                empty: \"Database empty. Make sure <code>/data/db.json</code> exists in the root of the site.\","
+        },
+        {
+          "line": 463,
+          "text": "                const response = await fetch(\"/data/db.json\");"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/011/index.html",
+      "hits": [
+        {
+          "line": 365,
+          "text": "                empty: \"База пуста. Загрузите JSON-файл через меню или положите файл <code>db.json</code> в корень сайта.\","
+        },
+        {
+          "line": 384,
+          "text": "                empty: \"Database empty. Upload JSON via menu or place <code>db.json</code> in the root.\","
+        },
+        {
+          "line": 488,
+          "text": "        // Попытка автоматически загрузить /data/db.json"
+        },
+        {
+          "line": 493,
+          "text": "                \"/data/db.json\",                  // корень сайта"
+        },
+        {
+          "line": 494,
+          "text": "                \"./data/db.json\",                 // текущая папка"
+        },
+        {
+          "line": 495,
+          "text": "                \"../data/db.json\"                 // на уровень выше (если HTML в подпапке)"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/012/index.html",
+      "hits": [
+        {
+          "line": 470,
+          "text": "        // Автозагрузка /data/db.json"
+        },
+        {
+          "line": 473,
+          "text": "            const paths = [\"/data/db.json\", \"./data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/013.1/script.js",
+      "hits": [
+        {
+          "line": 55,
+          "text": "            empty: \"База пуста. Убедитесь, что файл /udream/data/db.json существует.\","
+        },
+        {
+          "line": 77,
+          "text": "            empty: \"Database empty. Make sure /udream/data/db.json exists.\","
+        },
+        {
+          "line": 154,
+          "text": "        dbInfoPanel.innerHTML = t(\"dbInfo\", { name: currentDbName || \"db.json\", count: db.length, chars: totalChars, size: sizeStr });"
+        },
+        {
+          "line": 181,
+          "text": "    // Автоматическая загрузка из /udream/data/db.json"
+        },
+        {
+          "line": 184,
+          "text": "        // Пытаемся загрузить из корня сайта /udream/data/db.json"
+        },
+        {
+          "line": 185,
+          "text": "        const url = \"/udream/data/db.json\";"
+        },
+        {
+          "line": 192,
+          "text": "                currentDbName = \"db.json (основная)\";"
+        },
+        {
+          "line": 205,
+          "text": "            \"/data/db.json\","
+        },
+        {
+          "line": 206,
+          "text": "            \"./data/db.json\","
+        },
+        {
+          "line": 207,
+          "text": "            \"../data/db.json\","
+        },
+        {
+          "line": 208,
+          "text": "            window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')+1) + \"data/db.json\""
+        },
+        {
+          "line": 611,
+          "text": "    loadMainDatabase(); // загружаем основную базу из /udream/data/db.json"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/013.2/script.js",
+      "hits": [
+        {
+          "line": 55,
+          "text": "            empty: \"База пуста. Убедитесь, что файл /data/db.json существует.\","
+        },
+        {
+          "line": 77,
+          "text": "            empty: \"Database empty. Make sure /data/db.json exists.\","
+        },
+        {
+          "line": 188,
+          "text": "        \"../data/db.json\",               // из 013.2 поднимаемся в udream/data/db.json"
+        },
+        {
+          "line": 189,
+          "text": "        \"/udream/data/db.json\",          // абсолютный путь от корня сайта"
+        },
+        {
+          "line": 190,
+          "text": "        \"./data/db.json\",                // на случай, если файл лежит рядом (не ваш случай)"
+        },
+        {
+          "line": 191,
+          "text": "        \"/data/db.json\"                  // корень сайта (маловероятно)"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/013.2/script.js132",
+      "hits": [
+        {
+          "line": 55,
+          "text": "            empty: \"База пуста. Убедитесь, что файл /udream/data/db.json существует.\","
+        },
+        {
+          "line": 77,
+          "text": "            empty: \"Database empty. Make sure /udream/data/db.json exists.\","
+        },
+        {
+          "line": 184,
+          "text": "    // Автоматическая загрузка из /udream/data/db.json (или других путей)"
+        },
+        {
+          "line": 190,
+          "text": "            \"/udream/data/db.json\",                           // абсолютный путь от корня сайта"
+        },
+        {
+          "line": 191,
+          "text": "            basePath + \"data/db.json\",                        // data/db.json относительно текущей папки"
+        },
+        {
+          "line": 192,
+          "text": "            \"./data/db.json\","
+        },
+        {
+          "line": 193,
+          "text": "            \"../data/db.json\","
+        },
+        {
+          "line": 194,
+          "text": "            \"/data/db.json\""
+        },
+        {
+          "line": 606,
+          "text": "    loadMainDatabase(); // загружаем основную базу из /udream/data/db.json"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/013/script.js",
+      "hits": [
+        {
+          "line": 183,
+          "text": "            basePath + \"data/db.json\","
+        },
+        {
+          "line": 184,
+          "text": "            \"/data/db.json\","
+        },
+        {
+          "line": 185,
+          "text": "            \"./data/db.json\","
+        },
+        {
+          "line": 186,
+          "text": "            \"../data/db.json\""
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/014/index.html",
+      "hits": [
+        {
+          "line": 151,
+          "text": "            transform: translateX(100%);"
+        },
+        {
+          "line": 158,
+          "text": "        .menu-panel.open { transform: translateX(0); }"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/014/script.js",
+      "hits": [
+        {
+          "line": 582,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/015/index.html",
+      "hits": [
+        {
+          "line": 153,
+          "text": "            transform: translateX(100%);"
+        },
+        {
+          "line": 160,
+          "text": "        .menu-panel.open { transform: translateX(0); }"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/015/script.js",
+      "hits": [
+        {
+          "line": 586,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/016/index.html",
+      "hits": [
+        {
+          "line": 125,
+          "text": "            z-index: 300; padding: 1.2rem; transform: translateX(100%);"
+        },
+        {
+          "line": 128,
+          "text": "        .menu-panel.open { transform: translateX(0); }"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/016/script.js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "    let currentDbName = \"db.json\";"
+        },
+        {
+          "line": 554,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/017/index.html",
+      "hits": [
+        {
+          "line": 100,
+          "text": "            z-index:300; padding:1rem 1.2rem; transform:translateX(100%);"
+        },
+        {
+          "line": 103,
+          "text": "        .menu-panel.open { transform:translateX(0); }"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/017/script.js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "    let currentDbName = \"db.json\";"
+        },
+        {
+          "line": 530,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/018/index.html",
+      "hits": [
+        {
+          "line": 105,
+          "text": "            z-index:300; padding:1rem 1.2rem; transform:translateX(100%);"
+        },
+        {
+          "line": 108,
+          "text": "        .menu-panel.open { transform:translateX(0); }"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/018/script.js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "    let currentDbName = \"db.json\";"
+        },
+        {
+          "line": 579,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/019/index.html",
+      "hits": [
+        {
+          "line": 115,
+          "text": "            z-index:300; padding:1rem 1.2rem; transform:translateX(100%);"
+        },
+        {
+          "line": 118,
+          "text": "        .menu-panel.open { transform:translateX(0); }"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/019/script.2js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "    let currentDbName = \"db.json\";"
+        },
+        {
+          "line": 561,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/019/script.js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "    let currentDbName = \"db.json\";"
+        },
+        {
+          "line": 602,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/019/script1.js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "    let currentDbName = \"db.json\";"
+        },
+        {
+          "line": 560,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/019/script3.js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "    let currentDbName = \"db.json\";"
+        },
+        {
+          "line": 569,
+          "text": "        const paths = [\"/udream/data/db.json\", \"data/db.json\", \"../data/db.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/old-data/db.json",
+      "hits": [
+        {
+          "line": 7,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 17,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 27,
+          "text": "  \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 37,
+          "text": "  \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 47,
+          "text": "  \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 57,
+          "text": "  \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 67,
+          "text": "  \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 77,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 87,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 97,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 107,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 117,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 127,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 137,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 147,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 157,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 167,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 177,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 187,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 197,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 207,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 217,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 227,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 237,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 247,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 257,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 267,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 277,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 287,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 297,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 307,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 317,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 327,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 337,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 347,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 357,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 367,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 377,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 387,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 397,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 407,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 417,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 427,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 437,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 447,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 457,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 467,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 477,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 487,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 497,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 507,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 517,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 527,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 537,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 547,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 557,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 567,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 577,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 587,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 597,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 607,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 617,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 627,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 637,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 647,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 657,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 667,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 677,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 687,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 697,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 707,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 717,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 727,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 737,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 747,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 757,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 767,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 777,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 787,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 797,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 807,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 817,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 827,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 837,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 847,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 857,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 867,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 877,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 887,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 897,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 907,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 917,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 927,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 937,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 947,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 957,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 967,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 977,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 987,
+          "text": "    \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 997,
+          "text": "    \"source\": \"DivinityCode\","
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/AI_GITHUB_WORKFLOW.md",
+      "hits": [
+        {
+          "line": 93,
+          "text": "- богословской, переводческой или редакторской оценки содержимого;"
+        },
+        {
+          "line": 105,
+          "text": "- массовый перевод."
+        },
+        {
+          "line": 185,
+          "text": "- создавать новый перевод поверх предыдущего файла;"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/ARCHITECTURE.md",
+      "hits": [
+        {
+          "line": 14,
+          "text": "    ├─import──> src/data.js ──fetch──> data/divinity_code_ru.json"
+        },
+        {
+          "line": 95,
+          "text": "- marks the single translation that intentionally contains trusted line-break HTML."
+        },
+        {
+          "line": 115,
+          "text": "### `data/divinity_code_ru.json`"
+        },
+        {
+          "line": 119,
+          "text": "The future D1 data architecture must preserve separate source datasets and translation variants rather than destructively replacing this file."
+        },
+        {
+          "line": 174,
+          "text": "- Preserve each source dataset and translation variant with provenance; do not overwrite one variant with another."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/CONTENT_AND_RIGHTS.md",
+      "hits": [
+        {
+          "line": 32,
+          "text": "- переводы третьих лиц, если на них распространяются отдельные права."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/DATABASE_FORMAT.md",
+      "hits": [
+        {
+          "line": 6,
+          "text": "data/divinity_code_ru.json"
+        },
+        {
+          "line": 19,
+          "text": "  \"source\": \"DivinityCode\","
+        },
+        {
+          "line": 45,
+          "text": "| `data/divinity_code_ru.json` | Active translated and augmented database with 4,086 records | Loaded by the application |"
+        },
+        {
+          "line": 46,
+          "text": "| `data/bd2.json` | Retained English reference dataset with 4,086 records | Not used by the current runtime |"
+        },
+        {
+          "line": 47,
+          "text": "| `data/db.json` | Exact byte-for-byte duplicate of `data/bd2.json` | Not used by the current runtime |"
+        },
+        {
+          "line": 48,
+          "text": "| `data/report.txt` | Historical generation and quality summary | Not used by the current runtime |"
+        },
+        {
+          "line": 50,
+          "text": "At the time of the audit, `data/bd2.json` and `data/db.json` had the same size and SHA-256 hash:"
+        },
+        {
+          "line": 56,
+          "text": "Git history shows that `bd2.json` existed before the later addition of `db.json`. The exact generation and translation pipeline that produced `divinity_code_ru.json` remains undocumented, so the retained files must not yet be deleted or rewritten."
+        },
+        {
+          "line": 65,
+          "text": "| Current Russian translation | 1 | Published, reviewed runtime version |"
+        },
+        {
+          "line": 66,
+          "text": "| Alternative Russian translation A | 0–1 | Independent candidate for comparison |"
+        },
+        {
+          "line": 67,
+          "text": "| Alternative Russian translation B | 0–1 | Second independent candidate only when quality justifies it |"
+        },
+        {
+          "line": 69,
+          "text": "Two byte-identical files are one logical dataset, not two translations. D1 must identify a canonical path and prepare a reversible migration before a redundant physical copy is removed."
+        },
+        {
+          "line": 71,
+          "text": "The project does not require two alternative translations at any cost. When only one reliable Russian translation exists, the correct product state is one source dataset plus one Russian translation."
+        },
+        {
+          "line": 73,
+          "text": "## Dataset and translation preservation"
+        },
+        {
+          "line": 75,
+          "text": "The current single-file runtime is not permission to overwrite other sources or translation variants."
+        },
+        {
+          "line": 77,
+          "text": "Every future dataset or translation variant must have documented metadata covering at least:"
+        },
+        {
+          "line": 82,
+          "text": "- translation/editorial variant;"
+        },
+        {
+          "line": 91,
+          "text": "A new translation or corrected edition must be introduced as a new recoverable version. The prior version remains available until an explicit retention decision is documented."
+        },
+        {
+          "line": 99,
+          "text": "An API-generated translation is stored as a separate candidate dataset. It must never overwrite `data/divinity_code_ru.json` in place."
+        },
+        {
+          "line": 104,
+          "text": "- fields submitted for translation;"
+        },
+        {
+          "line": 114,
+          "text": "The API key itself is never stored in Git, JSON data, browser code, logs, reports or patchnotes. Full operational rules are in `docs/TRANSLATION_WORKFLOW.md`."
+        },
+        {
+          "line": 121,
+          "text": "jq empty data/divinity_code_ru.json"
+        },
+        {
+          "line": 122,
+          "text": "jq 'length' data/divinity_code_ru.json"
+        },
+        {
+          "line": 123,
+          "text": "jq 'map(.id) | length == (unique | length)' data/divinity_code_ru.json"
+        },
+        {
+          "line": 124,
+          "text": "jq 'all(.[]; (.id | type) == \"number\" and (.symbol | type) == \"string\" and (.aliases | type) == \"array\" and (.description | type) == \"string\" and (.source | type) == \"string\" and (.date_added | type) == \"string\" and (.tags | type) == \"array\" and (.notes | type) == \"string\")' data/divinity_code_ru.json"
+        },
+        {
+          "line": 128,
+          "text": "Record-count changes, ID changes, source changes and translation changes must be explained in the commit, changelog and matching data-migration document."
+        },
+        {
+          "line": 133,
+          "text": "- Distinguish source text, translation, editorial notes, aliases and generated tags."
+        },
+        {
+          "line": 137,
+          "text": "- Do not delete retained source or translation variants as routine cleanup."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/FILE_MAP.md",
+      "hits": [
+        {
+          "line": 23,
+          "text": "| `tests/i18n.test.js` | Language fallback, translation and instruction-claim tests | Low |"
+        },
+        {
+          "line": 29,
+          "text": "| `data/divinity_code_ru.json` | Active published database | Critical |"
+        },
+        {
+          "line": 43,
+          "text": "| `data/divinity_code_ru.json` | Active translated and augmented runtime database with 4,086 records |"
+        },
+        {
+          "line": 44,
+          "text": "| `data/bd2.json` | Retained English reference dataset; not used by current runtime |"
+        },
+        {
+          "line": 45,
+          "text": "| `data/db.json` | Exact duplicate of `data/bd2.json`; retained pending D1 provenance documentation |"
+        },
+        {
+          "line": 46,
+          "text": "| `data/report.txt` | Historical generation/quality summary; not used by current runtime |"
+        },
+        {
+          "line": 48,
+          "text": "No retained database or translation variant may be destructively replaced. D1 must assign stable dataset identity, source, language, version and transformation history before any migration or selector is implemented."
+        },
+        {
+          "line": 50,
+          "text": "The target logical topology is one canonical source dataset, one current Russian translation and up to two independent alternative Russian translations. Exact duplicates are not separate variants. See `docs/TRANSLATION_WORKFLOW.md`."
+        },
+        {
+          "line": 52,
+          "text": "## Planned translation tooling"
+        },
+        {
+          "line": 54,
+          "text": "No translation API client or batch script is part of the current runtime."
+        },
+        {
+          "line": 60,
+          "text": "| local translation script | Must create a separate candidate dataset and support checkpoints |"
+        },
+        {
+          "line": 61,
+          "text": "| GitHub Actions translation workflow | Must use an encrypted secret and never expose the key in logs or artifacts |"
+        },
+        {
+          "line": 63,
+          "text": "| translation manifests and reports | Must record source hash, model, prompt version, output hash and review status |"
+        },
+        {
+          "line": 154,
+          "text": "| `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, duplicate policy and safe DeepSeek-assisted workflow |"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/HISTORICAL_CONTEXT.md",
+      "hits": [
+        {
+          "line": 3,
+          "text": "This document records context recovered from an earlier DeepSeek chat. It describes the project around the `13.2` generation and must not be treated as the current architecture without verification."
+        },
+        {
+          "line": 38,
+          "text": "- The application currently loads `data/divinity_code_ru.json`, not the database path named in the recovered report."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/MODULARIZATION_PLAN.md",
+      "hits": [
+        {
+          "line": 89,
+          "text": "8. Варианты баз и переводов не перезаписываются и не удаляются при архитектурных изменениях."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/PRODUCT_VISION.md",
+      "hits": [
+        {
+          "line": 37,
+          "text": "4. безопасный выбор отдельной базы, варианта перевода или согласованного объединённого поиска;"
+        },
+        {
+          "line": 39,
+          "text": "6. документированный процесс подготовки, перевода, проверки и публикации данных;"
+        },
+        {
+          "line": 62,
+          "text": "Ни одна исходная база, редакция или версия перевода не должна молча перезаписывать другую."
+        },
+        {
+          "line": 76,
+          "text": "### Сохранение вариантов перевода"
+        },
+        {
+          "line": 78,
+          "text": "Если создаётся новый вариант перевода, прежний вариант сохраняется. Новый перевод получает отдельную версию и описание отличий."
+        },
+        {
+          "line": 82,
+          "text": "- массово менять опубликованный перевод без отдельного data-релиза;"
+        },
+        {
+          "line": 83,
+          "text": "- смешивать исходный текст, перевод и редакторские дополнения без маркировки;"
+        },
+        {
+          "line": 87,
+          "text": "### Целевая модель переводов"
+        },
+        {
+          "line": 92,
+          "text": "2. один текущий опубликованный русский перевод;"
+        },
+        {
+          "line": 93,
+          "text": "3. до двух самостоятельных альтернативных русских переводов для сравнения качества."
+        },
+        {
+          "line": 95,
+          "text": "Два одинаковых файла не считаются двумя переводами. Если текущая пара действительно является точным дублем, после доказанной безопасной миграции должен остаться один канонический файл, а история прежнего дубликата — в Git и миграционной записи."
+        },
+        {
+          "line": 97,
+          "text": "Если два качественно независимых альтернативных перевода получить не удастся, проект не создаёт искусственные варианты ради количества. В таком случае сохраняются исходная база и один надёжный русский перевод."
+        },
+        {
+          "line": 99,
+          "text": "Подробный порядок зафиксирован в [документе о переводах и AI-assisted workflow](TRANSLATION_WORKFLOW.md)."
+        },
+        {
+          "line": 101,
+          "text": "### DeepSeek как вспомогательный инструмент"
+        },
+        {
+          "line": 103,
+          "text": "DeepSeek API может использоваться только для создания отдельного кандидата перевода или расширения непереведённых полей. Результат модели не считается автоматически правильным, опубликованным или богословски проверенным."
+        },
+        {
+          "line": 105,
+          "text": "Ключ API не должен попадать в браузерный код, JSON-базы, Git, патчноуты или логи. Перевод запускается локальным служебным скриптом либо GitHub Actions с encrypted secret. Каждый запуск создаёт новую кандидатную версию и не перезаписывает активную базу."
+        },
+        {
+          "line": 114,
+          "text": "- поиск по выбранной редакции или переводу;"
+        },
+        {
+          "line": 151,
+          "text": "1. восстановить известный процесс создания `data/divinity_code_ru.json`;"
+        },
+        {
+          "line": 153,
+          "text": "3. определить реестр наборов данных и вариантов перевода;"
+        },
+        {
+          "line": 157,
+          "text": "7. подготовить воспроизводимый AI-assisted перевод с безопасным хранением ключа;"
+        },
+        {
+          "line": 166,
+          "text": "- восстановленный и воспроизводимый pipeline перевода активной базы;"
+        },
+        {
+          "line": 167,
+          "text": "- альтернативные русские переводы;"
+        },
+        {
+          "line": 170,
+          "text": "- пользовательский выбор между двумя книгами и вариантами перевода;"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/PROJECT_STATE.md",
+      "hits": [
+        {
+          "line": 5,
+          "text": "Automation update `23.8.7` adds isolated real-Chromium screenshot scenarios, read-only GitHub Actions artifacts and structural validation. It retains the unified GitHub workflow, cross-device handoff, product vision, non-destructive data rules, target translation model and safe DeepSeek-assisted workflow. It does not change application runtime, PWA behavior or database records."
+        },
+        {
+          "line": 11,
+          "text": "The current product mission and final direction are defined in `docs/PRODUCT_VISION.md`. Translation variants and API-assisted data preparation are governed by `docs/TRANSLATION_WORKFLOW.md`."
+        },
+        {
+          "line": 49,
+          "text": "data/divinity_code_ru.json"
+        },
+        {
+          "line": 147,
+          "text": "- `data/divinity_code_ru.json` is the active translated and augmented runtime database with 4,086 records;"
+        },
+        {
+          "line": 148,
+          "text": "- `data/bd2.json` is a retained English reference dataset with 4,086 records;"
+        },
+        {
+          "line": 149,
+          "text": "- `data/db.json` is an exact byte-for-byte duplicate of `data/bd2.json`;"
+        },
+        {
+          "line": 150,
+          "text": "- `data/report.txt` is a historical generation and quality summary."
+        },
+        {
+          "line": 152,
+          "text": "Only `data/divinity_code_ru.json` is referenced by the current application, Service Worker, validation script and state tests. The other files are not part of the current runtime."
+        },
+        {
+          "line": 154,
+          "text": "The intended D1 target is one canonical source dataset, one current published Russian translation and up to two independent alternative Russian translations. Exact duplicates do not count as separate variants. When only one reliable Russian translation exists, the smaller set is preferred over artificial duplication."
+        },
+        {
+          "line": 156,
+          "text": "The exact generation and translation pipeline for `data/divinity_code_ru.json` is still undocumented. No retained data file, source edition or translation variant may be deleted or overwritten until the D1 provenance and multi-dataset architecture is designed and approved."
+        },
+        {
+          "line": 158,
+          "text": "DeepSeek is only a possible candidate-generation tool. No API client or key is part of the current browser runtime. Any future experiment must create a separate recoverable candidate dataset and use a local environment variable or GitHub encrypted secret."
+        },
+        {
+          "line": 172,
+          "text": "- target translation topology and duplicate policy;"
+        },
+        {
+          "line": 173,
+          "text": "- safe AI-assisted translation workflow;"
+        },
+        {
+          "line": 198,
+          "text": "- Alternative Russian translations do not yet exist as reviewed datasets."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/RELEASE_AND_ROLLBACK.md",
+      "hits": [
+        {
+          "line": 11,
+          "text": "- Data migrations must preserve prior datasets and translation variants as recoverable sources."
+        },
+        {
+          "line": 50,
+          "text": "jq empty data/divinity_code_ru.json"
+        },
+        {
+          "line": 63,
+          "text": "2. preserve the complete previous dataset or translation variant;"
+        },
+        {
+          "line": 69,
+          "text": "A new translation must never rely on replacing the only stored copy of the previous translation."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/TRANSLATION_WORKFLOW.md",
+      "hits": [
+        {
+          "line": 1,
+          "text": "# Переводы и AI-assisted workflow"
+        },
+        {
+          "line": 5,
+          "text": "Этот документ фиксирует целевую модель переводов uDream и безопасный порядок экспериментов с API-переводом. Он не означает, что новые переводы уже созданы или что активная база должна быть немедленно изменена."
+        },
+        {
+          "line": 11,
+          "text": "1. **Исходная база** — канонический набор на языке исходного материала, без русской переводческой редакции."
+        },
+        {
+          "line": 12,
+          "text": "2. **Текущий русский перевод** — опубликованный и проверенный вариант, который сейчас используется приложением."
+        },
+        {
+          "line": 13,
+          "text": "3. **Альтернативный русский перевод A** — отдельный вариант для сравнения качества и формулировок."
+        },
+        {
+          "line": 14,
+          "text": "4. **Альтернативный русский перевод B** — второй независимый вариант, если его удастся получить и проверить с достаточным качеством."
+        },
+        {
+          "line": 16,
+          "text": "Это целевая модель, а не требование искусственно создавать лишние копии. Если надёжно получается только один русский перевод, проект сохраняет одну русскую версию и исходную базу. Количество вариантов не должно быть важнее качества, происхождения и проверяемости."
+        },
+        {
+          "line": 20,
+          "text": "`data/bd2.json` и `data/db.json` ранее были подтверждены как точные байтовые дубликаты. До завершения D1 они сохраняются без изменений."
+        },
+        {
+          "line": 30,
+          "text": "Точный дубликат не считается самостоятельным переводом или редакцией. После доказанной безопасной миграции достаточно одного канонического файла, Git-истории и документированной записи о прежнем дубликате."
+        },
+        {
+          "line": 34,
+          "text": "Каждый самостоятельный набор или перевод должен иметь собственный стабильный идентификатор и метаданные:"
+        },
+        {
+          "line": 38,
+          "text": "- язык перевода;"
+        },
+        {
+          "line": 43,
+          "text": "- переводчик, инструмент или модель;"
+        },
+        {
+          "line": 55,
+          "text": "ru-deepseek-candidate-v1"
+        },
+        {
+          "line": 61,
+          "text": "## Использование DeepSeek API"
+        },
+        {
+          "line": 63,
+          "text": "DeepSeek рассматривается как один из возможных инструментов для создания дополнительного кандидата перевода или расширения непереведённых полей. Результат API не считается автоматически правильным, опубликованным или богословски проверенным."
+        },
+        {
+          "line": 67,
+          "text": "Перевод через API выполняется только:"
+        },
+        {
+          "line": 72,
+          "text": "Статический сайт и установленная PWA не должны обращаться к переводческому API напрямую. Встраивание ключа в браузерный JavaScript неизбежно раскроет его пользователям."
+        },
+        {
+          "line": 88,
+          "text": "DEEPSEEK_API_KEY"
+        },
+        {
+          "line": 93,
+          "text": "## Безопасный конвейер AI-перевода"
+        },
+        {
+          "line": 95,
+          "text": "Экспериментальный перевод должен идти отдельными контролируемыми шагами:"
+        },
+        {
+          "line": 98,
+          "text": "2. определить поля, которые разрешено переводить;"
+        },
+        {
+          "line": 104,
+          "text": "8. формировать отчёт различий с текущим переводом;"
+        },
+        {
+          "line": 112,
+          "text": "AI-перевод нельзя автоматически использовать для:"
+        },
+        {
+          "line": 120,
+          "text": "- принятия решения, какой перевод является окончательным."
+        },
+        {
+          "line": 129,
+          "text": "- выбрать текущий или альтернативный перевод;"
+        },
+        {
+          "line": 133,
+          "text": "Переключатель не реализуется до утверждения реестра наборов, правил ID и миграционного плана. Активная база `data/divinity_code_ru.json` остаётся единственным опубликованным runtime-набором до отдельного функционального релиза."
+        },
+        {
+          "line": 135,
+          "text": "## Критерии допуска нового перевода"
+        },
+        {
+          "line": 154,
+          "text": "2. какой вариант является текущим опубликованным русским переводом;"
+        },
+        {
+          "line": 155,
+          "text": "3. нужны ли два альтернативных перевода и как они будут отличаться;"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/index.html",
+      "hits": [
+        {
+          "line": 145,
+          "text": "            z-index:300; padding:1rem 1.2rem; transform:translateX(100%);"
+        },
+        {
+          "line": 148,
+          "text": "        .menu-panel.open { transform:translateX(0); }"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-19-udream-m4-safe-presentation.md",
+      "hits": [
+        {
+          "line": 21,
+          "text": "- Справка больше не обещает непроверенный offline reload и не утверждает, что переключение языка переводит записи базы."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-20-udream-v23-8-0-pwa-update.md",
+      "hits": [
+        {
+          "line": 22,
+          "text": "- При переходе со старого Service Worker открытая страница переводится на актуальную версию."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-20-udream-v3-6-2-data-classification.md",
+      "hits": [
+        {
+          "line": 17,
+          "text": "- `divinity_code_ru.json` подтверждён как активная база приложения из 4 086 записей."
+        },
+        {
+          "line": 18,
+          "text": "- `bd2.json` классифицирован как сохранённый английский набор данных."
+        },
+        {
+          "line": 19,
+          "text": "- `db.json` является точным побайтовым дубликатом `bd2.json`."
+        },
+        {
+          "line": 20,
+          "text": "- `report.txt` является историческим отчётом генерации и проверки качества."
+        },
+        {
+          "line": 23,
+          "text": "- Точный процесс генерации и перевода активной базы остаётся следующей задачей."
+        },
+        {
+          "line": 27,
+          "text": "В uDream классифицированы файлы базы данных. Активной базой подтверждён divinity_code_ru.json с 4 086 записями. bd2.json является сохранённым английским набором, а db.json — его точным дубликатом. Данные не изменялись и не удалялись."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-21-udream-v23-8-3-unified-documentation.md",
+      "hits": [
+        {
+          "line": 18,
+          "text": "- Зафиксировано, что исходные базы, редакции и варианты перевода нельзя молча перезаписывать или удалять."
+        },
+        {
+          "line": 19,
+          "text": "- Новый перевод должен сохраняться как отдельная версия, а объединённый поиск обязан сохранять происхождение каждой записи."
+        },
+        {
+          "line": 32,
+          "text": "Документационное обновление uDream 23.8.3 объединяет видение проекта, архитектуру, roadmap и правила работы с данными. Теперь закреплено: базы и варианты перевода нельзя перезаписывать, а следующий этап D1 сначала документирует происхождение данных и проектирует несколько наборов без изменения активных 4 086 записей."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-21-udream-v23-8-4-translation-plan-readme.md",
+      "hits": [
+        {
+          "line": 5,
+          "text": "title: План переводов и страница репозитория обновлены"
+        },
+        {
+          "line": 13,
+          "text": "# uDream 23.8.4: варианты перевода, безопасный API-workflow и обновлённый README"
+        },
+        {
+          "line": 17,
+          "text": "- Целевая модель включает одну каноническую исходную базу, один текущий русский перевод и до двух действительно самостоятельных альтернативных переводов."
+        },
+        {
+          "line": 19,
+          "text": "- Если качественно получается только один русский перевод, проект оставляет один перевод вместо искусственного создания вариантов."
+        },
+        {
+          "line": 20,
+          "text": "- Добавлен отдельный документ `docs/TRANSLATION_WORKFLOW.md`."
+        },
+        {
+          "line": 21,
+          "text": "- DeepSeek рассматривается только как вспомогательный генератор отдельного кандидата перевода."
+        },
+        {
+          "line": 29,
+          "text": "Документационное обновление uDream 23.8.4 закрепляет будущую модель данных: одна исходная база, текущий русский перевод и до двух реальных альтернатив без искусственных дублей. Добавлены безопасные правила DeepSeek-assisted перевода, а README получил установку PWA, быстрый старт и прямое скачивание стабильного v23.8.0 ZIP."
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/script.js",
+      "hits": [
+        {
+          "line": 19,
+          "text": "    isTrustedHtmlTranslation,"
+        },
+        {
+          "line": 21,
+          "text": "    translate"
+        },
+        {
+          "line": 107,
+          "text": "        return translate(lang, key, vars);"
+        },
+        {
+          "line": 122,
+          "text": "            if (isTrustedHtmlTranslation(key)) el.innerHTML = t(key);"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/scripts/validate-project.mjs",
+      "hits": [
+        {
+          "line": 115,
+          "text": "    \"versions/v3.0.0/data/divinity_code_ru.json\","
+        },
+        {
+          "line": 177,
+          "text": "  const records = await readJson(\"data/divinity_code_ru.json\");"
+        },
+        {
+          "line": 242,
+          "text": "  const secretRisk = /\\b(?:TELEGRAM_BOT_TOKEN|BOT_TOKEN|DEEPSEEK_API_KEY)\\b|\\b\\d{6,}:[A-Za-z0-9_-]{20,}\\b/i;"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/src/data.js",
+      "hits": [
+        {
+          "line": 4,
+          "text": "  \"/udream/data/divinity_code_ru.json\","
+        },
+        {
+          "line": 5,
+          "text": "  \"data/divinity_code_ru.json\","
+        },
+        {
+          "line": 6,
+          "text": "  \"../data/divinity_code_ru.json\","
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/src/i18n.js",
+      "hits": [
+        {
+          "line": 71,
+          "text": "export function translate(language, key, variables = {}) {"
+        },
+        {
+          "line": 81,
+          "text": "export function isTrustedHtmlTranslation(key) {"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/src/presentation.js",
+      "hits": [
+        {
+          "line": 3,
+          "text": "import { translate } from \"./i18n.js\";"
+        },
+        {
+          "line": 38,
+          "text": "  if (!stats) return `<div>${escapeHtml(translate(language, \"dbNotLoaded\"))}</div>`;"
+        },
+        {
+          "line": 40,
+          "text": "    translate(language, \"statsLine1\", { name: stats.name }),"
+        },
+        {
+          "line": 41,
+          "text": "    translate(language, \"statsLine2\", { count: stats.count }),"
+        },
+        {
+          "line": 42,
+          "text": "    translate(language, \"statsLine3\", { size: stats.size }),"
+        },
+        {
+          "line": 43,
+          "text": "    translate(language, \"statsLine4\", { chars: stats.chars }),"
+        },
+        {
+          "line": 77,
+          "text": "  const aliasesHtml = aliases.length ? `<div class=\"aliases\"><strong>🔗 ${escapeHtml(translate(language, \"aliasesLabel\"))}:</strong> ${aliases.map((alias) => `<span class=\"tag alias-tag\" data-record-id=\"${escapeHtml(record.id)}\">${escapeHtml(alias)}</span>`).join(\" \")}</div>` : \"\";"
+        },
+        {
+          "line": 78,
+          "text": "  const tagsHtml = tags.length ? `<div class=\"tags\"><strong>🏷️ ${escapeHtml(translate(language, \"tagsLabel\"))}:</strong> ${tags.map((tag) => `<span class=\"tag tag-filter\" data-tag=\"${escapeHtml(tag)}\">${escapeHtml(tag)}</span>`).join(\" \")}</div>` : \"\";"
+        },
+        {
+          "line": 80,
+          "text": "  const notesHtml = notes ? `<div class=\"notes\"><b>📝 ${escapeHtml(translate(language, \"notesLabel\"))}:</b><br>${notes}</div>` : \"\";"
+        },
+        {
+          "line": 88,
+          "text": "      <button class=\"share-btn share-text-btn\"><i class=\"fas fa-share-alt\"></i> ${escapeHtml(translate(language, \"shareText\"))}</button>"
+        },
+        {
+          "line": 89,
+          "text": "      <button class=\"share-btn share-image-btn\"><i class=\"fas fa-image\"></i> ${escapeHtml(translate(language, \"shareImage\"))}</button>"
+        },
+        {
+          "line": 98,
+          "text": "    `${translate(language, \"shareSymbol\")}: ${String(record.symbol ?? \"\")}`,"
+        },
+        {
+          "line": 99,
+          "text": "    `${translate(language, \"shareSource\")}: ${String(record.source ?? \"-\")}`,"
+        },
+        {
+          "line": 100,
+          "text": "    `${translate(language, \"shareDate\")}: ${String(record.date_added ?? \"-\")}`,"
+        },
+        {
+          "line": 101,
+          "text": "    `${translate(language, \"shareDescription\")}: ${String(record.description ?? \"\")}`,"
+        },
+        {
+          "line": 102,
+          "text": "    aliases ? `${translate(language, \"aliasesLabel\")}: ${aliases}` : \"\","
+        },
+        {
+          "line": 103,
+          "text": "    tags ? `${translate(language, \"tagsLabel\")}: ${tags}` : \"\","
+        },
+        {
+          "line": 104,
+          "text": "    record.notes ? `${translate(language, \"notesLabel\")}: ${String(record.notes)}` : \"\","
+        },
+        {
+          "line": 113,
+          "text": "    <p style=\"font-size:14px;color:#666\">${record.source ? `${escapeHtml(translate(language, \"shareSource\"))}: ${escapeHtml(record.source)}` : \"\"} ${record.date_added ? `📅 ${escapeHtml(record.date_added)}` : \"\"}</p>"
+        },
+        {
+          "line": 115,
+          "text": "    ${aliases.length ? `<p><b>${escapeHtml(translate(language, \"aliasesLabel\"))}:</b> ${aliases.map(escapeHtml).join(\", \")}</p>` : \"\"}"
+        },
+        {
+          "line": 116,
+          "text": "    ${tags.length ? `<p><b>${escapeHtml(translate(language, \"tagsLabel\"))}:</b> ${tags.map(escapeHtml).join(\", \")}</p>` : \"\"}"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/src/state.js",
+      "hits": [
+        {
+          "line": 27,
+          "text": "    currentDbName: \"divinity_code_ru.json\","
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/sw.js",
+      "hits": [
+        {
+          "line": 25,
+          "text": "  \"/udream/data/divinity_code_ru.json\","
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/tests/i18n.test.js",
+      "hits": [
+        {
+          "line": 6,
+          "text": "  isTrustedHtmlTranslation,"
+        },
+        {
+          "line": 8,
+          "text": "  translate,"
+        },
+        {
+          "line": 18,
+          "text": "test(\"translations interpolate every placeholder occurrence and fall back safely\", () => {"
+        },
+        {
+          "line": 19,
+          "text": "  assert.equal(translate(\"en\", \"matches\", { count: 2 }), \"Matches: 2\");"
+        },
+        {
+          "line": 20,
+          "text": "  assert.equal(translate(\"broken\", \"searchBtn\"), \"Найти\");"
+        },
+        {
+          "line": 21,
+          "text": "  assert.equal(translate(\"en\", \"missing-key\"), \"missing-key\");"
+        },
+        {
+          "line": 24,
+          "text": "test(\"only reviewed translations are allowed to contain trusted HTML\", () => {"
+        },
+        {
+          "line": 25,
+          "text": "  assert.equal(isTrustedHtmlTranslation(\"thanks\"), true);"
+        },
+        {
+          "line": 26,
+          "text": "  assert.equal(isTrustedHtmlTranslation(\"searchBtn\"), false);"
+        },
+        {
+          "line": 27,
+          "text": "  assert.match(translate(\"ru\", \"thanks\"), /<br>/);"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/tests/state.test.js",
+      "hits": [
+        {
+          "line": 21,
+          "text": "  assert.equal(state.currentDbName, \"divinity_code_ru.json\");"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/versions/v3.0.0/index.html",
+      "hits": [
+        {
+          "line": 146,
+          "text": "            z-index:300; padding:1rem 1.2rem; transform:translateX(100%);"
+        },
+        {
+          "line": 149,
+          "text": "        .menu-panel.open { transform:translateX(0); }"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/versions/v3.0.0/script.js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "    // let currentDbName = \"bd2.json\";"
+        },
+        {
+          "line": 12,
+          "text": "    let currentDbName = \"divinity_code_ru.json\";"
+        },
+        {
+          "line": 564,
+          "text": "                <p><strong>🌐 Два языка</strong> — русский и английский. Интерфейс и переводы словаря переключаются мгновенно.</p>"
+        },
+        {
+          "line": 586,
+          "text": "                <p><strong>🌐 Two languages</strong> — Russian and English. Interface and dictionary translations switch instantly.</p>"
+        },
+        {
+          "line": 649,
+          "text": "        const paths = [\"data/divinity_code_ru.json\"];"
+        }
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/versions/v3.0.0/sw.js",
+      "hits": [
+        {
+          "line": 11,
+          "text": "  './data/divinity_code_ru.json'"
+        }
+      ]
+    }
+  ],
+  "scriptCandidates": [
+    "/home/runner/work/udream/udream/src/data.js",
+    "/home/runner/work/udream/udream/tests/data.test.js"
+  ],
+  "reportText": "records: 4086\nsections: {'symbol': 2768, 'name-place': 1318}\nletters: {'A': 231, 'B': 338, 'C': 394, 'D': 214, 'E': 112, 'F': 206, 'G': 143, 'H': 169, 'I': 63, 'J': 107, 'K': 71, 'L': 176, 'M': 243, 'N': 102, 'O': 73, 'P': 238, 'Q': 19, 'R': 197, 'S': 436, 'T': 256, 'U': 46, 'V': 56, 'W': 149, 'X': 2, 'Y': 26, 'Z': 19}\n\ntop_tags:\n  name-place: 1318\n  dictionary-name-place: 1318\n  name: 1171\n  cross-reference: 1019\n  body: 580\n  church: 542\n  sin: 521\n  reference: 401\n  places: 399\n  communication: 386\n  holy-spirit: 385\n  work: 362\n  jesus: 319\n  directions: 309\n  nature: 277\n  heaven: 271\n  life: 242\n  emotions: 238\n  numbers: 236\n  family: 219\n  judgment: 215\n  food: 212\n  animals: 191\n  authority: 189\n  demonic: 179\n  scripture: 178\n  colors: 170\n  spiritual-warfare: 169\n  death: 167\n  place: 135\n  warning: 119\n  protection: 109\n  relationships: 103\n  deliverance: 103\n  time: 103\n  wealth: 102\n  transport: 91\n  prayer: 90\n  wisdom: 89\n  mind: 89\n  clothing: 74\n  healing: 43\n  brand: 12\n\nsuspicious_count: 8\n- id=691 symbol=cupboard desc=(1) Heart; (2) Storage; (3) Thoughts (mind); (4) Delay; (5) Reserve or preserve; (6) Abundance: (7) Accumulated; (8) Hidden. Also see Closet. (1) Prov. 13:12; Amos 3:10; (2) 2 Chron. 11:11; 1 Cor. 16:2; (3) 1 Chron. 29:1\n- id=769 symbol=dividing desc=(1) Separating: (2) Separating between soul and spirit; (3) Between truth and lies; (4) Between believer and unbeliever; (5) Between husband and wife (divorce); (6) Between family members; (7) About to fall over. (1-2) H\n- id=1441 symbol=limousine desc=(1) Glamour; (2) Opulence: (3) High profile. (1-3) Song. 3:9-10.\n- id=1468 symbol=lost and found (found) desc=(1) Repentance or salvation; (2) Spiritually alive; (3) Revelation; (4-6) Joy and/or celebration (could symbolize Holy Spirit infilling); (7) Grace or Spirit. (1) Luke 15:4-7; (2) Luke 15:32; (3) 1 Sam. 9:20; (4) Luke 15\n- id=1919 symbol=raven desc=There are two main lines of interpretation: (1) Unbeliever: (2) Cared for by God; (3) Support from the world; (4) Evil spirit/demon: (5) Taker of spiritual sight. Also see Bird/s. (1) (Gen. 8:7 & Isa. 57:21); Lev. 11:13,\n- id=1979 symbol=roar desc=[A] (1) God’s voice; (2) Loud voice; (3) A leader’s anger; (4) Fearless (as a lion); (5) Territorial warfare (lion’s roar). [B] The spiritual enemies of God trying to paralyze their prey: (6) Voice of the spiritual enemi\n- id=2276 symbol=stalled vehicle desc=(1) Ministry in limbo; (2) On hold; (3) Doing things your way, not God’s way; (4) Stumbling; (5) Heart preparation (test); (6) Awaiting the timing of God; (7) Fear; (8) Not seeing in the Spirit (wrong perception); (9) A \n- id=2695 symbol=whirlwind desc=Open Heaven bringing: (1) Rapture; (2) Revelation (hearing the Word of God); (3) Resurrection; (4) Destruction; (5) Judgment. Also see Dust Storm and Tornado. (1) 2 Kings 2:1, 11; (2) Job 38:1; Ezek. 1:4ff; (3) Job 40:6-"
+}

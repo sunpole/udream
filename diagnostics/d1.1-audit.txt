@@ -1,0 +1,19 @@
+# D1.1 audit summary
+
+Generated: 2026-07-22T08:49:59Z
+Commit: bbf2f00e371fe7a5de6a857aa078b26d71fbe58d
+Branch: docs/data-provenance-d1.1
+
+## Current files
+- data/divinity_code_ru.json: 4688773 bytes, sha256 1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64, records 4086, history commits 1
+- data/bd2.json: 2141655 bytes, sha256 814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28, records 4086, history commits 2
+- data/db.json: 2204553 bytes, sha256 4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0, records 4086, history commits 3
+- data/report.txt: 2963 bytes, sha256 dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d, records n/a, history commits 1
+
+bd2.json byte-equal db.json: False
+inventory files: 10
+exact duplicate groups: 1
+reference-hit files: 73
+script candidates: 2
+
+Full machine-readable evidence: diagnostics/d1.1-audit.json
