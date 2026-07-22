@@ -1,5 +1,20 @@
 # Changelog
 
+## Automation update v23.8.7 — 2026-07-22
+
+- Added an isolated Playwright package under `tools/screenshots/` without changing the public runtime or root package dependencies.
+- Pinned `@playwright/test`, `playwright` and `playwright-core` to `1.61.1` through a dedicated lockfile.
+- Added a read-only GitHub Actions workflow that installs Chromium, starts the exact checkout through a local HTTP server and uploads screenshot artifacts.
+- Added a JSON-driven scenario runner that supports only allowlisted actions and requires assertions before capture.
+- Added deterministic storage clearing, blocked Service Worker registration, disabled animations and used one Chromium worker.
+- Added per-scenario provenance entries and a manifest containing commit, UTC time, URL, viewport, PNG dimensions and byte size.
+- Preserved successful manifest entries across Playwright retries.
+- Added desktop and mobile scenarios for startup, `water` ranking and Russian alias `вода` opening the primary `water` card.
+- Completed a four-of-four successful Chromium run and visually reviewed every generated PNG.
+- Added the selected new Playwright PNG and its exact provenance for the matching uNews patchnote.
+- Added structural validation for package/lock consistency, read-only workflow permissions, scenario assertions, safe artifact cleanup and runtime isolation.
+- Kept application runtime, PWA, Service Worker, release tag and all 4,086 active database records unchanged.
+
 ## Documentation update v23.8.6 — 2026-07-22
 
 - Made real GitHub state the highest-priority source of truth for all devices, chats and AI agents.
