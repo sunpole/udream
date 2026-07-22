@@ -7,7 +7,13 @@ version: 23.8.3
 queued_at: 2026-07-21T04:23:36Z
 repo_url: https://github.com/sunpole/udream
 web_url: https://sunpole.github.io/udream/
-image: 2026-07-18-udream-v3-1-0-repository-order.jpg
+image: 2026-07-21-udream-v23-8-3-product-vision.png
+image_source: document-render
+image_target: docs/PRODUCT_VISION.md@75e3e9664d67f9a9e28952eab53cdb1244369ce5
+image_commit: 75e3e9664d67f9a9e28952eab53cdb1244369ce5
+image_captured_at: 2026-07-22T10:41:52Z
+publication_repair: unpublished-image-upgrade
+publication_repair_reason: replace a reused generic repository image with a dedicated historical PRODUCT_VISION.md render before publication
 ---
 
 # uDream 23.8.3: единое видение и готовность к следующему этапу
@@ -25,7 +31,9 @@ image: 2026-07-18-udream-v3-1-0-repository-order.jpg
 - D1 начинается с исследования и проектирования и не меняет активные 4 086 записей без отдельного утверждённого плана миграции.
 - Обновлены правила для будущих разработчиков и ИИ, карта файлов, формат базы, исторический контекст и citation metadata.
 
-Изображение повторно используется из документационного этапа наведения порядка в репозитории: оно относится к структуре и единой системе проектной документации. Код сайта, PWA-логика и база данных в этом обновлении не меняются.
+Изображение — новый документальный рендер `docs/PRODUCT_VISION.md` на точном историческом commit `75e3e96…`. Кадр показывает миссию, границы продукта и правила сохранения данных, а не повторно использует общую картинку наведения порядка в репозитории.
+
+Публикационный upgrade выполнен до первого Telegram-поста. FIFO-идентичность записи сохранена, новый PNG уникален для `23.8.3`, а SVG-источник и provenance находятся в `tools/screenshots/publication-repairs/`.
 
 Короткий текст для Telegram:
 
