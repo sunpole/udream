@@ -13,6 +13,7 @@ const ARTIFACT_ROOT = path.resolve(
     || path.join(REPOSITORY_ROOT, "artifacts/screenshots"),
 );
 const IMAGE_ROOT = path.join(ARTIFACT_ROOT, "images");
+const ENTRY_ROOT = path.join(ARTIFACT_ROOT, "entries");
 const MANIFEST_PATH = path.join(ARTIFACT_ROOT, "manifest.json");
 const PACKAGE_PATH = path.join(TOOL_ROOT, "package.json");
 
@@ -29,8 +30,6 @@ const ALLOWED_ACTIONS = new Set([
   "waitFor",
   "waitForTimeout",
 ]);
-
-const manifestEntries = new Map();
 
 function fail(message) {
   throw new Error(`Screenshot scenario error: ${message}`);
@@ -203,7 +202,10 @@ async function runAction(page, action) {
     case "assertText": {
       if (typeof action.text !== "string") fail("assertText requires text");
       const expression = new RegExp(escapeRegExp(action.text), action.ignoreCase ? "i" : "");
-      await expect(locator).toContainText(expression);
+      await expect.poll(async () => {
+        const texts = await locator.allTextContents();
+        return texts.some((text) => expression.test(text));
+      }).toBe(true);
       return;
     }
     case "assertFirstText": {
@@ -236,11 +238,29 @@ function readPngDimensions(buffer) {
   };
 }
 
+function writeScenarioEntry(entry) {
+  fs.mkdirSync(ENTRY_ROOT, { recursive: true });
+  fs.writeFileSync(
+    path.join(ENTRY_ROOT, `${entry.id}.json`),
+    `${JSON.stringify(entry, null, 2)}\n`,
+    "utf8",
+  );
+}
+
+function loadScenarioEntries() {
+  if (!fs.existsSync(ENTRY_ROOT)) return [];
+  return fs.readdirSync(ENTRY_ROOT)
+    .filter((name) => name.endsWith(".json"))
+    .sort()
+    .map((name) => readJson(path.join(ENTRY_ROOT, name)));
+}
+
 const scenarios = loadScenarios();
 const toolPackage = readJson(PACKAGE_PATH);
 const commitSha = getCommitSha();
 
 fs.mkdirSync(IMAGE_ROOT, { recursive: true });
+fs.mkdirSync(ENTRY_ROOT, { recursive: true });
 
 for (const scenario of scenarios) {
   test(scenario.title, async ({ page }, testInfo) => {
@@ -311,7 +331,7 @@ for (const scenario of scenarios) {
     if (image.length < 10_000) fail(`${fileName} is unexpectedly small`);
 
     const capturedAt = new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
-    manifestEntries.set(scenario.id, {
+    const entry = {
       id: scenario.id,
       title: scenario.title,
       file: `images/${fileName}`,
@@ -323,7 +343,8 @@ for (const scenario of scenarios) {
       height: dimensions.height,
       bytes: image.length,
       screenshot: scenario.screenshot,
-    });
+    };
+    writeScenarioEntry(entry);
 
     await testInfo.attach(fileName, {
       body: image,
@@ -340,7 +361,7 @@ test.afterAll(() => {
     commit: commitSha,
     toolVersion: toolPackage.version,
     playwrightVersion: toolPackage.devDependencies["@playwright/test"],
-    scenarios: [...manifestEntries.values()].sort((a, b) => a.id.localeCompare(b.id)),
+    scenarios: loadScenarioEntries().sort((a, b) => a.id.localeCompare(b.id)),
   };
 
   fs.mkdirSync(ARTIFACT_ROOT, { recursive: true });
