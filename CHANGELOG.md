@@ -1,5 +1,17 @@
 # Changelog
 
+## Documentation and provenance update v23.8.8 — 2026-07-22
+
+- Added `docs/DATA_PROVENANCE.md` as the permanent D1.1 evidence record for all maintained files under `data/`.
+- Corrected the earlier statement that `data/bd2.json` and `data/db.json` were byte-for-byte duplicates: their raw bytes and SHA-256 values differ, while parsed JSON and canonical JSON are identical.
+- Verified that both English serializations contain the same 4,086 records, order, IDs, fields and values and therefore represent one logical dataset.
+- Recorded exact raw and canonical hashes, file sizes, schema, ordered IDs, Git introduction commits and current runtime relationships.
+- Verified that `data/divinity_code_ru.json` preserves `id`, `symbol`, `description`, `source` and `date_added`, while `aliases`, `notes` and `tags` differ by the documented counts.
+- Explicitly separated proven facts, reasonable inferences and unknown generation/translation details.
+- Added `scripts/validate-data-provenance.mjs` and connected it to the project validator to lock hashes, schema, semantic equality and field-difference counts.
+- Added a new document-render PNG and factual uNews patchnote for the D1.1 milestone.
+- Kept all maintained data files, application runtime, PWA, package metadata, saved versions and archives unchanged.
+
 ## Automation update v23.8.7 — 2026-07-22
 
 - Added an isolated Playwright package under `tools/screenshots/` without changing the public runtime or root package dependencies.
@@ -115,7 +127,7 @@
 
 - Classified all current files under `data/` from runtime references, hashes and Git history.
 - Confirmed `data/divinity_code_ru.json` as the active runtime database.
-- Confirmed that `data/bd2.json` and `data/db.json` are byte-for-byte identical and unused by the current runtime.
+- At that time described `data/bd2.json` and `data/db.json` as byte-for-byte identical; D1.1 update `v23.8.8` later corrected this to raw-distinct but parsed/canonical-JSON-identical serializations of one logical dataset.
 - Classified `data/report.txt` as a historical generation and quality summary.
 - Kept all databases and historical files unchanged while the exact generation and translation pipeline remains undocumented.
 
