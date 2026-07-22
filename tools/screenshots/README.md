@@ -4,7 +4,7 @@ This directory is an isolated development and CI tool. It is not imported by the
 
 ## Purpose
 
-The tool opens the exact repository checkout in real Chromium, validates the expected visible state and only then writes PNG screenshots and a machine-readable manifest.
+The tool opens the exact repository checkout in real Chromium, validates the expected visible state and only then writes PNG screenshots, per-scenario provenance entries and a machine-readable manifest.
 
 The default scenarios cover:
 
@@ -52,17 +52,22 @@ python3 -m http.server 8019 --bind 127.0.0.1
 
 ## Output
 
+Before a full run, `prepare-artifacts.mjs` safely clears only the directory ending in `artifacts/screenshots` and recreates the required folders.
+
 Generated files are stored outside this package:
 
 ```text
 artifacts/screenshots/
 ├── images/*.png
+├── entries/*.json
 ├── manifest.json
 ├── playwright-results.json
 └── test-results/
 ```
 
-The manifest records:
+Each successful scenario writes one `entries/<id>.json` immediately after its PNG is validated. The final manifest is rebuilt from those entries, so a retry of one failed scenario cannot erase metadata from scenarios that already passed.
+
+The entries and manifest record:
 
 - exact Git commit;
 - Playwright version;
@@ -121,6 +126,8 @@ Supported actions are deliberately limited:
 
 Arbitrary JavaScript from scenario JSON is not executed. Every scenario must contain at least one assertion before capture.
 
+`assertText` succeeds when at least one element matched by the selector contains the expected text. Use `assertFirstText` when the first result must be exact, such as autocomplete ranking.
+
 ## Deterministic behavior
 
 The runner:
@@ -146,9 +153,10 @@ The workflow has read-only repository permissions. It never commits a screenshot
 ## Adding a patchnote image
 
 1. Generate the artifact from the exact branch commit.
-2. Inspect the PNG and `manifest.json`.
-3. Add the selected PNG to `news/` in the same Pull Request as the patchnote.
-4. Fill `image_source: playwright`, `image_target`, `image_commit` and `image_captured_at` from the manifest.
-5. Run repository and patchnote validation.
+2. Inspect every relevant PNG and `manifest.json`.
+3. Open the matching `entries/<scenario>.json`.
+4. Add the selected PNG to `news/` in the same Pull Request as the patchnote.
+5. Fill `image_source: playwright`, `image_target`, `image_commit` and `image_captured_at` from the matching provenance entry.
+6. Run repository and patchnote validation.
 
 See `docs/SCREENSHOT_AUTOMATION.md` and `docs/NEWS_PUBLISHING.md`.
