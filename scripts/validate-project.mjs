@@ -9,6 +9,7 @@ import { validateScreenshotTooling } from "./validate-screenshot-tooling.mjs";
 const ROOT = process.cwd();
 const EXPECTED_ACTIVE_RECORDS = 4086;
 const SCREENSHOT_METADATA_VERSION = [23, 8, 6];
+const UNPUBLISHED_IMAGE_REPAIR = "unpublished-invalid-image";
 
 function fail(message) {
   throw new Error(message);
@@ -212,6 +213,9 @@ async function validatePatchnoteImage(name, frontMatter) {
   const image = await readFile(imagePath);
   const extension = path.extname(imageName).toLowerCase();
 
+  if (image.length < 10_000) {
+    fail(`${name}: screenshot is unexpectedly small`);
+  }
   if (extension === ".png" && !isPng(image)) {
     fail(`${name}: image has an invalid PNG signature`);
   }
@@ -255,7 +259,15 @@ async function validatePatchnotes() {
     }
     if (secretRisk.test(source)) fail(`${name}: secret-like text detected`);
 
-    const requiresScreenshotMetadata = versionAtLeast(
+    const isUnpublishedRepair = frontMatter.publication_repair === UNPUBLISHED_IMAGE_REPAIR;
+    if (frontMatter.publication_repair && !isUnpublishedRepair) {
+      fail(`${name}: unsupported publication_repair ${frontMatter.publication_repair}`);
+    }
+    if (isUnpublishedRepair && !frontMatter.publication_repair_reason) {
+      fail(`${name}: publication_repair_reason is required`);
+    }
+
+    const requiresScreenshotMetadata = isUnpublishedRepair || versionAtLeast(
       frontMatter.version,
       SCREENSHOT_METADATA_VERSION,
     );
