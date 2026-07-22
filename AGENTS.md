@@ -89,13 +89,22 @@ Ask the owner only for decisions requiring human judgment, access to an unavaila
 
 - Every new uNews patchnote must add a new real PNG/JPEG in the same Pull Request.
 - Never reuse an existing image from an earlier patchnote.
-- User-visible changes should be captured from the exact branch/commit in a real browser, preferably Playwright Chromium.
+- User-visible changes should be captured from the exact branch/commit in a real browser, preferably the implemented Playwright Chromium workflow.
 - Documentation-only changes may use a real GitHub UI or exact document-render screenshot.
 - AI-generated artwork is not proof of a real code, UI, release or documentation change.
 - New patchnotes must include `image_source`, `image_target`, `image_commit` and `image_captured_at`.
 - Validate that the screenshot visibly proves the claim before merge.
 - Never expose secrets, cookies, private data or local home paths in screenshots.
-- Follow `docs/SCREENSHOT_AUTOMATION.md`.
+- Follow `docs/SCREENSHOT_AUTOMATION.md` and `tools/screenshots/README.md`.
+
+For Playwright evidence:
+
+- use `.github/workflows/capture-screenshots.yml` or the isolated local package;
+- inspect the uploaded artifact and `manifest.json`;
+- visually inspect the selected PNG;
+- copy only an approved PNG into `news/` through an explicit branch change;
+- take `image_commit` and `image_captured_at` from the matching per-scenario provenance entry;
+- never make the permanent capture workflow writable.
 
 ## uNews publication requirement
 
@@ -155,6 +164,16 @@ node scripts/validate-project.mjs
 python3 -m http.server 8019
 ```
 
+For screenshot-tooling or user-visible UI changes also verify:
+
+```bash
+node scripts/validate-screenshot-tooling.mjs
+cd tools/screenshots
+npm ci
+npx playwright install --with-deps chromium
+npm run capture
+```
+
 Then verify:
 
 - current root page loads;
@@ -164,9 +183,10 @@ Then verify:
 - saved snapshot loads its own database;
 - manifest, icons, service worker, PDFs and external assets do not return 404;
 - mobile layout remains usable;
+- screenshot artifact contains the expected scenarios and manifest when applicable;
 - no unrelated files changed.
 
-Do not claim a browser, PWA, offline or mobile check was completed unless it was actually performed.
+Do not claim a browser, PWA, offline, mobile or screenshot check was completed unless it was actually performed.
 
 ## Versioning and releases
 
@@ -192,13 +212,11 @@ End each completed task with the files changed, checks run, results, remaining r
 
 ## Next approved planning boundary
 
-The current operational sequence is:
+The unified AI/GitHub workflow `23.8.6` and Playwright screenshot automation `23.8.7` are complete.
 
-1. complete documentation baseline `23.8.6` for unified AI/GitHub work;
-2. implement Playwright screenshot automation in separate patch `23.8.7`;
-3. begin D1.1 data-provenance research.
+The next approved task is D1.1: recover the provenance of current data files and create `docs/DATA_PROVENANCE.md` without changing the active 4,086-record database, runtime, PWA, saved versions or archives.
 
-D1 begins with documentation, inventory, validation design and migration planning. It must not change the active 4,086-record database or add a user-facing database selector until the architecture is separately reviewed and approved.
+D1 begins with documentation, inventory, validation design and migration planning. It must not add a user-facing database selector until the architecture is separately reviewed and approved.
 
 ## uNews / тыНовости — обязательный план публикации
 
