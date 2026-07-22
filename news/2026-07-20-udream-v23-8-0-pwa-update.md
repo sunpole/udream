@@ -8,6 +8,12 @@ queued_at: 2026-07-20T17:45:27Z
 repo_url: https://github.com/sunpole/udream
 web_url: https://sunpole.github.io/udream/
 image: 2026-07-20-udream-v23-8-0-pwa-update.png
+image_source: playwright
+image_target: scenario/pwa-install-banner-mobile
+image_commit: 5f7af86864134b608402e8cf2dc9db4071071b64
+image_captured_at: 2026-07-22T09:47:22Z
+publication_repair: unpublished-invalid-image
+publication_repair_reason: replace a non-PNG asset rejected by Telegram before the first publication
 ---
 
 # uDream 23.8.0: обновление PWA и установка с сайта
@@ -30,7 +36,9 @@ image: 2026-07-20-udream-v23-8-0-pwa-update.png
 
 Активная база из 4 086 записей и тексты словаря не изменялись.
 
-Изображение к публикации — специально подготовленная схема обновления PWA и баннера установки, а не снимок старой версии.
+Изображение к публикации — настоящий мобильный Chromium-снимок версии `v23.8.0`: на нём видны баннер установки и раскрытая ручная инструкция. Снимок создан из точного Git commit после автоматической проверки версии и текста баннера.
+
+Публикационное исправление выполнено до первого Telegram-поста: прежний файл имел расширение `.png`, но не PNG-сигнатуру, поэтому Telegram корректно отклонил его с `IMAGE_PROCESS_FAILED`. Текст и порядок очереди сохранены, дублирующая публикация не создаётся.
 
 Короткий текст для Telegram:
 

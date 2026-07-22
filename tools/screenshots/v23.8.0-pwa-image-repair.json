@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "scenario": "pwa-install-banner-mobile",
+  "sourceCommit": "5f7af86864134b608402e8cf2dc9db4071071b64",
+  "capturedAt": "2026-07-22T09:47:22Z",
+  "pageUrl": "http://127.0.0.1:8019/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "width": 390,
+  "height": 844,
+  "bytes": 102637,
+  "assertions": {
+    "runtimeVersion": "v23.8.0",
+    "bannerTitle": "Установите UDREAM на телефон",
+    "manualInstructionsVisible": true
+  }
+}
