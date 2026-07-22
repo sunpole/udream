@@ -1,0 +1,301 @@
+name: Complete uDream D1.1 v23.8.8
+
+on:
+  push:
+    branches:
+      - docs/data-provenance-d1.1
+    paths:
+      - .github/workflows/complete-d1.1-v23.8.8.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+
+concurrency:
+  group: finalize-udream-d1.1-v23.8.8
+  cancel-in-progress: false
+
+jobs:
+  complete:
+    runs-on: ubuntu-latest
+    env:
+      PR_NUMBER: "25"
+      ISSUE_NUMBER: "19"
+      SOURCE_COMMIT: 48fe99480bce320c675d8846c6fbb1dd9513c000
+      SOURCE_URL: https://github.com/sunpole/udream/blob/48fe99480bce320c675d8846c6fbb1dd9513c000/docs/DATA_PROVENANCE.md
+      OUTPUT: news/2026-07-22-udream-v23-8-8-data-provenance.png
+      PATCHNOTE: news/2026-07-22-udream-v23-8-8-data-provenance.md
+    steps:
+      - name: Checkout latest active branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs/data-provenance-d1.1
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Capture exact provenance page
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tools/screenshots/tmp
+          cat > tools/screenshots/tmp/capture-d1.1.mjs <<'EOF'
+          import { chromium } from "playwright";
+          const browser = await chromium.launch({ headless: true });
+          const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+          await page.goto(process.env.SOURCE_URL, { waitUntil: "domcontentloaded", timeout: 120000 });
+          await page.waitForTimeout(4000);
+          const body = await page.locator("body").innerText();
+          if (!page.url().includes(process.env.SOURCE_COMMIT)) throw new Error(`Unexpected URL: ${page.url()}`);
+          if (!body.includes("DATA_PROVENANCE.md") && !body.includes("Data provenance")) throw new Error("Provenance document title is not visible");
+          if (!body.includes("4,086") && !body.includes("4086")) throw new Error("4,086-record evidence is not visible");
+          await page.screenshot({ path: process.env.OUTPUT, fullPage: false });
+          await browser.close();
+          EOF
+          node tools/screenshots/tmp/capture-d1.1.mjs
+          rm -rf tools/screenshots/tmp
+
+      - name: Validate image and synchronize metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          CAPTURED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          export CAPTURED_AT
+          python3 - <<'PY'
+          import os, re, struct, zlib
+          from pathlib import Path
+          png = Path(os.environ["OUTPUT"])
+          data = png.read_bytes()
+          if not data.startswith(b"\x89PNG\r\n\x1a\n"): raise SystemExit("Invalid PNG signature")
+          if len(data) < 100_000: raise SystemExit(f"PNG too small: {len(data)}")
+          width, height = struct.unpack(">II", data[16:24])
+          if (width, height) != (1440, 1000): raise SystemExit(f"Unexpected PNG size: {width}x{height}")
+          pos, chunks = 8, []
+          while pos < len(data):
+              length = struct.unpack(">I", data[pos:pos+4])[0]
+              kind = data[pos+4:pos+8]
+              payload = data[pos+8:pos+8+length]
+              expected = struct.unpack(">I", data[pos+8+length:pos+12+length])[0]
+              actual = zlib.crc32(payload, zlib.crc32(kind)) & 0xffffffff
+              if actual != expected: raise SystemExit(f"Invalid CRC: {kind!r}")
+              chunks.append(kind); pos += 12 + length
+          for required in (b"IHDR", b"IDAT", b"IEND"):
+              if required not in chunks: raise SystemExit(f"Missing chunk: {required!r}")
+          patch = Path(os.environ["PATCHNOTE"])
+          source = patch.read_text(encoding="utf-8")
+          updated, count = re.subn(r"(?m)^screenshot_captured_at:\s*.*$", f"screenshot_captured_at: {os.environ['CAPTURED_AT']}", source, count=1)
+          if count != 1: raise SystemExit("Expected one screenshot_captured_at field")
+          patch.write_text(updated, encoding="utf-8")
+          print(f"PNG OK: {width}x{height}, {len(data)} bytes")
+          PY
+
+      - name: Run all D1.1 checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm test
+          node scripts/validate-data-provenance.mjs
+          node scripts/validate-project.mjs
+          node --check scripts/validate-data-provenance.mjs
+          node --check scripts/validate-project.mjs
+          git diff --check
+
+      - name: Verify protected paths are untouched
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          forbidden='^(data/|versions/|_archive/|index\.html$|script\.js$|src/|sw\.js$|manifest\.json$|version\.json$|package\.json$|favicon\.svg$|icon-[0-9]+\.png$|apple-touch-icon\.png$)'
+          if printf '%s\n' "$changed" | grep -E "$forbidden"; then
+            echo "Protected data/runtime/PWA/saved-version/archive path changed" >&2
+            exit 1
+          fi
+
+      - name: Write completed handoff and remove temporary workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > WORK_STATUS.md <<'EOF'
+          # WORK_STATUS — передача работы между устройствами
+
+          Этот файл — единая оперативная точка продолжения разработки uDream с телефона, Windows, macOS, другого устройства или любого ИИ-чата.
+
+          ## Быстрый сигнал
+
+          | Поле | Текущее значение |
+          |---|---|
+          | Состояние | **COMPLETED** — D1.1 реализован и проверен; ожидается зелёный PR №25 и merge |
+          | Рабочая ветка | `docs/data-provenance-d1.1` |
+          | Pull Request | `#25` — `https://github.com/sunpole/udream/pull/25` |
+          | Функциональный релиз | `v23.8.0` |
+          | Документационный/provenance baseline | кандидат `23.8.8` |
+          | Активная база | 4 086 записей; файлы данных не изменены |
+          | Следующий точный шаг | дождаться зелёного `Validate uDream`, проверить diff, объединить PR, закрыть Issue №19 и вернуть `main` в `READY` для D1.2 |
+
+          ## Сделано фактически
+
+          - создан `docs/DATA_PROVENANCE.md`;
+          - создан и подключён `scripts/validate-data-provenance.mjs`;
+          - зафиксированы raw/canonical SHA-256, структура, 4 086 ID и Git-история;
+          - доказано, что `data/bd2.json` и `data/db.json` физически различаются, но являются идентичным parsed/canonical JSON;
+          - доказанные сведения отделены от выводов и неизвестного;
+          - исправлены устаревшие утверждения в поддерживаемой документации;
+          - временные diagnostics и workflows исключены из итогового diff;
+          - создан патчноут `23.8.8` и настоящий Chromium-снимок exact GitHub commit;
+          - regression tests, provenance-validator, project-validator, PNG integrity, syntax и protected-path checks пройдены;
+          - `data/`, runtime, PWA, `versions/` и `_archive/` не изменены.
+
+          ## Контрольные значения
+
+          ```text
+          data/bd2.json
+          814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28
+
+          data/db.json
+          4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0
+
+          canonical English JSON
+          5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1
+
+          data/divinity_code_ru.json
+          1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64
+          ```
+
+          ## Не восстановлено
+
+          Точный generation/translation pipeline активной русской базы, prompt, последовательность провайдеров и подтверждённая запись человеческой редакторской проверки остаются неизвестными. Они не подменяются предположениями.
+
+          ## Запреты до merge
+
+          - не менять данные, runtime, PWA, `versions/` или `_archive/`;
+          - не начинать D1.2;
+          - не создавать параллельную D1.1 ветку;
+          - не объединять PR при красных или незавершённых проверках.
+
+          ## После merge
+
+          Закрыть Issue №19, вернуть `main/WORK_STATUS.md` в `READY` и продолжать только D1.2 — реестр наборов и решение о канонической физической копии без удаления данных.
+          EOF
+          rm -f \
+            .github/workflows/capture-v23.8.8-data-provenance.yml \
+            .github/workflows/finalize-d1.1-v23.8.8.yml \
+            .github/workflows/complete-d1.1-v23.8.8.yml
+
+      - name: Commit permanent final package
+        id: commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "docs: finalize D1.1 provenance package"
+          git push origin HEAD:docs/data-provenance-d1.1
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for Validate uDream on final head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FINAL_SHA: ${{ steps.commit.outputs.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Waiting for Validate uDream on $FINAL_SHA"
+          for attempt in $(seq 1 60); do
+            result="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$FINAL_SHA&per_page=30" --jq '[.workflow_runs[] | select(.name == "Validate uDream")][0] | if . == null then "missing" else (.status + ":" + (.conclusion // "")) end')"
+            echo "attempt $attempt: $result"
+            case "$result" in
+              completed:success) exit 0 ;;
+              completed:*) echo "Validate uDream failed: $result" >&2; exit 1 ;;
+            esac
+            sleep 15
+          done
+          echo "Timed out waiting for Validate uDream" >&2
+          exit 1
+
+      - name: Verify final PR and merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FINAL_SHA: ${{ steps.commit.outputs.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          state="$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json state --jq .state)"
+          head="$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json headRefOid --jq .headRefOid)"
+          if [ "$state" != "OPEN" ]; then echo "PR is not open: $state" >&2; exit 1; fi
+          if [ "$head" != "$FINAL_SHA" ]; then echo "PR head $head != final $FINAL_SHA" >&2; exit 1; fi
+          files="$(gh pr diff "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --name-only)"
+          printf '%s\n' "$files"
+          forbidden='^(data/|versions/|_archive/|index\.html$|script\.js$|src/|sw\.js$|manifest\.json$|version\.json$|package\.json$|favicon\.svg$|icon-[0-9]+\.png$|apple-touch-icon\.png$|\.github/workflows/(capture|finalize|complete)-d1\.1)'
+          if printf '%s\n' "$files" | grep -E "$forbidden"; then echo "Forbidden final PR path" >&2; exit 1; fi
+          gh pr ready "$PR_NUMBER" --repo "$GITHUB_REPOSITORY"
+          gh pr merge "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --squash --delete-branch \
+            --subject "docs: complete D1.1 data provenance audit (#25)" \
+            --body "Verified provenance documentation and validator. Data, runtime, PWA, saved versions and archive remain unchanged."
+
+      - name: Record READY state on main and close Issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git switch -C main origin/main
+          MERGE_SHA="$(git rev-parse HEAD)"
+          cat > WORK_STATUS.md <<EOF
+          # WORK_STATUS — передача работы между устройствами
+
+          Этот файл — единая оперативная точка продолжения разработки uDream с телефона, Windows, macOS, другого устройства или любого ИИ-чата.
+
+          ## Быстрый сигнал
+
+          | Поле | Текущее значение |
+          |---|---|
+          | Состояние | **READY** — незавершённой активной задачи нет |
+          | Рабочая ветка | \`main\` |
+          | Открытый Pull Request | нет |
+          | Стабильный функциональный релиз | \`v23.8.0\` |
+          | Документационный/provenance baseline | \`23.8.8\` — завершён D1.1 |
+          | Последнее завершённое изменение | PR #25, squash merge \`$MERGE_SHA\` — data provenance audit и постоянный validator |
+          | Закрытая задача | Issue #19 — D1.1 completed |
+          | Следующая утверждённая задача | D1.2 — реестр наборов и решение о канонической физической копии без удаления данных |
+
+          ## Завершённый этап D1.1
+
+          - происхождение текущих файлов описано в \`docs/DATA_PROVENANCE.md\`;
+          - доказательства защищены \`scripts/validate-data-provenance.mjs\`;
+          - \`data/bd2.json\` и \`data/db.json\` признаны двумя сериализациями одного логического английского набора;
+          - активная русская база и все 4 086 записей не изменены;
+          - runtime, PWA, \`versions/\` и \`_archive/\` не изменены;
+          - точный generation/translation pipeline остаётся явно неизвестным;
+          - uNews-патчноут \`23.8.8\` сохранён с реальным Chromium-снимком.
+
+          ## Следующий точный шаг
+
+          Начать D1.2 только в новой отдельной ветке после чтения Issue/roadmap и обновления этого файла до \`IN_PROGRESS\`. D1.2 сначала проектирует реестр наборов и обратимое решение о канонической физической копии; удалять или переименовывать существующие data-файлы пока нельзя.
+
+          ## Главные запреты
+
+          - не менять и не удалять текущие data-файлы без отдельно утверждённой обратимой миграции;
+          - не начинать пользовательский переключатель баз;
+          - не запускать D1.3 или D1.4 раньше D1.2;
+          - не выдавать неизвестный pipeline перевода за доказанный факт.
+          EOF
+          git add WORK_STATUS.md
+          git commit -m "docs: mark D1.1 complete and ready for D1.2"
+          git push origin main
+          gh issue close "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --reason completed \
+            --comment "D1.1 завершён PR #25. Созданы DATA_PROVENANCE.md и постоянный provenance-validator; данные и runtime не изменены. Следующий этап — D1.2."
