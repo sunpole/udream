@@ -1,22 +1,23 @@
 # WORK_STATUS — передача работы между устройствами
 
-Этот файл — единая оперативная точка продолжения разработки uDream с телефона, рабочего ПК, MacBook, другого устройства или любого ИИ-чата.
+Этот файл — единая оперативная точка продолжения разработки uDream с телефона, Windows, macOS, другого устройства или любого ИИ-чата.
 
-`ROADMAP.md` хранит общий план проекта, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит **живую точку передачи текущей работы**.
+`ROADMAP.md` хранит общий план, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит **живую незавершённую работу: что уже сделано, где остановились, что делает агент, что требуется от владельца и какой следующий точный шаг**.
 
 ## Быстрый сигнал
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — D1.1 возобновлён после полного восстановления Telegram FIFO |
+| Состояние | **IN_PROGRESS** — содержательная часть D1.1 почти завершена, но cleanup, проверки, реальный screenshot, patchnote и Pull Request ещё не закончены |
 | Рабочая ветка | `docs/data-provenance-d1.1` |
 | Открытый Pull Request | ещё не открыт |
-| Стабильный релиз | `v23.8.0` |
-| Документационный и automation baseline | `v23.8.7` |
-| Актуальный `main` | `acc91a1162521a35fcdd3d3cfbc11811f2988508` — repair PR #24 |
-| Сохранённая D1.1 точка | `9527dff75971d86a634ab437618d26cc03c3c87a` |
-| Внешний блокер | устранён: uNews `0.3.7`, messages `54–64`, pending `0`, errors `0`, Issue №3 закрыт |
-| Активная задача | синхронизировать evidence-ветку с `main`, оформить постоянный provenance-документ и validator без изменения данных |
+| Стабильный функциональный релиз | `v23.8.0` |
+| Текущий документационный/provenance baseline ветки | `v23.8.8` |
+| Актуальный `main` | `acc91a1162521a35fcdd3d3cfbc11811f2988508` |
+| Последний сохранённый branch commit до этого handoff | `76814693bab08ee0d3dfceddb9d47564536df274` |
+| Синхронизация с `main` | ветка впереди `main` и не отстаёт: `behind_by: 0` |
+| Внешний блокер uNews | устранён: Telegram FIFO завершён, pending `0`, errors `0`, Issue uNews №3 закрыт |
+| Активная задача | завершить чистый D1.1 пакет и объединить его без изменения runtime, PWA или файлов данных |
 
 ## Текущая точка продолжения
 
@@ -24,139 +25,145 @@
 
 Начато D1.1: `2026-07-22 10:48 Europe/Berlin`
 
-Возобновлено: `2026-07-22 после 11:56 Europe/Berlin`
-
-Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions`
+Текущая среда: `ChatGPT + GitHub connector + GitHub Actions`
 
 Ветка: `docs/data-provenance-d1.1`
 
 Pull Request: ещё не открыт
 
-Issue: `#19` — техническое задание D1.1
+Issue: `#19` — исходное техническое задание D1.1
 
-Цель: восстановить настолько, насколько позволяют доказательства, происхождение, историю создания и связь текущих файлов данных uDream; создать `docs/DATA_PROVENANCE.md`; не менять содержимое активной базы, runtime, PWA, сохранённые версии или архивы.
+Цель: восстановить настолько, насколько позволяют доказательства, происхождение и связь текущих файлов данных uDream; создать постоянный provenance-документ и validator; не менять содержимое активной базы, runtime, PWA, сохранённые версии или архивы.
 
-## Почему работа снова разрешена
+## Что уже действительно сделано и сохранено в GitHub
 
-Telegram-публикационная часть завершена и больше не блокирует D1.1:
+- ветка `docs/data-provenance-d1.1` безопасно синхронизирована с актуальным `main`; evidence не потеряны;
+- `main` является merge-base, ветка не отстаёт от него;
+- повторно вычислены exact bytes, raw SHA-256, canonical JSON SHA-256, схема, количество записей и набор ID;
+- создан исправленный отчёт `diagnostics/d1.1-corrected-evidence.{json,txt}`;
+- создан постоянный документ `docs/DATA_PROVENANCE.md`;
+- создан постоянный validator `scripts/validate-data-provenance.mjs`;
+- provenance-validator подключён к `scripts/validate-project.mjs`;
+- исправлены `README.md`, `docs/DATABASE_FORMAT.md`, `docs/PROJECT_STATE.md`, `docs/FILE_MAP.md`, `docs/TRANSLATION_WORKFLOW.md`;
+- `VERSION.md` переведён на документационный/provenance baseline `23.8.8`, при этом приложение и tag остаются `v23.8.0`;
+- `ROADMAP.md` отмечает D1.1 завершённым по содержанию и ставит D1.2 следующим этапом;
+- все четыре поддерживаемых data-файла относительно `main` не изменены;
+- runtime, PWA, `versions/` и `_archive/` не изменены.
 
-- uDream PR #24 заменил повреждённые и нерелевантные pending-изображения; merge commit `acc91a1162521a35fcdd3d3cfbc11811f2988508`;
-- uNews PR #6 выпустил `0.3.7` с GET, deep image validation, PNG CRC/zlib и Blob upload; merge commit `b7c0c279546b4eaddffb7788cc3e042fc1e14c81`;
-- actual-main dry-run: 35 проектов, 10 pending, 10 ready, 0 errors;
-- реальная очередь опубликовала uDream `23.8.1–23.8.7` как messages `55–61`;
-- uNews `0.3.5–0.3.7` опубликованы как messages `62–64`;
-- ранее восстановленный uDream `23.8.0` остался message `54` и не был продублирован;
-- `data/health.json` uNews: `success`, pending `0`, error count `0`, `last_error: null`;
-- `data/errors.json`: `[]`;
-- служебный uNews Issue №3 закрыт автоматически как completed;
-- полный uNews recovery-документ объединён commit `017636eeb9ecfbd0ead33ece332446b9f62a36f4`.
+## Исправленные факты — использовать только их
 
-## Что фактически сделано в D1.1 до паузы
+### `data/bd2.json` и `data/db.json`
 
-- создана ветка `docs/data-provenance-d1.1` и ранний handoff;
-- GitHub Actions собрал byte-level inventory файлов `data/` и архивных материалов;
-- вычислены текущие SHA-256, размеры и структура трёх JSON-наборов;
-- подтверждено, что все три JSON имеют одинаковый набор 4 086 ID;
-- опровергнуто прежнее утверждение о байтовом равенстве `data/bd2.json` и `data/db.json`;
-- доказано, что `bd2.json` и `db.json` различаются во всех 4 086 записях: у всех записей отличаются `tags`, у 3 935 — `note`;
-- подтверждено, что поля `id`, `symbol`, `aliases`, `description`, `source` у `bd2.json` и `db.json` совпадают;
-- активная русская база по полю `note` значительно ближе к `db.json`: 3 888 совпадений против 93 совпадений с `bd2.json`;
-- собраны Git history, historical snapshots, reference hits и candidate scripts/reports;
-- `data/report.txt` классифицирован как исторический отчёт качества, но не как доказательство точного pipeline перевода;
-- активные data-файлы, runtime, PWA, `versions/` и `_archive/` не изменялись.
+- raw bytes различаются;
+- raw SHA-256 различаются;
+- parsed JSON полностью одинаков;
+- canonical JSON полностью одинаков;
+- все 4 086 записей, порядок, ID, поля и значения совпадают;
+- это **две физические сериализации одного логического английского набора**, а не два перевода и не byte-for-byte duplicate.
 
-## Планируемые файлы
+Raw SHA-256:
 
-- `WORK_STATUS.md`;
-- `docs/DATA_PROVENANCE.md`;
-- `docs/DATABASE_FORMAT.md`;
-- `docs/FILE_MAP.md`;
-- `docs/PROJECT_STATE.md`;
-- `README.md`;
-- `ROADMAP.md`;
-- `VERSION.md`;
-- `CHANGELOG.md`;
-- `scripts/validate-data-provenance.mjs`;
-- `scripts/validate-project.mjs`;
-- D1.1 патчноут и новый реальный проверенный PNG.
+```text
+data/bd2.json  814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28
+data/db.json   4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0
+```
 
-Файлы исследования, которые нельзя изменять:
+Общий canonical JSON SHA-256:
 
-- `data/divinity_code_ru.json`;
-- `data/bd2.json`;
-- `data/db.json`;
-- `data/report.txt`;
-- `_archive/old-data/**`;
-- `_archive/source-files/**`;
-- `versions/**`;
-- runtime и PWA-файлы.
+```text
+5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1
+```
 
-## Критерии завершения
+### Активная база
 
-- создан `docs/DATA_PROVENANCE.md`;
-- для каждого текущего data-файла записаны доказанные hash, размер, язык/роль и известная история;
-- различия `bd2.json` и `db.json` описаны по актуальным hash и byte/record comparison;
-- происхождение активной русской базы описано без выдачи предположений за факты;
-- сведения разделены на «Доказано», «Обоснованно предполагается» и «Неизвестно»;
-- предложено каноническое имя исходного набора, но ничего не удалено и не переименовано;
-- постоянный provenance-validator подтверждает неизменность ожидаемых файлов и доказательств;
-- активная база остаётся на 4 086 записях с теми же bytes и hash;
-- runtime, PWA, `versions/` и `_archive/` отсутствуют в diff;
-- одноразовые diagnostic workflows и временные evidence-файлы удалены после переноса фактов в постоянные документы;
-- новый патчноут использует новый реальный проверенный PNG;
-- GitHub Actions проходит;
-- после merge Issue #19 закрыт, `WORK_STATUS.md` возвращён в `READY`, следующий шаг — D1.2.
+`data/divinity_code_ru.json`:
 
-## Что ещё не сделано
+- 4 086 записей;
+- SHA-256 `1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64`;
+- сохраняет те же ordered IDs `1–4086`;
+- сохраняет `symbol`, `description`, `source`, `date_added`;
+- отличается от английского логического набора в `aliases` у 4 083 записей и в `notes`/`tags` у всех 4 086 записей;
+- точный generation/translation pipeline, prompt, provider sequence и human-review record остаются неизвестными.
 
-- ветка D1.1 ещё не синхронизирована с актуальным `main` после PR #24;
-- не создан окончательный `docs/DATA_PROVENANCE.md`;
-- не создан постоянный `scripts/validate-data-provenance.mjs`;
-- не исправлены старые документы, называющие `bd2.json` и `db.json` дубликатами;
-- не удалены одноразовые D1.1 diagnostic workflows и временные evidence-файлы;
-- не создан D1.1 патчноут и реальный PNG;
-- не открыт D1.1 Pull Request.
+### Ошибочные промежуточные выводы, которые запрещено использовать
 
-## Последний проверенный commit
+Следующие старые утверждения были результатом дефектной промежуточной диагностики и опровергнуты:
 
-- D1.1 branch до возобновления: `9527dff75971d86a634ab437618d26cc03c3c87a`;
-- uDream `main`: `acc91a1162521a35fcdd3d3cfbc11811f2988508`;
-- uNews final state: `064cbde39ca3c46cf746bcce65027eef517f45ef`;
-- uNews final documentation: `017636eeb9ecfbd0ead33ece332446b9f62a36f4`.
+- будто `bd2.json` и `db.json` отличаются по `tags` и `note` во всех/почти всех записях;
+- будто активная русская база «ближе» к одному из этих файлов по полю `note`;
+- будто `bd2.json` и `db.json` имеют одинаковый raw SHA-256 и являются byte-for-byte duplicate.
+
+Причина одной ошибки: промежуточный скрипт проверял несуществующее поле `note`; фактическое поле называется `notes`.
+
+Источник исправленных фактов: `docs/DATA_PROVENANCE.md`, `scripts/validate-data-provenance.mjs` и `diagnostics/d1.1-corrected-evidence.json`.
+
+## Что ещё не завершено
+
+1. Удалить пять одноразовых D1.1 workflows:
+   - `.github/workflows/audit-data-provenance-d1.1.yml`;
+   - `.github/workflows/compare-current-data-d1.1.yml`;
+   - `.github/workflows/correct-data-provenance-d1.1.yml`;
+   - `.github/workflows/extract-data-lineage-d1.1.yml`;
+   - `.github/workflows/prepend-d1-1-changelog.yml`.
+2. Перенести нужную changelog-запись `23.8.8` постоянным способом и удалить временный prepend-workflow.
+3. После того как доказанные факты уже перенесены в постоянный документ, удалить временные `diagnostics/d1.1-*` файлы из итогового PR.
+4. Проверить и при необходимости обновить `AGENTS.md`, чтобы любой агент обязан обновлять `WORK_STATUS.md` не только при старте/паузе, но после каждого существенного сохранённого этапа.
+5. Создать D1.1 patchnote версии `23.8.8`.
+6. Создать **новый реальный** screenshot, относящийся именно к provenance-документу/проверке, с точным source commit и UTC-временем; старое изображение не использовать.
+7. Выполнить:
+
+```bash
+npm test
+node scripts/validate-data-provenance.mjs
+node scripts/validate-project.mjs
+git diff --check
+git diff --name-only origin/main...HEAD -- data versions _archive index.html script.js src manifest.json version.json sw.js package.json
+```
+
+8. Подтвердить, что diff не содержит data/runtime/PWA/saved-version/archive изменений.
+9. Открыть D1.1 Pull Request, дождаться зелёных Actions и проверить полный diff.
+10. Объединить PR, закрыть Issue #19 как completed.
+11. На `main` записать `WORK_STATUS.md` со статусом `READY`, следующая задача — D1.2.
 
 ## Следующий точный шаг
 
-1. сравнить `docs/data-provenance-d1.1` с актуальным `main` и перечислить конфликты до синхронизации;
-2. сохранить все доказательные D1.1 файлы и их provenance;
-3. синхронизировать ветку с `main` без перезаписи уже собранных evidence;
-4. проверить, какие temporary workflows/reports действительно одноразовые;
-5. перенести подтверждённые факты в первый постоянный черновик `docs/DATA_PROVENANCE.md`;
-6. только после этого удалить временную диагностику и создать постоянный validator.
+Сначала удалить временный changelog-workflow и остальные одноразовые audit workflows, затем добавить постоянную changelog-запись `23.8.8`. После этого удалить временные diagnostics, обновить `AGENTS.md` и снова обновить этот handoff перед созданием screenshot/patchnote.
 
-## Что нельзя делать при продолжении
+## Что делает ИИ сейчас
 
-- не создавать новую реализацию D1.1 в другой ветке;
-- не удалять ветку `docs/data-provenance-d1.1`;
-- не force-reset ветку на `main`, потому что это уничтожит уже собранные evidence;
-- не менять `data/divinity_code_ru.json`, его 4 086 записей, ID и тексты;
-- не удалять и не переименовывать `data/bd2.json`, `data/db.json`, отчёты и архивные варианты;
-- не менять runtime, PWA, `versions/` и `_archive/` в рамках D1.1;
-- не начинать D1.2 до завершения и merge D1.1;
-- не описывать предположение как доказанный факт;
-- не удалять diagnostic evidence до переноса фактов в постоянный документ.
+- самостоятельно очищает временную инфраструктуру;
+- сохраняет каждую существенную точку в GitHub;
+- поддерживает `WORK_STATUS.md` как живой handoff;
+- создаёт и проверяет документацию, validator, screenshot, patchnote и Pull Request;
+- не просит владельца выполнять доступные через подключённый GitHub рутинные действия.
 
-## Обязательный порядок перед началом работы
+## Что требуется от Антона сейчас
 
-На любом устройстве или у любого нового агента:
+Никаких технических действий не требуется. Владелец подключается только если инструмент не позволяет выполнить действие, нужен секрет, физическая проверка на устройстве или содержательное человеческое решение.
+
+## Запрещённые изменения в D1.1
+
+- не менять `data/divinity_code_ru.json`, `data/bd2.json`, `data/db.json` или `data/report.txt`;
+- не менять IDs, тексты или порядок 4 086 записей;
+- не удалять и не переименовывать data-файлы;
+- не менять runtime, PWA, Service Worker, package metadata, `versions/` или `_archive/`;
+- не создавать database selector;
+- не начинать D1.2 до merge D1.1;
+- не выдавать предположение за доказанный факт;
+- не использовать старые ошибочные intermediate conclusions.
+
+## Продолжение с любого другого устройства или чата
 
 ```bash
 git fetch origin
 git switch docs/data-provenance-d1.1
-git status --short
+git pull --ff-only origin docs/data-provenance-d1.1
+git status --short --branch
+git log -1 --oneline
 cat WORK_STATUS.md
 ```
 
-Затем обязательно проверить `main`, открытые Pull Request, commits и diff ветки. При конфликте handoff с GitHub фактами приоритет имеют реальные GitHub commits, Actions, `data/published.json`, `data/health.json` и Telegram `post_url`.
+Затем проверить реальные GitHub facts: `main`, branch diff, открытые PR, Actions и Issue #19. При расхождении память ИИ или старого чата всегда проигрывает данным GitHub и этому актуальному handoff.
 
 ## Значения статуса
 
@@ -170,5 +177,6 @@ cat WORK_STATUS.md
 
 - Нельзя начинать новую крупную задачу при незавершённой работе без явного решения.
 - Нельзя объявлять запланированное выполненным без diff, commit или проверки.
+- После каждого существенного сохранённого этапа нужно обновить этот файл, если изменилась точка продолжения.
 - Нельзя оставлять точку продолжения только в чате или локально.
 - Старый чат, память ИИ и локальная ветка без push не являются источником истины.
