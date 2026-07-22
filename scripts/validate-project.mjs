@@ -4,6 +4,8 @@ import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+import { validateScreenshotTooling } from "./validate-screenshot-tooling.mjs";
+
 const ROOT = process.cwd();
 const EXPECTED_ACTIVE_RECORDS = 4086;
 const SCREENSHOT_METADATA_VERSION = [23, 8, 6];
@@ -276,9 +278,6 @@ async function validatePatchnotes() {
         fail(`${name}: image_captured_at must use YYYY-MM-DDTHH:MM:SSZ`);
       }
     } else {
-      // Historical patchnotes remain immutable. Confirm their declared asset
-      // still exists, but apply the stricter signature/provenance contract
-      // only to patchnotes created under version 23.8.6 or newer.
       await requireFile(path.posix.join("news", frontMatter.image));
     }
   }
@@ -288,9 +287,15 @@ async function validatePatchnotes() {
 async function main() {
   await validateRuntimeFiles();
   const workStatus = await validateWorkStatus();
+  const screenshotTooling = await validateScreenshotTooling(ROOT);
   const recordCount = await validateDatabase();
   const patchnoteCount = await validatePatchnotes();
   console.log(`WORK_STATUS passed: ${workStatus}.`);
+  console.log(
+    `Screenshot tooling passed: ${screenshotTooling.scenarios} scenario(s), `
+    + `${screenshotTooling.desktop} desktop, ${screenshotTooling.mobile} mobile, `
+    + `Playwright ${screenshotTooling.playwrightVersion}.`,
+  );
   console.log(`uDream validation passed: ${recordCount} records, ${patchnoteCount} patchnote(s).`);
 }
 
