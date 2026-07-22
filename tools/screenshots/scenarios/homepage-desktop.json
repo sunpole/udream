@@ -1,0 +1,33 @@
+{
+  "id": "homepage-desktop",
+  "title": "Homepage loads the verified uDream runtime on desktop",
+  "path": "/",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "actions": [
+    {
+      "type": "assertVisible",
+      "selector": ".logo"
+    },
+    {
+      "type": "assertText",
+      "selector": ".logo",
+      "text": "UDREAM",
+      "ignoreCase": true
+    },
+    {
+      "type": "assertText",
+      "selector": "#statsPanel",
+      "text": "4086"
+    },
+    {
+      "type": "assertVisible",
+      "selector": "[data-opt=\"all\"].active"
+    }
+  ],
+  "screenshot": {
+    "fullPage": false
+  }
+}
