@@ -7,23 +7,30 @@ These rules apply to the entire repository.
 Before changing files, read:
 
 1. `WORK_STATUS.md`
-2. `docs/PRODUCT_VISION.md`
-3. `README.md`
-4. `VERSION.md`
-5. `ROADMAP.md`
-6. `docs/PROJECT_STATE.md`
-7. `docs/ARCHITECTURE.md`
-8. `docs/FILE_MAP.md`
-9. `docs/TRANSLATION_WORKFLOW.md` for any data, translation or AI-assisted task
-10. `docs/NEWS_PUBLISHING.md`
-11. `docs/CONTENT_AND_RIGHTS.md`
-12. the latest commits, tags and open Pull Requests relevant to the task
+2. `docs/AI_GITHUB_WORKFLOW.md`
+3. `docs/PRODUCT_VISION.md`
+4. `README.md`
+5. `VERSION.md`
+6. `ROADMAP.md`
+7. `docs/PROJECT_STATE.md`
+8. `docs/ARCHITECTURE.md`
+9. `docs/FILE_MAP.md`
+10. `docs/TRANSLATION_WORKFLOW.md` for any data, translation or AI-assisted task
+11. `docs/NEWS_PUBLISHING.md`
+12. `docs/SCREENSHOT_AUTOMATION.md`
+13. `docs/CONTENT_AND_RIGHTS.md`
+14. the latest commits, tags, branches and open Pull Requests relevant to the task
 
 Do not infer the current application from numbered folders under `_archive/`.
 
+Before implementation, state the verified current status, active branch, open PR, last completed change, exact next action and current prohibitions. Do not change files until these facts agree with GitHub.
+
 ## Sources of truth
 
+- Real GitHub facts — `main`, open Pull Requests, branches, commits, tags, Releases and Actions results — have the highest priority.
 - `WORK_STATUS.md` is the live cross-device handoff: active task, branch, actual progress, pause point and exact next action.
+- `docs/AI_GITHUB_WORKFLOW.md` defines how any number of chats, devices and agents cooperate without conflicting branches.
+- An active GitHub Issue stores the detailed task specification; it does not replace live handoff state.
 - `docs/PRODUCT_VISION.md` defines the product mission, final direction and non-destructive data principles.
 - `docs/TRANSLATION_WORKFLOW.md` defines the target translation variants, duplicate policy and safe API-assisted workflow.
 - `main` is the source for the currently published GitHub Pages site.
@@ -33,24 +40,42 @@ Do not infer the current application from numbered folders under `_archive/`.
 - `versions/<release>/` directories are runnable snapshots and must remain stable.
 - `_archive/` is historical material, not current runtime code.
 - `ROADMAP.md` distinguishes completed work, the next approved phase and later backlog.
+- Old chat messages, AI memory and unpushed local notes are never sources of truth.
 
 If documents disagree with executable code or GitHub facts, report the conflict before editing and update the documents as part of the approved task.
 
 ## Change discipline
 
 - One task should have one primary goal.
-- Use a dedicated branch for structural, data, PWA, or multi-file changes.
+- Use a dedicated branch for structural, data, PWA, automation or multi-file changes.
 - Preserve the working site before risky work with a tag/release.
-- Do not delete or rewrite `_archive/`, source PDFs, screenshots, data variants, tags, or releases without explicit approval.
+- Do not delete or rewrite `_archive/`, source PDFs, screenshots, data variants, tags or releases without explicit approval.
 - Do not edit a released snapshot except for a separately documented path/security repair.
 - Keep the project static unless a backend or build system is explicitly approved.
 - Prefer relative URLs inside version snapshots so each snapshot remains independently runnable.
-- Never place secrets, access tokens, private contact data, or credentials in the repository.
+- Never place secrets, access tokens, private contact data or credentials in the repository.
 - Do not combine a data migration, interface redesign and architecture rewrite in one patch unless an approved plan proves they cannot be separated.
+
+## AI execution preference
+
+When connected tools permit safe execution, the agent should perform the GitHub work itself rather than send routine commands to the owner.
+
+The agent should independently:
+
+- inspect repository facts and documentation;
+- create and update the dedicated branch;
+- update `WORK_STATUS.md` before implementation;
+- edit files, create commits and open Pull Requests;
+- run or inspect available validation and GitHub Actions;
+- prepare patchnotes and real screenshot evidence;
+- correct failures and complete the handoff.
+
+Ask the owner only for decisions requiring human judgment, access to an unavailable physical device, secure secret provisioning, translation/content review or an action unavailable to connected tools. Never ask the owner to paste an API key into chat.
 
 ## Cross-device handoff discipline
 
 - Before implementation, update `WORK_STATUS.md` with status `IN_PROGRESS`, start time, environment, branch, one goal, planned files and completion criteria.
+- Push the handoff before substantial implementation so another chat can see the lock.
 - At meaningful checkpoints, record what is actually complete, the last verified commit and the exact next action.
 - Before switching devices or stopping unfinished work, set status to `PAUSED` or `BLOCKED`, commit the handoff and push it to GitHub.
 - A local note, chat message or unpushed commit is not a valid handoff.
@@ -58,13 +83,26 @@ If documents disagree with executable code or GitHub facts, report the conflict 
 - After merge, return the file to `READY` and record the latest completed PR/commit.
 - Do not start unrelated work while `WORK_STATUS.md` describes an unresolved `IN_PROGRESS`, `PAUSED` or `BLOCKED` task unless the owner explicitly closes or supersedes it.
 - If `WORK_STATUS.md` conflicts with open PRs or commits, GitHub facts win and the file must be corrected immediately.
+- Do not create a competing branch for the same goal from another chat.
+
+## Real screenshot requirement
+
+- Every new uNews patchnote must add a new real PNG/JPEG in the same Pull Request.
+- Never reuse an existing image from an earlier patchnote.
+- User-visible changes should be captured from the exact branch/commit in a real browser, preferably Playwright Chromium.
+- Documentation-only changes may use a real GitHub UI or exact document-render screenshot.
+- AI-generated artwork is not proof of a real code, UI, release or documentation change.
+- New patchnotes must include `image_source`, `image_target`, `image_commit` and `image_captured_at`.
+- Validate that the screenshot visibly proves the claim before merge.
+- Never expose secrets, cookies, private data or local home paths in screenshots.
+- Follow `docs/SCREENSHOT_AUTOMATION.md`.
 
 ## uNews publication requirement
 
-- User-visible changes, releases, fixes, documentation milestones, and meaningful repository changes require a factual Russian patchnote in `news/`.
+- User-visible changes, releases, fixes, documentation milestones and meaningful repository changes require a factual Russian patchnote in `news/`.
 - Follow `docs/NEWS_PUBLISHING.md` and the canonical rules in `sunpole/uNews`.
 - Use `project: uDream` and `series: udream` in YAML.
-- Every patchnote requires `type`, `project`, `series`, `title`, `version`, `repo_url` or `web_url`, and an existing safe image beside the Markdown file.
+- Every patchnote requires `type`, `project`, `series`, `title`, `version`, `repo_url` or `web_url`, `image` and the screenshot provenance fields required for its version.
 - Name patchnotes `YYYY-MM-DD-udream-short-title.md` using lowercase Latin characters and hyphens.
 - Real Telegram publication is performed only by the uNews GitHub Actions workflow. Do not send directly from a local machine.
 - Never describe planned work as completed. Build the patchnote from the actual diff and completed checks.
@@ -74,16 +112,16 @@ If documents disagree with executable code or GitHub facts, report the conflict 
 ## Copyright and third-party content
 
 - The MIT license applies to original uDream software code and original project documentation only.
-- Do not claim ownership of source books, excerpts, dictionary interpretations, illustrations, or PDFs created by third parties.
+- Do not claim ownership of source books, excerpts, dictionary interpretations, illustrations or PDFs created by third parties.
 - Do not describe third-party content as MIT-licensed unless documented permission proves that it is.
 - Keep copyright and provenance statements aligned with `docs/CONTENT_AND_RIGHTS.md` and `THIRD_PARTY_NOTICES.md`.
-- Do not add, remove, republish, or replace source PDFs or substantial book-derived content without explicit approval and a rights review.
+- Do not add, remove, republish or replace source PDFs or substantial book-derived content without explicit approval and a rights review.
 
 ## Database safety and variant preservation
 
 - Treat database content changes separately from interface changes.
 - Preserve record IDs unless a documented migration requires otherwise.
-- Validate JSON syntax, array shape, required fields, record count, and duplicate IDs before commit.
+- Validate JSON syntax, array shape, required fields, record count and duplicate IDs before commit.
 - Do not silently replace source wording or biblical references.
 - Record the source and transformation method for generated or translated data.
 - Never overwrite one source database, translation or editorial variant with another.
@@ -93,6 +131,7 @@ If documents disagree with executable code or GitHub facts, report the conflict 
 - Byte-identical files are one logical dataset, not independent translations.
 - Do not delete `data/bd2.json`, `data/db.json`, reports or archived data until D1 proves the canonical file, records the migration and provides a rollback.
 - The target is one canonical source dataset, one current Russian translation and up to two genuinely independent alternatives; do not manufacture variants when only one reliable translation exists.
+- A future selector must validate the complete target dataset, reload the application consistently, support safe cache clearing and automatically fall back to the stable dataset on failure.
 
 ## AI-assisted translation safety
 
@@ -123,11 +162,11 @@ Then verify:
 - search returns a result;
 - saved-version launcher opens;
 - saved snapshot loads its own database;
-- manifest, icons, service worker, PDFs, and external assets do not return 404;
+- manifest, icons, service worker, PDFs and external assets do not return 404;
 - mobile layout remains usable;
 - no unrelated files changed.
 
-Do not claim a browser, PWA, offline, or mobile check was completed unless it was actually performed.
+Do not claim a browser, PWA, offline or mobile check was completed unless it was actually performed.
 
 ## Versioning and releases
 
@@ -147,13 +186,17 @@ Keep documentation factual and distinguish:
 - planned work;
 - assumptions that still require testing.
 
-After a release or major documentation patch, search all maintained documents for stale current-version labels and unresolved development-branch wording.
+After a release or major documentation patch, search all maintained documents for stale current-version labels, old SHAs and unresolved development-branch wording.
 
 End each completed task with the files changed, checks run, results, remaining risks and an updated `WORK_STATUS.md` handoff.
 
 ## Next approved planning boundary
 
-The next recommended project series is D1: data provenance and multi-dataset architecture.
+The current operational sequence is:
+
+1. complete documentation baseline `23.8.6` for unified AI/GitHub work;
+2. implement Playwright screenshot automation in separate patch `23.8.7`;
+3. begin D1.1 data-provenance research.
 
 D1 begins with documentation, inventory, validation design and migration planning. It must not change the active 4,086-record database or add a user-facing database selector until the architecture is separately reviewed and approved.
 
@@ -163,8 +206,8 @@ D1 begins with documentation, inventory, validation design and migration plannin
 
 После каждого завершённого пользовательского изменения ИИ или программист должен:
 
-1. Создать русский патчноут в `news/` и реальное изображение рядом.
-2. Указать в YAML: `type`, `project`, безопасный латинский `series`, `title`, следующую `version`, точное UTC-время `queued_at`, `repo_url` или `web_url`, `image`.
+1. Создать русский патчноут в `news/` и новое реальное изображение рядом.
+2. Указать в YAML: `type`, `project`, безопасный латинский `series`, `title`, следующую `version`, точное UTC-время `queued_at`, `repo_url` или `web_url`, `image`, а также screenshot provenance.
 3. Формат времени: `queued_at: YYYY-MM-DDTHH:MM:SSZ`.
 4. Описывать только фактически выполненные изменения; не включать токены, ключи, приватные данные и локальные секреты.
 5. Добавлять патчноут и изображение в ту же публичную ветку, что и завершённое изменение.

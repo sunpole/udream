@@ -15,24 +15,28 @@
 
 ## Documentation baseline
 
-`v23.8.5`
+`v23.8.6`
 
-- Status: documentation-only milestone; it does not create a new application build or move the `v23.8.0` tag
-- Purpose: add `WORK_STATUS.md` as the mandatory cross-device handoff for planned work, actual progress, pause points, completion evidence and the exact next action
-- Current handoff status: `READY` — no unfinished active task or open Pull Request
-- Last completed major work: PR #18, documentation baseline `23.8.4`
-- Next approved series: D1 — data provenance and multi-dataset architecture
-- Next exact task: D1.1 provenance recovery without changing the active 4,086-record database
+- Status: documentation and repository-governance milestone; it does not create a new application build or move the `v23.8.0` tag
+- Purpose: make GitHub the unambiguous source of truth for any number of chats, devices and AI agents
+- Live handoff source: `WORK_STATUS.md`
+- Unified execution protocol: `docs/AI_GITHUB_WORKFLOW.md`
+- Real screenshot contract: `docs/SCREENSHOT_AUTOMATION.md`
+- Pull Request policy: every new patchnote adds a new real PNG/JPEG and screenshot provenance metadata
+- Validation: `scripts/validate-project.mjs` checks handoff structure and new screenshot metadata; `scripts/validate-patchnote-diff.mjs` requires the new image in the same Pull Request
+- Previous documentation baseline: `v23.8.5`, PR #20, merge `639b2fc1309cd3e5c69236af98e14c26cc541523`
+- Final cross-device status before this task: commit `ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f`
+- Next approved operational patch: `23.8.7` — Playwright screenshot capture and workflow artifacts
+- Next approved product/data series after `23.8.7`: D1, beginning with D1.1 provenance recovery
 - Product source of truth: `docs/PRODUCT_VISION.md`
 - Translation source of truth: `docs/TRANSLATION_WORKFLOW.md`
-- Cross-device work source of truth: `WORK_STATUS.md`
 - Repository download: https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip
 
 ## Current development line
 
-No functional development version is assigned after `v23.8.0`.
+No functional application version is assigned after `v23.8.0`.
 
-Documentation updates `23.8.1` through `23.8.5` finalize the immutable release record, establish the product/data baseline and add a durable cross-device work handoff. They do not change application runtime, PWA behavior or database records.
+Documentation updates `23.8.1` through `23.8.6` finalize the immutable release record, product/data baseline, translation safety, cross-device handoff and unified AI/GitHub workflow. They do not change application runtime, PWA behavior or database records.
 
 ## Unified version line
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## Documentation update v23.8.6 — 2026-07-22
+
+- Made real GitHub state the highest-priority source of truth for all devices, chats and AI agents.
+- Added `docs/AI_GITHUB_WORKFLOW.md` with one start, pause, completion and conflict-recovery protocol.
+- Required an early pushed `WORK_STATUS.md` lock before implementation and prohibited competing branches for the same active goal.
+- Recorded that connected agents should perform routine GitHub work themselves and involve the owner only for unavailable tools, secrets, physical-device checks or human judgment.
+- Added `docs/SCREENSHOT_AUTOMATION.md` and defined Playwright Chromium as the preferred source of real screenshots.
+- Required every new patchnote to add a new PNG/JPEG in the same Pull Request with `image_source`, `image_target`, `image_commit` and `image_captured_at`.
+- Strengthened `scripts/validate-project.mjs`, `scripts/validate-patchnote-diff.mjs`, the Pull Request template and agent rules.
+- Corrected stale cross-device references from PR #18 to PR #20 and commit `ac7dfe6b`.
+- Kept application runtime, PWA behavior, release tag and all 4,086 active database records unchanged.
+- Scheduled isolated Playwright implementation as documentation/automation patch `23.8.7` before D1.1.
+
 ## Documentation update v23.8.5 — 2026-07-21
 
 - Added root `WORK_STATUS.md` as the single live handoff for development across phone, Windows, macOS and GitHub agents.

@@ -2,7 +2,7 @@
 
 The current restoration checkpoint is release `v23.8.0` at commit `24dece593bea679485057d7551a2583f7f1f5acf`, published on 2026-07-20 after verification of the PWA update, cache migration, uncached version checks and installation flow. The previous checkpoint remains `v23.7.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.
 
-Documentation update `23.8.5` adds the mandatory cross-device work handoff while retaining the unified product vision, non-destructive data rules, target translation model, safe DeepSeek-assisted workflow and the boundary of the next approved series D1. It does not change application runtime or database records.
+Documentation update `23.8.6` adds the unified GitHub-centered workflow for any number of devices, chats and AI agents, real screenshot provenance requirements and the implementation boundary for Playwright automation. It retains the cross-device handoff, product vision, non-destructive data rules, target translation model and safe DeepSeek-assisted workflow. It does not change application runtime or database records.
 
 ## What UDREAM is
 
@@ -10,18 +10,25 @@ UDREAM is a public, static GitHub Pages application for searching Christian drea
 
 The current product mission and final direction are defined in `docs/PRODUCT_VISION.md`. Translation variants and API-assisted data preparation are governed by `docs/TRANSLATION_WORKFLOW.md`.
 
-## Cross-device work status
+## GitHub-centered work status
 
-`WORK_STATUS.md` is the live source for the current task, branch, actual progress, pause point and exact next action.
+Real GitHub facts have the highest priority: `main`, open Pull Requests, branches, commits, tags, Releases and Actions results.
 
-At documentation baseline `23.8.5`:
+`WORK_STATUS.md` is the live source for the current task, branch, actual progress, pause point and exact next action. `docs/AI_GITHUB_WORKFLOW.md` defines how another device, ChatGPT chat, Codex session or agent must continue the same work without creating a competing implementation.
 
-- status is `READY`;
-- no unfinished functional task is recorded;
-- no open Pull Request existed when the handoff was initialized;
-- the last completed major documentation work was PR #18;
-- the next approved series is D1;
-- the next exact task is D1.1 provenance recovery;
+The cross-device baseline was established by PR #20, merge `639b2fc1309cd3e5c69236af98e14c26cc541523`, and finalized by commit `ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f`.
+
+At documentation baseline `23.8.6`:
+
+- every task starts by checking GitHub facts and `WORK_STATUS.md`;
+- an active task must push its handoff before substantial implementation;
+- a new chat cannot start a competing branch for the same goal;
+- old chats, AI memory and unpushed notes are not sources of truth;
+- connected agents perform routine GitHub work themselves when the tools permit it;
+- owner input is reserved for unavailable tools, physical-device checks, secrets and human judgment;
+- new patchnotes require new real screenshot evidence and provenance metadata;
+- the next operational patch is `23.8.7` Playwright screenshot automation;
+- the next product/data series after that is D1, beginning with D1.1 provenance recovery;
 - D1.1 must not modify the active 4,086-record database.
 
 `ROADMAP.md` remains the long-term plan and this file remains the detailed verified state. Neither replaces the live handoff.
@@ -83,9 +90,20 @@ The public README provides:
 
 No APK is published. The user-facing application is installed directly from the browser as a PWA.
 
-## Development news
+## Development news and screenshot evidence
 
-User-visible changes are documented in `news/`. The public uNews repository automatically discovers new uDream patchnotes after they reach `main`, validates them, and publishes previously unseen entries to `@uNewsLog` through GitHub Actions.
+User-visible changes are documented in `news/`. The public uNews repository automatically discovers new uDream patchnotes after they reach `main`, validates them and publishes previously unseen entries to `@uNewsLog` through GitHub Actions.
+
+For patchnotes version `23.8.6` and newer:
+
+- a new PNG/JPEG must be added in the same Pull Request;
+- an older image cannot be reused;
+- the patchnote records `image_source`, `image_target`, `image_commit` and `image_captured_at`;
+- the preferred user-interface evidence is a real Chromium screenshot;
+- documentation-only changes may use a real GitHub UI or exact document-render screenshot;
+- the image must be reviewed before merge.
+
+The full contract is in `docs/SCREENSHOT_AUTOMATION.md`. The isolated Playwright workflow and artifact implementation belongs to patch `23.8.7`; it is not yet part of the public runtime.
 
 uDream stores no Telegram credentials. The publication contract is documented in `docs/NEWS_PUBLISHING.md`.
 
@@ -106,10 +124,13 @@ The exact generation and translation pipeline for `data/divinity_code_ru.json` i
 
 DeepSeek is only a possible candidate-generation tool. No API client or key is part of the current browser runtime. Any future experiment must create a separate recoverable candidate dataset and use a local environment variable or GitHub encrypted secret.
 
+A future database selector must not be implemented until D1 defines stable dataset identities, provenance and migration. Before release it must validate the complete selected dataset, reload the application consistently, provide safe cache clearing and automatically fall back to the stable database when a selected variant fails.
+
 ## Documentation status
 
 The maintained documentation set now covers:
 
+- GitHub-centered multi-chat and multi-device execution;
 - cross-device task start, pause, completion and continuation;
 - product mission and final direction;
 - verified current runtime and risks;
@@ -117,6 +138,7 @@ The maintained documentation set now covers:
 - active data contract and retained variants;
 - target translation topology and duplicate policy;
 - safe AI-assisted translation workflow;
+- real screenshot evidence and Playwright implementation planning;
 - completed M1–M5 modularization;
 - versioning, releases, download and rollback;
 - uNews publication;
@@ -138,6 +160,7 @@ Historical files are deliberately preserved and are not the source of truth for 
 
 ## Known risks and unfinished work
 
+- Playwright screenshot capture and artifact automation are specified but not yet implemented.
 - Database provenance and transformation steps are not fully documented.
 - The canonical source file and reversible duplicate-removal plan are not yet approved.
 - Alternative Russian translations do not yet exist as reviewed datasets.
@@ -151,9 +174,10 @@ Historical files are deliberately preserved and are not the source of truth for 
 
 These are tracked as future work in `ROADMAP.md`; they are not hidden defects in the `v23.8.0` release.
 
-## Next approved series
+## Next approved work
 
-D1 — data provenance and multi-dataset architecture.
+1. `23.8.7` — isolated Playwright screenshot capture and workflow artifacts.
+2. D1.1 — data provenance recovery.
 
 D1 begins with research, inventory, validation design and migration planning. Its first stage must not change the active 4,086-record JSON database or add a user-facing database selector.
 
