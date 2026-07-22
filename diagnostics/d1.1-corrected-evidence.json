@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-22T13:53:18Z",
+  "branch": "docs/data-provenance-d1.1",
+  "commit": "a529c8236f550427839ec541a570212dd6e74eba",
+  "mainCommit": "acc91a1162521a35fcdd3d3cfbc11811f2988508",
+  "dataFilesDifferFromMain": [],
+  "files": {
+    "bd2": {
+      "name": "bd2",
+      "path": "data/bd2.json",
+      "bytes": 2141655,
+      "sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+      "utf8Bom": false,
+      "lineCount": 62899,
+      "records": 4086,
+      "fields": [
+        "aliases",
+        "date_added",
+        "description",
+        "id",
+        "notes",
+        "source",
+        "symbol",
+        "tags"
+      ],
+      "fieldPresence": {
+        "aliases": 4086,
+        "date_added": 4086,
+        "description": 4086,
+        "id": 4086,
+        "notes": 4086,
+        "source": 4086,
+        "symbol": 4086,
+        "tags": 4086
+      },
+      "fieldTypes": {
+        "aliases": [
+          "list"
+        ],
+        "date_added": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "id": [
+          "int"
+        ],
+        "notes": [
+          "str"
+        ],
+        "source": [
+          "str"
+        ],
+        "symbol": [
+          "str"
+        ],
+        "tags": [
+          "list"
+        ]
+      },
+      "integerIds": 4086,
+      "uniqueIds": 4086,
+      "firstId": 1,
+      "lastId": 4086,
+      "canonicalBytes": 1777825,
+      "canonicalSha256": "5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1",
+      "language": {
+        "cyrillicCharacters": 0,
+        "latinCharacters": 931326,
+        "googleMarkers": 0,
+        "myMemoryMarkers": 0
+      }
+    },
+    "db": {
+      "name": "db",
+      "path": "data/db.json",
+      "bytes": 2204553,
+      "sha256": "4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0",
+      "utf8Bom": false,
+      "lineCount": 62899,
+      "records": 4086,
+      "fields": [
+        "aliases",
+        "date_added",
+        "description",
+        "id",
+        "notes",
+        "source",
+        "symbol",
+        "tags"
+      ],
+      "fieldPresence": {
+        "aliases": 4086,
+        "date_added": 4086,
+        "description": 4086,
+        "id": 4086,
+        "notes": 4086,
+        "source": 4086,
+        "symbol": 4086,
+        "tags": 4086
+      },
+      "fieldTypes": {
+        "aliases": [
+          "list"
+        ],
+        "date_added": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "id": [
+          "int"
+        ],
+        "notes": [
+          "str"
+        ],
+        "source": [
+          "str"
+        ],
+        "symbol": [
+          "str"
+        ],
+        "tags": [
+          "list"
+        ]
+      },
+      "integerIds": 4086,
+      "uniqueIds": 4086,
+      "firstId": 1,
+      "lastId": 4086,
+      "canonicalBytes": 1777825,
+      "canonicalSha256": "5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1",
+      "language": {
+        "cyrillicCharacters": 0,
+        "latinCharacters": 931326,
+        "googleMarkers": 0,
+        "myMemoryMarkers": 0
+      }
+    },
+    "ru": {
+      "name": "ru",
+      "path": "data/divinity_code_ru.json",
+      "bytes": 4688773,
+      "sha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+      "utf8Bom": false,
+      "lineCount": 77787,
+      "records": 4086,
+      "fields": [
+        "aliases",
+        "date_added",
+        "description",
+        "id",
+        "notes",
+        "source",
+        "symbol",
+        "tags"
+      ],
+      "fieldPresence": {
+        "aliases": 4086,
+        "date_added": 4086,
+        "description": 4086,
+        "id": 4086,
+        "notes": 4086,
+        "source": 4086,
+        "symbol": 4086,
+        "tags": 4086
+      },
+      "fieldTypes": {
+        "aliases": [
+          "list"
+        ],
+        "date_added": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "id": [
+          "int"
+        ],
+        "notes": [
+          "str"
+        ],
+        "source": [
+          "str"
+        ],
+        "symbol": [
+          "str"
+        ],
+        "tags": [
+          "list"
+        ]
+      },
+      "integerIds": 4086,
+      "uniqueIds": 4086,
+      "firstId": 1,
+      "lastId": 4086,
+      "canonicalBytes": 4148207,
+      "canonicalSha256": "c3682a50dec3303b7a100abefb27befd2dfd5d84e66d219252cf099b1a0fcd64",
+      "language": {
+        "cyrillicCharacters": 796924,
+        "latinCharacters": 1023365,
+        "googleMarkers": 4086,
+        "myMemoryMarkers": 2932
+      }
+    }
+  },
+  "report": {
+    "path": "data/report.txt",
+    "bytes": 2963,
+    "sha256": "dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d",
+    "lineCount": 58
+  },
+  "comparisons": {
+    "bd2__db": {
+      "left": "bd2",
+      "right": "db",
+      "byteEqual": false,
+      "parsedJsonEqual": true,
+      "canonicalJsonEqual": true,
+      "recordOrderEqual": true,
+      "sharedIds": 4086,
+      "leftOnlyIds": [],
+      "rightOnlyIds": [],
+      "differentRecords": 0,
+      "firstDifferingIds": [],
+      "fieldDifferenceCounts": {
+        "aliases": 0,
+        "date_added": 0,
+        "description": 0,
+        "id": 0,
+        "notes": 0,
+        "source": 0,
+        "symbol": 0,
+        "tags": 0
+      }
+    },
+    "bd2__ru": {
+      "left": "bd2",
+      "right": "ru",
+      "byteEqual": false,
+      "parsedJsonEqual": false,
+      "canonicalJsonEqual": false,
+      "recordOrderEqual": true,
+      "sharedIds": 4086,
+      "leftOnlyIds": [],
+      "rightOnlyIds": [],
+      "differentRecords": 4086,
+      "firstDifferingIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "fieldDifferenceCounts": {
+        "aliases": 4083,
+        "date_added": 0,
+        "description": 0,
+        "id": 0,
+        "notes": 4086,
+        "source": 0,
+        "symbol": 0,
+        "tags": 4086
+      }
+    },
+    "db__ru": {
+      "left": "db",
+      "right": "ru",
+      "byteEqual": false,
+      "parsedJsonEqual": false,
+      "canonicalJsonEqual": false,
+      "recordOrderEqual": true,
+      "sharedIds": 4086,
+      "leftOnlyIds": [],
+      "rightOnlyIds": [],
+      "differentRecords": 4086,
+      "firstDifferingIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "fieldDifferenceCounts": {
+        "aliases": 4083,
+        "date_added": 0,
+        "description": 0,
+        "id": 0,
+        "notes": 4086,
+        "source": 0,
+        "symbol": 0,
+        "tags": 4086
+      }
+    }
+  },
+  "history": {
+    "bd2": [
+      {
+        "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+        "authorDate": "2026-05-25T00:25:42+03:00",
+        "subject": "Clean repository structure"
+      },
+      {
+        "commit": "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89",
+        "authorDate": "2026-05-25T00:06:12+03:00",
+        "subject": "Add files via upload"
+      }
+    ],
+    "db": [
+      {
+        "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+        "authorDate": "2026-05-25T00:30:11+03:00",
+        "subject": "Add files via upload"
+      },
+      {
+        "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+        "authorDate": "2026-05-25T00:25:42+03:00",
+        "subject": "Clean repository structure"
+      },
+      {
+        "commit": "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89",
+        "authorDate": "2026-05-25T00:06:12+03:00",
+        "subject": "Add files via upload"
+      }
+    ],
+    "ru": [
+      {
+        "commit": "0d1bd292dc00b3c17a6e5736049882486bafe56f",
+        "authorDate": "2026-05-27T19:37:17+03:00",
+        "subject": "Add files via upload"
+      }
+    ],
+    "report": [
+      {
+        "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+        "authorDate": "2026-05-25T00:30:11+03:00",
+        "subject": "Add files via upload"
+      }
+    ]
+  },
+  "correctionsToEarlierDiagnostics": [
+    "The earlier note-based closeness metric was invalid because the actual field is notes, not note.",
+    "bd2.json and db.json are byte-different but parsed-JSON and canonical-JSON equal.",
+    "Field-level comparisons in this report are generated dynamically from the actual schema."
+  ]
+}

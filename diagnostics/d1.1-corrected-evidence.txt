@@ -1,0 +1,25 @@
+# D1.1 corrected evidence summary
+
+Generated: 2026-07-22T13:53:18Z
+Branch commit: a529c8236f550427839ec541a570212dd6e74eba
+Main commit: acc91a1162521a35fcdd3d3cfbc11811f2988508
+Data files changed from main: []
+
+## Current files
+- data/bd2.json: 2141655 bytes, sha256 814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28, records 4086, canonical sha256 5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1
+- data/db.json: 2204553 bytes, sha256 4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0, records 4086, canonical sha256 5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1
+- data/divinity_code_ru.json: 4688773 bytes, sha256 1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64, records 4086, canonical sha256 c3682a50dec3303b7a100abefb27befd2dfd5d84e66d219252cf099b1a0fcd64
+
+## Comparisons
+- bd2__db: byteEqual=False, parsedJsonEqual=True, canonicalJsonEqual=True, differentRecords=0
+  field differences: {'aliases': 0, 'date_added': 0, 'description': 0, 'id': 0, 'notes': 0, 'source': 0, 'symbol': 0, 'tags': 0}
+- bd2__ru: byteEqual=False, parsedJsonEqual=False, canonicalJsonEqual=False, differentRecords=4086
+  field differences: {'aliases': 4083, 'date_added': 0, 'description': 0, 'id': 0, 'notes': 4086, 'source': 0, 'symbol': 0, 'tags': 4086}
+- db__ru: byteEqual=False, parsedJsonEqual=False, canonicalJsonEqual=False, differentRecords=4086
+  field differences: {'aliases': 4083, 'date_added': 0, 'description': 0, 'id': 0, 'notes': 4086, 'source': 0, 'symbol': 0, 'tags': 4086}
+
+## Corrected conclusions
+- bd2.json and db.json are different serializations of the same parsed JSON dataset.
+- The active Russian dataset preserves the same 4,086 IDs and differs from the English dataset in aliases, notes and tags.
+- The exact generation/translation script for divinity_code_ru.json is not present in the proven current history.
+- Earlier note-based closeness claims are invalid and must not be cited.
