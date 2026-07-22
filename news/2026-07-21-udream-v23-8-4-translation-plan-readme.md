@@ -8,12 +8,12 @@ queued_at: 2026-07-21T05:10:00Z
 repo_url: https://github.com/sunpole/udream
 web_url: https://sunpole.github.io/udream/
 image: 2026-07-21-udream-v23-8-4-translation-workflow.png
-image_source: document-render
-image_target: docs/TRANSLATION_WORKFLOW.md@8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a
+image_source: github-ui
+image_target: https://github.com/sunpole/udream/blob/8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a/docs/TRANSLATION_WORKFLOW.md
 image_commit: 8adae192515de0a1cf1e0e3b9a3c85cfbe8f882a
-image_captured_at: 2026-07-22T10:41:52Z
+image_captured_at: 2026-07-22T10:34:49Z
 publication_repair: unpublished-image-upgrade
-publication_repair_reason: replace a reused generic repository image with a dedicated historical TRANSLATION_WORKFLOW.md render before publication
+publication_repair_reason: replace a reused generic repository image with a dedicated historical TRANSLATION_WORKFLOW.md screenshot before publication
 ---
 
 # uDream 23.8.4: варианты перевода, безопасный API-workflow и обновлённый README
@@ -30,9 +30,9 @@ publication_repair_reason: replace a reused generic repository image with a dedi
 - README получил более понятные badges, быстрый старт, инструкцию установки PWA и прямую ссылку на ZIP стабильного релиза `v23.8.0`.
 - Код приложения, PWA и активная база из 4 086 записей не изменяются.
 
-Изображение — новый документальный рендер `docs/TRANSLATION_WORKFLOW.md` на точном историческом commit `8adae19…`. Кадр показывает целевую модель исходной базы, текущего перевода и проверяемых альтернатив, а также безопасную границу API-workflow.
+Изображение — настоящий Playwright Chromium-снимок `docs/TRANSLATION_WORKFLOW.md` на точном историческом commit `8adae19…`. Сценарий подтвердил видимость заголовка «Переводы и AI-assisted workflow» и раздела «Целевой набор данных»; точный URL, commit, время, размеры и byte size записаны в `tools/screenshots/v23.8.1-v23.8.5-publication-repairs.json`.
 
-Публикационный upgrade выполнен до первого Telegram-поста. FIFO-идентичность записи сохранена, новый PNG уникален для `23.8.4`, а SVG-источник и provenance находятся в `tools/screenshots/publication-repairs/`.
+Публикационный upgrade выполнен до первого Telegram-поста. FIFO-идентичность записи сохранена, новый PNG уникален для `23.8.4` и не повторяет общую картинку раннего документационного патча.
 
 Короткий текст для Telegram:
 
