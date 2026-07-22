@@ -16,89 +16,111 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **READY** — незавершённой активной задачи нет |
-| Рабочая ветка | `main` |
-| Открытый Pull Request | нет |
+| Состояние | **IN_PROGRESS** — выполняется аудит происхождения данных D1.1 |
+| Рабочая ветка | `docs/data-provenance-d1.1` |
+| Открытый Pull Request | ещё не открыт |
 | Стабильный релиз | `v23.8.0` |
-| Документационный и automation baseline | `v23.8.7` — реальные Chromium screenshot artifacts |
-| Последнее завершённое изменение | PR #22, squash merge `464b61cf7df8f27ba14bb9a4cf5ed50c8479cef8` |
-| Следующая утверждённая серия | `D1` — происхождение данных и архитектура нескольких наборов |
-| Следующая точная задача | `D1.1` — восстановить происхождение текущих файлов данных без изменения активной базы |
+| Документационный и automation baseline | `v23.8.7` |
+| Последнее завершённое изменение | PR #22, squash merge `464b61cf7df8f27ba14bb9a4cf5ed50c8479cef8`; READY commit `422972a3dd497801156d7345be67e7cecdd9de60` |
+| Активная серия | `D1` — происхождение данных и архитектура нескольких наборов |
+| Активная задача | `D1.1` — восстановить происхождение текущих файлов данных без изменения активной базы |
 
 ## Текущая точка продолжения
 
-Работа `23.8.7` завершена и объединена в `main`.
+Статус: `IN_PROGRESS`
 
-Фактически сделано:
+Начато: `2026-07-22 10:48 Europe/Berlin`
 
-- добавлен отдельный private package `tools/screenshots/`;
-- `@playwright/test`, `playwright` и `playwright-core` закреплены на `1.61.1` через отдельный lockfile;
-- добавлен постоянный read-only workflow `.github/workflows/capture-screenshots.yml`;
-- точный checkout uDream запускается через локальный HTTP-сервер в настоящем Chromium;
-- capture выполняется одним worker;
-- JSON-сценарии не исполняют произвольный JavaScript и поддерживают только allowlisted actions;
-- каждый сценарий обязан выполнить assertions до сохранения PNG;
-- localStorage и sessionStorage очищаются, Service Worker блокируется, animations отключаются;
-- проверяются PNG-сигнатура, размеры и минимальный размер файла;
-- каждый успешный сценарий записывает отдельный provenance entry;
-- итоговый manifest собирается из entries и не теряет успешные результаты при retry;
-- artifact содержит PNG, entries, manifest, Playwright results и failure traces;
-- browser dependencies, reports и artifacts исключены Git;
-- постоянный workflow имеет только `contents: read` и не может выполнить commit или push;
-- структурный validator проверяет package/lock, workflow permissions, cleanup guard, desktop/mobile scenarios, assertions и изоляцию от runtime;
-- добавлены четыре сценария: homepage desktop, `water` desktop/mobile и `вода` mobile;
-- первый неполный Chromium-run выявил две реальные ошибки runner: strict assertion для множества алиасов и потерю manifest entries при retry;
-- обе ошибки исправлены системно и повторно проверены;
-- полный Chromium-run прошёл четыре из четырёх сценариев;
-- все четыре PNG визуально открыты и проверены;
-- для патчноута выбран новый mobile Playwright-кадр `russian-alias-mobile`;
-- выбранный PNG создан из commit `d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47` в `2026-07-22T08:22:53Z`;
-- provenance сохранена в `tools/screenshots/v23.8.7-selected-image.json`;
-- добавлен патчноут `news/2026-07-22-udream-v23-8-7-playwright-screenshots.md`;
-- синхронизированы обязательные документы и правила агентов;
-- runtime, PWA, Service Worker, корневой package, `data/`, `versions/` и `_archive/` не изменялись;
-- активная база осталась на 4 086 записях.
+Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions`
 
-Проверки:
+Ветка: `docs/data-provenance-d1.1`
 
-- PR #22 final head: `ff9586f3ebc9d6f540e9f36fbce16ca28251f2d4`;
-- `Validate uDream` — success;
-- regression tests — success;
-- project, database, WORK_STATUS, screenshot tooling and patchnote validation — success;
-- new patchnote and new PNG evidence check — success;
-- JavaScript syntax checks — success;
-- `Capture uDream screenshots` — success;
-- four of four Chromium scenarios — success;
-- final artifact manifest содержит ровно четыре сценария и exact final head SHA;
-- final artifact digest: `sha256:da3fb3c2b77e43caa8a51a1bf362d6cb156a821c52f25c86138ea4fe8c118069`;
-- PR #22 был mergeable, переведён из draft и объединён squash merge.
+Pull Request: ещё не открыт
 
-Pull Request / merge:
+Issue: `#19` — техническое задание D1.1
 
-- PR: `#22` — `ops: automate real Playwright screenshots v23.8.7`;
-- merge: `464b61cf7df8f27ba14bb9a4cf5ed50c8479cef8`;
-- способ: squash merge.
+Цель: восстановить насколько позволяют доказательства происхождение, историю создания и связь текущих файлов данных uDream; создать `docs/DATA_PROVENANCE.md`; не менять содержимое активной базы, runtime, PWA, сохранённые версии или архивы.
 
-Публичный материал:
+Планировалось:
 
-- патчноут: `news/2026-07-22-udream-v23-8-7-playwright-screenshots.md`;
-- изображение: `news/2026-07-22-udream-v23-8-7-playwright-screenshots.png`;
-- источник: настоящий Playwright Chromium;
-- сценарий: `russian-alias-mobile`;
-- после merge патчноут доступен автоматической очереди uNews.
+- изучить Git-историю `data/divinity_code_ru.json`, `data/bd2.json`, `data/db.json` и `data/report.txt`;
+- вычислить и зафиксировать актуальные SHA-256, размеры, число записей и ключевые структурные признаки;
+- повторно подтвердить или опровергнуть байтовое равенство `data/bd2.json` и `data/db.json`;
+- исследовать сохранённые скрипты, отчёты, prompts и упоминания процесса перевода;
+- исследовать `_archive/old-data/` и `_archive/source-files/` только чтением;
+- установить известные commits появления и изменения файлов;
+- разделить сведения на «Доказано», «Обоснованно предполагается» и «Неизвестно»;
+- предложить канонический исходный набор без удаления, переименования или миграции;
+- подготовить безопасный переход к D1.2;
+- добавить фактический uNews-патчноут и новый реальный Playwright/document screenshot;
+- пройти основной validator и GitHub Actions.
+
+Планируемые файлы:
+
+- `WORK_STATUS.md`
+- `docs/DATA_PROVENANCE.md`
+- `docs/DATABASE_FORMAT.md`
+- `docs/FILE_MAP.md`
+- `docs/PROJECT_STATE.md`
+- `README.md`
+- `ROADMAP.md`
+- `VERSION.md`
+- `CHANGELOG.md`
+- `scripts/validate-data-provenance.mjs`
+- `scripts/validate-project.mjs`
+- новый uNews-патчноут и новый реальный PNG
+
+Файлы исследования, которые нельзя изменять:
+
+- `data/divinity_code_ru.json`
+- `data/bd2.json`
+- `data/db.json`
+- `data/report.txt`
+- `_archive/old-data/**`
+- `_archive/source-files/**`
+- `versions/**`
+- runtime и PWA-файлы
+
+Критерии завершения:
+
+- создан `docs/DATA_PROVENANCE.md`;
+- для каждого текущего data-файла записаны доказанные hash, размер, язык/роль и известная история;
+- равенство `bd2.json` и `db.json` повторно проверено актуальными hash и byte comparison;
+- происхождение активной русской базы описано без выдачи предположений за факты;
+- неизвестное перечислено явно;
+- предложено каноническое имя исходного набора, но ничего не удалено и не переименовано;
+- автоматический provenance-validator подтверждает неизменность ожидаемых файлов и доказательств;
+- активная база остаётся на 4 086 записях с теми же bytes и hash;
+- runtime, PWA, `versions/` и `_archive/` отсутствуют в diff;
+- новый патчноут использует новый реальный проверенный PNG;
+- GitHub Actions проходит;
+- после merge Issue #19 закрыт, `WORK_STATUS.md` возвращён в `READY`, следующий шаг — D1.2.
+
+Уже сделано:
+
+- завершены единый GitHub-workflow `23.8.6` и Playwright automation `23.8.7`;
+- Issue №19 обновлён до текущего `main`, baseline `23.8.7` и точной границы D1.1;
+- создана ветка `docs/data-provenance-d1.1` от актуального `main`;
+- ранний handoff D1.1 опубликован до начала аудита.
+
+Последний проверенный commit:
+
+- `422972a3dd497801156d7345be67e7cecdd9de60` — актуальный `main` перед началом D1.1.
 
 Следующий точный шаг:
 
-- начать D1.1 в отдельной ветке: исследовать Git-историю `data/`, `data/report.txt`, сохранённые скрипты, отчёты и архивные материалы; создать `docs/DATA_PROVENANCE.md`; разделить доказанные факты, выводы и неизвестное; не менять активную базу.
+- собрать инвентарь data-файлов и архивных материалов, актуальные hashes и Git-историю; затем составить первый доказательный черновик `docs/DATA_PROVENANCE.md`.
 
-Что нельзя делать следующим этапом:
+Что нельзя делать при продолжении:
 
 - не менять `data/divinity_code_ru.json`, его 4 086 записей, ID и тексты;
 - не удалять и не переименовывать `data/bd2.json`, `data/db.json`, отчёты и архивные варианты;
 - не менять runtime, PWA, `versions/` и `_archive/`;
 - не начинать пользовательский переключатель баз до утверждения D1.2–D1.4;
-- не добавлять API-ключи и не запускать платный переводческий API из браузера;
-- не описывать предположение как доказанный факт.
+- не добавлять API-ключи и не запускать платный переводческий API;
+- не описывать предположение как доказанный факт;
+- не создавать параллельную ветку для D1.1;
+- не начинать D1.2 до завершения и merge D1.1.
 
 ## Обязательный порядок перед началом работы
 
