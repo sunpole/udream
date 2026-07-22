@@ -1,0 +1,61 @@
+name: Safely sync D1.1 with main
+
+on:
+  push:
+    branches:
+      - docs/data-provenance-d1.1
+    paths:
+      - .github/workflows/sync-d1-1-with-main.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout full D1.1 history
+        uses: actions/checkout@v5
+        with:
+          ref: docs/data-provenance-d1.1
+          fetch-depth: 0
+
+      - name: Merge current main without losing evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+
+          set +e
+          git merge --no-commit --no-ff origin/main
+          merge_code=$?
+          set -e
+
+          if [ "$merge_code" -ne 0 ]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            echo "Merge conflicts:"
+            printf '%s\n' "$conflicts"
+            if [ "$conflicts" != "WORK_STATUS.md" ]; then
+              echo "Unexpected conflict set; refusing automatic resolution."
+              exit 1
+            fi
+            git checkout --ours WORK_STATUS.md
+            git add WORK_STATUS.md
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No merge changes were staged."
+          else
+            git commit -m "chore: sync D1.1 evidence branch with main"
+          fi
+
+      - name: Remove one-off workflow and temporary check branch
+        run: |
+          git rm .github/workflows/sync-d1-1-with-main.yml
+          git commit -m "chore: remove one-off D1.1 sync workflow"
+          git push origin HEAD:docs/data-provenance-d1.1
+          git push origin --delete tmp-check || true
