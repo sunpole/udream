@@ -7,6 +7,7 @@ import { pathToFileURL } from "node:url";
 
 const EXPECTED_PLAYWRIGHT_VERSION = "1.61.1";
 const EXPECTED_TOOL_VERSION = "23.8.7";
+const EXPECTED_CAPTURE_SCRIPT = "node prepare-artifacts.mjs && playwright test --config=playwright.config.mjs";
 const REQUIRED_SCENARIOS = new Set([
   "homepage-desktop",
   "russian-alias-mobile",
@@ -126,6 +127,7 @@ export async function validateScreenshotTooling(root = process.cwd()) {
     "tools/screenshots/package.json",
     "tools/screenshots/package-lock.json",
     "tools/screenshots/playwright.config.mjs",
+    "tools/screenshots/prepare-artifacts.mjs",
     "tools/screenshots/capture.spec.mjs",
   ];
   await Promise.all(requiredFiles.map((file) => requireFile(root, file)));
@@ -142,8 +144,8 @@ export async function validateScreenshotTooling(root = process.cwd()) {
   if (packageJson.devDependencies?.["@playwright/test"] !== EXPECTED_PLAYWRIGHT_VERSION) {
     fail(`@playwright/test must be pinned to ${EXPECTED_PLAYWRIGHT_VERSION}`);
   }
-  if (packageJson.scripts?.capture !== "playwright test --config=playwright.config.mjs") {
-    fail("capture script is missing or changed unexpectedly");
+  if (packageJson.scripts?.capture !== EXPECTED_CAPTURE_SCRIPT) {
+    fail("capture script is missing artifact preparation or changed unexpectedly");
   }
 
   if (packageLock.lockfileVersion !== 3) fail("package-lock must use lockfileVersion 3");
@@ -185,6 +187,21 @@ export async function validateScreenshotTooling(root = process.cwd()) {
     if (workflow.includes(forbiddenText)) {
       fail(`capture workflow must remain read-only: ${forbiddenText}`);
     }
+  }
+
+  const prepareSource = await readText(root, "tools/screenshots/prepare-artifacts.mjs");
+  for (const requiredText of [
+    "artifacts/screenshots",
+    "fs.rmSync",
+    "images",
+    "entries",
+  ]) {
+    if (!prepareSource.includes(requiredText)) {
+      fail(`prepare-artifacts.mjs is missing: ${requiredText}`);
+    }
+  }
+  if (!prepareSource.includes("endsWith(expectedSuffix)")) {
+    fail("prepare-artifacts.mjs must guard the cleanup path");
   }
 
   const ignoreFile = await readText(root, ".gitignore");
