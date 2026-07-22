@@ -5,7 +5,11 @@
 ```text
 изменение uDream
     ↓
-news/*.md + новое реальное изображение
+реальный screenshot artifact или документальный снимок
+    ↓
+визуальная проверка
+    ↓
+news/*.md + новый реальный PNG/JPEG
     ↓
 ветка main на GitHub
     ↓
@@ -34,23 +38,23 @@ sunpole/uNews/.github/workflows/publish-all-news.yml
 YYYY-MM-DD-udream-short-title.md
 ```
 
-Пример YAML для новых патчноутов:
+Пример YAML для нового патчноута:
 
 ```yaml
 ---
-type: patch
+type: feature
 project: uDream
 series: udream
 title: Краткое русское название изменения
-version: 23.8.6
-queued_at: 2026-07-22T07:30:00Z
+version: 23.8.7
+queued_at: 2026-07-22T08:28:00Z
 repo_url: https://github.com/sunpole/udream
 web_url: https://sunpole.github.io/udream/
-image: 2026-07-22-udream-v23-8-6-example.png
+image: 2026-07-22-udream-v23-8-7-example.png
 image_source: playwright
-image_target: scenario/example
+image_target: scenario/example-mobile
 image_commit: abc1234
-image_captured_at: 2026-07-22T07:29:00Z
+image_captured_at: 2026-07-22T08:22:53Z
 ---
 ```
 
@@ -83,7 +87,38 @@ image_captured_at: 2026-07-22T07:29:00Z
 - перед merge владелец или ответственный агент должен увидеть точный текст и конкретное изображение;
 - изображение не должно показывать ключи, токены, cookies, приватные данные или локальные домашние пути.
 
-Полная спецификация и план Playwright-автоматизации находятся в `docs/SCREENSHOT_AUTOMATION.md`.
+Полная спецификация и реализованная Playwright-автоматизация описаны в `docs/SCREENSHOT_AUTOMATION.md` и `tools/screenshots/README.md`.
+
+## Playwright artifact перед патчноутом
+
+Постоянный workflow:
+
+```text
+.github/workflows/capture-screenshots.yml
+```
+
+Он:
+
+- имеет только `contents: read`;
+- устанавливает зависимости через `npm ci`;
+- устанавливает Chromium и системные зависимости;
+- запускает точный checkout через локальный HTTP-сервер;
+- выполняет JSON-сценарии с assertions;
+- загружает `artifacts/screenshots/` как GitHub Actions artifact;
+- никогда не выполняет commit или push.
+
+Перед добавлением Playwright-изображения в `news/` нужно:
+
+1. дождаться успешного workflow;
+2. скачать artifact;
+3. проверить, что `manifest.json` содержит нужный сценарий и exact commit;
+4. визуально открыть выбранный PNG;
+5. сверить отсутствие секретов, пустого состояния, старого кеша и неверного результата;
+6. добавить выбранный PNG в рабочую ветку отдельным явным изменением;
+7. перенести `commit` и `capturedAt` из соответствующего `entries/<scenario>.json` в front matter патчноута;
+8. прогнать проектный и PR-валидаторы.
+
+Artifact сам по себе не является разрешением на публикацию. В `main` попадает только проверенный PNG через Pull Request.
 
 ## Типы публикаций
 
@@ -134,7 +169,14 @@ image_captured_at: 2026-07-22T07:29:00Z
 В uDream:
 
 ```bash
+npm test
 node scripts/validate-project.mjs
+```
+
+Для screenshot tooling:
+
+```bash
+node scripts/validate-screenshot-tooling.mjs
 ```
 
 В Pull Request workflow дополнительно запускает `scripts/validate-patchnote-diff.mjs`. Он требует:
