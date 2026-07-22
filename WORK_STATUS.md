@@ -16,121 +16,89 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — реализация 23.8.7 завершена, выполняется финальная проверка Pull Request |
-| Рабочая ветка | `ops/playwright-screenshots-v23.8.7` |
-| Открытый Pull Request | draft `#22` — `ops: automate real Playwright screenshots v23.8.7` |
+| Состояние | **READY** — незавершённой активной задачи нет |
+| Рабочая ветка | `main` |
+| Открытый Pull Request | нет |
 | Стабильный релиз | `v23.8.0` |
-| Документационный и automation baseline | кандидат `v23.8.7` — реальные Chromium screenshot artifacts |
-| Последнее завершённое изменение в `main` | PR #21, squash merge `58ebaea07ef488e0131bd9c3b5c359a191d6275e`; READY commit `b7d2bcebbf57cf9d99d1503e54310a43966ff290` |
-| Активная задача | проверить final head PR #22, перевести PR из draft и объединить только после двух успешных workflow |
-| Следующая утверждённая работа после merge | `D1.1` — происхождение данных без изменения активной базы |
+| Документационный и automation baseline | `v23.8.7` — реальные Chromium screenshot artifacts |
+| Последнее завершённое изменение | PR #22, squash merge `464b61cf7df8f27ba14bb9a4cf5ed50c8479cef8` |
+| Следующая утверждённая серия | `D1` — происхождение данных и архитектура нескольких наборов |
+| Следующая точная задача | `D1.1` — восстановить происхождение текущих файлов данных без изменения активной базы |
 
 ## Текущая точка продолжения
 
-Статус: `IN_PROGRESS`
+Работа `23.8.7` завершена и объединена в `main`.
 
-Начато: `2026-07-22 09:55 Europe/Berlin`
+Фактически сделано:
 
-Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions + Playwright Chromium`
-
-Ветка: `ops/playwright-screenshots-v23.8.7`
-
-Pull Request: draft `#22`
-
-Цель: добавить изолированную Playwright-систему, которая запускает точный checkout uDream в настоящем Chromium, проверяет ожидаемое состояние, создаёт desktop/mobile PNG и сохраняет их как GitHub Actions artifacts до визуального одобрения.
-
-Планировалось:
-
-- изолировать зависимости Playwright от публичного runtime;
-- зафиксировать Playwright и lockfile;
-- создать безопасный сценарный runner;
-- добавить реальные desktop/mobile сценарии;
-- запускать точный checkout через локальный HTTP-сервер;
-- сохранять PNG, per-scenario provenance, manifest и test results как artifact;
-- не разрешать постоянному workflow изменять репозиторий;
-- добавить фактический патчноут и новый проверенный PNG;
-- синхронизировать документацию;
-- сохранить runtime, PWA и активную базу без изменений.
-
-Планируемые файлы:
-
-- `WORK_STATUS.md`
-- `.gitignore`
-- `.github/workflows/capture-screenshots.yml`
-- `.github/workflows/validate.yml`
-- `tools/screenshots/**`
-- `scripts/validate-project.mjs`
-- `scripts/validate-screenshot-tooling.mjs`
-- `AGENTS.md`
-- `README.md`
-- `ROADMAP.md`
-- `VERSION.md`
-- `CHANGELOG.md`
-- `docs/PROJECT_STATE.md`
-- `docs/FILE_MAP.md`
-- `docs/SCREENSHOT_AUTOMATION.md`
-- `docs/NEWS_PUBLISHING.md`
-- новый uNews-патчноут и новый Playwright PNG
-
-Критерии завершения:
-
-- GitHub Actions устанавливает package через `npm ci`;
-- Chromium и системные зависимости устанавливаются официальной командой Playwright;
-- сценарии работают с одним worker;
-- точный checkout поднимается через локальный HTTP-сервер;
-- каждый сценарий выполняет assertions до capture;
-- создаются desktop и mobile изображения;
-- artifact содержит PNG, entries, manifest, results и trace при ошибке;
-- manifest сохраняет все успешные сценарии даже при retry;
-- постоянный workflow имеет только `contents: read`;
-- screenshot tooling отсутствует в browser bundle;
-- активная база остаётся на 4 086 записях;
-- новый патчноут использует новый визуально проверенный PNG;
-- основной validator и Chromium workflow проходят на final head;
-- после merge `WORK_STATUS.md` возвращается в `READY`, следующий шаг — D1.1.
-
-Уже сделано:
-
-- создан отдельный package `tools/screenshots/`;
-- `@playwright/test`, `playwright` и `playwright-core` закреплены на `1.61.1`;
-- создан read-only workflow `capture-screenshots.yml`;
-- создан JSON-runner без произвольного JavaScript;
-- добавлены четыре сценария: homepage desktop, `water` desktop/mobile, `вода` mobile;
-- добавлена безопасная очистка `artifacts/screenshots/`;
-- добавлены PNG signature, dimensions и minimum-size checks;
-- manifest собирается из per-scenario entries и не теряет успешные результаты при retry;
-- первый неполный run выявил две реальные ошибки runner: strict assertion для множества алиасов и потерю manifest entries при retry;
-- обе ошибки исправлены, не скрыты и повторно проверены;
-- полный Chromium-run для commit `34d2b13c2e0f16b597572701485df24a538609c8` прошёл четыре из четырёх сценариев;
-- artifact скачан, manifest проверен и все четыре PNG визуально открыты;
-- для патчноута выбран mobile-сценарий `russian-alias-mobile`;
-- выбранный PNG повторно создан из commit `d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47` в `2026-07-22T08:22:53Z`;
-- PNG имеет размер `390×844`, 108 002 байта и корректную PNG-сигнатуру;
+- добавлен отдельный private package `tools/screenshots/`;
+- `@playwright/test`, `playwright` и `playwright-core` закреплены на `1.61.1` через отдельный lockfile;
+- добавлен постоянный read-only workflow `.github/workflows/capture-screenshots.yml`;
+- точный checkout uDream запускается через локальный HTTP-сервер в настоящем Chromium;
+- capture выполняется одним worker;
+- JSON-сценарии не исполняют произвольный JavaScript и поддерживают только allowlisted actions;
+- каждый сценарий обязан выполнить assertions до сохранения PNG;
+- localStorage и sessionStorage очищаются, Service Worker блокируется, animations отключаются;
+- проверяются PNG-сигнатура, размеры и минимальный размер файла;
+- каждый успешный сценарий записывает отдельный provenance entry;
+- итоговый manifest собирается из entries и не теряет успешные результаты при retry;
+- artifact содержит PNG, entries, manifest, Playwright results и failure traces;
+- browser dependencies, reports и artifacts исключены Git;
+- постоянный workflow имеет только `contents: read` и не может выполнить commit или push;
+- структурный validator проверяет package/lock, workflow permissions, cleanup guard, desktop/mobile scenarios, assertions и изоляцию от runtime;
+- добавлены четыре сценария: homepage desktop, `water` desktop/mobile и `вода` mobile;
+- первый неполный Chromium-run выявил две реальные ошибки runner: strict assertion для множества алиасов и потерю manifest entries при retry;
+- обе ошибки исправлены системно и повторно проверены;
+- полный Chromium-run прошёл четыре из четырёх сценариев;
+- все четыре PNG визуально открыты и проверены;
+- для патчноута выбран новый mobile Playwright-кадр `russian-alias-mobile`;
+- выбранный PNG создан из commit `d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47` в `2026-07-22T08:22:53Z`;
 - provenance сохранена в `tools/screenshots/v23.8.7-selected-image.json`;
 - добавлен патчноут `news/2026-07-22-udream-v23-8-7-playwright-screenshots.md`;
-- синхронизированы VERSION, CHANGELOG, README, ROADMAP, PROJECT_STATE, FILE_MAP, AGENTS, NEWS_PUBLISHING и SCREENSHOT_AUTOMATION;
-- PR #22 содержит 28 ожидаемых файлов;
-- runtime, PWA, root package metadata, `data/`, `versions/` и `_archive/` отсутствуют в diff;
-- основной `Validate uDream` уже прошёл на commit `3fa856e00b496d786d1ee5cec8c9d9c35b65a6e7`.
+- синхронизированы обязательные документы и правила агентов;
+- runtime, PWA, Service Worker, корневой package, `data/`, `versions/` и `_archive/` не изменялись;
+- активная база осталась на 4 086 записях.
 
-Последний проверенный commit:
+Проверки:
 
-- `3fa856e00b496d786d1ee5cec8c9d9c35b65a6e7` — основной validator success; Chromium final-head run выполнялся до этого handoff commit.
+- PR #22 final head: `ff9586f3ebc9d6f540e9f36fbce16ca28251f2d4`;
+- `Validate uDream` — success;
+- regression tests — success;
+- project, database, WORK_STATUS, screenshot tooling and patchnote validation — success;
+- new patchnote and new PNG evidence check — success;
+- JavaScript syntax checks — success;
+- `Capture uDream screenshots` — success;
+- four of four Chromium scenarios — success;
+- final artifact manifest содержит ровно четыре сценария и exact final head SHA;
+- final artifact digest: `sha256:da3fb3c2b77e43caa8a51a1bf362d6cb156a821c52f25c86138ea4fe8c118069`;
+- PR #22 был mergeable, переведён из draft и объединён squash merge.
+
+Pull Request / merge:
+
+- PR: `#22` — `ops: automate real Playwright screenshots v23.8.7`;
+- merge: `464b61cf7df8f27ba14bb9a4cf5ed50c8479cef8`;
+- способ: squash merge.
+
+Публичный материал:
+
+- патчноут: `news/2026-07-22-udream-v23-8-7-playwright-screenshots.md`;
+- изображение: `news/2026-07-22-udream-v23-8-7-playwright-screenshots.png`;
+- источник: настоящий Playwright Chromium;
+- сценарий: `russian-alias-mobile`;
+- после merge патчноут доступен автоматической очереди uNews.
 
 Следующий точный шаг:
 
-- дождаться `Validate uDream` и `Capture uDream screenshots` для нового final head; если оба успешны, обновить PR #22, перевести его из draft, объединить squash merge и вернуть `WORK_STATUS.md` в `READY` на `main`.
+- начать D1.1 в отдельной ветке: исследовать Git-историю `data/`, `data/report.txt`, сохранённые скрипты, отчёты и архивные материалы; создать `docs/DATA_PROVENANCE.md`; разделить доказанные факты, выводы и неизвестное; не менять активную базу.
 
-Что нельзя делать при продолжении:
+Что нельзя делать следующим этапом:
 
-- не создавать параллельную ветку для `23.8.7`;
-- не начинать D1.1 до завершения PR #22;
-- не добавлять Playwright в корневые runtime-зависимости;
-- не импортировать screenshot tooling из `script.js`, `src/` или `sw.js`;
-- не коммитить browser binaries и временные artifacts;
-- не менять активную базу, ID или переводы;
-- не переиспользовать старый PNG;
-- не объединять PR при неуспешном основном validator или Chromium workflow.
+- не менять `data/divinity_code_ru.json`, его 4 086 записей, ID и тексты;
+- не удалять и не переименовывать `data/bd2.json`, `data/db.json`, отчёты и архивные варианты;
+- не менять runtime, PWA, `versions/` и `_archive/`;
+- не начинать пользовательский переключатель баз до утверждения D1.2–D1.4;
+- не добавлять API-ключи и не запускать платный переводческий API из браузера;
+- не описывать предположение как доказанный факт.
 
 ## Обязательный порядок перед началом работы
 
