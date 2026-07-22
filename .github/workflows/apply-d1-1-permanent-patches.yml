@@ -23,48 +23,56 @@ jobs:
           ref: docs/data-provenance-d1.1
           fetch-depth: 0
 
-      - name: Apply exact permanent patches
+      - name: Apply robust permanent patches
         run: |
           python3 - <<'PY'
           from pathlib import Path
 
-          def replace_once(path, old, new):
-              file = Path(path)
-              source = file.read_text(encoding="utf-8")
-              if source.count(old) != 1:
-                  raise SystemExit(f"{path}: expected exact text once, found {source.count(old)}")
-              file.write_text(source.replace(old, new, 1), encoding="utf-8")
+          def read(path):
+              return Path(path).read_text(encoding="utf-8")
 
-          def replace_section(path, start, end, replacement):
-              file = Path(path)
-              source = file.read_text(encoding="utf-8")
-              if source.count(start) != 1 or source.count(end) != 1:
-                  raise SystemExit(f"{path}: section markers are not unique")
+          def write(path, source):
+              Path(path).write_text(source, encoding="utf-8")
+              print(f"patched {path}")
+
+          def replace_required(source, old, new, label):
+              if old not in source:
+                  raise SystemExit(f"missing marker in {label}: {old[:100]!r}")
+              return source.replace(old, new, 1)
+
+          def replace_section(source, start, end, replacement, label):
+              if start not in source or end not in source:
+                  raise SystemExit(f"missing section marker in {label}")
               before, remainder = source.split(start, 1)
               _, after = remainder.split(end, 1)
-              file.write_text(before + replacement + end + after, encoding="utf-8")
+              return before + replacement + end + after
 
-          replace_once(
-              "scripts/validate-project.mjs",
+          path = "scripts/validate-project.mjs"
+          source = read(path)
+          source = replace_required(
+              source,
               'import { validateScreenshotTooling } from "./validate-screenshot-tooling.mjs";\n',
               'import { validateDataProvenance } from "./validate-data-provenance.mjs";\n'
               'import { validateScreenshotTooling } from "./validate-screenshot-tooling.mjs";\n',
+              path,
           )
-          replace_once(
-              "scripts/validate-project.mjs",
+          source = replace_required(
+              source,
               '    "docs/AI_GITHUB_WORKFLOW.md",\n    "docs/SCREENSHOT_AUTOMATION.md",\n',
               '    "docs/AI_GITHUB_WORKFLOW.md",\n    "docs/DATA_PROVENANCE.md",\n'
               '    "docs/SCREENSHOT_AUTOMATION.md",\n    "scripts/validate-data-provenance.mjs",\n',
+              path,
           )
-          replace_once(
-              "scripts/validate-project.mjs",
+          source = replace_required(
+              source,
               '  const screenshotTooling = await validateScreenshotTooling(ROOT);\n  const recordCount = await validateDatabase();\n',
               '  const screenshotTooling = await validateScreenshotTooling(ROOT);\n'
               '  const dataProvenance = await validateDataProvenance(ROOT);\n'
               '  const recordCount = await validateDatabase();\n',
+              path,
           )
-          replace_once(
-              "scripts/validate-project.mjs",
+          source = replace_required(
+              source,
               '  console.log(\n    `uDream validation passed: ${recordCount} records, `\n',
               '  console.log(\n'
               '    `Data provenance passed: ${dataProvenance.records} records, `\n'
@@ -72,19 +80,26 @@ jobs:
               '    + `active SHA-256 ${dataProvenance.activeSha256}.`,\n'
               '  );\n'
               '  console.log(\n    `uDream validation passed: ${recordCount} records, `\n',
+              path,
           )
+          write(path, source)
 
-          replace_once(
-              "scripts/validate-data-provenance.mjs",
+          path = "scripts/validate-data-provenance.mjs"
+          source = read(path)
+          source = replace_required(
+              source,
               'import path from "node:path";\nimport process from "node:process";\n',
               'import path from "node:path";\nimport process from "node:process";\n'
               'import { pathToFileURL } from "node:url";\n',
+              path,
           )
-          replace_once(
-              "scripts/validate-data-provenance.mjs",
+          source = replace_required(
+              source,
               'if (import.meta.url === new URL(`file://${process.argv[1]}`).href) {\n',
               'if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {\n',
+              path,
           )
+          write(path, source)
 
           database_section = '''## Current data-file classification
 
@@ -97,7 +112,7 @@ Verified by D1.1 on 2026-07-22:
 | `data/db.json` | English source serialization B; parsed JSON is identical to `bd2.json`, but raw bytes differ | Not used by the current runtime |
 | `data/report.txt` | Historical generation and quality summary | Not used by the current runtime |
 
-The corrected raw hashes are:
+Corrected raw SHA-256 values:
 
 ```text
 data/bd2.json               814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28
@@ -106,55 +121,43 @@ data/divinity_code_ru.json  1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c44
 data/report.txt              dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d
 ```
 
-`bd2.json` and `db.json` share canonical JSON SHA-256 `5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1`. They contain the same ordered records and values, but their serialization/formatting produces different physical files.
+`bd2.json` and `db.json` share canonical JSON SHA-256 `5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1`. They contain the same ordered records and values, but their serialization produces different physical files.
 
 The active dataset keeps `id`, `symbol`, `description`, `source` and `date_added` unchanged while modifying `aliases`, `notes` and `tags`. The exact generation and translation pipeline remains undocumented.
 
-Full evidence, Git history, corrected earlier claims and the D1.2 recommendation are in `docs/DATA_PROVENANCE.md`.
+Full evidence is in `docs/DATA_PROVENANCE.md`.
 
 '''
-          replace_section(
-              "docs/DATABASE_FORMAT.md",
-              "## Current data-file classification\n",
-              "## Target dataset model for D1\n",
-              database_section,
-          )
-          replace_once(
-              "docs/DATABASE_FORMAT.md",
+          path = "docs/DATABASE_FORMAT.md"
+          source = replace_section(read(path), "## Current data-file classification\n", "## Target dataset model for D1\n", database_section, path)
+          source = source.replace(
               "Two byte-identical files are one logical dataset, not two translations. D1 must identify a canonical path and prepare a reversible migration before a redundant physical copy is removed.",
               "Two semantically identical serializations are one logical dataset, not two translations. D1 must identify a canonical path and prepare a reversible migration before a redundant physical serialization is removed.",
           )
+          write(path, source)
 
-          project_data = '''## Data
+          project_section = '''## Data
 
 The corrected D1.1 classification was verified on 2026-07-22:
 
 - `data/divinity_code_ru.json` is the active mixed-language localized and augmented runtime dataset with 4,086 records;
 - `data/bd2.json` is English source serialization A with 4,086 records;
-- `data/db.json` is English source serialization B: its raw bytes differ from `bd2.json`, but parsed and canonical JSON are identical;
+- `data/db.json` is English source serialization B: raw bytes differ from `bd2.json`, but parsed and canonical JSON are identical;
 - `data/report.txt` is a historical generation and quality summary.
 
-Only `data/divinity_code_ru.json` is referenced by the current application, Service Worker, validation script and state tests. The other files are not part of the current runtime.
+Only `data/divinity_code_ru.json` is referenced by the current runtime. The active dataset preserves the same ordered IDs and the fields `symbol`, `description`, `source` and `date_added`; it differs in `aliases`, `notes` and `tags`. The exact generation and translation pipeline is not proven.
 
-The active dataset preserves the same ordered IDs and the fields `symbol`, `description`, `source` and `date_added`; it differs from the English logical dataset in `aliases`, `notes` and `tags`. The exact generation and translation pipeline is still not proven.
+D1.1 records hashes, canonical identity, Git history, proven facts, inferences and unknowns in `docs/DATA_PROVENANCE.md`. A permanent validator locks this baseline without changing data files.
 
-D1.1 records the raw hashes, canonical hash, Git history, proven facts, inferences and unknowns in `docs/DATA_PROVENANCE.md`. A permanent validator locks this baseline without changing any data file.
+The intended target remains one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations. Equivalent serializations do not count as separate variants.
 
-The intended D1 target is one canonical source dataset, one current published localized dataset and up to two independent alternative Russian translations. Equivalent serializations do not count as separate variants. When only one reliable Russian translation exists, the smaller set is preferred over artificial duplication.
-
-DeepSeek remains only a possible candidate-generation tool. No API client or key is part of the current browser runtime. Any future experiment must create a separate recoverable candidate dataset and use a local environment variable or GitHub encrypted secret.
-
-A future database selector must not be implemented until D1 defines stable dataset identities, provenance and migration. Before release it must validate the complete selected dataset, reload the application consistently, provide safe cache clearing and automatically fall back to the stable database when a selected variant fails.
+DeepSeek remains only a possible candidate-generation tool. No API client or key is part of the current browser runtime. A future selector remains blocked until stable dataset identities, validation, cache handling and automatic fallback are approved.
 
 '''
-          replace_section(
-              "docs/PROJECT_STATE.md",
-              "## Data\n",
-              "## Documentation status\n",
-              project_data,
-          )
+          path = "docs/PROJECT_STATE.md"
+          write(path, replace_section(read(path), "## Data\n", "## Documentation status\n", project_section, path))
 
-          file_map_data = '''## Data and reports
+          file_map_section = '''## Data and reports
 
 | Path | Status |
 |---|---|
@@ -167,67 +170,58 @@ A future database selector must not be implemented until D1 defines stable datas
 
 No retained database or translation variant may be destructively replaced. D1 must assign stable dataset identity, source, language, version and transformation history before any migration or selector is implemented.
 
-The target logical topology is one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations. Equivalent serializations are one logical source dataset, not separate variants. See `docs/DATA_PROVENANCE.md` and `docs/TRANSLATION_WORKFLOW.md`.
+The target topology is one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations. Equivalent serializations are one logical source dataset, not separate variants. See `docs/DATA_PROVENANCE.md` and `docs/TRANSLATION_WORKFLOW.md`.
 
 '''
-          replace_section(
-              "docs/FILE_MAP.md",
-              "## Data and reports\n",
-              "## Planned translation tooling\n",
-              file_map_data,
-          )
-          replace_once(
-              "docs/FILE_MAP.md",
-              "| `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, duplicate policy and safe DeepSeek-assisted workflow |",
-              "| `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, equivalent-serialization policy and safe DeepSeek-assisted workflow |\n"
-              "| `docs/DATA_PROVENANCE.md` | Verified D1.1 provenance, hashes, Git history and corrected dataset classification |",
-          )
+          path = "docs/FILE_MAP.md"
+          write(path, replace_section(read(path), "## Data and reports\n", "## Planned translation tooling\n", file_map_section, path))
 
           translation_section = '''## Как поступить с текущими эквивалентными сериализациями
 
 D1.1 исправил прежнюю классификацию `data/bd2.json` и `data/db.json`.
 
-Файлы **не** являются точными байтовыми дубликатами: у них разные размеры и raw SHA-256. После JSON-разбора и canonical normalization все 4 086 записей, порядок, поля и значения совпадают. Это две физические сериализации одного логического английского набора.
+Файлы не являются точными байтовыми дубликатами: у них разные размеры и raw SHA-256. После JSON-разбора и canonical normalization все 4 086 записей, порядок, поля и значения совпадают. Это две физические сериализации одного логического английского набора.
 
 До завершения D1.2 оба файла сохраняются без изменений.
 
 Во время D1.2 необходимо:
 
 1. утвердить один логический dataset ID;
-2. определить канонический путь, учитывая Git-историю и существующие ссылки;
+2. определить канонический путь с учётом Git-истории и ссылок;
 3. сохранить оба raw hash и общий canonical hash;
 4. проверить maintained и archived ссылки на оба имени;
 5. создать запись миграции и способ восстановления;
-6. только после отдельного утверждения убрать лишнюю физическую сериализацию из поддерживаемой структуры.
+6. только после отдельного утверждения убрать лишнюю физическую сериализацию.
 
-Эквивалентная сериализация не считается самостоятельным переводом или редакцией. Полное доказательство и рекомендация находятся в `docs/DATA_PROVENANCE.md`.
+Эквивалентная сериализация не считается самостоятельным переводом или редакцией. Полное доказательство находится в `docs/DATA_PROVENANCE.md`.
 
 '''
-          replace_section(
-              "docs/TRANSLATION_WORKFLOW.md",
-              "## Как поступить с текущими дублями\n",
-              "## Идентичность каждого варианта\n",
-              translation_section,
-          )
-          replace_once(
-              "docs/TRANSLATION_WORKFLOW.md",
+          path = "docs/TRANSLATION_WORKFLOW.md"
+          source = replace_section(read(path), "## Как поступить с текущими дублями\n", "## Идентичность каждого варианта\n", translation_section, path)
+          source = source.replace(
               "4. можно ли безопасно удалить физический дубликат после сохранения истории и миграционной записи.",
               "4. можно ли безопасно удалить лишнюю физическую сериализацию после сохранения истории и миграционной записи.",
           )
+          write(path, source)
 
-          replace_once(
-              "README.md",
+          path = "README.md"
+          source = read(path)
+          source = replace_required(
+              source,
               "Точные дубликаты не считаются отдельными переводами. Для `data/bd2.json` и `data/db.json` сначала будет доказан канонический вариант и подготовлен обратимый план миграции. Если надёжно существует только один русский перевод, проект сохранит один перевод вместо создания искусственных вариантов.",
               "`data/bd2.json` и `data/db.json` имеют разные raw bytes, но одинаковый parsed/canonical JSON, поэтому считаются двумя сериализациями одного логического исходного набора. D1.2 утвердит канонический путь и обратимую миграцию. Если надёжно существует только один русский перевод, проект сохранит один перевод вместо создания искусственных вариантов.",
+              path,
           )
-          replace_once(
-              "README.md",
+          source = replace_required(
+              source,
               "Подробнее: [переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md) и [формат данных](docs/DATABASE_FORMAT.md).",
               "Подробнее: [проверенное происхождение данных](docs/DATA_PROVENANCE.md), [переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md) и [формат данных](docs/DATABASE_FORMAT.md).",
+              path,
           )
+          write(path, source)
           PY
 
-      - name: Remove one-off workflow and commit permanent files
+      - name: Commit permanent files and remove this workflow
         run: |
           git rm .github/workflows/apply-d1-1-permanent-patches.yml
           git config user.name "github-actions[bot]"
