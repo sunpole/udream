@@ -1,0 +1,76 @@
+name: Capture uDream screenshots
+
+on:
+  pull_request:
+    paths:
+      - index.html
+      - script.js
+      - manifest.json
+      - version.json
+      - sw.js
+      - src/**
+      - data/divinity_code_ru.json
+      - tools/screenshots/**
+      - .github/workflows/capture-screenshots.yml
+  workflow_dispatch:
+    inputs:
+      scenarios:
+        description: Optional comma-separated scenario IDs; empty runs all scenarios
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    name: Real Chromium screenshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      SCREENSHOT_SCENARIOS: ${{ inputs.scenarios || '' }}
+      SCREENSHOT_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Checkout exact source
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tools/screenshots/package-lock.json
+
+      - name: Install pinned screenshot dependencies
+        working-directory: tools/screenshots
+        run: npm ci
+
+      - name: Install Chromium and system dependencies
+        working-directory: tools/screenshots
+        run: npx playwright install --with-deps chromium
+
+      - name: Capture and verify screenshots
+        working-directory: tools/screenshots
+        run: npm run capture
+
+      - name: Show generated manifest
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f artifacts/screenshots/manifest.json ]; then
+            cat artifacts/screenshots/manifest.json
+          else
+            echo "Screenshot manifest was not generated."
+          fi
+
+      - name: Upload screenshot artifact
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: udream-screenshots-${{ github.event.pull_request.number || github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/screenshots/
+          if-no-files-found: error
+          retention-days: 30

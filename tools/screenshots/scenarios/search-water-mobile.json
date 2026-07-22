@@ -1,0 +1,39 @@
+{
+  "id": "search-water-mobile",
+  "title": "Mobile autocomplete shows the closest water result first",
+  "path": "/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "actions": [
+    {
+      "type": "fill",
+      "selector": "#searchInput",
+      "value": "water"
+    },
+    {
+      "type": "waitFor",
+      "selector": ".autocomplete-list.show",
+      "state": "visible"
+    },
+    {
+      "type": "assertCountAtLeast",
+      "selector": ".autocomplete-list.show .autocomplete-item",
+      "count": 3
+    },
+    {
+      "type": "assertFirstText",
+      "selector": ".autocomplete-list.show .autocomplete-item",
+      "text": "water",
+      "ignoreCase": true
+    },
+    {
+      "type": "assertVisible",
+      "selector": "[data-opt=\"all\"].active"
+    }
+  ],
+  "screenshot": {
+    "fullPage": false
+  }
+}

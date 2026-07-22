@@ -18,6 +18,7 @@
 
 <p align="center">
   <a href="https://github.com/sunpole/udream/actions/workflows/validate.yml"><img alt="Проверка проекта" src="https://github.com/sunpole/udream/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="https://github.com/sunpole/udream/actions/workflows/capture-screenshots.yml"><img alt="Реальные Chromium-скриншоты" src="https://img.shields.io/badge/screenshots-Playwright_Chromium-45ba4b?logo=playwright"></a>
   <a href="https://t.me/uNewsLog"><img alt="Новости в Telegram" src="https://img.shields.io/badge/Telegram-@uNewsLog-26A5E4?logo=telegram&logoColor=white"></a>
   <a href="LICENSE"><img alt="Лицензия кода MIT" src="https://img.shields.io/badge/код-MIT-green"></a>
 </p>
@@ -31,6 +32,7 @@
 | Открыть приложение | [sunpole.github.io/udream](https://sunpole.github.io/udream/) |
 | Установить на телефон | Открыть сайт и нажать баннер установки либо выбрать в меню браузера «Установить приложение» / «Добавить на главный экран» |
 | Продолжить разработку из любого чата или устройства | Сначала открыть [WORK_STATUS.md](WORK_STATUS.md), проверить указанные branch/PR/commits и следовать [единому GitHub-протоколу](docs/AI_GITHUB_WORKFLOW.md) |
+| Создать реальные screenshot artifacts | Запустить [Capture uDream screenshots](https://github.com/sunpole/udream/actions/workflows/capture-screenshots.yml) либо использовать `tools/screenshots/` локально |
 | Скачать стабильный исходный код | [uDream v23.8.0 ZIP](https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip) |
 | Посмотреть точный релиз | [GitHub Release v23.8.0](https://github.com/sunpole/udream/releases/tag/v23.8.0) |
 | Открыть сохранённую версию | [Каталог версий](https://sunpole.github.io/udream/versions/) |
@@ -56,7 +58,8 @@ uDream — статическое веб-приложение для поиск�
 - установка на устройство как PWA;
 - автоматическая проверка и получение новой PWA-версии без зависания на старом кэше;
 - каталог сохранённых рабочих версий;
-- регрессионные тесты и автоматическая проверка базы, runtime-файлов, handoff и патчноутов.
+- регрессионные тесты и автоматическая проверка базы, runtime-файлов, handoff и патчноутов;
+- реальные desktop/mobile-скриншоты из точного commit через Playwright Chromium и GitHub Actions artifacts.
 
 ## Текущее состояние
 
@@ -64,11 +67,12 @@ uDream — статическое веб-приложение для поиск�
 |---|---|
 | Стабильная точка восстановления | `v23.8.0` |
 | Текущая версия приложения | `v23.8.0` |
-| Документационный baseline | `v23.8.6` — единая работа ИИ↔GitHub и доказательства скриншотов |
+| Документационный и automation baseline | `v23.8.7` — реальные Chromium screenshot artifacts |
 | Оперативная точка продолжения | [WORK_STATUS.md](WORK_STATUS.md) — состояние нельзя дублировать из старого чата |
 | Источник GitHub-процесса | [docs/AI_GITHUB_WORKFLOW.md](docs/AI_GITHUB_WORKFLOW.md) |
-| Следующий операционный патч | `23.8.7` — Playwright screenshot artifacts |
-| Следующая продуктовая серия | `D1` — происхождение данных и архитектура нескольких наборов |
+| Screenshot tooling | `tools/screenshots/` + read-only workflow `capture-screenshots.yml` |
+| Следующая утверждённая серия | `D1` — происхождение данных и архитектура нескольких наборов |
+| Следующая точная задача | `D1.1` — восстановить происхождение текущих файлов данных без изменения активной базы |
 | Историческая метка интерфейса | `v19` — только архив |
 | Активная база | `data/divinity_code_ru.json` |
 | Количество записей | 4 086 |
@@ -77,7 +81,9 @@ uDream — статическое веб-приложение для поиск�
 
 Новый чат, Codex или устройство сначала проверяет реальные GitHub-факты и `WORK_STATUS.md`. Память ИИ, старое сообщение или локальная незапушенная ветка не являются источником истины.
 
-Перед D1.1 будет завершён отдельный патч `23.8.7`, который автоматизирует реальные desktop/mobile-скриншоты через Chromium и GitHub Actions artifacts. Первый этап D1 остаётся исследованием и проектированием и не меняет активные 4 086 записей.
+Playwright-автоматизация завершена: четыре сценария запускают настоящий Chromium, проверяют ожидаемое состояние и сохраняют desktop/mobile PNG с точным manifest. Результаты сначала становятся GitHub Actions artifact и только после визуальной проверки могут попасть в `news/`.
+
+Следующий этап D1.1 остаётся исследованием и проектированием и не меняет активные 4 086 записей.
 
 ## План данных и переводов
 
@@ -108,8 +114,10 @@ udream/
 ├── data/                        # текущая база и сохранённые варианты данных
 ├── versions/                    # запускаемые контрольные версии
 ├── news/                        # патчноуты и новые реальные изображения для uNews
+├── tools/screenshots/           # изолированные Playwright-сценарии и package
 ├── docs/                        # видение, состояние, процессы, данные и screenshot policy
-├── scripts/                     # автоматические проверки репозитория и PR
+├── scripts/                     # автоматические проверки репозитория, PR и screenshot tooling
+├── .github/workflows/           # validation, screenshot artifacts и release automation
 ├── _archive/                    # исторические версии и исходные материалы
 ├── WORK_STATUS.md               # текущая задача и GitHub-handoff
 ├── AGENTS.md                    # обязательные правила разработки
@@ -130,18 +138,27 @@ python3 -m http.server 8019
 
 После этого откройте `http://localhost:8019/`. Запуск простым открытием `index.html` через `file://` не считается корректной проверкой: браузеры ограничивают `fetch()` и service worker.
 
-Проверка тестов, структуры, базы, handoff и патчноутов:
+Проверка тестов, структуры, базы, handoff, screenshot tooling и патчноутов:
 
 ```bash
 npm test
 node scripts/validate-project.mjs
 ```
 
+Локальный Playwright capture:
+
+```bash
+cd tools/screenshots
+npm ci
+npx playwright install --with-deps chromium
+npm run capture
+```
+
 ## Новости и патчноуты
 
 Каждое пользовательски заметное изменение сопровождается файлом в `news/`. Система [uNews](https://github.com/sunpole/uNews) проверяет новые патчноуты из публичной ветки `main` и через GitHub Actions публикует их в Telegram-канале [@uNewsLog](https://t.me/uNewsLog).
 
-Для новых патчноутов требуется новый реальный PNG/JPEG в том же Pull Request и метаданные источника, цели, commit и UTC-времени захвата. Старую картинку использовать повторно нельзя. Правила описаны в [docs/NEWS_PUBLISHING.md](docs/NEWS_PUBLISHING.md) и [docs/SCREENSHOT_AUTOMATION.md](docs/SCREENSHOT_AUTOMATION.md).
+Для новых патчноутов требуется новый реальный PNG/JPEG в том же Pull Request и метаданные источника, цели, commit и UTC-времени захвата. Старую картинку использовать повторно нельзя. Постоянный Playwright workflow сначала создаёт read-only artifact; изображение добавляется в `news/` только после визуальной проверки. Правила описаны в [docs/NEWS_PUBLISHING.md](docs/NEWS_PUBLISHING.md) и [docs/SCREENSHOT_AUTOMATION.md](docs/SCREENSHOT_AUTOMATION.md).
 
 Секреты Telegram и ключи переводческих API в этом репозитории не хранятся.
 
@@ -161,7 +178,7 @@ node scripts/validate-project.mjs
 - [Единая работа ИИ, GitHub, чатов и устройств](docs/AI_GITHUB_WORKFLOW.md)
 - [Видение и конечная цель продукта](docs/PRODUCT_VISION.md)
 - [Переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md)
-- [Реальные скриншоты и Playwright-план](docs/SCREENSHOT_AUTOMATION.md)
+- [Реальные скриншоты и Playwright-автоматизация](docs/SCREENSHOT_AUTOMATION.md)
 - [Текущее состояние](docs/PROJECT_STATE.md)
 - [Архитектура](docs/ARCHITECTURE.md)
 - [Формат и сохранение вариантов базы](docs/DATABASE_FORMAT.md)

@@ -69,7 +69,7 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Make every future agent read and update the handoff at task start, pause and completion.
 - [x] Record the current signal as `READY`: no unfinished task or open Pull Request.
 
-## Current operational hardening: unified AI/GitHub workflow v23.8.6
+## Completed: unified AI/GitHub workflow v23.8.6
 
 - [x] Make real GitHub facts the highest-priority source of truth.
 - [x] Define one protocol for any number of devices, chats and AI agents.
@@ -81,20 +81,28 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Add structural validation for `WORK_STATUS.md`.
 - [x] Synchronize stale cross-device documentation references.
 
-See `docs/AI_GITHUB_WORKFLOW.md` and `docs/SCREENSHOT_AUTOMATION.md`.
+See `docs/AI_GITHUB_WORKFLOW.md`.
 
-## Next operational patch: Playwright screenshots v23.8.7
+## Completed: Playwright screenshots v23.8.7
 
-- [ ] Add isolated Playwright tooling outside the public runtime.
-- [ ] Start the exact branch checkout through a local HTTP server in GitHub Actions.
-- [ ] Capture desktop and mobile screenshots from real Chromium.
-- [ ] Define reusable scenarios for page startup, search and documentation evidence.
-- [ ] Upload screenshots as workflow artifacts before they can be committed to `news/`.
-- [ ] Verify expected visible text before saving each screenshot.
-- [ ] Document local and GitHub Actions invocation.
-- [ ] Keep human/agent visual approval before merge.
+- [x] Add isolated Playwright tooling outside the public runtime.
+- [x] Pin Playwright package and lockfile versions.
+- [x] Start the exact branch checkout through a local HTTP server in GitHub Actions.
+- [x] Capture desktop and mobile screenshots from real Chromium.
+- [x] Define reusable JSON scenarios for page startup, search ranking and Russian alias behavior.
+- [x] Allow only explicit safe actions instead of arbitrary scenario JavaScript.
+- [x] Require visible assertions before every capture.
+- [x] Upload screenshots, per-scenario provenance, manifest and test results as workflow artifacts.
+- [x] Keep the permanent workflow read-only and prohibit automatic commits.
+- [x] Preserve successful manifest entries across Playwright retries.
+- [x] Validate package/lock, workflow permissions, scenario coverage, artifact cleanup and runtime isolation.
+- [x] Complete a four-of-four successful Chromium run.
+- [x] Visually inspect all generated PNGs before selecting the uNews image.
+- [x] Document local and GitHub Actions invocation.
 
-## Next approved series after v23.8.7: D1 — data provenance and multi-dataset architecture
+See `docs/SCREENSHOT_AUTOMATION.md` and `tools/screenshots/README.md`.
+
+## Next approved series: D1 — data provenance and multi-dataset architecture
 
 D1 starts as research, validation design and migration planning. It must not change the active 4,086-record runtime database in its first stage.
 
@@ -147,7 +155,7 @@ See `docs/TRANSLATION_WORKFLOW.md`.
 ## Product completion after D1
 
 - [ ] Restore or redesign the administration workflow outside the public runtime.
-- [ ] Add automated browser smoke checks for JSON, asset paths, startup and key search flow.
+- [ ] Add broader automated browser smoke checks for asset paths, startup and critical flows beyond the current screenshot scenarios.
 - [ ] Review accessibility: keyboard navigation, contrast, focus, screen readers and text selection.
 - [ ] Review privacy, local history and sharing behavior.
 - [ ] Confirm automatic uDream publications and operational recovery in `@uNewsLog`.

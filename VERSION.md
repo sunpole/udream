@@ -13,21 +13,26 @@
 - Database: the active 4,086-record JSON database is unchanged
 - Previous checkpoint: `v23.7.0`
 
-## Documentation baseline
+## Documentation and automation baseline
 
-`v23.8.6`
+`v23.8.7`
 
-- Status: documentation and repository-governance milestone; it does not create a new application build or move the `v23.8.0` tag
-- Purpose: make GitHub the unambiguous source of truth for any number of chats, devices and AI agents
+- Status: repository-automation milestone; it does not create a new application build or move the `v23.8.0` tag
+- Purpose: generate factual desktop/mobile screenshots from the exact branch commit in real Chromium before a patchnote can publish them
+- Isolated package: `tools/screenshots/`
+- Pinned version: `@playwright/test`, `playwright` and `playwright-core` `1.61.1`
+- Permanent workflow: `.github/workflows/capture-screenshots.yml`
+- Permissions: read-only `contents: read`; the permanent workflow cannot commit or push
+- Scenarios: homepage desktop, `water` desktop/mobile and Russian alias `вода` mobile
+- Evidence: PNG files, per-scenario entries, manifest and Playwright results are uploaded as GitHub Actions artifacts
+- First successful full run: commit `34d2b13c2e0f16b597572701485df24a538609c8`, four of four scenarios passed
+- Selected patchnote image: scenario `russian-alias-mobile`, source commit `d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47`, captured `2026-07-22T08:22:53Z`
+- Validation: `scripts/validate-screenshot-tooling.mjs` checks package/lock, workflow permissions, scenarios, assertions, artifact cleanup and runtime isolation
+- Previous documentation baseline: `v23.8.6`, PR #21, squash merge `58ebaea07ef488e0131bd9c3b5c359a191d6275e`
 - Live handoff source: `WORK_STATUS.md`
 - Unified execution protocol: `docs/AI_GITHUB_WORKFLOW.md`
-- Real screenshot contract: `docs/SCREENSHOT_AUTOMATION.md`
-- Pull Request policy: every new patchnote adds a new real PNG/JPEG and screenshot provenance metadata
-- Validation: `scripts/validate-project.mjs` checks handoff structure and new screenshot metadata; `scripts/validate-patchnote-diff.mjs` requires the new image in the same Pull Request
-- Previous documentation baseline: `v23.8.5`, PR #20, merge `639b2fc1309cd3e5c69236af98e14c26cc541523`
-- Final cross-device status before this task: commit `ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f`
-- Next approved operational patch: `23.8.7` — Playwright screenshot capture and workflow artifacts
-- Next approved product/data series after `23.8.7`: D1, beginning with D1.1 provenance recovery
+- Screenshot contract and implementation: `docs/SCREENSHOT_AUTOMATION.md`
+- Next approved series: D1, beginning with D1.1 provenance recovery
 - Product source of truth: `docs/PRODUCT_VISION.md`
 - Translation source of truth: `docs/TRANSLATION_WORKFLOW.md`
 - Repository download: https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip
@@ -36,7 +41,7 @@
 
 No functional application version is assigned after `v23.8.0`.
 
-Documentation updates `23.8.1` through `23.8.6` finalize the immutable release record, product/data baseline, translation safety, cross-device handoff and unified AI/GitHub workflow. They do not change application runtime, PWA behavior or database records.
+Documentation and automation updates `23.8.1` through `23.8.7` finalize the immutable release record, product/data baseline, translation safety, cross-device workflow, screenshot provenance and real Chromium artifact generation. They do not change application runtime, PWA behavior or database records.
 
 ## Unified version line
 
