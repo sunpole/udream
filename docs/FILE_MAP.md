@@ -68,8 +68,9 @@ Any such tooling belongs under a separate D1 implementation PR and must not be i
 
 | Path or reference | Role |
 |---|---|
-| `WORK_STATUS.md` | Live cross-device task handoff: active branch, actual progress, pause point and exact next action |
-| `VERSION.md` | Current release and development state |
+| `WORK_STATUS.md` | Live cross-device and cross-chat task lock: active branch, actual progress, pause point and exact next action |
+| `docs/AI_GITHUB_WORKFLOW.md` | Binding priority order and execution protocol for any number of devices, chats and AI agents |
+| `VERSION.md` | Current release and documentation baseline |
 | `version.json` | Deployed runtime version check |
 | `versions/index.html` | User-facing saved-version launcher |
 | `versions/v3.0.0/` | Independently runnable pre-cleanup fallback |
@@ -84,18 +85,21 @@ The runnable `v3.0.0` directory contains only path and scope adaptations needed 
 
 The direct stable source download is `https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip`.
 
-## News and automation
+## News, screenshot evidence and automation
 
 | Path | Role |
 |---|---|
 | `news/*.md` | Factual patchnotes discovered by uNews |
-| `news/*.{jpg,png}` | Telegram visuals stored beside their patchnotes |
-| `scripts/validate-project.mjs` | Repository, database and patchnote validation |
-| `scripts/validate-patchnote-diff.mjs` | Requires a newly added patchnote in each Pull Request |
+| `news/*.{jpg,png}` | New real Telegram visuals stored beside their patchnotes |
+| `docs/SCREENSHOT_AUTOMATION.md` | Real-screenshot definition, provenance metadata and Playwright implementation plan |
+| `scripts/validate-project.mjs` | Repository, `WORK_STATUS`, database, patchnote and image-signature validation |
+| `scripts/validate-patchnote-diff.mjs` | Requires a new patchnote and newly added screenshot evidence in each Pull Request |
 | `.github/workflows/validate.yml` | Automatic validation for pushes and Pull Requests |
 | `.github/workflows/publish-v23.8.0.yml` | Immutable one-release workflow for tag and GitHub Release publication |
-| `.github/pull_request_template.md` | Review checklist including uNews publication impact |
+| `.github/pull_request_template.md` | Review checklist including handoff and screenshot provenance |
 | `.github/CODEOWNERS` | Default repository owner for review routing |
+
+The planned `23.8.7` patch will add isolated Playwright tooling and a screenshot-artifact workflow. It must not become part of the public browser runtime.
 
 ## Archive
 
@@ -112,11 +116,13 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 
 | Path | Role |
 |---|---|
-| `WORK_STATUS.md` | Mandatory start/pause/completion record for continuing work across devices and agents |
+| `WORK_STATUS.md` | Mandatory start/pause/completion record for continuing work across devices, chats and agents |
+| `docs/AI_GITHUB_WORKFLOW.md` | Unified GitHub-centered operating protocol and conflict recovery |
 | `AGENTS.md` | Binding instructions for future coding agents |
 | `README.md` | Entry point, current overview, installation and stable download links |
 | `docs/PRODUCT_VISION.md` | Current mission, final product direction and data-preservation rules |
 | `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, duplicate policy and safe DeepSeek-assisted workflow |
+| `docs/SCREENSHOT_AUTOMATION.md` | Real screenshot and future Playwright workflow contract |
 | `VERSION.md` | Release and development version state |
 | `CHANGELOG.md` | User/project-visible change history |
 | `ROADMAP.md` | Completed work, next approved phase and later backlog |
@@ -126,7 +132,7 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 | `docs/DATABASE_FORMAT.md` | Current data contract, classification and checks |
 | `docs/RELEASE_AND_ROLLBACK.md` | Safe release and recovery procedure |
 | `docs/HISTORICAL_CONTEXT.md` | Recovered earlier project description and its relationship to current docs |
-| `docs/NEWS_PUBLISHING.md` | uNews and Telegram publication workflow |
+| `docs/NEWS_PUBLISHING.md` | uNews, Telegram and screenshot-provenance workflow |
 | `docs/CONTENT_AND_RIGHTS.md` | Boundary between original code and third-party content |
 | `THIRD_PARTY_NOTICES.md` | Public notice for source works and other third-party material |
 | `CONTRIBUTING.md` | Contribution and Pull Request rules |
