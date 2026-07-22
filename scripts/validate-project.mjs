@@ -6,6 +6,7 @@ import process from "node:process";
 
 const ROOT = process.cwd();
 const EXPECTED_ACTIVE_RECORDS = 4086;
+const SCREENSHOT_METADATA_VERSION = [23, 8, 6];
 
 function fail(message) {
   throw new Error(message);
@@ -37,14 +38,46 @@ function parseFrontMatter(source, label) {
     const key = line.slice(0, separator).trim();
     let value = line.slice(separator + 1).trim();
     if (
-      (value.startsWith('"') && value.endsWith('"')) ||
-      (value.startsWith("'") && value.endsWith("'"))
+      (value.startsWith('"') && value.endsWith('"'))
+      || (value.startsWith("'") && value.endsWith("'"))
     ) {
       value = value.slice(1, -1);
     }
     frontMatter[key] = value;
   }
   return frontMatter;
+}
+
+function parseVersion(value) {
+  const match = String(value || "").match(/^(\d+)\.(\d+)\.(\d+)$/);
+  if (!match) return null;
+  return match.slice(1).map(Number);
+}
+
+function versionAtLeast(value, minimum) {
+  const parsed = parseVersion(value);
+  if (!parsed) return false;
+
+  for (let index = 0; index < minimum.length; index += 1) {
+    if (parsed[index] > minimum[index]) return true;
+    if (parsed[index] < minimum[index]) return false;
+  }
+  return true;
+}
+
+function isPng(buffer) {
+  return buffer.length >= 8
+    && buffer.subarray(0, 8).equals(
+      Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+    );
+}
+
+function isJpeg(buffer) {
+  return buffer.length >= 4
+    && buffer[0] === 0xff
+    && buffer[1] === 0xd8
+    && buffer[buffer.length - 2] === 0xff
+    && buffer[buffer.length - 1] === 0xd9;
 }
 
 async function validateRuntimeFiles() {
@@ -70,6 +103,8 @@ async function validateRuntimeFiles() {
     "icon-512.png",
     "apple-touch-icon.png",
     "preview.jpg",
+    "docs/AI_GITHUB_WORKFLOW.md",
+    "docs/SCREENSHOT_AUTOMATION.md",
     "versions/index.html",
     "versions/v3.0.0/index.html",
     "versions/v3.0.0/script.js",
@@ -80,6 +115,60 @@ async function validateRuntimeFiles() {
   await Promise.all(required.map(requireFile));
   await readJson("manifest.json");
   await readJson("versions/v3.0.0/manifest.json");
+}
+
+async function validateWorkStatus() {
+  const source = await readFile(path.join(ROOT, "WORK_STATUS.md"), "utf8");
+
+  const statusMatches = [...source.matchAll(
+    /\| Состояние \| \*\*(READY|IN_PROGRESS|PAUSED|BLOCKED|COMPLETED)\*\*/g,
+  )];
+
+  if (statusMatches.length !== 1) {
+    fail("WORK_STATUS.md must contain exactly one quick-signal status");
+  }
+
+  const status = statusMatches[0][1];
+  const branchMatch = source.match(/\| Рабочая ветка \| `([^`]+)` \|/);
+  const prMatch = source.match(/\| Открытый Pull Request \| ([^|]+) \|/);
+
+  if (!branchMatch) fail("WORK_STATUS.md: working branch is missing");
+  if (!prMatch) fail("WORK_STATUS.md: Pull Request field is missing");
+  if (!source.includes("Следующий точный шаг")) {
+    fail("WORK_STATUS.md: exact next step section is missing");
+  }
+  if (!source.includes("GitHub")) {
+    fail("WORK_STATUS.md: GitHub source-of-truth rule is missing");
+  }
+
+  const branch = branchMatch[1].trim();
+  const pullRequest = prMatch[1].trim();
+
+  if (status === "READY") {
+    if (branch !== "main") {
+      fail("WORK_STATUS.md: READY status requires working branch main");
+    }
+    if (pullRequest !== "нет") {
+      fail("WORK_STATUS.md: READY status requires no open Pull Request");
+    }
+  } else if (branch === "main") {
+    fail(`WORK_STATUS.md: ${status} status requires a dedicated branch`);
+  }
+
+  if (["IN_PROGRESS", "PAUSED", "BLOCKED"].includes(status)) {
+    for (const requiredText of [
+      "Цель:",
+      "Планируемые файлы:",
+      "Критерии завершения:",
+      "Последний проверенный commit:",
+    ]) {
+      if (!source.includes(requiredText)) {
+        fail(`WORK_STATUS.md: ${requiredText} is required for ${status}`);
+      }
+    }
+  }
+
+  return status;
 }
 
 async function validateDatabase() {
@@ -108,6 +197,27 @@ async function validateDatabase() {
   return records.length;
 }
 
+async function validatePatchnoteImage(name, frontMatter) {
+  const imageName = frontMatter.image;
+  if (
+    path.basename(imageName) !== imageName
+    || !/^[a-z0-9][a-z0-9.-]*\.(?:png|jpe?g)$/i.test(imageName)
+  ) {
+    fail(`${name}: image must be a safe PNG/JPEG filename`);
+  }
+
+  const imagePath = path.join(ROOT, "news", imageName);
+  const image = await readFile(imagePath);
+  const extension = path.extname(imageName).toLowerCase();
+
+  if (extension === ".png" && !isPng(image)) {
+    fail(`${name}: image has an invalid PNG signature`);
+  }
+  if ([".jpg", ".jpeg"].includes(extension) && !isJpeg(image)) {
+    fail(`${name}: image has an invalid JPEG signature`);
+  }
+}
+
 async function validatePatchnotes() {
   const newsDir = path.join(ROOT, "news");
   const names = (await readdir(newsDir)).filter((name) => name.endsWith(".md")).sort();
@@ -115,6 +225,18 @@ async function validatePatchnotes() {
 
   const namePattern = /^\d{4}-\d{2}-\d{2}-udream-[a-z0-9-]+\.md$/;
   const requiredFields = ["type", "project", "series", "title", "version", "image"];
+  const screenshotFields = [
+    "image_source",
+    "image_target",
+    "image_commit",
+    "image_captured_at",
+  ];
+  const screenshotSources = new Set([
+    "playwright",
+    "manual-browser",
+    "github-ui",
+    "document-render",
+  ]);
   const secretRisk = /\b(?:TELEGRAM_BOT_TOKEN|BOT_TOKEN|DEEPSEEK_API_KEY)\b|\b\d{6,}:[A-Za-z0-9_-]{20,}\b/i;
 
   for (const name of names) {
@@ -130,15 +252,35 @@ async function validatePatchnotes() {
       fail(`${name}: web_url or repo_url is required`);
     }
     if (secretRisk.test(source)) fail(`${name}: secret-like text detected`);
-    await requireFile(path.posix.join("news", frontMatter.image));
+
+    await validatePatchnoteImage(name, frontMatter);
+
+    if (versionAtLeast(frontMatter.version, SCREENSHOT_METADATA_VERSION)) {
+      for (const field of screenshotFields) {
+        if (!frontMatter[field]) {
+          fail(`${name}: missing required screenshot field ${field}`);
+        }
+      }
+      if (!screenshotSources.has(frontMatter.image_source)) {
+        fail(`${name}: unsupported image_source ${frontMatter.image_source}`);
+      }
+      if (!/^[a-f0-9]{7,40}$/i.test(frontMatter.image_commit)) {
+        fail(`${name}: image_commit must be a Git commit SHA`);
+      }
+      if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(frontMatter.image_captured_at)) {
+        fail(`${name}: image_captured_at must use YYYY-MM-DDTHH:MM:SSZ`);
+      }
+    }
   }
   return names.length;
 }
 
 async function main() {
   await validateRuntimeFiles();
+  const workStatus = await validateWorkStatus();
   const recordCount = await validateDatabase();
   const patchnoteCount = await validatePatchnotes();
+  console.log(`WORK_STATUS passed: ${workStatus}.`);
   console.log(`uDream validation passed: ${recordCount} records, ${patchnoteCount} patchnote(s).`);
 }
 
