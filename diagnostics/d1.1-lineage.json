@@ -1,0 +1,2183 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T08:54:44Z",
+  "head": "d863eb430cba486a127351532b9085a638473ecf",
+  "files": {
+    "data/bd2.json": {
+      "currentBytes": 2141655,
+      "currentSha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+      "currentSummary": {
+        "rootType": "list",
+        "records": 4086,
+        "fields": [
+          "aliases",
+          "date_added",
+          "description",
+          "id",
+          "notes",
+          "source",
+          "symbol",
+          "tags"
+        ],
+        "emptyNotes": 4086,
+        "emptyTags": 153,
+        "topTags": [
+          [
+            "name-place",
+            1318
+          ],
+          [
+            "dictionary-name-place",
+            1318
+          ],
+          [
+            "name",
+            1171
+          ],
+          [
+            "cross-reference",
+            1019
+          ],
+          [
+            "body",
+            580
+          ],
+          [
+            "church",
+            542
+          ],
+          [
+            "sin",
+            521
+          ],
+          [
+            "reference",
+            401
+          ],
+          [
+            "places",
+            399
+          ],
+          [
+            "communication",
+            386
+          ],
+          [
+            "holy-spirit",
+            385
+          ],
+          [
+            "work",
+            362
+          ],
+          [
+            "jesus",
+            319
+          ],
+          [
+            "directions",
+            309
+          ],
+          [
+            "nature",
+            277
+          ],
+          [
+            "heaven",
+            271
+          ],
+          [
+            "life",
+            242
+          ],
+          [
+            "emotions",
+            238
+          ],
+          [
+            "numbers",
+            236
+          ],
+          [
+            "family",
+            219
+          ]
+        ],
+        "googleMarkers": 0,
+        "myMemoryMarkers": 0
+      },
+      "history": [
+        {
+          "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+          "authorDate": "2026-05-25T00:25:42+03:00",
+          "subject": "Clean repository structure",
+          "changes": [
+            "R097\tdata/db_v2.json\tdata/bd2.json"
+          ]
+        },
+        {
+          "commit": "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89",
+          "authorDate": "2026-05-25T00:06:12+03:00",
+          "subject": "Add files via upload",
+          "changes": [
+            "A\tdata/db_v2.json"
+          ]
+        }
+      ],
+      "contentChangingSnapshotsNewestFirst": [
+        {
+          "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+          "bytes": 2141655,
+          "sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+          "summary": {
+            "rootType": "list",
+            "records": 4086,
+            "fields": [
+              "aliases",
+              "date_added",
+              "description",
+              "id",
+              "notes",
+              "source",
+              "symbol",
+              "tags"
+            ],
+            "emptyNotes": 4086,
+            "emptyTags": 153,
+            "topTags": [
+              [
+                "name-place",
+                1318
+              ],
+              [
+                "dictionary-name-place",
+                1318
+              ],
+              [
+                "name",
+                1171
+              ],
+              [
+                "cross-reference",
+                1019
+              ],
+              [
+                "body",
+                580
+              ],
+              [
+                "church",
+                542
+              ],
+              [
+                "sin",
+                521
+              ],
+              [
+                "reference",
+                401
+              ],
+              [
+                "places",
+                399
+              ],
+              [
+                "communication",
+                386
+              ],
+              [
+                "holy-spirit",
+                385
+              ],
+              [
+                "work",
+                362
+              ],
+              [
+                "jesus",
+                319
+              ],
+              [
+                "directions",
+                309
+              ],
+              [
+                "nature",
+                277
+              ],
+              [
+                "heaven",
+                271
+              ],
+              [
+                "life",
+                242
+              ],
+              [
+                "emotions",
+                238
+              ],
+              [
+                "numbers",
+                236
+              ],
+              [
+                "family",
+                219
+              ]
+            ],
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          }
+        }
+      ]
+    },
+    "data/db.json": {
+      "currentBytes": 2204553,
+      "currentSha256": "4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0",
+      "currentSummary": {
+        "rootType": "list",
+        "records": 4086,
+        "fields": [
+          "aliases",
+          "date_added",
+          "description",
+          "id",
+          "notes",
+          "source",
+          "symbol",
+          "tags"
+        ],
+        "emptyNotes": 4086,
+        "emptyTags": 153,
+        "topTags": [
+          [
+            "name-place",
+            1318
+          ],
+          [
+            "dictionary-name-place",
+            1318
+          ],
+          [
+            "name",
+            1171
+          ],
+          [
+            "cross-reference",
+            1019
+          ],
+          [
+            "body",
+            580
+          ],
+          [
+            "church",
+            542
+          ],
+          [
+            "sin",
+            521
+          ],
+          [
+            "reference",
+            401
+          ],
+          [
+            "places",
+            399
+          ],
+          [
+            "communication",
+            386
+          ],
+          [
+            "holy-spirit",
+            385
+          ],
+          [
+            "work",
+            362
+          ],
+          [
+            "jesus",
+            319
+          ],
+          [
+            "directions",
+            309
+          ],
+          [
+            "nature",
+            277
+          ],
+          [
+            "heaven",
+            271
+          ],
+          [
+            "life",
+            242
+          ],
+          [
+            "emotions",
+            238
+          ],
+          [
+            "numbers",
+            236
+          ],
+          [
+            "family",
+            219
+          ]
+        ],
+        "googleMarkers": 0,
+        "myMemoryMarkers": 0
+      },
+      "history": [
+        {
+          "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+          "authorDate": "2026-05-25T00:30:11+03:00",
+          "subject": "Add files via upload",
+          "changes": [
+            "C097\t_archive/old-data/db_v2.json\tdata/db.json"
+          ]
+        },
+        {
+          "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+          "authorDate": "2026-05-25T00:25:42+03:00",
+          "subject": "Clean repository structure",
+          "changes": [
+            "R097\tdata/db_v2.json\t_archive/old-data/db_v2.json"
+          ]
+        },
+        {
+          "commit": "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89",
+          "authorDate": "2026-05-25T00:06:12+03:00",
+          "subject": "Add files via upload",
+          "changes": [
+            "A\tdata/db_v2.json"
+          ]
+        }
+      ],
+      "contentChangingSnapshotsNewestFirst": [
+        {
+          "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+          "bytes": 2204553,
+          "sha256": "4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0",
+          "summary": {
+            "rootType": "list",
+            "records": 4086,
+            "fields": [
+              "aliases",
+              "date_added",
+              "description",
+              "id",
+              "notes",
+              "source",
+              "symbol",
+              "tags"
+            ],
+            "emptyNotes": 4086,
+            "emptyTags": 153,
+            "topTags": [
+              [
+                "name-place",
+                1318
+              ],
+              [
+                "dictionary-name-place",
+                1318
+              ],
+              [
+                "name",
+                1171
+              ],
+              [
+                "cross-reference",
+                1019
+              ],
+              [
+                "body",
+                580
+              ],
+              [
+                "church",
+                542
+              ],
+              [
+                "sin",
+                521
+              ],
+              [
+                "reference",
+                401
+              ],
+              [
+                "places",
+                399
+              ],
+              [
+                "communication",
+                386
+              ],
+              [
+                "holy-spirit",
+                385
+              ],
+              [
+                "work",
+                362
+              ],
+              [
+                "jesus",
+                319
+              ],
+              [
+                "directions",
+                309
+              ],
+              [
+                "nature",
+                277
+              ],
+              [
+                "heaven",
+                271
+              ],
+              [
+                "life",
+                242
+              ],
+              [
+                "emotions",
+                238
+              ],
+              [
+                "numbers",
+                236
+              ],
+              [
+                "family",
+                219
+              ]
+            ],
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          }
+        },
+        {
+          "commit": "4dd87e0b5c1f5d3e38f7c6b84285d91f0db09a89",
+          "bytes": 72943,
+          "sha256": "1a9ff1d94b743f783fa2f82d6ed41403dd2374f35f0cdc4b011933547fcb1902",
+          "summary": {
+            "rootType": "list",
+            "records": 180,
+            "fields": [
+              "aliases",
+              "date_added",
+              "description",
+              "id",
+              "notes",
+              "source",
+              "symbol",
+              "tags"
+            ],
+            "emptyNotes": 180,
+            "emptyTags": 0,
+            "topTags": [
+              [
+                "reference",
+                22
+              ],
+              [
+                "ministry",
+                14
+              ],
+              [
+                "judgment",
+                12
+              ],
+              [
+                "holy spirit",
+                10
+              ],
+              [
+                "ball",
+                10
+              ],
+              [
+                "heart",
+                9
+              ],
+              [
+                "words",
+                8
+              ],
+              [
+                "heaven",
+                7
+              ],
+              [
+                "spirit",
+                7
+              ],
+              [
+                "sin",
+                7
+              ],
+              [
+                "church",
+                7
+              ],
+              [
+                "warning",
+                6
+              ],
+              [
+                "christ",
+                6
+              ],
+              [
+                "anointing",
+                6
+              ],
+              [
+                "jesus",
+                5
+              ],
+              [
+                "prophetic",
+                5
+              ],
+              [
+                "salvation",
+                4
+              ],
+              [
+                "flesh",
+                4
+              ],
+              [
+                "death",
+                4
+              ],
+              [
+                "animals",
+                3
+              ]
+            ],
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          }
+        }
+      ]
+    },
+    "data/divinity_code_ru.json": {
+      "currentBytes": 4688773,
+      "currentSha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+      "currentSummary": {
+        "rootType": "list",
+        "records": 4086,
+        "fields": [
+          "aliases",
+          "date_added",
+          "description",
+          "id",
+          "notes",
+          "source",
+          "symbol",
+          "tags"
+        ],
+        "emptyNotes": 4086,
+        "emptyTags": 0,
+        "topTags": [
+          [
+            "translated",
+            4086
+          ],
+          [
+            "РУССКИЙ",
+            4086
+          ],
+          [
+            "name-place",
+            1318
+          ],
+          [
+            "dictionary-name-place",
+            1318
+          ],
+          [
+            "name",
+            1171
+          ],
+          [
+            "cross-reference",
+            1019
+          ],
+          [
+            "body",
+            580
+          ],
+          [
+            "church",
+            542
+          ],
+          [
+            "sin",
+            521
+          ],
+          [
+            "reference",
+            401
+          ],
+          [
+            "places",
+            399
+          ],
+          [
+            "communication",
+            386
+          ],
+          [
+            "holy-spirit",
+            385
+          ],
+          [
+            "work",
+            362
+          ],
+          [
+            "jesus",
+            319
+          ],
+          [
+            "directions",
+            309
+          ],
+          [
+            "nature",
+            277
+          ],
+          [
+            "heaven",
+            271
+          ],
+          [
+            "life",
+            242
+          ],
+          [
+            "emotions",
+            238
+          ]
+        ],
+        "googleMarkers": 0,
+        "myMemoryMarkers": 0
+      },
+      "history": [
+        {
+          "commit": "0d1bd292dc00b3c17a6e5736049882486bafe56f",
+          "authorDate": "2026-05-27T19:37:17+03:00",
+          "subject": "Add files via upload",
+          "changes": [
+            "A\tdata/divinity_code_ru.json"
+          ]
+        }
+      ],
+      "contentChangingSnapshotsNewestFirst": [
+        {
+          "commit": "0d1bd292dc00b3c17a6e5736049882486bafe56f",
+          "bytes": 4688773,
+          "sha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+          "summary": {
+            "rootType": "list",
+            "records": 4086,
+            "fields": [
+              "aliases",
+              "date_added",
+              "description",
+              "id",
+              "notes",
+              "source",
+              "symbol",
+              "tags"
+            ],
+            "emptyNotes": 4086,
+            "emptyTags": 0,
+            "topTags": [
+              [
+                "translated",
+                4086
+              ],
+              [
+                "РУССКИЙ",
+                4086
+              ],
+              [
+                "name-place",
+                1318
+              ],
+              [
+                "dictionary-name-place",
+                1318
+              ],
+              [
+                "name",
+                1171
+              ],
+              [
+                "cross-reference",
+                1019
+              ],
+              [
+                "body",
+                580
+              ],
+              [
+                "church",
+                542
+              ],
+              [
+                "sin",
+                521
+              ],
+              [
+                "reference",
+                401
+              ],
+              [
+                "places",
+                399
+              ],
+              [
+                "communication",
+                386
+              ],
+              [
+                "holy-spirit",
+                385
+              ],
+              [
+                "work",
+                362
+              ],
+              [
+                "jesus",
+                319
+              ],
+              [
+                "directions",
+                309
+              ],
+              [
+                "nature",
+                277
+              ],
+              [
+                "heaven",
+                271
+              ],
+              [
+                "life",
+                242
+              ],
+              [
+                "emotions",
+                238
+              ]
+            ],
+            "googleMarkers": 0,
+            "myMemoryMarkers": 0
+          }
+        }
+      ]
+    },
+    "data/report.txt": {
+      "currentBytes": 2963,
+      "currentSha256": "dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d",
+      "currentSummary": null,
+      "history": [
+        {
+          "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+          "authorDate": "2026-05-25T00:30:11+03:00",
+          "subject": "Add files via upload",
+          "changes": [
+            "A\tdata/report.txt"
+          ]
+        }
+      ],
+      "contentChangingSnapshotsNewestFirst": [
+        {
+          "commit": "a885544bbf7943e5943f14e78a6581f236ad97e5",
+          "bytes": 2963,
+          "sha256": "dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d"
+        }
+      ]
+    }
+  },
+  "allHistoricalDataPaths": [
+    "_archive/old-data/db.json",
+    "_archive/old-data/db_v2.json",
+    "_archive/source-files/The_Divinity_Code_to_Understanding_Your_Dreams_and_Visions_PDF_Room.pdf",
+    "_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf",
+    "_archive/source-files/screenshot-desktop.jpg",
+    "_archive/source-files/screenshot-mobile.jpg",
+    "data/bd.json",
+    "data/bd2.json",
+    "data/db.json",
+    "data/db_v2.json",
+    "data/divinity_code_ru.json",
+    "data/report.txt"
+  ],
+  "currentTransformationShape": {
+    "bd2ToDbFieldDiffCounts": {
+      "aliases": 0,
+      "date_added": 0,
+      "description": 0,
+      "id": 0,
+      "notes": 0,
+      "source": 0,
+      "symbol": 0,
+      "tags": 0
+    },
+    "dbToRuFieldDiffCounts": {
+      "aliases": 4083,
+      "date_added": 0,
+      "description": 0,
+      "id": 0,
+      "notes": 4086,
+      "source": 0,
+      "symbol": 0,
+      "tags": 4086
+    },
+    "bd2ToRuFieldDiffCounts": {
+      "aliases": 4083,
+      "date_added": 0,
+      "description": 0,
+      "id": 0,
+      "notes": 4086,
+      "source": 0,
+      "symbol": 0,
+      "tags": 4086
+    },
+    "coreBd2DbEqual": true,
+    "dbRuSameNoteCount": 4086,
+    "bd2RuSameNoteCount": 4086
+  },
+  "referenceCandidates": [
+    {
+      "path": "/home/runner/work/udream/udream/.github/pull_request_template.md",
+      "bytes": 5186,
+      "sha256": "af94d177fa7f3eac1df759aee8792571f7f93bca067f22d657ae9d15fd6f621a",
+      "firstInformativeLines": [
+        "## Цель",
+        "<!-- Одна основная цель Pull Request и связь с docs/PRODUCT_VISION.md или ROADMAP.md. -->",
+        "## GitHub-факты перед началом",
+        "- [ ] прочитан актуальный `WORK_STATUS.md`",
+        "- [ ] проверены `main`, открытые Pull Request и последние commits",
+        "- [ ] старые чаты и память ИИ не использовались вместо GitHub-фактов",
+        "- [ ] при существующей активной задаче продолжена именно указанная ветка, а не создана конкурирующая реализация",
+        "## Передача работы между устройствами",
+        "- [ ] до первого изменения в `WORK_STATUS.md` записаны статус, цель, ветка и планируемые файлы",
+        "- [ ] после выполнения записаны фактический результат, изменённые файлы и проверки",
+        "- [ ] статус выставлен точно: `IN_PROGRESS`, `PAUSED`, `BLOCKED`, `COMPLETED` или `READY`",
+        "- [ ] указан один точный следующий шаг для другого устройства или агента",
+        "- [ ] незавершённая работа сохранена commit и push, а не только локально или в чате",
+        "## Что изменено",
+        "- <!-- пункт -->",
+        "## Что увидит пользователь",
+        "- <!-- пункт или «пользовательское поведение не меняется» -->",
+        "## Проверки",
+        "- [ ] `npm test`",
+        "- [ ] `node scripts/validate-project.mjs`"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/AGENTS.md",
+      "bytes": 15127,
+      "sha256": "c8923525529f03f8401b6d2c3fc7f4fac6c0894a47eac8e22f2a790c318a843f",
+      "firstInformativeLines": [
+        "# AGENTS.md — UDREAM development rules",
+        "These rules apply to the entire repository.",
+        "## Start every task with current context",
+        "Before changing files, read:",
+        "1. `WORK_STATUS.md`",
+        "2. `docs/AI_GITHUB_WORKFLOW.md`",
+        "3. `docs/PRODUCT_VISION.md`",
+        "4. `README.md`",
+        "5. `VERSION.md`",
+        "6. `ROADMAP.md`",
+        "7. `docs/PROJECT_STATE.md`",
+        "8. `docs/ARCHITECTURE.md`",
+        "9. `docs/FILE_MAP.md`",
+        "10. `docs/TRANSLATION_WORKFLOW.md` for any data, translation or AI-assisted task",
+        "11. `docs/NEWS_PUBLISHING.md`",
+        "12. `docs/SCREENSHOT_AUTOMATION.md`",
+        "13. `docs/CONTENT_AND_RIGHTS.md`",
+        "14. the latest commits, tags, branches and open Pull Requests relevant to the task",
+        "Do not infer the current application from numbered folders under `_archive/`.",
+        "Before implementation, state the verified current status, active branch, open PR, last completed change, exact next action and current prohibitions. Do not change files until these facts agree with GitHub."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/CHANGELOG.md",
+      "bytes": 15111,
+      "sha256": "59f2a9448c2d0ac71807452c91779732f53d60ae4b56ea1156b5cdf978aea7bf",
+      "firstInformativeLines": [
+        "# Changelog",
+        "## Automation update v23.8.7 — 2026-07-22",
+        "- Added an isolated Playwright package under `tools/screenshots/` without changing the public runtime or root package dependencies.",
+        "- Pinned `@playwright/test`, `playwright` and `playwright-core` to `1.61.1` through a dedicated lockfile.",
+        "- Added a read-only GitHub Actions workflow that installs Chromium, starts the exact checkout through a local HTTP server and uploads screenshot artifacts.",
+        "- Added a JSON-driven scenario runner that supports only allowlisted actions and requires assertions before capture.",
+        "- Added deterministic storage clearing, blocked Service Worker registration, disabled animations and used one Chromium worker.",
+        "- Added per-scenario provenance entries and a manifest containing commit, UTC time, URL, viewport, PNG dimensions and byte size.",
+        "- Preserved successful manifest entries across Playwright retries.",
+        "- Added desktop and mobile scenarios for startup, `water` ranking and Russian alias `вода` opening the primary `water` card.",
+        "- Completed a four-of-four successful Chromium run and visually reviewed every generated PNG.",
+        "- Added the selected new Playwright PNG and its exact provenance for the matching uNews patchnote.",
+        "- Added structural validation for package/lock consistency, read-only workflow permissions, scenario assertions, safe artifact cleanup and runtime isolation.",
+        "- Kept application runtime, PWA, Service Worker, release tag and all 4,086 active database records unchanged.",
+        "## Documentation update v23.8.6 — 2026-07-22",
+        "- Made real GitHub state the highest-priority source of truth for all devices, chats and AI agents.",
+        "- Added `docs/AI_GITHUB_WORKFLOW.md` with one start, pause, completion and conflict-recovery protocol.",
+        "- Required an early pushed `WORK_STATUS.md` lock before implementation and prohibited competing branches for the same active goal.",
+        "- Recorded that connected agents should perform routine GitHub work themselves and involve the owner only for unavailable tools, secrets, physical-device checks or human judgment.",
+        "- Added `docs/SCREENSHOT_AUTOMATION.md` and defined Playwright Chromium as the preferred source of real screenshots."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/CONTRIBUTING.md",
+      "bytes": 4047,
+      "sha256": "db85083809937d7692503185782db1381844d217687ef28524770b2708dbfb3d",
+      "firstInformativeLines": [
+        "# Участие в разработке uDream",
+        "Спасибо за интерес к проекту. uDream остаётся статическим приложением без обязательной сборки и серверной части.",
+        "## Перед изменениями",
+        "1. Прочитайте `docs/PRODUCT_VISION.md`, `AGENTS.md`, `README.md`, `VERSION.md`, `ROADMAP.md` и документы, относящиеся к задаче.",
+        "2. Убедитесь, что задача соответствует текущей версии `v23.8.0` и утверждённой границе следующего этапа.",
+        "3. Создайте отдельную ветку от актуальной `main`.",
+        "4. Ограничьте Pull Request одной понятной целью.",
+        "5. Не изменяйте исторические релизы, сохранённые версии и `_archive/` без отдельного согласования.",
+        "6. Не смешивайте без необходимости изменение интерфейса, данных, PWA и архитектуры.",
+        "## Данные и переводы",
+        "- Не перезаписывайте одну базу, редакцию или версию перевода другой.",
+        "- Новый вариант должен иметь отдельную версию и документированное происхождение.",
+        "- Сохраняйте стабильные ID, если отдельная миграция не утверждает другое.",
+        "- Не удаляйте `data/bd2.json`, `data/db.json`, отчёты и архивные варианты как обычную очистку.",
+        "- Изменение активных 4 086 записей требует отдельной data-задачи, проверки и описания миграции.",
+        "## Проверки",
+        "```bash",
+        "npm test",
+        "jq empty data/divinity_code_ru.json",
+        "jq 'length' data/divinity_code_ru.json"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/README.md",
+      "bytes": 18087,
+      "sha256": "75b5d01e6429550d1bad29d1c70088a82385c81e1972b2f2fa0e2539ec6a063c",
+      "firstInformativeLines": [
+        "<p align=\"center\">",
+        "<img src=\"icon-192.png\" width=\"112\" height=\"112\" alt=\"Логотип uDream\">",
+        "</p>",
+        "<h1 align=\"center\">uDream · UDREAM</h1>",
+        "<p align=\"center\">",
+        "Христианский справочник символов снов с быстрым поиском, историей и установкой как PWA.",
+        "</p>",
+        "<p align=\"center\">",
+        "<a href=\"https://sunpole.github.io/udream/\"><img alt=\"Открыть uDream\" src=\"https://img.shields.io/badge/Открыть_uDream-GitHub_Pages-222222?logo=github\"></a>",
+        "<a href=\"https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip\"><img alt=\"Скачать uDream v23.8.0\" src=\"https://img.shields.io/badge/Скачать-v23.8.0_ZIP-2ea44f?logo=github\"></a>",
+        "<a href=\"https://github.com/sunpole/udream/releases/tag/v23.8.0\"><img alt=\"GitHub Release v23.8.0\" src=\"https://img.shields.io/badge/release-v23.8.0-blue?logo=github\"></a>",
+        "<img alt=\"Записей в активной базе\" src=\"https://img.shields.io/badge/записей-4_086-8a2be2\">",
+        "<img alt=\"PWA\" src=\"https://img.shields.io/badge/PWA-устанавливается-orange?logo=pwa\">",
+        "</p>",
+        "<p align=\"center\">",
+        "<a href=\"https://github.com/sunpole/udream/actions/workflows/validate.yml\"><img alt=\"Проверка проекта\" src=\"https://github.com/sunpole/udream/actions/workflows/validate.yml/badge.svg\"></a>",
+        "<a href=\"https://github.com/sunpole/udream/actions/workflows/capture-screenshots.yml\"><img alt=\"Реальные Chromium-скриншоты\" src=\"https://img.shields.io/badge/screenshots-Playwright_Chromium-45ba4b?logo=playwright\"></a>",
+        "<a href=\"https://t.me/uNewsLog\"><img alt=\"Новости в Telegram\" src=\"https://img.shields.io/badge/Telegram-@uNewsLog-26A5E4?logo=telegram&logoColor=white\"></a>",
+        "<a href=\"LICENSE\"><img alt=\"Лицензия кода MIT\" src=\"https://img.shields.io/badge/код-MIT-green\"></a>",
+        "</p>"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/ROADMAP.md",
+      "bytes": 10097,
+      "sha256": "4ce078ffb9318cade6f09fd627d6526467133f2fc7ebad26677559be6c76d539",
+      "firstInformativeLines": [
+        "# Roadmap",
+        "## Completed foundation",
+        "- [x] Publish the static site on GitHub Pages.",
+        "- [x] Provide search, aliases, tags, alphabet navigation, history, themes, and RU/EN interface text.",
+        "- [x] Add PWA metadata and a service worker.",
+        "- [x] Preserve historical app and admin iterations under `_archive/`.",
+        "- [x] Create the `v3.0.0` restoration checkpoint.",
+        "- [x] Establish project documentation and development rules.",
+        "- [x] Add a launcher for runnable saved versions.",
+        "- [x] Perform a mobile regression check of the current site and saved version launcher.",
+        "- [x] Add uNews patchnote rules and GitHub Actions validation.",
+        "- [x] Separate the MIT-licensed software from third-party content in public documentation.",
+        "## Completed: modularization without a build step",
+        "- [x] Define and complete the staged ES-module migration plan M1–M5.",
+        "- [x] Extract search/autocomplete matching and add regression tests.",
+        "- [x] Extract data loading and initial application state.",
+        "- [x] Extract history and local settings.",
+        "- [x] Extract presentation and localization with safe imported-data rendering.",
+        "- [x] Isolate PWA registration and complete Android offline verification.",
+        "See `docs/MODULARIZATION_PLAN.md`."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/THIRD_PARTY_NOTICES.md",
+      "bytes": 1432,
+      "sha256": "f1e2b7180631f171c507aa05bb98baf86484d3f14249d5e2162e46fd54293bb6",
+      "firstInformativeLines": [
+        "# Third-party notices",
+        "## Scope of the MIT license",
+        "The root `LICENSE` covers original uDream software code and original project documentation authored by Anton Mahomedov, unless a file states otherwise.",
+        "It does not grant rights to third-party books, PDFs, excerpts, dictionary interpretations, translations, illustrations, or other source material included or referenced by the project.",
+        "## Referenced source works",
+        "The project currently references material associated with:",
+        "- *The Divinity Code to Understanding Your Dreams and Visions*;",
+        "- *Unlocking Your Dreams* / related student material.",
+        "Titles are listed only to identify provenance. Copyright and other rights remain with the respective authors, publishers, and rights holders. uDream is an independent search interface and is not an official edition of either work.",
+        "## Distribution statement",
+        "On 18 July 2026, project owner Anton Mahomedov stated that the PDF files retained under `_archive/source-files/` were obtained from public sources that offered them for open distribution. The repository does not yet preserve the original URLs or exact permission/license text, so it does not assign a specific open-content license to those files without further evidence.",
+        "The next provenance step is to record each source URL, access date, and exact distribution statement when available.",
+        "See [docs/CONTENT_AND_RIGHTS.md](docs/CONTENT_AND_RIGHTS.md) for the project policy."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/VERSION.md",
+      "bytes": 3520,
+      "sha256": "47e5efdae250fbe8eb85731fad73802e9c9a8a4d505194267c1cccd43e01dbd0",
+      "firstInformativeLines": [
+        "# Version",
+        "## Current release checkpoint",
+        "`v23.8.0`",
+        "- Tag commit: `24dece593bea679485057d7551a2583f7f1f5acf`",
+        "- Published: 2026-07-20",
+        "- Purpose: preserve the verified PWA update, cache migration and installation flow release",
+        "- Release: https://github.com/sunpole/udream/releases/tag/v23.8.0",
+        "- Verification: the immutable tag resolves to the exact functional merge commit; the release workflow re-runs tests, project validation, syntax checks and version consistency before publication",
+        "- Runtime version sources: `package.json`, `src/version.js` and `version.json` all contain `23.8.0`",
+        "- Database: the active 4,086-record JSON database is unchanged",
+        "- Previous checkpoint: `v23.7.0`",
+        "## Documentation and automation baseline",
+        "`v23.8.7`",
+        "- Status: repository-automation milestone; it does not create a new application build or move the `v23.8.0` tag",
+        "- Purpose: generate factual desktop/mobile screenshots from the exact branch commit in real Chromium before a patchnote can publish them",
+        "- Isolated package: `tools/screenshots/`",
+        "- Pinned version: `@playwright/test`, `playwright` and `playwright-core` `1.61.1`",
+        "- Permanent workflow: `.github/workflows/capture-screenshots.yml`",
+        "- Permissions: read-only `contents: read`; the permanent workflow cannot commit or push",
+        "- Scenarios: homepage desktop, `water` desktop/mobile and Russian alias `вода` mobile"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/WORK_STATUS.md",
+      "bytes": 12616,
+      "sha256": "004824db1e8b40d094ad9da5389ddf76618d0bf58979ac1b4ed3d37e8c94ab82",
+      "firstInformativeLines": [
+        "# WORK_STATUS — передача работы между устройствами",
+        "Этот файл — единая оперативная точка продолжения разработки uDream с телефона, рабочего ПК, MacBook, другого устройства или любого ИИ-чата.",
+        "Он отвечает на пять вопросов:",
+        "1. Начата ли сейчас работа?",
+        "2. Какая цель и в какой ветке выполняется?",
+        "3. Что уже сделано фактически?",
+        "4. Где именно остановились?",
+        "5. Какой следующий точный шаг?",
+        "`ROADMAP.md` хранит общий план проекта, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит **живую точку передачи текущей работы**.",
+        "## Быстрый сигнал",
+        "| Поле | Текущее значение |",
+        "|---|---|",
+        "| Состояние | **IN_PROGRESS** — выполняется аудит происхождения данных D1.1 |",
+        "| Рабочая ветка | `docs/data-provenance-d1.1` |",
+        "| Открытый Pull Request | ещё не открыт |",
+        "| Стабильный релиз | `v23.8.0` |",
+        "| Документационный и automation baseline | `v23.8.7` |",
+        "| Последнее завершённое изменение | PR #22, squash merge `464b61cf7df8f27ba14bb9a4cf5ed50c8479cef8`; READY commit `422972a3dd497801156d7345be67e7cecdd9de60` |",
+        "| Активная серия | `D1` — происхождение данных и архитектура нескольких наборов |",
+        "| Активная задача | `D1.1` — восстановить происхождение текущих файлов данных без изменения активной базы |"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/013.1/script.js",
+      "bytes": 32304,
+      "sha256": "b6be76a428ee8afc1fcb9adaa2421e3dc65af28d12e853a9eefa1de82a926395",
+      "firstInformativeLines": [
+        "// script.js — UDREAM v13.1 (исправленный)",
+        "(function() {",
+        "// --- состояние",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let currentDbName = \"\";",
+        "let showLatin = true, showCyrillic = true, showDigits = true;",
+        "let textSelectionAllowed = false;",
+        "// DOM элементы",
+        "const themeToggle = document.getElementById(\"themeToggle\");",
+        "const langToggle = document.getElementById(\"langToggle\");",
+        "const langToggleText = document.getElementById(\"langToggleText\");",
+        "const burgerBtn = document.getElementById(\"burgerBtn\");",
+        "const menuPanel = document.getElementById(\"menuPanel\");",
+        "const menuOverlay = document.getElementById(\"menuOverlay\");"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/013.2/script.js",
+      "bytes": 31954,
+      "sha256": "6d8a7f3415988eae2d533e9544224c2d54f3dc852ab6b3f6892764712cd3bf3a",
+      "firstInformativeLines": [
+        "// script.js — UDREAM v13.4 (исправлена загрузка базы)",
+        "(function() {",
+        "// --- состояние",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let currentDbName = \"\";",
+        "let showLatin = true, showCyrillic = true, showDigits = true;",
+        "let textSelectionAllowed = false;",
+        "// DOM элементы",
+        "const themeToggle = document.getElementById(\"themeToggle\");",
+        "const langToggle = document.getElementById(\"langToggle\");",
+        "const langToggleText = document.getElementById(\"langToggleText\");",
+        "const burgerBtn = document.getElementById(\"burgerBtn\");",
+        "const menuPanel = document.getElementById(\"menuPanel\");",
+        "const menuOverlay = document.getElementById(\"menuOverlay\");"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/013/script.js",
+      "bytes": 31291,
+      "sha256": "b576b7c8f4cfb381c376636be936d4763dc62024480c76d8a423d5de710c1dc2",
+      "firstInformativeLines": [
+        "// script.js — UDREAM v13 (исправленный)",
+        "(function() {",
+        "// --- состояние",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let currentDbName = \"база по умолчанию\";",
+        "let showLatin = true, showCyrillic = true, showDigits = true;",
+        "let textSelectionAllowed = false;",
+        "// DOM элементы",
+        "const themeToggle = document.getElementById(\"themeToggle\");",
+        "const langToggle = document.getElementById(\"langToggle\");",
+        "const langToggleText = document.getElementById(\"langToggleText\");",
+        "const burgerBtn = document.getElementById(\"burgerBtn\");",
+        "const menuPanel = document.getElementById(\"menuPanel\");",
+        "const menuOverlay = document.getElementById(\"menuOverlay\");"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/014/script.js",
+      "bytes": 31278,
+      "sha256": "9173d20f6a2bb4947831ec04010ce38c58a0ef297d018a8cb42ce6665bc275e3",
+      "firstInformativeLines": [
+        "(function(){",
+        "// --- состояние",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "let currentDbName = \"база по умолчанию\";",
+        "// настройки видимости строк алфавита",
+        "let showLatin = localStorage.getItem(\"showLatin\") !== \"false\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") !== \"false\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") !== \"false\";",
+        "// выделение текста",
+        "let allowSelection = localStorage.getItem(\"allowSelection\") === \"true\";",
+        "// DOM элементы",
+        "const themeToggle = document.getElementById(\"themeToggle\");",
+        "const langToggle = document.getElementById(\"langToggle\");"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/015/script.js",
+      "bytes": 36090,
+      "sha256": "413dc0581a7169216aaef0a99659beb02d89bd10db2ce69e0c5a387114a8b58d",
+      "firstInformativeLines": [
+        "(function(){",
+        "// ---------- СОСТОЯНИЕ ----------",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "let currentDbName = \"база по умолчанию\";",
+        "// настройки видимости (по умолчанию всё включено, кроме хлебных крошек и тегов – они выключены)",
+        "let showLatin = localStorage.getItem(\"showLatin\") !== \"false\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") !== \"false\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") !== \"false\";",
+        "let showBreadcrumbs = localStorage.getItem(\"showBreadcrumbs\") === \"true\";",
+        "let showTagsCloud = localStorage.getItem(\"showTagsCloud\") === \"true\";",
+        "let allowSelection = localStorage.getItem(\"allowSelection\") === \"true\";",
+        "// ---------- DOM элементы ----------",
+        "const themeToggle = document.getElementById(\"themeToggle\");"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/016/script.js",
+      "bytes": 33945,
+      "sha256": "585d24033d017dc5974c0d47ecb1a208b286265b6f728df91254523764935dfc",
+      "firstInformativeLines": [
+        "(function(){",
+        "// ---------- СОСТОЯНИЕ ----------",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "let currentDbName = \"db.json\";",
+        "// настройки видимости",
+        "let showLatin = localStorage.getItem(\"showLatin\") !== \"false\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") !== \"false\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") !== \"false\";",
+        "let showBreadcrumbs = localStorage.getItem(\"showBreadcrumbs\") === \"true\";",
+        "let showTagsCloud = localStorage.getItem(\"showTagsCloud\") === \"true\";",
+        "let allowSelection = localStorage.getItem(\"allowSelection\") === \"true\";",
+        "// ---------- DOM ----------",
+        "const themeToggle = document.getElementById(\"themeToggle\");"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/017/script.js",
+      "bytes": 36008,
+      "sha256": "c7daff03ab26608b1dc40d80fd95bd92ec3c126d839200a71966ee289d03cbeb",
+      "firstInformativeLines": [
+        "(function(){",
+        "// ---------- СОСТОЯНИЕ ----------",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];          // для хлебных крошек (старый)",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "let currentDbName = \"db.json\";",
+        "// расширенная история (с timestamp)",
+        "let fullHistory = JSON.parse(localStorage.getItem(\"fullHistory\") || \"[]\");",
+        "// настройки видимости",
+        "let showLatin = localStorage.getItem(\"showLatin\") !== \"false\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") !== \"false\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") !== \"false\";",
+        "let showBreadcrumbs = localStorage.getItem(\"showBreadcrumbs\") === \"true\";",
+        "let showTagsCloud = localStorage.getItem(\"showTagsCloud\") === \"true\";",
+        "let showHistoryBlock = localStorage.getItem(\"showHistoryBlock\") === \"true\";"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/018/script.js",
+      "bytes": 37410,
+      "sha256": "d9a359d3a67e66cb00ebd5567368f2d940d933c7c5d348f5da1293dc6cb546af",
+      "firstInformativeLines": [
+        "(function(){",
+        "// ---------- СОСТОЯНИЕ ----------",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "let currentDbName = \"db.json\";",
+        "// расширенная история (с timestamp)",
+        "let fullHistory = JSON.parse(localStorage.getItem(\"fullHistory\") || \"[]\");",
+        "// настройки видимости (по умолчанию включены только хлебные крошки)",
+        "let showLatin = localStorage.getItem(\"showLatin\") === \"true\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") === \"true\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") === \"true\";",
+        "let showBreadcrumbs = localStorage.getItem(\"showBreadcrumbs\") !== \"false\"; // true по умолчанию",
+        "let showTagsCloud = localStorage.getItem(\"showTagsCloud\") === \"true\";",
+        "let showHistoryBlock = localStorage.getItem(\"showHistoryBlock\") === \"true\";"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/019/script.js",
+      "bytes": 39778,
+      "sha256": "dbd43d7a4ce44ec48d7d83fef31b2a76e91c8d62136ba7f2e508c94ee7ecae8a",
+      "firstInformativeLines": [
+        "(function(){",
+        "// ---------- СОСТОЯНИЕ ----------",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "let currentDbName = \"db.json\";",
+        "let fullHistory = JSON.parse(localStorage.getItem(\"fullHistory\") || \"[]\");",
+        "// настройки видимости (по умолчанию включены только хлебные крошки)",
+        "let showLatin = localStorage.getItem(\"showLatin\") === \"true\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") === \"true\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") === \"true\";",
+        "let showBreadcrumbs = localStorage.getItem(\"showBreadcrumbs\") !== \"false\"; // true по умолчанию",
+        "let showTagsCloud = localStorage.getItem(\"showTagsCloud\") === \"true\";",
+        "let showHistoryBlock = localStorage.getItem(\"showHistoryBlock\") === \"true\";",
+        "let allowSelection = localStorage.getItem(\"allowSelection\") === \"true\";"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/019/script1.js",
+      "bytes": 36856,
+      "sha256": "b2d12c0626a6a6e7a01fc9b811cd93599c7cfc4493525af2a75e9738741fc557",
+      "firstInformativeLines": [
+        "(function(){",
+        "// ---------- СОСТОЯНИЕ ----------",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "let currentDbName = \"db.json\";",
+        "let fullHistory = JSON.parse(localStorage.getItem(\"fullHistory\") || \"[]\");",
+        "// настройки видимости (по умолчанию включены только хлебные крошки)",
+        "let showLatin = localStorage.getItem(\"showLatin\") === \"true\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") === \"true\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") === \"true\";",
+        "let showBreadcrumbs = localStorage.getItem(\"showBreadcrumbs\") !== \"false\";",
+        "let showTagsCloud = localStorage.getItem(\"showTagsCloud\") === \"true\";",
+        "let showHistoryBlock = localStorage.getItem(\"showHistoryBlock\") === \"true\";",
+        "let allowSelection = localStorage.getItem(\"allowSelection\") === \"true\";"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/_archive/legacy-versions/019/script3.js",
+      "bytes": 37553,
+      "sha256": "a869d549125595922ced241f260ad3d0756f3ee99e257a9ede2ea9e877e46b99",
+      "firstInformativeLines": [
+        "(function(){",
+        "// ---------- СОСТОЯНИЕ ----------",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "let currentDbName = \"db.json\";",
+        "let fullHistory = JSON.parse(localStorage.getItem(\"fullHistory\") || \"[]\");",
+        "// настройки видимости (по умолчанию включены только хлебные крошки)",
+        "let showLatin = localStorage.getItem(\"showLatin\") === \"true\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") === \"true\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") === \"true\";",
+        "let showBreadcrumbs = localStorage.getItem(\"showBreadcrumbs\") !== \"false\";",
+        "let showTagsCloud = localStorage.getItem(\"showTagsCloud\") === \"true\";",
+        "let showHistoryBlock = localStorage.getItem(\"showHistoryBlock\") === \"true\";",
+        "let allowSelection = localStorage.getItem(\"allowSelection\") === \"true\";"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/data/report.txt",
+      "bytes": 2963,
+      "sha256": "dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d",
+      "firstInformativeLines": [
+        "records: 4086",
+        "sections: {'symbol': 2768, 'name-place': 1318}",
+        "letters: {'A': 231, 'B': 338, 'C': 394, 'D': 214, 'E': 112, 'F': 206, 'G': 143, 'H': 169, 'I': 63, 'J': 107, 'K': 71, 'L': 176, 'M': 243, 'N': 102, 'O': 73, 'P': 238, 'Q': 19, 'R': 197, 'S': 436, 'T': 256, 'U': 46, 'V': 56, 'W': 149, 'X': 2, 'Y': 26, 'Z': 19}",
+        "top_tags:",
+        "name-place: 1318",
+        "dictionary-name-place: 1318",
+        "name: 1171",
+        "cross-reference: 1019",
+        "body: 580",
+        "church: 542",
+        "sin: 521",
+        "reference: 401",
+        "places: 399",
+        "communication: 386",
+        "holy-spirit: 385",
+        "work: 362",
+        "jesus: 319",
+        "directions: 309",
+        "nature: 277",
+        "heaven: 271"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/diagnostics/d1.1-audit.txt",
+      "bytes": 901,
+      "sha256": "2ef41c21f287e77f966afaa4b8885d2b93efff175f4acb9d2ed31a5415e68add",
+      "firstInformativeLines": [
+        "# D1.1 audit summary",
+        "Generated: 2026-07-22T08:49:59Z",
+        "Commit: bbf2f00e371fe7a5de6a857aa078b26d71fbe58d",
+        "Branch: docs/data-provenance-d1.1",
+        "## Current files",
+        "- data/divinity_code_ru.json: 4688773 bytes, sha256 1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64, records 4086, history commits 1",
+        "- data/bd2.json: 2141655 bytes, sha256 814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28, records 4086, history commits 2",
+        "- data/db.json: 2204553 bytes, sha256 4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0, records 4086, history commits 3",
+        "- data/report.txt: 2963 bytes, sha256 dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d, records n/a, history commits 1",
+        "bd2.json byte-equal db.json: False",
+        "inventory files: 10",
+        "exact duplicate groups: 1",
+        "reference-hit files: 73",
+        "script candidates: 2",
+        "Full machine-readable evidence: diagnostics/d1.1-audit.json"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/AI_GITHUB_WORKFLOW.md",
+      "bytes": 10470,
+      "sha256": "e4e68385e1ebf93e25ef7ff89b0db34b35277992007f49f4411e443bf2d0b81a",
+      "firstInformativeLines": [
+        "# Единая работа ИИ, GitHub, чатов и устройств",
+        "## Назначение",
+        "Этот документ определяет один рабочий процесс для uDream независимо от количества устройств, чатов ChatGPT, Codex-сессий или других ИИ-агентов.",
+        "Главный принцип:",
+        "> Чат помогает выполнять работу, но не хранит официальное состояние проекта. Официальное состояние всегда восстанавливается из GitHub.",
+        "## Иерархия источников истины",
+        "При расхождении сведений используется следующий порядок:",
+        "1. фактическое состояние GitHub: `main`, открытые Pull Request, branches, commits, tags, Releases и результаты Actions;",
+        "2. `WORK_STATUS.md` — текущая активная задача, ветка, прогресс, пауза и следующий точный шаг;",
+        "3. активный GitHub Issue — подробное техническое задание утверждённого этапа;",
+        "4. Pull Request — фактический diff, проверки, риски и публикационный материал конкретного изменения;",
+        "5. поддерживаемая документация: `VERSION.md`, `ROADMAP.md`, `docs/PROJECT_STATE.md` и специализированные документы;",
+        "6. сообщения текущего чата;",
+        "7. старые чаты, память ИИ и локальные заметки.",
+        "Старый чат никогда не может отменить более новый commit, Pull Request или `WORK_STATUS.md`.",
+        "## Стандарт старта на любом устройстве",
+        "Перед любыми изменениями человек или агент обязан:",
+        "```bash",
+        "git switch main",
+        "git pull --ff-only origin main"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/ARCHITECTURE.md",
+      "bytes": 7896,
+      "sha256": "1a74c0005288d3a4635c39a853e0373a0307b41120e72695fbea9a4fd0c613aa",
+      "firstInformativeLines": [
+        "# Architecture",
+        "## Runtime model",
+        "UDREAM is a static browser application:",
+        "```text",
+        "GitHub Pages",
+        "↓",
+        "index.html",
+        "↓",
+        "script.js ──import──> src/search.js",
+        "├─import──> src/version.js",
+        "├─import──> src/data.js ──fetch──> data/divinity_code_ru.json",
+        "├─import──> src/history.js",
+        "├─import──> src/i18n.js",
+        "├─import──> src/presentation.js",
+        "├─import──> src/pwa.js ──register──> sw.js",
+        "│                         └─check──> version.json",
+        "├─import──> src/storage.js",
+        "└─import──> src/state.js",
+        "↓",
+        "DOM + localStorage + Web Share APIs"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/CONTENT_AND_RIGHTS.md",
+      "bytes": 5074,
+      "sha256": "c286baa7a34a58b7c4204761249eabd0bcf72278c8eae29c7442beff3392a076",
+      "firstInformativeLines": [
+        "# Код, авторство и сторонние материалы",
+        "## Коротко",
+        "uDream объединяет две разные категории материалов, и их нельзя смешивать с точки зрения прав:",
+        "1. оригинальный программный код и устройство приложения;",
+        "2. тексты и материалы исходных книг и других правообладателей.",
+        "## Что создано автором uDream",
+        "Если в конкретном файле не указано иное, Антон Магомедов является автором оригинальных частей проекта:",
+        "- структуры и логики веб-приложения;",
+        "- поиска, фильтрации и навигации;",
+        "- пользовательского интерфейса и PWA-оболочки;",
+        "- структуры репозитория;",
+        "- оригинальной проектной документации;",
+        "- инструментов проверки и сопровождения.",
+        "Эти части распространяются по лицензии MIT, находящейся в корне репозитория.",
+        "## Что не принадлежит автору приложения",
+        "MIT-лицензия uDream не распространяется автоматически на:",
+        "- исходные книги;",
+        "- PDF-файлы книг;",
+        "- цитаты и выдержки из книг;",
+        "- словарные определения и толкования, созданные авторами книг;"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/DATABASE_FORMAT.md",
+      "bytes": 5905,
+      "sha256": "9ba15af173916dab716562babdfe8bccbeb3c7da904a643565a7af96ea129e80",
+      "firstInformativeLines": [
+        "# Database format",
+        "## Active file",
+        "```text",
+        "data/divinity_code_ru.json",
+        "```",
+        "At release `v23.8.0` it contains 4,086 records and remains the active published runtime database.",
+        "## Record schema",
+        "```json",
+        "{",
+        "\"id\": 1,",
+        "\"symbol\": \"example\",",
+        "\"aliases\": [],",
+        "\"description\": \"...\",",
+        "\"source\": \"DivinityCode\",",
+        "\"date_added\": \"2026-05-24\",",
+        "\"tags\": [],",
+        "\"notes\": \"...\"",
+        "}",
+        "```",
+        "| Field | Type | Purpose |"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/FILE_MAP.md",
+      "bytes": 10336,
+      "sha256": "f95d058d65051473d58751f1a5dbcf66b8f2a0f951e6c058a4d6889e31907251",
+      "firstInformativeLines": [
+        "# File map",
+        "## Current runtime",
+        "| Path | Role | Change risk |",
+        "|---|---|---:|",
+        "| `index.html` | Current page structure, inline styles and static metadata | High |",
+        "| `script.js` | Current application orchestration and UI logic | High |",
+        "| `src/search.js` | Strict search matching, relevance ranking and alias resolution | Medium |",
+        "| `src/version.js` | Central runtime application version, labels and title | Low |",
+        "| `src/data.js` | Database fallback loading and manual JSON parsing | Medium |",
+        "| `src/history.js` | Pure navigation, breadcrumbs and full-history operations | Medium |",
+        "| `src/i18n.js` | RU/EN dictionary, language normalization and reviewed instructions | Medium |",
+        "| `src/presentation.js` | Safe pure HTML builders for imported records and UI lists | High |",
+        "| `src/pwa.js` | Service Worker registration, update checks and installation flow | High |",
+        "| `src/state.js` | Initial state and persisted preference restoration | Medium |",
+        "| `src/storage.js` | Typed localStorage reads, writes and serialization | Medium |",
+        "| `version.json` | Uncached deployed-version signal used by the PWA update flow | Low |",
+        "| `tests/search.test.js` | Search ranking, filter and alias regression tests | Low |",
+        "| `tests/runtime.test.js` | Visible version and form-submission contract tests | Low |",
+        "| `tests/data.test.js` | Database loader and fallback tests | Low |",
+        "| `tests/history.test.js` | Navigation, breadcrumbs and history regression tests | Low |"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/HISTORICAL_CONTEXT.md",
+      "bytes": 2708,
+      "sha256": "fc59e764a1f7044d79b9f30fd4718c862f08bd2486ec5c7de6fddb5d396071d8",
+      "firstInformativeLines": [
+        "# Recovered historical context",
+        "This document records context recovered from an earlier DeepSeek chat. It describes the project around the `13.2` generation and must not be treated as the current architecture without verification.",
+        "## Historical goal",
+        "Replace slow PDF searching with a mobile-friendly Christian dream-symbol reference application based on two source books. The intended product included search, aliases, tags, alphabet navigation, history, themes, RU/EN interface text, JSON data, an administrative editor, and PWA installation.",
+        "That historical goal is now consolidated and updated in `docs/PRODUCT_VISION.md`, which is the current source of truth for the product mission and future direction.",
+        "## Historical version sequence",
+        "- `002`: early hamburger-menu design;",
+        "- `003`: larger typography;",
+        "- `004`: glassmorphism experiment;",
+        "- `005`: refined design;",
+        "- `admin1–admin7`: administration prototypes;",
+        "- `012`: monolithic working version;",
+        "- `013.2`: separated HTML/JavaScript generation described as current at the time;",
+        "- `019` / visible `v19`: final historical interface-number line before unified semantic product versions.",
+        "## What remained valid",
+        "- The product purpose and static-site approach.",
+        "- The JSON record fields.",
+        "- The main search, tag, alphabet, history, localization, theme, and PWA ambitions.",
+        "- The existence of historical versions and admin prototypes.",
+        "- GitHub Pages as the deployment target."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/MODULARIZATION_PLAN.md",
+      "bytes": 8220,
+      "sha256": "b17782d7217d466cf94a6cc0cdac72d00f9d3d43fc6f1a3bf50d23a77235201a",
+      "firstInformativeLines": [
+        "# План модульного перехода uDream",
+        "## Статус",
+        "План M1–M5 завершён и опубликован. Текущая поддерживаемая версия приложения — `v23.8.0`.",
+        "Документ сохраняется как запись принятого архитектурного решения и границ выполненной миграции. Новые этапы не должны продолжать нумерацию M1–M5 без отдельного утверждённого плана.",
+        "## Решение",
+        "uDream остаётся статическим приложением на JavaScript, GitHub Pages и PWA.",
+        "Используются нативные ES Modules, JSDoc и `// @ts-check`. TypeScript, фреймворк, bundler, сервер и runtime-зависимости не вводятся. `package.json` нужен для версии приложения и запуска встроенного Node.js test runner и не участвует в браузерной сборке.",
+        "## Цели",
+        "- уменьшить связанность монолитного `script.js`;",
+        "- защитить поиск, историю, настройки, представление и PWA регрессионными тестами;",
+        "- сохранить работающее поведение и внешний вид;",
+        "- не затрагивать активную базу и сохранённые версии;",
+        "- оставить сайт запускаемым напрямую с GitHub Pages без build-шага.",
+        "## Завершённые этапы",
+        "### M1 — поиск и тестовый каркас ✅",
+        "- чистая логика поиска и автодополнения выделена в `src/search.js`;",
+        "- сохранена и затем уточнена семантика строгих режимов поиска и релевантности;",
+        "- добавлены тесты режимов `symbol`, `aliases`, `desc`, `tags`, `all`;",
+        "- основной скрипт подключён как ES module;",
+        "- модуль включён в PWA-кеш."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/PRODUCT_VISION.md",
+      "bytes": 14119,
+      "sha256": "94897b218c84de6231a3e4f5552c52eaa4c91eb90d3d1b7425d947b638eb8ecd",
+      "firstInformativeLines": [
+        "# Видение продукта uDream",
+        "## Миссия",
+        "uDream превращает трудоёмкий ручной поиск по христианской литературе о снах и видениях в быстрый, понятный и проверяемый мобильный справочник.",
+        "Проект должен помогать пользователю:",
+        "- найти символ, синоним или связанную тему;",
+        "- увидеть толкование и его источник;",
+        "- различать материалы разных книг и редакций;",
+        "- возвращаться к просмотренным карточкам;",
+        "- пользоваться справочником как сайтом и установленной PWA;",
+        "- сохранять доступ к проверенным прежним версиям проекта.",
+        "uDream является поисковым интерфейсом к источникам, а не заменой исходных книг и не официальным изданием их содержания.",
+        "## Для кого создаётся продукт",
+        "Основной сценарий — человек открывает uDream на телефоне, вводит слово из сна и быстро получает подходящие карточки без просмотра больших PDF-файлов.",
+        "Дополнительные сценарии:",
+        "- изучение связанных символов и библейских ссылок;",
+        "- сравнение толкований из разных источников;",
+        "- повторное открытие карточек из локальной истории;",
+        "- работа без постоянного соединения после установки PWA;",
+        "- подготовка и проверка новых вариантов базы без разрушения опубликованной версии.",
+        "## Конечный образ продукта"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/PROJECT_STATE.md",
+      "bytes": 13090,
+      "sha256": "30ad3fad802ee8a959dfbdb161008021db055e58b0cabc1d0e17859291848a57",
+      "firstInformativeLines": [
+        "# Current project state",
+        "The current restoration checkpoint is release `v23.8.0` at commit `24dece593bea679485057d7551a2583f7f1f5acf`, published on 2026-07-20 after verification of the PWA update, cache migration, uncached version checks and installation flow. The previous checkpoint remains `v23.7.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.",
+        "Automation update `23.8.7` adds isolated real-Chromium screenshot scenarios, read-only GitHub Actions artifacts and structural validation. It retains the unified GitHub workflow, cross-device handoff, product vision, non-destructive data rules, target translation model and safe DeepSeek-assisted workflow. It does not change application runtime, PWA behavior or database records.",
+        "## What UDREAM is",
+        "UDREAM is a public, static GitHub Pages application for searching Christian dream-symbol reference material. It has no backend, account system, database server or browser build step.",
+        "The current product mission and final direction are defined in `docs/PRODUCT_VISION.md`. Translation variants and API-assisted data preparation are governed by `docs/TRANSLATION_WORKFLOW.md`.",
+        "## GitHub-centered work status",
+        "Real GitHub facts have the highest priority: `main`, open Pull Requests, branches, commits, tags, Releases and Actions results.",
+        "`WORK_STATUS.md` is the live source for the current task, branch, actual progress, pause point and exact next action. `docs/AI_GITHUB_WORKFLOW.md` defines how another device, ChatGPT chat, Codex session or agent continues the same work without creating a competing implementation.",
+        "The cross-device baseline was established by PR #20, merge `639b2fc1309cd3e5c69236af98e14c26cc541523`, and finalized by commit `ac7dfe6b49567d29b0d994f04a3c9d315a7aaf5f`.",
+        "The unified workflow and mandatory screenshot provenance were added by PR #21, squash merge `58ebaea07ef488e0131bd9c3b5c359a191d6275e`, and finalized in `main` by commit `b7d2bcebbf57cf9d99d1503e54310a43966ff290`.",
+        "At automation baseline `23.8.7`:",
+        "- every task starts by checking GitHub facts and `WORK_STATUS.md`;",
+        "- an active task pushes its handoff before substantial implementation;",
+        "- a new chat cannot start a competing branch for the same goal;",
+        "- old chats, AI memory and unpushed notes are not sources of truth;",
+        "- connected agents perform routine GitHub work themselves when tools permit it;",
+        "- owner input is reserved for unavailable tools, physical-device checks, secrets and human judgment;",
+        "- new patchnotes require new real screenshot evidence and provenance metadata;",
+        "- real desktop/mobile screenshots can be generated from the exact commit through Playwright Chromium;"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/RELEASE_AND_ROLLBACK.md",
+      "bytes": 4068,
+      "sha256": "4a785ffa23af4573de7a013c1f364c417635bffa015e89a6b2b8986b75f34310",
+      "firstInformativeLines": [
+        "# Release and rollback",
+        "## Principles",
+        "- Never move an existing release tag.",
+        "- Preserve the working commit before structural or data changes.",
+        "- Keep `main` deployable.",
+        "- Verify GitHub Pages after merge.",
+        "- A runnable snapshot complements a tag; it does not replace the exact tagged source.",
+        "- Documentation milestones do not create or move functional release tags.",
+        "- Data migrations must preserve prior datasets and translation variants as recoverable sources.",
+        "## Create a release checkpoint",
+        "1. Confirm the exact `main` commit.",
+        "2. Confirm the site works at that commit.",
+        "3. Create a semantic tag and GitHub Release targeting the exact SHA.",
+        "4. Record the tag, SHA, date, purpose, and limitations in `VERSION.md` and `CHANGELOG.md`.",
+        "5. Do not retarget the tag later.",
+        "The current verified functional checkpoint is:",
+        "```text",
+        "v23.8.0",
+        "24dece593bea679485057d7551a2583f7f1f5acf",
+        "```"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/docs/TRANSLATION_WORKFLOW.md",
+      "bytes": 11413,
+      "sha256": "71e6112eba8d59028f0472b552d9c7a3ee75613ae17f4dd71d9f7a2cad6cee36",
+      "firstInformativeLines": [
+        "# Переводы и AI-assisted workflow",
+        "## Назначение",
+        "Этот документ фиксирует целевую модель переводов uDream и безопасный порядок экспериментов с API-переводом. Он не означает, что новые переводы уже созданы или что активная база должна быть немедленно изменена.",
+        "## Целевой набор данных",
+        "После завершения D1 проект стремится иметь следующие логически независимые наборы:",
+        "1. **Исходная база** — канонический набор на языке исходного материала, без русской переводческой редакции.",
+        "2. **Текущий русский перевод** — опубликованный и проверенный вариант, который сейчас используется приложением.",
+        "3. **Альтернативный русский перевод A** — отдельный вариант для сравнения качества и формулировок.",
+        "4. **Альтернативный русский перевод B** — второй независимый вариант, если его удастся получить и проверить с достаточным качеством.",
+        "Это целевая модель, а не требование искусственно создавать лишние копии. Если надёжно получается только один русский перевод, проект сохраняет одну русскую версию и исходную базу. Количество вариантов не должно быть важнее качества, происхождения и проверяемости.",
+        "## Как поступить с текущими дублями",
+        "`data/bd2.json` и `data/db.json` ранее были подтверждены как точные байтовые дубликаты. До завершения D1 они сохраняются без изменений.",
+        "Во время D1 необходимо:",
+        "1. повторно подтвердить равенство содержимого и происхождение файлов;",
+        "2. определить каноническое имя исходного набора;",
+        "3. проверить, не ссылаются ли на дубликат архивные инструменты или документы;",
+        "4. создать запись миграции и способ восстановления;",
+        "5. только после отдельного утверждения убрать лишнюю физическую копию из поддерживаемой структуры.",
+        "Точный дубликат не считается самостоятельным переводом или редакцией. После доказанной безопасной миграции достаточно одного канонического файла, Git-истории и документированной записи о прежнем дубликате.",
+        "## Идентичность каждого варианта"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-19-udream-m4-safe-presentation.md",
+      "bytes": 2264,
+      "sha256": "f813b5f33e5ab893a11934037f5617103985a52c5894cee17aafe398934eae80",
+      "firstInformativeLines": [
+        "---",
+        "type: patch",
+        "project: uDream",
+        "series: udream",
+        "title: M4 — безопасное представление и единая локализация",
+        "version: 3.5.0",
+        "queued_at: 2026-07-18T23:21:34Z",
+        "repo_url: https://github.com/sunpole/udream",
+        "web_url: https://sunpole.github.io/udream/",
+        "image: 2026-07-18-udream-v3-1-0-repository-order.jpg",
+        "---",
+        "# uDream 3.5.0: завершён этап M4",
+        "Локализация и построение интерфейсных карточек вынесены из основного сценария в отдельные ES-модули без фреймворка и сборки.",
+        "- Единый RU/EN-словарь теперь отвечает за подписи, сообщения, sharing и справку.",
+        "- Карточки, списки, история, теги, автодополнение и статистика строятся чистыми функциями.",
+        "- Данные из вручную выбранного JSON безопасно экранируются в тексте и HTML-атрибутах.",
+        "- Заметки больше не исполняют HTML или Markdown из импортируемого файла; ненужная зависимость Marked удалена.",
+        "- Справка больше не обещает непроверенный offline reload и не утверждает, что переключение языка переводит записи базы.",
+        "- Добавлены проверки враждебного JSON и локализации; всего выполняется 34 автоматических теста.",
+        "Активная база из 4 086 записей, сохранённая версия v3.0.0 и архив проекта не изменялись."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-20-udream-v23-8-0-pwa-update.md",
+      "bytes": 3466,
+      "sha256": "7072d59638c0b10047055bc131edf73df390b39ba73b538b0713bb428df77086",
+      "firstInformativeLines": [
+        "---",
+        "type: feature",
+        "project: uDream",
+        "series: udream",
+        "title: PWA автоматически получает новую версию и предлагает установку",
+        "version: 23.8.0",
+        "queued_at: 2026-07-20T17:45:27Z",
+        "repo_url: https://github.com/sunpole/udream",
+        "web_url: https://sunpole.github.io/udream/",
+        "image: 2026-07-20-udream-v23-8-0-pwa-update.png",
+        "---",
+        "# uDream 23.8.0: обновление PWA и установка с сайта",
+        "Исправлена ситуация, при которой сайт и установленное приложение могли продолжать показывать старую версию из кэша, хотя на GitHub Pages уже была опубликована новая версия.",
+        "- Service Worker теперь сразу активирует обновление через `skipWaiting()` и `clients.claim()`.",
+        "- Старые кэши удаляются только внутри семейства `udream-*`, не затрагивая другие проекты на том же домене.",
+        "- HTML, JavaScript, манифест и JSON получают стратегию «сначала сеть, затем кэш».",
+        "- Добавлен независимый `version.json`, который запрашивается без браузерного кэша.",
+        "- При обнаружении несовпадения версий приложение запрашивает обновление и выполняет защищённую однократную перезагрузку.",
+        "- При переходе со старого Service Worker открытая страница переводится на актуальную версию.",
+        "- На сайте появляется заметный баннер установки PWA."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-20-udream-v3-6-2-data-classification.md",
+      "bytes": 1827,
+      "sha256": "077d599e82e8f83a440d6e1368a720413f1005ddd1406edb4881bf88da2a682b",
+      "firstInformativeLines": [
+        "---",
+        "type: docs",
+        "project: uDream",
+        "series: udream",
+        "title: Классификация файлов базы данных",
+        "version: 3.6.2",
+        "queued_at: 2026-07-20T14:53:43Z",
+        "repo_url: https://github.com/sunpole/udream",
+        "web_url: https://sunpole.github.io/udream/",
+        "image: 2026-07-18-udream-v3-1-0-repository-order.jpg",
+        "---",
+        "# uDream 3.6.2: файлы базы данных классифицированы",
+        "Проведён безопасный аудит четырёх файлов в каталоге `data/`.",
+        "- `divinity_code_ru.json` подтверждён как активная база приложения из 4 086 записей.",
+        "- `bd2.json` классифицирован как сохранённый английский набор данных.",
+        "- `db.json` является точным побайтовым дубликатом `bd2.json`.",
+        "- `report.txt` является историческим отчётом генерации и проверки качества.",
+        "- Неактивные файлы не используются текущим приложением.",
+        "- Никакие базы, записи, идентификаторы и исторические материалы не изменялись и не удалялись.",
+        "- Точный процесс генерации и перевода активной базы остаётся следующей задачей."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-21-udream-v23-8-3-unified-documentation.md",
+      "bytes": 3365,
+      "sha256": "bbcc50f071d80059479b82312e1a4b36c3c37356dc179b9e2c9457292232836a",
+      "firstInformativeLines": [
+        "---",
+        "type: docs",
+        "project: uDream",
+        "series: udream",
+        "title: Видение, документация и следующий этап uDream объединены",
+        "version: 23.8.3",
+        "queued_at: 2026-07-21T04:23:36Z",
+        "repo_url: https://github.com/sunpole/udream",
+        "web_url: https://sunpole.github.io/udream/",
+        "image: 2026-07-18-udream-v3-1-0-repository-order.jpg",
+        "---",
+        "# uDream 23.8.3: единое видение и готовность к следующему этапу",
+        "Документация uDream приведена к единой системе перед началом следующей функциональной серии.",
+        "- Добавлен `docs/PRODUCT_VISION.md` с миссией, конечным образом продукта и текущими границами.",
+        "- Зафиксировано, что исходные базы, редакции и варианты перевода нельзя молча перезаписывать или удалять.",
+        "- Новый перевод должен сохраняться как отдельная версия, а объединённый поиск обязан сохранять происхождение каждой записи.",
+        "- Все поддерживаемые документы синхронизированы с текущим релизом приложения `v23.8.0`.",
+        "- Архитектура описывает `version.json`, автоматическое обновление PWA и установочный сценарий.",
+        "- План M1–M5 отмечен полностью завершённым.",
+        "- ROADMAP разделён на завершённое, следующий утверждённый этап и более поздний backlog."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/news/2026-07-21-udream-v23-8-4-translation-plan-readme.md",
+      "bytes": 3133,
+      "sha256": "3390b59d4c482aa63cd78aed2c625efbc4407dffada21ca2dd8c0b21b58cb489",
+      "firstInformativeLines": [
+        "---",
+        "type: docs",
+        "project: uDream",
+        "series: udream",
+        "title: План переводов и страница репозитория обновлены",
+        "version: 23.8.4",
+        "queued_at: 2026-07-21T05:10:00Z",
+        "repo_url: https://github.com/sunpole/udream",
+        "web_url: https://sunpole.github.io/udream/",
+        "image: 2026-07-18-udream-v3-1-0-repository-order.jpg",
+        "---",
+        "# uDream 23.8.4: варианты перевода, безопасный API-workflow и обновлённый README",
+        "Документация уточняет будущую структуру данных и делает публичную страницу репозитория удобнее.",
+        "- Целевая модель включает одну каноническую исходную базу, один текущий русский перевод и до двух действительно самостоятельных альтернативных переводов.",
+        "- Точные дубликаты больше не считаются отдельными вариантами: D1 должен выбрать канонический файл и подготовить обратимую миграцию до удаления лишней физической копии.",
+        "- Если качественно получается только один русский перевод, проект оставляет один перевод вместо искусственного создания вариантов.",
+        "- Добавлен отдельный документ `docs/TRANSLATION_WORKFLOW.md`.",
+        "- DeepSeek рассматривается только как вспомогательный генератор отдельного кандидата перевода.",
+        "- Ключ API запрещено помещать в сайт, PWA, Git, JSON, логи и патчноуты; допускается локальная переменная окружения или GitHub encrypted secret.",
+        "- Каждый AI-assisted запуск должен сохранять исходный hash, модель, версию prompt, выходной hash, отчёт проверки и статус человеческой проверки."
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/script.js",
+      "bytes": 31459,
+      "sha256": "0469140259a61b23db66c76141954566ab85ded461f434d6058694433b7f043a",
+      "firstInformativeLines": [
+        "import { registerServiceWorkerOnLoad } from \"./src/pwa.js\";",
+        "import { loadFirstAvailableDatabase, parseDatabaseText } from \"./src/data.js\";",
+        "import {",
+        "appendFullHistory,",
+        "appendNavigationHistory,",
+        "getBreadcrumbWindow,",
+        "groupFullHistoryByDay,",
+        "moveNavigationHistory",
+        "} from \"./src/history.js\";",
+        "import {",
+        "findDirectSearchResult,",
+        "rankAutocompleteResults,",
+        "rankSearchResults",
+        "} from \"./src/search.js\";",
+        "import { createInitialState } from \"./src/state.js\";",
+        "import { APP_TITLE, APP_VERSION_LABEL } from \"./src/version.js\";",
+        "import {",
+        "getInstructionHtml,",
+        "isTrustedHtmlTranslation,",
+        "normalizeLanguage,"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/scripts/validate-project.mjs",
+      "bytes": 10252,
+      "sha256": "16e7f074030bf07b010a9dcecf21584bc81d3e7b8875a006317b7314cf9ae37a",
+      "firstInformativeLines": [
+        "#!/usr/bin/env node",
+        "import { access, readFile, readdir } from \"node:fs/promises\";",
+        "import path from \"node:path\";",
+        "import process from \"node:process\";",
+        "import { validateScreenshotTooling } from \"./validate-screenshot-tooling.mjs\";",
+        "const ROOT = process.cwd();",
+        "const EXPECTED_ACTIVE_RECORDS = 4086;",
+        "const SCREENSHOT_METADATA_VERSION = [23, 8, 6];",
+        "function fail(message) {",
+        "throw new Error(message);",
+        "}",
+        "async function requireFile(relativePath) {",
+        "await access(path.join(ROOT, relativePath));",
+        "}",
+        "async function readJson(relativePath) {",
+        "const source = await readFile(path.join(ROOT, relativePath), \"utf8\");",
+        "try {",
+        "return JSON.parse(source);",
+        "} catch (error) {",
+        "fail(`${relativePath}: invalid JSON (${error.message})`);"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/src/data.js",
+      "bytes": 1772,
+      "sha256": "62434d63dee13a1bd54f4c48995a650e4a5ddb2466c074f8b6830d1a9df4f5c1",
+      "firstInformativeLines": [
+        "// @ts-check",
+        "export const DEFAULT_DATABASE_PATHS = [",
+        "\"/udream/data/divinity_code_ru.json\",",
+        "\"data/divinity_code_ru.json\",",
+        "\"../data/divinity_code_ru.json\",",
+        "];",
+        "/**",
+        "* @typedef {Object} LoadedDatabase",
+        "* @property {unknown[]} records",
+        "* @property {string} name",
+        "* @property {string} source",
+        "*/",
+        "/**",
+        "* Preserve the current runtime contract: a database is usable when it is a",
+        "* non-empty JSON array. Detailed record validation remains a repository check.",
+        "*",
+        "* @param {unknown} value",
+        "* @returns {value is unknown[]}",
+        "*/",
+        "export function isUsableDatabase(value) {"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/src/i18n.js",
+      "bytes": 11031,
+      "sha256": "a23c9a7e0ea932016adc07ccdc09b3267bf4a367bade723b7a6b6aa5560aaf52",
+      "firstInformativeLines": [
+        "// @ts-check",
+        "const DEFAULT_LANGUAGE = \"ru\";",
+        "/** @type {Record<string, Record<string, string>>} */",
+        "const messages = {",
+        "ru: {",
+        "closeMenu: \"✕ Закрыть меню\", clearHistory: \"🗑 Очистить историю\", latin: \"Латиница\",",
+        "cyrillic: \"Кириллица\", digits: \"Цифры и Color\", breadcrumbsSwitch: \"Хлебные крошки и стрелки\",",
+        "tagsCloudSwitch: \"Облако тегов\", historyBlockSwitch: \"История просмотров\",",
+        "selectionSwitch: \"Выделение текста\", scrollbarSwitch: \"Широкий скроллбар\",",
+        "versions: \"🕘 Версии сайта\", openVersions: \"Открыть сохранённые версии\", books: \"📚 Книги\",",
+        "booksNotice: \"Все данные взяты из этих книг. Книги в свободном доступе, также доступны в проекте для просмотра и скачивания.\",",
+        "contacts: \"📞 Контакты\", church: \"Церковь Family of God\",",
+        "thanks: \"Благодарность Супруге — за вдохновение.<br>Я часть Церкви «Семья Божья», г. Минск.<br>Живите с миром.\",",
+        "searchPlaceholder: \"Найти символ, алиас или тег...\", searchBtn: \"Найти\", optSymbol: \"📖 Название\",",
+        "optAliases: \"🏷️ Алиасы\", optDesc: \"📄 Описание\", optTags: \"🔖 Теги\", optAll: \"🔍 Везде\",",
+        "back: \"Назад\", forward: \"Вперёд\", showAll: \"📖 Показать все\",",
+        "statsLine1: \"📁 База: {name}\", statsLine2: \"📊 Записей: {count}\", statsLine3: \"📦 Вес: {size}\",",
+        "statsLine4: \"📄 Символов: {chars}\", dbNotLoaded: \"База не загружена\", loading: \"Загрузка базы...\",",
+        "empty: \"База пуста. Загрузите JSON-файл.\", notFound: \"😕 Ничего не найдено\",",
+        "enterQuery: \"Введите слово для поиска\", tagFound: \"🔍 Найдено {count} символов с тегом \\\"{tag}\\\":\","
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/src/presentation.js",
+      "bytes": 7754,
+      "sha256": "1f512627f3b55c970cb86a3a361ea3c259fdc4243aa26cb7508c43bd55563f64",
+      "firstInformativeLines": [
+        "// @ts-check",
+        "import { translate } from \"./i18n.js\";",
+        "/** @param {unknown} value */",
+        "export function escapeHtml(value) {",
+        "return String(value ?? \"\").replace(/[&<>\"']/g, (character) => ({",
+        "\"&\": \"&amp;\", \"<\": \"&lt;\", \">\": \"&gt;\", '\"': \"&quot;\", \"'\": \"&#39;\",",
+        "})[character]);",
+        "}",
+        "/** @param {unknown} value */",
+        "export function formatDescription(value) {",
+        "const text = String(value ?? \"\");",
+        "const pattern = /\\b[A-Za-z0-9_]{1,4}\\b/g;",
+        "let html = \"\";",
+        "let index = 0;",
+        "for (const match of text.matchAll(pattern)) {",
+        "const position = match.index ?? 0;",
+        "html += escapeHtml(text.slice(index, position));",
+        "html += `<span style=\"white-space:nowrap;\">${escapeHtml(match[0])}</span>`;",
+        "index = position + match[0].length;",
+        "}"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/src/state.js",
+      "bytes": 1446,
+      "sha256": "34593ac3c30a848dedbc116ea2d0310c3dfa2630a756000e0fb75a06f2454fba",
+      "firstInformativeLines": [
+        "// @ts-check",
+        "import { normalizeFullHistory } from \"./history.js\";",
+        "import { normalizeLanguage } from \"./i18n.js\";",
+        "import { readBoolean, readJson, readString } from \"./storage.js\";",
+        "/**",
+        "* @typedef {{ getItem(key: string): string | null }} StorageReader",
+        "*/",
+        "/**",
+        "* Build the initial browser state without owning later UI mutations.",
+        "* Persistence updates remain in script.js until the dedicated M3 step.",
+        "*",
+        "* @param {StorageReader} storage",
+        "*/",
+        "export function createInitialState(storage) {",
+        "return {",
+        "db: [],",
+        "currentMode: \"all\",",
+        "theme: readString(storage, \"clientTheme\", \"light\"),",
+        "lang: normalizeLanguage(readString(storage, \"clientLang\", \"ru\")),",
+        "historyStack: [],"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/sw.js",
+      "bytes": 3659,
+      "sha256": "1adb62e14a35fb24edab7612c10e3b02d8f5d52ea564dbfd8a8f05982fe5d8e9",
+      "firstInformativeLines": [
+        "const APP_VERSION = \"23.8.0\";",
+        "const CACHE_PREFIX = \"udream-\";",
+        "const CACHE_NAME = `${CACHE_PREFIX}v${APP_VERSION}-runtime`;",
+        "const VERSION_PATH = \"/udream/version.json\";",
+        "const FALLBACK_PAGE = \"/udream/index.html\";",
+        "const APP_SHELL = [",
+        "\"/udream/\",",
+        "FALLBACK_PAGE,",
+        "\"/udream/script.js\",",
+        "\"/udream/src/search.js\",",
+        "\"/udream/src/version.js\",",
+        "\"/udream/src/data.js\",",
+        "\"/udream/src/history.js\",",
+        "\"/udream/src/i18n.js\",",
+        "\"/udream/src/presentation.js\",",
+        "\"/udream/src/pwa.js\",",
+        "\"/udream/src/state.js\",",
+        "\"/udream/src/storage.js\",",
+        "\"/udream/manifest.json\",",
+        "\"/udream/favicon.svg\","
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/tests/i18n.test.js",
+      "bytes": 1397,
+      "sha256": "a52abde510b24c9f024fc35888daa7ed70ef2c95b473dda2e406b8225a5ef70a",
+      "firstInformativeLines": [
+        "import test from \"node:test\";",
+        "import assert from \"node:assert/strict\";",
+        "import {",
+        "getInstructionHtml,",
+        "isTrustedHtmlTranslation,",
+        "normalizeLanguage,",
+        "translate,",
+        "} from \"../src/i18n.js\";",
+        "test(\"language normalization accepts only supported values\", () => {",
+        "assert.equal(normalizeLanguage(\"en\"), \"en\");",
+        "assert.equal(normalizeLanguage(\"ru\"), \"ru\");",
+        "assert.equal(normalizeLanguage(\"EN\"), \"ru\");",
+        "assert.equal(normalizeLanguage(null), \"ru\");",
+        "});",
+        "test(\"translations interpolate every placeholder occurrence and fall back safely\", () => {",
+        "assert.equal(translate(\"en\", \"matches\", { count: 2 }), \"Matches: 2\");",
+        "assert.equal(translate(\"broken\", \"searchBtn\"), \"Найти\");",
+        "assert.equal(translate(\"en\", \"missing-key\"), \"missing-key\");",
+        "});",
+        "test(\"only reviewed translations are allowed to contain trusted HTML\", () => {"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/tests/state.test.js",
+      "bytes": 1940,
+      "sha256": "3df82bb245070b48c7d0fdbb4a2a432b56b6f90faf55b1a29e3d3b0aaeb9748d",
+      "firstInformativeLines": [
+        "import test from \"node:test\";",
+        "import assert from \"node:assert/strict\";",
+        "import { createInitialState } from \"../src/state.js\";",
+        "function storageFrom(values = {}) {",
+        "return {",
+        "getItem(key) {",
+        "return Object.hasOwn(values, key) ? values[key] : null;",
+        "},",
+        "};",
+        "}",
+        "test(\"initial state keeps current defaults\", () => {",
+        "const state = createInitialState(storageFrom());",
+        "assert.deepEqual(state.db, []);",
+        "assert.equal(state.currentMode, \"all\");",
+        "assert.equal(state.theme, \"light\");",
+        "assert.equal(state.lang, \"ru\");",
+        "assert.equal(state.currentDbName, \"divinity_code_ru.json\");",
+        "assert.equal(state.showBreadcrumbs, true);",
+        "assert.equal(state.showLatin, false);",
+        "assert.deepEqual(state.fullHistory, []);"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/versions/v3.0.0/script.js",
+      "bytes": 49275,
+      "sha256": "dc595f54ca8a28b2a9660c704e859a54164a62bfe59e3e77cc1940e5ec8b7772",
+      "firstInformativeLines": [
+        "(function(){",
+        "// ---------- СОСТОЯНИЕ ----------",
+        "let db = [];",
+        "let currentMode = \"symbol\";",
+        "let theme = localStorage.getItem(\"clientTheme\") || \"light\";",
+        "let lang = localStorage.getItem(\"clientLang\") || \"ru\";",
+        "let historyStack = [];",
+        "let historyIndex = -1;",
+        "let lastDisplayedRecord = null;",
+        "let dbLoaded = false;",
+        "// let currentDbName = \"bd2.json\";",
+        "let currentDbName = \"divinity_code_ru.json\";",
+        "let fullHistory = JSON.parse(localStorage.getItem(\"fullHistory\") || \"[]\");",
+        "// настройки видимости (по умолчанию включены только хлебные крошки)",
+        "let showLatin = localStorage.getItem(\"showLatin\") === \"true\";",
+        "let showCyrillic = localStorage.getItem(\"showCyrillic\") === \"true\";",
+        "let showDigits = localStorage.getItem(\"showDigits\") === \"true\";",
+        "let showBreadcrumbs = localStorage.getItem(\"showBreadcrumbs\") !== \"false\"; // true по умолчанию",
+        "let showTagsCloud = localStorage.getItem(\"showTagsCloud\") === \"true\";",
+        "let showHistoryBlock = localStorage.getItem(\"showHistoryBlock\") === \"true\";"
+      ]
+    },
+    {
+      "path": "/home/runner/work/udream/udream/versions/v3.0.0/sw.js",
+      "bytes": 753,
+      "sha256": "a46d394ef4d3505325d0112d210ffe40ee9d4454ef381132855dc49bfbd4c07c",
+      "firstInformativeLines": [
+        "const CACHE_NAME = 'udream-v3.0.0-snapshot';",
+        "const urlsToCache = [",
+        "'./',",
+        "'./index.html',",
+        "'./script.js',",
+        "'./manifest.json',",
+        "'./favicon.svg',",
+        "'./icon-192.png',",
+        "'./icon-512.png',",
+        "'./apple-touch-icon.png',",
+        "'./data/divinity_code_ru.json'",
+        "];",
+        "self.addEventListener('install', event => {",
+        "event.waitUntil(",
+        "caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))",
+        ");",
+        "});",
+        "self.addEventListener('fetch', event => {",
+        "event.respondWith(",
+        "caches.match(event.request).then(response => response || fetch(event.request))"
+      ]
+    }
+  ]
+}
