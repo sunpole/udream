@@ -61,5 +61,7 @@ jobs:
           node --check versions/v3.0.0/sw.js
           node --check scripts/validate-project.mjs
           node --check scripts/validate-patchnote-diff.mjs
+          node --check scripts/validate-screenshot-tooling.mjs
           node --check tools/screenshots/playwright.config.mjs
+          node --check tools/screenshots/prepare-artifacts.mjs
           node --check tools/screenshots/capture.spec.mjs
