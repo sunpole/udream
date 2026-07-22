@@ -1,0 +1,39 @@
+{
+  "id": "search-water-desktop",
+  "title": "Water is ranked first in desktop autocomplete",
+  "path": "/",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "actions": [
+    {
+      "type": "fill",
+      "selector": "#searchInput",
+      "value": "water"
+    },
+    {
+      "type": "waitFor",
+      "selector": ".autocomplete-list.show",
+      "state": "visible"
+    },
+    {
+      "type": "assertCountAtLeast",
+      "selector": ".autocomplete-list.show .autocomplete-item",
+      "count": 3
+    },
+    {
+      "type": "assertFirstText",
+      "selector": ".autocomplete-list.show .autocomplete-item",
+      "text": "water",
+      "ignoreCase": true
+    },
+    {
+      "type": "assertVisible",
+      "selector": "[data-opt=\"all\"].active"
+    }
+  ],
+  "screenshot": {
+    "fullPage": false
+  }
+}
