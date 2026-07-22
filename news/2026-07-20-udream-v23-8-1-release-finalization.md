@@ -8,6 +8,12 @@ queued_at: 2026-07-20T18:35:00Z
 repo_url: https://github.com/sunpole/udream
 web_url: https://sunpole.github.io/udream/
 image: 2026-07-20-udream-v23-8-1-release-finalization.png
+image_source: document-render
+image_target: GitHub Release API · v23.8.0@24dece593bea679485057d7551a2583f7f1f5acf
+image_commit: 24dece593bea679485057d7551a2583f7f1f5acf
+image_captured_at: 2026-07-22T10:41:52Z
+publication_repair: unpublished-invalid-image
+publication_repair_reason: replace the unpublished PNG whose PLTE chunk had an invalid CRC and could not be decoded by Telegram
 ---
 
 # uDream 23.8.1: финальная фиксация релиза v23.8.0
@@ -23,7 +29,9 @@ image: 2026-07-20-udream-v23-8-1-release-finalization.png
 - В описание релиза включены основные изменения, точный commit и способ отката.
 - Код приложения и активная база из 4 086 записей в этом документационном обновлении не изменяются.
 
-Изображение показывает цепочку фиксации: точный commit в `main` → неизменяемый Git tag → GitHub Release и точка отката.
+Изображение — новый документальный рендер фактических метаданных GitHub Release `v23.8.0`: название, тег, дата публикации, ссылка и точный commit точки восстановления. SVG-источник и provenance сохранены в `tools/screenshots/publication-repairs/`.
+
+Публикационный ремонт выполнен до первого Telegram-поста. Прежний PNG имел неверный CRC chunk `PLTE`, поэтому `pngcheck`, ImageMagick и Telegram не могли его декодировать. FIFO-идентичность патчноута сохранена, дублирующая публикация не создаётся.
 
 Короткий текст для Telegram:
 
