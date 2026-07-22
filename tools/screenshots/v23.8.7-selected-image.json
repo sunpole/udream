@@ -1,0 +1,18 @@
+{
+  "id": "russian-alias-mobile",
+  "title": "Russian alias opens the primary Water card on mobile",
+  "file": "images/russian-alias-mobile.png",
+  "commit": "d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47",
+  "capturedAt": "2026-07-22T08:22:53Z",
+  "pageUrl": "http://127.0.0.1:8019/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "width": 390,
+  "height": 844,
+  "bytes": 108002,
+  "screenshot": {
+    "fullPage": false
+  }
+}
