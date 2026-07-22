@@ -253,9 +253,14 @@ async function validatePatchnotes() {
     }
     if (secretRisk.test(source)) fail(`${name}: secret-like text detected`);
 
-    await validatePatchnoteImage(name, frontMatter);
+    const requiresScreenshotMetadata = versionAtLeast(
+      frontMatter.version,
+      SCREENSHOT_METADATA_VERSION,
+    );
 
-    if (versionAtLeast(frontMatter.version, SCREENSHOT_METADATA_VERSION)) {
+    if (requiresScreenshotMetadata) {
+      await validatePatchnoteImage(name, frontMatter);
+
       for (const field of screenshotFields) {
         if (!frontMatter[field]) {
           fail(`${name}: missing required screenshot field ${field}`);
@@ -270,6 +275,11 @@ async function validatePatchnotes() {
       if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(frontMatter.image_captured_at)) {
         fail(`${name}: image_captured_at must use YYYY-MM-DDTHH:MM:SSZ`);
       }
+    } else {
+      // Historical patchnotes remain immutable. Confirm their declared asset
+      // still exists, but apply the stricter signature/provenance contract
+      // only to patchnotes created under version 23.8.6 or newer.
+      await requireFile(path.posix.join("news", frontMatter.image));
     }
   }
   return names.length;
