@@ -1,0 +1,1335 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-22T08:52:03Z",
+  "files": {
+    "ru": {
+      "path": "data/divinity_code_ru.json",
+      "bytes": 4688773,
+      "sha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+      "records": 4086,
+      "ids": 4086
+    },
+    "bd2": {
+      "path": "data/bd2.json",
+      "bytes": 2141655,
+      "sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+      "records": 4086,
+      "ids": 4086
+    },
+    "db": {
+      "path": "data/db.json",
+      "bytes": 2204553,
+      "sha256": "4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0",
+      "records": 4086,
+      "ids": 4086
+    }
+  },
+  "fields": [
+    "aliases",
+    "date_added",
+    "description",
+    "id",
+    "notes",
+    "source",
+    "symbol",
+    "tags"
+  ],
+  "idSetsEqual": true,
+  "pairComparisons": {
+    "bd2__db": {
+      "left": "bd2",
+      "right": "db",
+      "sharedIds": 4086,
+      "leftOnlyIds": [],
+      "rightOnlyIds": [],
+      "exactRecords": 4086,
+      "differentRecords": 0,
+      "fieldDifferenceCounts": {},
+      "examples": []
+    },
+    "bd2__ru": {
+      "left": "bd2",
+      "right": "ru",
+      "sharedIds": 4086,
+      "leftOnlyIds": [],
+      "rightOnlyIds": [],
+      "exactRecords": 0,
+      "differentRecords": 4086,
+      "fieldDifferenceCounts": {
+        "aliases": 4083,
+        "notes": 4086,
+        "tags": 4086
+      },
+      "examples": [
+        {
+          "id": 1,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) Prov. 6:6-8;",
+            "tags": []
+          },
+          "right": {
+            "aliases": [
+              "трубкозуб"
+            ],
+            "notes": "Scripture references: (1) Prov. 6:6-8; [GOOGLE] (1) Муравьед (разрушитель прилежных); (2) Нуси. (1) Пров. 6:6-8; (2) Как физический атрибут. [MYMEMORY] (1) Муравьед (разрушитель прилежных);(2) Нуси.(1) Пров.6:6-8;(2) Как физический атрибут.",
+            "tags": [
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "bigfoot"
+            ],
+            "notes": "Also see Bigfoot. Scripture references: (1) Exod. 1:22;",
+            "tags": [
+              "cross-reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "bigfoot",
+              "отвратительный снежный человек"
+            ],
+            "notes": "Also see Bigfoot. Scripture references: (1) Exod. 1:22; [GOOGLE] (1) Оскорбление (ужасный бессердечный человек). Также см. Снежный человек. (1) Исх. 1:22; 7:14. [MYMEMORY] (1) Оскорбление (ужасный бессердечный человек).Также см. Снежный человек.(1) Исх.1:22;7:14.",
+            "tags": [
+              "cross-reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "black man",
+              "first nations peoples",
+              "foreigner",
+              "native/s"
+            ],
+            "notes": "See Black Man, First Nations Peoples, Foreigner, and Native/s.",
+            "tags": [
+              "colors",
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "black man",
+              "first nations peoples",
+              "foreigner",
+              "native/s",
+              "абориген/ы"
+            ],
+            "notes": "See Black Man, First Nations Peoples, Foreigner, and Native/s. [GOOGLE] См. «Черный человек», «Первые народы», «Иностранец» и «Коренные жители».",
+            "tags": [
+              "colors",
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "birth",
+              "child"
+            ],
+            "notes": "Also see Birth and Child. Scripture references: (1) Exod. 1:16; Matt. 2:16; Rev. 12:4.",
+            "tags": [
+              "family",
+              "warning",
+              "cross-reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "birth",
+              "child",
+              "аборт"
+            ],
+            "notes": "Also see Birth and Child. Scripture references: (1) Exod. 1:16; Matt. 2:16; Rev. 12:4. [GOOGLE] (1) Предупреждение о попытке убить обетование (дух Ирода); (2) Фактический аборт. Также см. Рождение и дитя. (1) Исх. 1:16; Мэтт. 2:16; Откр. 12:4. [MYMEMORY] (1) Предупреждение о попытке убить обетование (дух Ирода);(2) Фактический аборт.Также см. Рождение и дитя.(1) Исх.1:16;Мэтт.2:16;Откр. 12:4.",
+            "tags": [
+              "family",
+              "warning",
+              "cross-reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "under",
+              "underwater"
+            ],
+            "notes": "Also see Under and Underwater. Scripture references: (1-2) Exod. 20:4; Deut. 4:39; Josh. 2:11; John 8:23; Acts 2:19; (3) Job 11:8; Ps. 139:8; Amos 9:2; Matt. 11:23; (4) Eph. 1:22; (5) Deut. 28:13; (6) Gen. 49:25; (7) Deut. 28:13.",
+            "tags": [
+              "body",
+              "directions",
+              "heaven",
+              "death",
+              "work",
+              "nature",
+              "cross-reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "under",
+              "underwater",
+              "выше и ниже"
+            ],
+            "notes": "Also see Under and Underwater. Scripture references: (1-2) Exod. 20:4; Deut. 4:39; Josh. 2:11; John 8:23; Acts 2:19; (3) Job 11:8; Ps. 139:8; Amos 9:2; Matt. 11:23; (4) Eph. 1:22; (5) Deut. 28:13; (6) Gen. 49:25; (7) Deut. 28:13. [GOOGLE] (1) Небо и земля; (2) Духовное и земное (мирское); (3) Рай и ад; (4) Голова и ноги; (5) Голова и хвост; (6) Небеса и Бездна; (7) Победоносные и побежденные. Также см. «Под водой» и «Под водой». (1-2) Исх. 20:4; Втор. 4:39; 5:8; 28:23; Джош. 2:11; Иоанна 8:23; Деяния 2:19; (3) Иов 11:8; Пс. 139:8; Амос 9:2; Мэтт. 11:23; (4) Еф. 1:22; (5) Втор. 28:13; (6) Быт. 49:25; (7) Втор. 28:13. [MYMEMORY] (1) Небо и земля;(2) Духовное и земное (мирское);(3) Рай и ад;(4) Голова и ноги;(5) Голова и хвост;(6) Небеса и Бездна;(7) Победоносные и побежденные.Также см. «Под водой» и «Под водой».(1-2) Исх.20:4;Втор.4:39;5:8;28:23;Джош.2:11;Иоанна 8:23;Деяния 2:19;(3) Иов 11:8;Пс.139:8;Амос 9:2;Мэтт.11:23;(4) Еф.1:22;(5) Втор.28:13;(6) Быт. 49:25;(7) Втор.28:13.",
+            "tags": [
+              "body",
+              "directions",
+              "heaven",
+              "death",
+              "work",
+              "nature",
+              "cross-reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 6,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) John 6:63; Rom. 8:11; 1 Cor. 15:45; (2) 1 Sam. 20:38; 2 Sam. 15:14; (3) Rev. 3:8.",
+            "tags": [
+              "holy-spirit"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "педаль акселератора"
+            ],
+            "notes": "Scripture references: (1) John 6:63; Rom. 8:11; 1 Cor. 15:45; (2) 1 Sam. 20:38; 2 Sam. 15:14; (3) Rev. 3:8. [GOOGLE] (1) Необходимо войти в Дух (оживиться); (2) Необходимость ускориться; (3) Дерзайте! (1) Иоанна 6:63; ПЗУ. 8:11; 1 Кор. 15:45; (2) 1 Сэм. 20:38; 2 Сэм. 15:14; (3) Откр. 3:8. [MYMEMORY] (1) Необходимо войти в Дух (оживиться);(2) Необходимость ускориться;(3) Дерзайте!(1) Иоанна 6:63;ПЗУ.8:11;1 Кор.15:45;(2) 1 Сэм.20:38;2 Сэм.15:14;(3) Откр. 3:8.",
+            "tags": [
+              "holy-spirit",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 7,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) Ps. 64:3; Prov. 25:18; (2-3) Acts 8:23; Heb. 12:15.",
+            "tags": [
+              "sin",
+              "communication"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "кислота"
+            ],
+            "notes": "Scripture references: (1) Ps. 64:3; Prov. 25:18; (2-3) Acts 8:23; Heb. 12:15. [GOOGLE] (1) Резкие или разъедающие слова; (2) Горький; (3) Месть (как при совершении преступления). (1) Пс. 64:3; Пров. 25:18; (2-3) Деяния 8:23; Евр. 12:15. [MYMEMORY] (1) Резкие или разъедающие слова;(2) Горький;(3) Месть (как при совершении преступления).(1) Пс.64:3;Пров.25:18;(2-3) Деяния 8:23;Евр.12:15.",
+            "tags": [
+              "sin",
+              "communication",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 8,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "seed"
+            ],
+            "notes": "See Seed.",
+            "tags": [
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "seed",
+              "желудь"
+            ],
+            "notes": "See Seed. [GOOGLE] См. Семя.",
+            "tags": [
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 9,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "directions",
+              "individual movement"
+            ],
+            "notes": "See Individual Movement and Directions.",
+            "tags": [
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "directions",
+              "individual movement",
+              "действия"
+            ],
+            "notes": "See Individual Movement and Directions. [GOOGLE] См. Индивидуальное движение и направления.",
+            "tags": [
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 10,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "snake"
+            ],
+            "notes": "See Snake.",
+            "tags": [
+              "animals",
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "snake",
+              "сумматор"
+            ],
+            "notes": "See Snake. [GOOGLE] См. Змею.",
+            "tags": [
+              "animals",
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 11,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) 2 Pet. 1:5; (2) Gen. 50:20 (Joseph’s name means “adding”)",
+            "tags": [
+              "life"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "добавление"
+            ],
+            "notes": "Scripture references: (1) 2 Pet. 1:5; (2) Gen. 50:20 (Joseph’s name means “adding”) [GOOGLE] (1) Духовный рост; (2) Спасения. (1) 2 Пет. 1:5; (2) Быт. 50:20 (имя Иосифа означает «прибавление»). [MYMEMORY] (1) Духовный рост;(2) Спасения.(1) 2 Пет.1:5;(2) Быт. 50:20 (имя Иосифа означает «прибавление»).",
+            "tags": [
+              "life",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 12,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "wearing"
+            ],
+            "notes": "See Wearing.",
+            "tags": [
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "wearing",
+              "украшать"
+            ],
+            "notes": "See Wearing. [GOOGLE] См. раздел «Ношение».",
+            "tags": [
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 13,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "boat",
+              "life raft",
+              "sea",
+              "ship"
+            ],
+            "notes": "Also see Boat, Life Raft, Sea, and Ship. Scripture references: (1) Prov. 29:18; 2 Pet. 2:17; Jude 1:12-13; (2) Isa. 2:3; Mark 6:34; (3) James 1:6; (4) Acts 1:4, 8; (5) Acts 27:15.",
+            "tags": [
+              "directions",
+              "life",
+              "authority",
+              "transport",
+              "places",
+              "nature",
+              "cross-reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "boat",
+              "life raft",
+              "sea",
+              "ship",
+              "дрейфовать по течению"
+            ],
+            "notes": "Also see Boat, Life Raft, Sea, and Ship. Scripture references: (1) Prov. 29:18; 2 Pet. 2:17; Jude 1:12-13; (2) Isa. 2:3; Mark 6:34; (3) James 1:6; (4) Acts 1:4, 8; (5) Acts 27:15. [GOOGLE] (1) Бесцельный; (2) Без направления; (3) Сомнение; (4) Нуждается во власти; (5) Движимый обстоятельствами/проблемами. Также см. Лодка, Спасательный плот, Море и Корабль. (1) Пров. 29:18; 2 Пет. 2:17; Иуды 1:12-13; (2) Ис. 2:3; Марка 6:34; (3) Иакова 1:6; (4) Деяния 1:4, 8; (5) Деяния 27:15. [MYMEMORY] (1) Бесцельный;(2) Без направления;(3) Сомнение;(4) Нуждается во власти;(5) Движимый обстоятельствами/проблемами.Также см. Лодка, Спасательный плот, Море и Корабль.(1) Пров.29:18;2 Пет.2:17;Иуды 1:12-13;(2) Ис.2:3;Марка 6:34;(3) Иакова 1:6;(4) Деяния 1:4, 8;(5) Деяния 27:15.",
+            "tags": [
+              "directions",
+              "life",
+              "authority",
+              "transport",
+              "places",
+              "nature",
+              "cross-reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 14,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "fornication",
+              "sex"
+            ],
+            "notes": "Also see Fornication and Sex. Scripture references: (1) Prov. 6:32; Matt. 5:28; (2) James 4:4; (3) Jer. 3:8-9, 7:9; Ezek. 16:31-32; Hos. 4:13; Rev. 2:22; (4) Prov. 6:32; (5) Prov. 7:23; (6) Exod. 20:14; Jer. 29:23; (7) Matt. 5:28; (8) Matt. 15:19; 2 Pet. 2:14; (9) Gal. 5:19.",
+            "tags": [
+              "body",
+              "family",
+              "church",
+              "prayer",
+              "sin",
+              "judgment",
+              "warning"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "fornication",
+              "sex",
+              "прелюбодеяние"
+            ],
+            "notes": "Also see Fornication and Sex. Scripture references: (1) Prov. 6:32; Matt. 5:28; (2) James 4:4; (3) Jer. 3:8-9, 7:9; Ezek. 16:31-32; Hos. 4:13; Rev. 2:22; (4) Prov. 6:32; (5) Prov. 7:23; (6) Exod. 20:14; Jer. 29:23; (7) Matt. 5:28; (8) Matt. 15:19; 2 Pet. 2:14; (9) Gal. 5:19. [GOOGLE] (1) Делиться своим сердцем с другим человеком, который не является вашим супругом; (2) Мирское; (3) Духовное прелюбодеяние (поклонение другим богам); (4) Отсутствие здравого смысла; (5) Ловушка или ловушка; (6) Буквальное прелюбодеяние; (7) Вопрос похоти; (8) Оплот сердца; (9) Работа плоти. Также см. Блуд и секс. (1) Пров. 6:32; Мэтт. 5:28; (2) Иакова 4:4; (3) Иер. 3:8-9, 7:9; Иезек. 16:31-32; Хос. 4:13; Откр. 2:22; (4) Пров. 6:32; (5) Пров. 7:23; (6) Исх. 20:14; Джер. 29:23; (7) Мэтт. 5:28; (8) Мэтт. 15:19; 2 Пет. 2:14; (9) Гал. 5:19. [MYMEMORY] (1) Делиться своим сердцем с другим человеком, который не является вашим супругом;(2) Мирское;(3) Духовное прелюбодеяние (поклонение другим богам);(4) Отсутствие здравого смысла;(5) Ловушка или ловушка;(6) Буквальное прелюбодеяние;(7) Вопрос похоти;(8) Оплот сердца;(9) Работа плоти.Также см. Блуд и секс.(1) Пров.6:32;Мэтт.5:28;(2) Иакова 4:4;(3) Иер.3:8-9, 7:9;Иезек.16:31-32;Хос.4:13;Откр. 2:22;(4) Пров.6:32;(5) Пров.7:23;(6) Исх.20:14;Джер.29:23;(7) Мэтт.5:28;(8) Мэтт.15:19;2 Пет.2:14;(9) Гал.5:19.",
+            "tags": [
+              "body",
+              "family",
+              "church",
+              "prayer",
+              "sin",
+              "judgment",
+              "warning",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 15,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) 1 Pet. 5:8; (2) Matt. 5:25; Luke 12:58; Phil. 1:28; (3) 1 Cor. 16:9; (4) Luke 13:14-17; (5) Acts 18:6 (KJV) 2 Tim. 2:25-26 (KJV) (6) John 16:33; 2 Pet. 2:20; 1 John 5:4-5.",
+            "tags": [
+              "sin",
+              "demonic",
+              "relationships"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "противник/и"
+            ],
+            "notes": "Scripture references: (1) 1 Pet. 5:8; (2) Matt. 5:25; Luke 12:58; Phil. 1:28; (3) 1 Cor. 16:9; (4) Luke 13:14-17; (5) Acts 18:6 (KJV) 2 Tim. 2:25-26 (KJV) (6) John 16:33; 2 Pet. 2:20; 1 John 5:4-5. [GOOGLE] (1) дьявол; (2) Человеческое противодействие; (3) духи-демоны; (4) Религиозные лидеры; (5) Я (плоть); (6) мир. (1) 1 Пет. 5:8; (2) Мэтт. 5:25; Луки 12:58; 18:3; 21:15–16; Фил. 1:28; (3) 1 Кор. 16:9; (4) Луки 13:14-17; (5) Деяния 18:6 (KJV); 2 Тим. 2:25-26 (KJV); (6) Иоанна 16:33; 2 Пет. 2:20; 1 Иоанна 5:4-5. [MYMEMORY] (1) дьявол;(2) Человеческое противодействие;(3) духи-демоны;(4) Религиозные лидеры;(5) Я (плоть);(6) мир.(1) 1 Пет.5:8;(2) Мэтт.5:25;Луки 12:58;18:3;21:15–16;Фил.1:28;(3) 1 Кор.16:9;(4) Луки 13:14-17;(5) Деяния 18:6 (KJV);2 Тим.2:25-26 (KJV);(6) Иоанна 16:33;2 Пет.2:20;1 Иоанна 5:4-5.",
+            "tags": [
+              "sin",
+              "demonic",
+              "relationships",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 16,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) Prov. 17:17; (2) 1 Sam. 10:19; 2 Chron. 15:6; Ps. 10:6; (3) Ps. 31:7; Prov. 24:10; (4) Heb. 13:3.",
+            "tags": []
+          },
+          "right": {
+            "aliases": [
+              "невзгоды"
+            ],
+            "notes": "Scripture references: (1) Prov. 17:17; (2) 1 Sam. 10:19; 2 Chron. 15:6; Ps. 10:6; (3) Ps. 31:7; Prov. 24:10; (4) Heb. 13:3. [GOOGLE] (1) Испытание/испытание; (2) Скорбь; (3) Проблемы; (4) Страдание. (1) Пров. 17:17; (2) 1 Сэм. 10:19; 2 Хрон. 15:6; Пс. 10:6; (3) Пс. 31:7; Пров. 24:10; (4) Евр. 13:3. [MYMEMORY] (1) Испытание/испытание;(2) Скорбь;(3) Проблемы;(4) Страдание.(1) Пров.17:17;(2) 1 Сэм.10:19;2 Хрон.15:6;Пс.10:6;(3) Пс.31:7;Пров.24:10;(4) Евр.13:3.",
+            "tags": [
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 17,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) John 14:26.",
+            "tags": [
+              "holy-spirit",
+              "wisdom"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "советник"
+            ],
+            "notes": "Scripture references: (1) John 14:26. [GOOGLE] (1) Святой Дух. (1) Иоанна 14:26. [MYMEMORY] (1) Святой Дух.(1) Иоанна 14:26.",
+            "tags": [
+              "holy-spirit",
+              "wisdom",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 18,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: John 14:16; (3-4) Heb. 7:25, 9:24; 1 John 2:1.",
+            "tags": [
+              "holy-spirit",
+              "jesus",
+              "numbers"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "защитник"
+            ],
+            "notes": "Scripture references: John 14:16; (3-4) Heb. 7:25, 9:24; 1 John 2:1. [GOOGLE] (1) Святой Дух; (2) Тот, кто идет рядом; (3) Иисус Христос; (4) Тот, кто говорит от имени другого/представительство; (5) Положительный свидетель. (1-2) «Помощник» Иоанна 14:16; (3-4) Евр. 7:25, 9:24; 1 Иоанна 2:1. [MYMEMORY] (1) Святой Дух;(2) Тот, кто идет рядом;(3) Иисус Христос;(4) Тот, кто говорит от имени другого/представительство;(5) Положительный свидетель.(1-2) «Помощник» Иоанна 14:16;(3-4) Евр.7:25, 9:24;1 Иоанна 2:1.",
+            "tags": [
+              "holy-spirit",
+              "jesus",
+              "numbers",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 19,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) Isa. 40:31; (2) Isa. 60:8-9; Ezek. 3:14; Acts 8:39; (3) Gal. 2:9; (4) Ps. 51:12; Rom. 8:2; 1 Cor. 2:12; 2 Cor. 3:17; (5) Eph. 6:12b & Mark 8:33; (6) Acts 8:39-40; (7) Mark 14:58.",
+            "tags": [
+              "holy-spirit",
+              "church",
+              "deliverance",
+              "transport"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "самолет"
+            ],
+            "notes": "Scripture references: (1) Isa. 40:31; (2) Isa. 60:8-9; Ezek. 3:14; Acts 8:39; (3) Gal. 2:9; (4) Ps. 51:12; Rom. 8:2; 1 Cor. 2:12; 2 Cor. 3:17; (5) Eph. 6:12b & Mark 8:33; (6) Acts 8:39-40; (7) Mark 14:58. [GOOGLE] (1) Новые высоты; (2) Духовное служение или церковь; (3) Высокопоставленное служение (или высокопоставленное служение); (4) Свобода в духе; (5) Искусственная имитация духовного/духовных вещей/церкови; (6) Путешествие; (7) Конструкция, созданная человеком. (1) Ис. 40:31; (2) Ис. 60:8-9; Иезек. 3:14; 83; 11:1, 24; Деяния 8:39; (3) Гал. 2:9; (4) Пс. 51:12; ПЗУ. 8:2; 1 Кор. 2:12; 2 Кор. 3:17; (5) Еф. 6:12б и Марка 8:33; (6) Деяния 8:39-40; (7) Марка 14:58. [MYMEMORY] (1) Новые высоты;(2) Духовное служение или церковь;(3) Высокопоставленное служение (или высокопоставленное служение);(4) Свобода в духе;(5) Искусственная имитация духовного/духовных вещей/церкови;(6) Путешествие;(7) Конструкция, созданная человеком.(1) Ис.40:31;(2) Ис.60:8-9;Иезек.3:14;83;11:1, 24;Деяния 8:39;(3) Гал.2:9;(4) Пс.51:12;ПЗУ.8:2;1 Кор.2:12;2 Кор.3:17;(5) Еф.6:12б и Марка 8:33;(6) Деяния 8:39-40;(7) Марка 14:58.",
+            "tags": [
+              "holy-spirit",
+              "church",
+              "deliverance",
+              "transport",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 20,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) 2 Sam. 1:4, 19; Rom. 11:12; (2) Isa. 14:12; (3) Luke 8:1;",
+            "tags": [
+              "heaven"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "посадка самолета"
+            ],
+            "notes": "Scripture references: (1) 2 Sam. 1:4, 19; Rom. 11:12; (2) Isa. 14:12; (3) Luke 8:1; [GOOGLE] (1) Духовное нисхождение; (2) С Небес; (3) Приезд в город. (1) 2 Сэм. 1:4, 19; ПЗУ. 11:12; (2) Ис. 14:12; (3) Луки 8:1; 10:38. [MYMEMORY] (1) Духовное нисхождение;(2) С Небес;(3) Приезд в город.(1) 2 Сэм.1:4, 19;ПЗУ.11:12;(2) Ис.14:12;(3) Луки 8:1;10:38.",
+            "tags": [
+              "heaven",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        }
+      ]
+    },
+    "db__ru": {
+      "left": "db",
+      "right": "ru",
+      "sharedIds": 4086,
+      "leftOnlyIds": [],
+      "rightOnlyIds": [],
+      "exactRecords": 0,
+      "differentRecords": 4086,
+      "fieldDifferenceCounts": {
+        "aliases": 4083,
+        "notes": 4086,
+        "tags": 4086
+      },
+      "examples": [
+        {
+          "id": 1,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) Prov. 6:6-8;",
+            "tags": []
+          },
+          "right": {
+            "aliases": [
+              "трубкозуб"
+            ],
+            "notes": "Scripture references: (1) Prov. 6:6-8; [GOOGLE] (1) Муравьед (разрушитель прилежных); (2) Нуси. (1) Пров. 6:6-8; (2) Как физический атрибут. [MYMEMORY] (1) Муравьед (разрушитель прилежных);(2) Нуси.(1) Пров.6:6-8;(2) Как физический атрибут.",
+            "tags": [
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "bigfoot"
+            ],
+            "notes": "Also see Bigfoot. Scripture references: (1) Exod. 1:22;",
+            "tags": [
+              "cross-reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "bigfoot",
+              "отвратительный снежный человек"
+            ],
+            "notes": "Also see Bigfoot. Scripture references: (1) Exod. 1:22; [GOOGLE] (1) Оскорбление (ужасный бессердечный человек). Также см. Снежный человек. (1) Исх. 1:22; 7:14. [MYMEMORY] (1) Оскорбление (ужасный бессердечный человек).Также см. Снежный человек.(1) Исх.1:22;7:14.",
+            "tags": [
+              "cross-reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "black man",
+              "first nations peoples",
+              "foreigner",
+              "native/s"
+            ],
+            "notes": "See Black Man, First Nations Peoples, Foreigner, and Native/s.",
+            "tags": [
+              "colors",
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "black man",
+              "first nations peoples",
+              "foreigner",
+              "native/s",
+              "абориген/ы"
+            ],
+            "notes": "See Black Man, First Nations Peoples, Foreigner, and Native/s. [GOOGLE] См. «Черный человек», «Первые народы», «Иностранец» и «Коренные жители».",
+            "tags": [
+              "colors",
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "birth",
+              "child"
+            ],
+            "notes": "Also see Birth and Child. Scripture references: (1) Exod. 1:16; Matt. 2:16; Rev. 12:4.",
+            "tags": [
+              "family",
+              "warning",
+              "cross-reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "birth",
+              "child",
+              "аборт"
+            ],
+            "notes": "Also see Birth and Child. Scripture references: (1) Exod. 1:16; Matt. 2:16; Rev. 12:4. [GOOGLE] (1) Предупреждение о попытке убить обетование (дух Ирода); (2) Фактический аборт. Также см. Рождение и дитя. (1) Исх. 1:16; Мэтт. 2:16; Откр. 12:4. [MYMEMORY] (1) Предупреждение о попытке убить обетование (дух Ирода);(2) Фактический аборт.Также см. Рождение и дитя.(1) Исх.1:16;Мэтт.2:16;Откр. 12:4.",
+            "tags": [
+              "family",
+              "warning",
+              "cross-reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "under",
+              "underwater"
+            ],
+            "notes": "Also see Under and Underwater. Scripture references: (1-2) Exod. 20:4; Deut. 4:39; Josh. 2:11; John 8:23; Acts 2:19; (3) Job 11:8; Ps. 139:8; Amos 9:2; Matt. 11:23; (4) Eph. 1:22; (5) Deut. 28:13; (6) Gen. 49:25; (7) Deut. 28:13.",
+            "tags": [
+              "body",
+              "directions",
+              "heaven",
+              "death",
+              "work",
+              "nature",
+              "cross-reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "under",
+              "underwater",
+              "выше и ниже"
+            ],
+            "notes": "Also see Under and Underwater. Scripture references: (1-2) Exod. 20:4; Deut. 4:39; Josh. 2:11; John 8:23; Acts 2:19; (3) Job 11:8; Ps. 139:8; Amos 9:2; Matt. 11:23; (4) Eph. 1:22; (5) Deut. 28:13; (6) Gen. 49:25; (7) Deut. 28:13. [GOOGLE] (1) Небо и земля; (2) Духовное и земное (мирское); (3) Рай и ад; (4) Голова и ноги; (5) Голова и хвост; (6) Небеса и Бездна; (7) Победоносные и побежденные. Также см. «Под водой» и «Под водой». (1-2) Исх. 20:4; Втор. 4:39; 5:8; 28:23; Джош. 2:11; Иоанна 8:23; Деяния 2:19; (3) Иов 11:8; Пс. 139:8; Амос 9:2; Мэтт. 11:23; (4) Еф. 1:22; (5) Втор. 28:13; (6) Быт. 49:25; (7) Втор. 28:13. [MYMEMORY] (1) Небо и земля;(2) Духовное и земное (мирское);(3) Рай и ад;(4) Голова и ноги;(5) Голова и хвост;(6) Небеса и Бездна;(7) Победоносные и побежденные.Также см. «Под водой» и «Под водой».(1-2) Исх.20:4;Втор.4:39;5:8;28:23;Джош.2:11;Иоанна 8:23;Деяния 2:19;(3) Иов 11:8;Пс.139:8;Амос 9:2;Мэтт.11:23;(4) Еф.1:22;(5) Втор.28:13;(6) Быт. 49:25;(7) Втор.28:13.",
+            "tags": [
+              "body",
+              "directions",
+              "heaven",
+              "death",
+              "work",
+              "nature",
+              "cross-reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 6,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) John 6:63; Rom. 8:11; 1 Cor. 15:45; (2) 1 Sam. 20:38; 2 Sam. 15:14; (3) Rev. 3:8.",
+            "tags": [
+              "holy-spirit"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "педаль акселератора"
+            ],
+            "notes": "Scripture references: (1) John 6:63; Rom. 8:11; 1 Cor. 15:45; (2) 1 Sam. 20:38; 2 Sam. 15:14; (3) Rev. 3:8. [GOOGLE] (1) Необходимо войти в Дух (оживиться); (2) Необходимость ускориться; (3) Дерзайте! (1) Иоанна 6:63; ПЗУ. 8:11; 1 Кор. 15:45; (2) 1 Сэм. 20:38; 2 Сэм. 15:14; (3) Откр. 3:8. [MYMEMORY] (1) Необходимо войти в Дух (оживиться);(2) Необходимость ускориться;(3) Дерзайте!(1) Иоанна 6:63;ПЗУ.8:11;1 Кор.15:45;(2) 1 Сэм.20:38;2 Сэм.15:14;(3) Откр. 3:8.",
+            "tags": [
+              "holy-spirit",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 7,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) Ps. 64:3; Prov. 25:18; (2-3) Acts 8:23; Heb. 12:15.",
+            "tags": [
+              "sin",
+              "communication"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "кислота"
+            ],
+            "notes": "Scripture references: (1) Ps. 64:3; Prov. 25:18; (2-3) Acts 8:23; Heb. 12:15. [GOOGLE] (1) Резкие или разъедающие слова; (2) Горький; (3) Месть (как при совершении преступления). (1) Пс. 64:3; Пров. 25:18; (2-3) Деяния 8:23; Евр. 12:15. [MYMEMORY] (1) Резкие или разъедающие слова;(2) Горький;(3) Месть (как при совершении преступления).(1) Пс.64:3;Пров.25:18;(2-3) Деяния 8:23;Евр.12:15.",
+            "tags": [
+              "sin",
+              "communication",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 8,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "seed"
+            ],
+            "notes": "See Seed.",
+            "tags": [
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "seed",
+              "желудь"
+            ],
+            "notes": "See Seed. [GOOGLE] См. Семя.",
+            "tags": [
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 9,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "directions",
+              "individual movement"
+            ],
+            "notes": "See Individual Movement and Directions.",
+            "tags": [
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "directions",
+              "individual movement",
+              "действия"
+            ],
+            "notes": "See Individual Movement and Directions. [GOOGLE] См. Индивидуальное движение и направления.",
+            "tags": [
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 10,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "snake"
+            ],
+            "notes": "See Snake.",
+            "tags": [
+              "animals",
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "snake",
+              "сумматор"
+            ],
+            "notes": "See Snake. [GOOGLE] См. Змею.",
+            "tags": [
+              "animals",
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 11,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) 2 Pet. 1:5; (2) Gen. 50:20 (Joseph’s name means “adding”)",
+            "tags": [
+              "life"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "добавление"
+            ],
+            "notes": "Scripture references: (1) 2 Pet. 1:5; (2) Gen. 50:20 (Joseph’s name means “adding”) [GOOGLE] (1) Духовный рост; (2) Спасения. (1) 2 Пет. 1:5; (2) Быт. 50:20 (имя Иосифа означает «прибавление»). [MYMEMORY] (1) Духовный рост;(2) Спасения.(1) 2 Пет.1:5;(2) Быт. 50:20 (имя Иосифа означает «прибавление»).",
+            "tags": [
+              "life",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 12,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "wearing"
+            ],
+            "notes": "See Wearing.",
+            "tags": [
+              "reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "wearing",
+              "украшать"
+            ],
+            "notes": "See Wearing. [GOOGLE] См. раздел «Ношение».",
+            "tags": [
+              "reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 13,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "boat",
+              "life raft",
+              "sea",
+              "ship"
+            ],
+            "notes": "Also see Boat, Life Raft, Sea, and Ship. Scripture references: (1) Prov. 29:18; 2 Pet. 2:17; Jude 1:12-13; (2) Isa. 2:3; Mark 6:34; (3) James 1:6; (4) Acts 1:4, 8; (5) Acts 27:15.",
+            "tags": [
+              "directions",
+              "life",
+              "authority",
+              "transport",
+              "places",
+              "nature",
+              "cross-reference"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "boat",
+              "life raft",
+              "sea",
+              "ship",
+              "дрейфовать по течению"
+            ],
+            "notes": "Also see Boat, Life Raft, Sea, and Ship. Scripture references: (1) Prov. 29:18; 2 Pet. 2:17; Jude 1:12-13; (2) Isa. 2:3; Mark 6:34; (3) James 1:6; (4) Acts 1:4, 8; (5) Acts 27:15. [GOOGLE] (1) Бесцельный; (2) Без направления; (3) Сомнение; (4) Нуждается во власти; (5) Движимый обстоятельствами/проблемами. Также см. Лодка, Спасательный плот, Море и Корабль. (1) Пров. 29:18; 2 Пет. 2:17; Иуды 1:12-13; (2) Ис. 2:3; Марка 6:34; (3) Иакова 1:6; (4) Деяния 1:4, 8; (5) Деяния 27:15. [MYMEMORY] (1) Бесцельный;(2) Без направления;(3) Сомнение;(4) Нуждается во власти;(5) Движимый обстоятельствами/проблемами.Также см. Лодка, Спасательный плот, Море и Корабль.(1) Пров.29:18;2 Пет.2:17;Иуды 1:12-13;(2) Ис.2:3;Марка 6:34;(3) Иакова 1:6;(4) Деяния 1:4, 8;(5) Деяния 27:15.",
+            "tags": [
+              "directions",
+              "life",
+              "authority",
+              "transport",
+              "places",
+              "nature",
+              "cross-reference",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 14,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [
+              "fornication",
+              "sex"
+            ],
+            "notes": "Also see Fornication and Sex. Scripture references: (1) Prov. 6:32; Matt. 5:28; (2) James 4:4; (3) Jer. 3:8-9, 7:9; Ezek. 16:31-32; Hos. 4:13; Rev. 2:22; (4) Prov. 6:32; (5) Prov. 7:23; (6) Exod. 20:14; Jer. 29:23; (7) Matt. 5:28; (8) Matt. 15:19; 2 Pet. 2:14; (9) Gal. 5:19.",
+            "tags": [
+              "body",
+              "family",
+              "church",
+              "prayer",
+              "sin",
+              "judgment",
+              "warning"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "fornication",
+              "sex",
+              "прелюбодеяние"
+            ],
+            "notes": "Also see Fornication and Sex. Scripture references: (1) Prov. 6:32; Matt. 5:28; (2) James 4:4; (3) Jer. 3:8-9, 7:9; Ezek. 16:31-32; Hos. 4:13; Rev. 2:22; (4) Prov. 6:32; (5) Prov. 7:23; (6) Exod. 20:14; Jer. 29:23; (7) Matt. 5:28; (8) Matt. 15:19; 2 Pet. 2:14; (9) Gal. 5:19. [GOOGLE] (1) Делиться своим сердцем с другим человеком, который не является вашим супругом; (2) Мирское; (3) Духовное прелюбодеяние (поклонение другим богам); (4) Отсутствие здравого смысла; (5) Ловушка или ловушка; (6) Буквальное прелюбодеяние; (7) Вопрос похоти; (8) Оплот сердца; (9) Работа плоти. Также см. Блуд и секс. (1) Пров. 6:32; Мэтт. 5:28; (2) Иакова 4:4; (3) Иер. 3:8-9, 7:9; Иезек. 16:31-32; Хос. 4:13; Откр. 2:22; (4) Пров. 6:32; (5) Пров. 7:23; (6) Исх. 20:14; Джер. 29:23; (7) Мэтт. 5:28; (8) Мэтт. 15:19; 2 Пет. 2:14; (9) Гал. 5:19. [MYMEMORY] (1) Делиться своим сердцем с другим человеком, который не является вашим супругом;(2) Мирское;(3) Духовное прелюбодеяние (поклонение другим богам);(4) Отсутствие здравого смысла;(5) Ловушка или ловушка;(6) Буквальное прелюбодеяние;(7) Вопрос похоти;(8) Оплот сердца;(9) Работа плоти.Также см. Блуд и секс.(1) Пров.6:32;Мэтт.5:28;(2) Иакова 4:4;(3) Иер.3:8-9, 7:9;Иезек.16:31-32;Хос.4:13;Откр. 2:22;(4) Пров.6:32;(5) Пров.7:23;(6) Исх.20:14;Джер.29:23;(7) Мэтт.5:28;(8) Мэтт.15:19;2 Пет.2:14;(9) Гал.5:19.",
+            "tags": [
+              "body",
+              "family",
+              "church",
+              "prayer",
+              "sin",
+              "judgment",
+              "warning",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 15,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) 1 Pet. 5:8; (2) Matt. 5:25; Luke 12:58; Phil. 1:28; (3) 1 Cor. 16:9; (4) Luke 13:14-17; (5) Acts 18:6 (KJV) 2 Tim. 2:25-26 (KJV) (6) John 16:33; 2 Pet. 2:20; 1 John 5:4-5.",
+            "tags": [
+              "sin",
+              "demonic",
+              "relationships"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "противник/и"
+            ],
+            "notes": "Scripture references: (1) 1 Pet. 5:8; (2) Matt. 5:25; Luke 12:58; Phil. 1:28; (3) 1 Cor. 16:9; (4) Luke 13:14-17; (5) Acts 18:6 (KJV) 2 Tim. 2:25-26 (KJV) (6) John 16:33; 2 Pet. 2:20; 1 John 5:4-5. [GOOGLE] (1) дьявол; (2) Человеческое противодействие; (3) духи-демоны; (4) Религиозные лидеры; (5) Я (плоть); (6) мир. (1) 1 Пет. 5:8; (2) Мэтт. 5:25; Луки 12:58; 18:3; 21:15–16; Фил. 1:28; (3) 1 Кор. 16:9; (4) Луки 13:14-17; (5) Деяния 18:6 (KJV); 2 Тим. 2:25-26 (KJV); (6) Иоанна 16:33; 2 Пет. 2:20; 1 Иоанна 5:4-5. [MYMEMORY] (1) дьявол;(2) Человеческое противодействие;(3) духи-демоны;(4) Религиозные лидеры;(5) Я (плоть);(6) мир.(1) 1 Пет.5:8;(2) Мэтт.5:25;Луки 12:58;18:3;21:15–16;Фил.1:28;(3) 1 Кор.16:9;(4) Луки 13:14-17;(5) Деяния 18:6 (KJV);2 Тим.2:25-26 (KJV);(6) Иоанна 16:33;2 Пет.2:20;1 Иоанна 5:4-5.",
+            "tags": [
+              "sin",
+              "demonic",
+              "relationships",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 16,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) Prov. 17:17; (2) 1 Sam. 10:19; 2 Chron. 15:6; Ps. 10:6; (3) Ps. 31:7; Prov. 24:10; (4) Heb. 13:3.",
+            "tags": []
+          },
+          "right": {
+            "aliases": [
+              "невзгоды"
+            ],
+            "notes": "Scripture references: (1) Prov. 17:17; (2) 1 Sam. 10:19; 2 Chron. 15:6; Ps. 10:6; (3) Ps. 31:7; Prov. 24:10; (4) Heb. 13:3. [GOOGLE] (1) Испытание/испытание; (2) Скорбь; (3) Проблемы; (4) Страдание. (1) Пров. 17:17; (2) 1 Сэм. 10:19; 2 Хрон. 15:6; Пс. 10:6; (3) Пс. 31:7; Пров. 24:10; (4) Евр. 13:3. [MYMEMORY] (1) Испытание/испытание;(2) Скорбь;(3) Проблемы;(4) Страдание.(1) Пров.17:17;(2) 1 Сэм.10:19;2 Хрон.15:6;Пс.10:6;(3) Пс.31:7;Пров.24:10;(4) Евр.13:3.",
+            "tags": [
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 17,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) John 14:26.",
+            "tags": [
+              "holy-spirit",
+              "wisdom"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "советник"
+            ],
+            "notes": "Scripture references: (1) John 14:26. [GOOGLE] (1) Святой Дух. (1) Иоанна 14:26. [MYMEMORY] (1) Святой Дух.(1) Иоанна 14:26.",
+            "tags": [
+              "holy-spirit",
+              "wisdom",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 18,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: John 14:16; (3-4) Heb. 7:25, 9:24; 1 John 2:1.",
+            "tags": [
+              "holy-spirit",
+              "jesus",
+              "numbers"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "защитник"
+            ],
+            "notes": "Scripture references: John 14:16; (3-4) Heb. 7:25, 9:24; 1 John 2:1. [GOOGLE] (1) Святой Дух; (2) Тот, кто идет рядом; (3) Иисус Христос; (4) Тот, кто говорит от имени другого/представительство; (5) Положительный свидетель. (1-2) «Помощник» Иоанна 14:16; (3-4) Евр. 7:25, 9:24; 1 Иоанна 2:1. [MYMEMORY] (1) Святой Дух;(2) Тот, кто идет рядом;(3) Иисус Христос;(4) Тот, кто говорит от имени другого/представительство;(5) Положительный свидетель.(1-2) «Помощник» Иоанна 14:16;(3-4) Евр.7:25, 9:24;1 Иоанна 2:1.",
+            "tags": [
+              "holy-spirit",
+              "jesus",
+              "numbers",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 19,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) Isa. 40:31; (2) Isa. 60:8-9; Ezek. 3:14; Acts 8:39; (3) Gal. 2:9; (4) Ps. 51:12; Rom. 8:2; 1 Cor. 2:12; 2 Cor. 3:17; (5) Eph. 6:12b & Mark 8:33; (6) Acts 8:39-40; (7) Mark 14:58.",
+            "tags": [
+              "holy-spirit",
+              "church",
+              "deliverance",
+              "transport"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "самолет"
+            ],
+            "notes": "Scripture references: (1) Isa. 40:31; (2) Isa. 60:8-9; Ezek. 3:14; Acts 8:39; (3) Gal. 2:9; (4) Ps. 51:12; Rom. 8:2; 1 Cor. 2:12; 2 Cor. 3:17; (5) Eph. 6:12b & Mark 8:33; (6) Acts 8:39-40; (7) Mark 14:58. [GOOGLE] (1) Новые высоты; (2) Духовное служение или церковь; (3) Высокопоставленное служение (или высокопоставленное служение); (4) Свобода в духе; (5) Искусственная имитация духовного/духовных вещей/церкови; (6) Путешествие; (7) Конструкция, созданная человеком. (1) Ис. 40:31; (2) Ис. 60:8-9; Иезек. 3:14; 83; 11:1, 24; Деяния 8:39; (3) Гал. 2:9; (4) Пс. 51:12; ПЗУ. 8:2; 1 Кор. 2:12; 2 Кор. 3:17; (5) Еф. 6:12б и Марка 8:33; (6) Деяния 8:39-40; (7) Марка 14:58. [MYMEMORY] (1) Новые высоты;(2) Духовное служение или церковь;(3) Высокопоставленное служение (или высокопоставленное служение);(4) Свобода в духе;(5) Искусственная имитация духовного/духовных вещей/церкови;(6) Путешествие;(7) Конструкция, созданная человеком.(1) Ис.40:31;(2) Ис.60:8-9;Иезек.3:14;83;11:1, 24;Деяния 8:39;(3) Гал.2:9;(4) Пс.51:12;ПЗУ.8:2;1 Кор.2:12;2 Кор.3:17;(5) Еф.6:12б и Марка 8:33;(6) Деяния 8:39-40;(7) Марка 14:58.",
+            "tags": [
+              "holy-spirit",
+              "church",
+              "deliverance",
+              "transport",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        },
+        {
+          "id": 20,
+          "fields": [
+            "aliases",
+            "notes",
+            "tags"
+          ],
+          "left": {
+            "aliases": [],
+            "notes": "Scripture references: (1) 2 Sam. 1:4, 19; Rom. 11:12; (2) Isa. 14:12; (3) Luke 8:1;",
+            "tags": [
+              "heaven"
+            ]
+          },
+          "right": {
+            "aliases": [
+              "посадка самолета"
+            ],
+            "notes": "Scripture references: (1) 2 Sam. 1:4, 19; Rom. 11:12; (2) Isa. 14:12; (3) Luke 8:1; [GOOGLE] (1) Духовное нисхождение; (2) С Небес; (3) Приезд в город. (1) 2 Сэм. 1:4, 19; ПЗУ. 11:12; (2) Ис. 14:12; (3) Луки 8:1; 10:38. [MYMEMORY] (1) Духовное нисхождение;(2) С Небес;(3) Приезд в город.(1) 2 Сэм.1:4, 19;ПЗУ.11:12;(2) Ис.14:12;(3) Луки 8:1;10:38.",
+            "tags": [
+              "heaven",
+              "translated",
+              "РУССКИЙ"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
