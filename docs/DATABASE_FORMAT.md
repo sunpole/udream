@@ -38,22 +38,35 @@ The maintained application does not interpret record notes as Markdown or raw HT
 
 ## Current data-file classification
 
-Verified on 2026-07-20:
+Verified by D1.1 on 2026-07-22:
 
 | Path | Classification | Runtime use |
 |---|---|---|
-| `data/divinity_code_ru.json` | Active translated and augmented database with 4,086 records | Loaded by the application |
-| `data/bd2.json` | Retained English reference dataset with 4,086 records | Not used by the current runtime |
-| `data/db.json` | Exact byte-for-byte duplicate of `data/bd2.json` | Not used by the current runtime |
+| `data/divinity_code_ru.json` | Active mixed-language localized and augmented dataset with 4,086 records | Loaded by the application |
+| `data/bd2.json` | English source serialization A with 4,086 records | Not used by the current runtime |
+| `data/db.json` | English source serialization B; parsed JSON is identical to `bd2.json`, but raw bytes differ | Not used by the current runtime |
 | `data/report.txt` | Historical generation and quality summary | Not used by the current runtime |
 
-At the time of the audit, `data/bd2.json` and `data/db.json` had the same size and SHA-256 hash:
+Corrected raw SHA-256 values:
 
 ```text
-4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0
+data/bd2.json               814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28
+data/db.json                4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0
+data/divinity_code_ru.json  1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64
+data/report.txt              dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d
 ```
 
-Git history shows that `bd2.json` existed before the later addition of `db.json`. The exact generation and translation pipeline that produced `divinity_code_ru.json` remains undocumented, so the retained files must not yet be deleted or rewritten.
+`bd2.json` and `db.json` share canonical JSON SHA-256:
+
+```text
+5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1
+```
+
+They contain the same ordered records and values, but their serialization/formatting produces different physical files.
+
+The active dataset keeps `id`, `symbol`, `description`, `source` and `date_added` unchanged while modifying `aliases`, `notes` and `tags`. The exact generation and translation pipeline remains undocumented.
+
+Full evidence, Git history, corrected earlier claims and the D1.2 recommendation are in `docs/DATA_PROVENANCE.md`.
 
 ## Target dataset model for D1
 
@@ -66,7 +79,7 @@ The planned logical model is:
 | Alternative Russian translation A | 0–1 | Independent candidate for comparison |
 | Alternative Russian translation B | 0–1 | Second independent candidate only when quality justifies it |
 
-Two byte-identical files are one logical dataset, not two translations. D1 must identify a canonical path and prepare a reversible migration before a redundant physical copy is removed.
+Two semantically identical serializations are one logical dataset, not two translations. D1 must identify a canonical path and prepare a reversible migration before a redundant physical serialization is removed.
 
 The project does not require two alternative translations at any cost. When only one reliable Russian translation exists, the correct product state is one source dataset plus one Russian translation.
 
@@ -122,6 +135,7 @@ jq empty data/divinity_code_ru.json
 jq 'length' data/divinity_code_ru.json
 jq 'map(.id) | length == (unique | length)' data/divinity_code_ru.json
 jq 'all(.[]; (.id | type) == "number" and (.symbol | type) == "string" and (.aliases | type) == "array" and (.description | type) == "string" and (.source | type) == "string" and (.date_added | type) == "string" and (.tags | type) == "array" and (.notes | type) == "string")' data/divinity_code_ru.json
+node scripts/validate-data-provenance.mjs
 node scripts/validate-project.mjs
 ```
 
