@@ -11,7 +11,7 @@ image: 2026-07-20-udream-v23-8-1-release-finalization.png
 image_source: github-ui
 image_target: https://github.com/sunpole/udream/releases/tag/v23.8.0
 image_commit: 24dece593bea679485057d7551a2583f7f1f5acf
-image_captured_at: 2026-07-22T10:33:34Z
+image_captured_at: 2026-07-22T10:34:43Z
 publication_repair: unpublished-invalid-image
 publication_repair_reason: replace the unpublished PNG whose PLTE chunk had an invalid CRC and could not be decoded by Telegram
 ---
