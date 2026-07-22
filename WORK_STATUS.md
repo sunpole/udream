@@ -8,16 +8,29 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — содержательная часть D1.1 почти завершена, но cleanup, проверки, реальный screenshot, patchnote и Pull Request ещё не закончены |
+| Состояние | **IN_PROGRESS** — D1.1 содержательно завершён, временная диагностика очищена; остаются финальная документация, screenshot, patchnote, проверки и Pull Request |
 | Рабочая ветка | `docs/data-provenance-d1.1` |
 | Открытый Pull Request | ещё не открыт |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Текущий документационный/provenance baseline ветки | `v23.8.8` |
+| Текущий документационный/provenance baseline ветки | кандидат `23.8.8` |
 | Актуальный `main` | `acc91a1162521a35fcdd3d3cfbc11811f2988508` |
-| Последний сохранённый branch commit до этого handoff | `76814693bab08ee0d3dfceddb9d47564536df274` |
-| Синхронизация с `main` | ветка впереди `main` и не отстаёт: `behind_by: 0` |
-| Внешний блокер uNews | устранён: Telegram FIFO завершён, pending `0`, errors `0`, Issue uNews №3 закрыт |
+| Последний branch commit перед этим handoff | `0b257ff27b676107976a9e7a4aa59410d98cde13` |
+| Синхронизация с `main` | ветка синхронизирована и не отстаёт от `main` |
+| uNews / Telegram | полностью исправлен; pending `0`, errors `0`, Issue uNews №3 закрыт |
 | Активная задача | завершить чистый D1.1 пакет и объединить его без изменения runtime, PWA или файлов данных |
+
+## Продолжение сегодня с телефона — чат «uDream Note 5»
+
+Антону не нужен терминал и не нужно выполнять Git-команды.
+
+На телефоне нужно:
+
+1. открыть чат проекта **«uDream Note 5»**;
+2. написать: **«Продолжаем uDream D1.1. Сначала проверь GitHub и прочитай WORK_STATUS.md из ветки docs/data-provenance-d1.1. Всё доступное делай сам через GitHub, без терминала и команд для меня.»**;
+3. новый чат обязан открыть реальные GitHub-факты, прочитать этот файл и продолжить только существующую ветку `docs/data-provenance-d1.1`;
+4. новый чат не должен создавать вторую ветку D1.1, повторять аудит или просить Антона выполнять доступные через GitHub действия.
+
+Даже при обрыве света, интернета или текущего чата вся точка продолжения уже находится в GitHub.
 
 ## Текущая точка продолжения
 
@@ -37,16 +50,17 @@ Issue: `#19` — исходное техническое задание D1.1
 
 ## Что уже действительно сделано и сохранено в GitHub
 
-- ветка `docs/data-provenance-d1.1` безопасно синхронизирована с актуальным `main`; evidence не потеряны;
-- `main` является merge-base, ветка не отстаёт от него;
+- ветка `docs/data-provenance-d1.1` безопасно синхронизирована с актуальным `main`;
 - повторно вычислены exact bytes, raw SHA-256, canonical JSON SHA-256, схема, количество записей и набор ID;
-- создан исправленный отчёт `diagnostics/d1.1-corrected-evidence.{json,txt}`;
 - создан постоянный документ `docs/DATA_PROVENANCE.md`;
 - создан постоянный validator `scripts/validate-data-provenance.mjs`;
 - provenance-validator подключён к `scripts/validate-project.mjs`;
 - исправлены `README.md`, `docs/DATABASE_FORMAT.md`, `docs/PROJECT_STATE.md`, `docs/FILE_MAP.md`, `docs/TRANSLATION_WORKFLOW.md`;
 - `VERSION.md` переведён на документационный/provenance baseline `23.8.8`, при этом приложение и tag остаются `v23.8.0`;
 - `ROADMAP.md` отмечает D1.1 завершённым по содержанию и ставит D1.2 следующим этапом;
+- удалены все пять одноразовых D1.1 workflow;
+- удалены все временные `diagnostics/d1.1-*` JSON/TXT отчёты;
+- доказанные факты перенесены в постоянную документацию и validator;
 - все четыре поддерживаемых data-файла относительно `main` не изменены;
 - runtime, PWA, `versions/` и `_archive/` не изменены.
 
@@ -89,57 +103,75 @@ data/db.json   4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0
 
 Следующие старые утверждения были результатом дефектной промежуточной диагностики и опровергнуты:
 
-- будто `bd2.json` и `db.json` отличаются по `tags` и `note` во всех/почти всех записях;
+- будто `bd2.json` и `db.json` отличаются по `tags` и `note` во всех или почти всех записях;
 - будто активная русская база «ближе» к одному из этих файлов по полю `note`;
 - будто `bd2.json` и `db.json` имеют одинаковый raw SHA-256 и являются byte-for-byte duplicate.
 
 Причина одной ошибки: промежуточный скрипт проверял несуществующее поле `note`; фактическое поле называется `notes`.
 
-Источник исправленных фактов: `docs/DATA_PROVENANCE.md`, `scripts/validate-data-provenance.mjs` и `diagnostics/d1.1-corrected-evidence.json`.
+Постоянные источники исправленных фактов:
+
+- `docs/DATA_PROVENANCE.md`;
+- `scripts/validate-data-provenance.mjs`;
+- `docs/DATABASE_FORMAT.md`.
+
+## Планируемые файлы
+
+До завершения D1.1 допускаются только:
+
+- `CHANGELOG.md`;
+- `AGENTS.md`;
+- `WORK_STATUS.md`;
+- новый патчноут `news/*23-8-8*.md`;
+- новый реальный PNG для патчноута;
+- provenance/automation-документы, только если проверка выявит фактическую необходимость.
+
+Файлы данных, runtime, PWA, `versions/` и `_archive/` менять запрещено.
 
 ## Что ещё не завершено
 
-1. Удалить пять одноразовых D1.1 workflows:
-   - `.github/workflows/audit-data-provenance-d1.1.yml`;
-   - `.github/workflows/compare-current-data-d1.1.yml`;
-   - `.github/workflows/correct-data-provenance-d1.1.yml`;
-   - `.github/workflows/extract-data-lineage-d1.1.yml`;
-   - `.github/workflows/prepend-d1-1-changelog.yml`.
-2. Перенести нужную changelog-запись `23.8.8` постоянным способом и удалить временный prepend-workflow.
-3. После того как доказанные факты уже перенесены в постоянный документ, удалить временные `diagnostics/d1.1-*` файлы из итогового PR.
-4. Проверить и при необходимости обновить `AGENTS.md`, чтобы любой агент обязан обновлять `WORK_STATUS.md` не только при старте/паузе, но после каждого существенного сохранённого этапа.
-5. Создать D1.1 patchnote версии `23.8.8`.
-6. Создать **новый реальный** screenshot, относящийся именно к provenance-документу/проверке, с точным source commit и UTC-временем; старое изображение не использовать.
-7. Выполнить:
+1. Добавить постоянную changelog-запись `23.8.8` без одноразового workflow.
+2. Обновить `AGENTS.md`: после каждого существенного сохранённого этапа агент обязан актуализировать `WORK_STATUS.md`, если изменилась точка продолжения.
+3. Создать D1.1 patchnote версии `23.8.8`.
+4. Создать **новый реальный** screenshot, относящийся именно к `docs/DATA_PROVENANCE.md` или provenance-проверке, с точным source commit и UTC-временем.
+5. Выполнить все тесты и validators.
+6. Подтвердить, что итоговый diff не содержит data/runtime/PWA/saved-version/archive изменений.
+7. Открыть D1.1 Pull Request, дождаться зелёных Actions и проверить полный diff.
+8. Объединить PR, закрыть Issue №19 как completed.
+9. На `main` записать `WORK_STATUS.md` со статусом `READY`; следующая задача — D1.2.
 
-```bash
-npm test
-node scripts/validate-data-provenance.mjs
-node scripts/validate-project.mjs
-git diff --check
-git diff --name-only origin/main...HEAD -- data versions _archive index.html script.js src manifest.json version.json sw.js package.json
-```
+## Критерии завершения
 
-8. Подтвердить, что diff не содержит data/runtime/PWA/saved-version/archive изменений.
-9. Открыть D1.1 Pull Request, дождаться зелёных Actions и проверить полный diff.
-10. Объединить PR, закрыть Issue #19 как completed.
-11. На `main` записать `WORK_STATUS.md` со статусом `READY`, следующая задача — D1.2.
+- `docs/DATA_PROVENANCE.md` содержит доказанные факты, выводы и неизвестное;
+- provenance-validator проходит и подключён к общей проверке проекта;
+- временные workflow и diagnostics отсутствуют в итоговом diff;
+- все поддерживаемые документы согласованы с исправленными фактами;
+- новый реальный screenshot и patchnote `23.8.8` относятся именно к D1.1;
+- tests, validators и GitHub Actions зелёные;
+- файлы данных, runtime, PWA, `versions/` и `_archive/` не изменены;
+- PR объединён, Issue №19 закрыт, `main` возвращён в `READY`;
+- следующая утверждённая задача — D1.2.
+
+## Последний проверенный commit
+
+- `0b257ff27b676107976a9e7a4aa59410d98cde13` — завершена очистка последнего временного lineage-отчёта перед этим handoff.
 
 ## Следующий точный шаг
 
-Сначала удалить временный changelog-workflow и остальные одноразовые audit workflows, затем добавить постоянную changelog-запись `23.8.8`. После этого удалить временные diagnostics, обновить `AGENTS.md` и снова обновить этот handoff перед созданием screenshot/patchnote.
+Добавить постоянную запись `23.8.8` в `CHANGELOG.md`, затем обновить `AGENTS.md` и снова актуализировать этот handoff. После этого создать реальный screenshot и патчноут D1.1.
 
 ## Что делает ИИ сейчас
 
-- самостоятельно очищает временную инфраструктуру;
+- самостоятельно выполняет всю доступную работу через GitHub и GitHub Actions;
+- не требует от Антона терминала, Git-команд или ручного редактирования файлов;
 - сохраняет каждую существенную точку в GitHub;
 - поддерживает `WORK_STATUS.md` как живой handoff;
 - создаёт и проверяет документацию, validator, screenshot, patchnote и Pull Request;
-- не просит владельца выполнять доступные через подключённый GitHub рутинные действия.
+- обращается к Антону только при необходимости человеческого решения, секрета или проверки физического устройства.
 
 ## Что требуется от Антона сейчас
 
-Никаких технических действий не требуется. Владелец подключается только если инструмент не позволяет выполнить действие, нужен секрет, физическая проверка на устройстве или содержательное человеческое решение.
+Никаких технических действий не требуется. На телефоне достаточно открыть чат «uDream Note 5» и дать короткую команду из раздела выше.
 
 ## Запрещённые изменения в D1.1
 
@@ -152,18 +184,9 @@ git diff --name-only origin/main...HEAD -- data versions _archive index.html scr
 - не выдавать предположение за доказанный факт;
 - не использовать старые ошибочные intermediate conclusions.
 
-## Продолжение с любого другого устройства или чата
+## Источник истины
 
-```bash
-git fetch origin
-git switch docs/data-provenance-d1.1
-git pull --ff-only origin docs/data-provenance-d1.1
-git status --short --branch
-git log -1 --oneline
-cat WORK_STATUS.md
-```
-
-Затем проверить реальные GitHub facts: `main`, branch diff, открытые PR, Actions и Issue #19. При расхождении память ИИ или старого чата всегда проигрывает данным GitHub и этому актуальному handoff.
+Реальные GitHub-факты — `main`, текущая ветка, commits, Pull Request, Actions и Issue №19 — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
 
 ## Значения статуса
 
