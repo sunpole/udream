@@ -1,0 +1,41 @@
+{
+  "id": "russian-alias-mobile",
+  "title": "Russian alias opens the primary Water card on mobile",
+  "path": "/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "actions": [
+    {
+      "type": "fill",
+      "selector": "#searchInput",
+      "value": "вода"
+    },
+    {
+      "type": "press",
+      "selector": "#searchInput",
+      "key": "Enter"
+    },
+    {
+      "type": "waitFor",
+      "selector": ".symbol-name",
+      "state": "visible"
+    },
+    {
+      "type": "assertFirstText",
+      "selector": ".symbol-name",
+      "text": "water",
+      "ignoreCase": true
+    },
+    {
+      "type": "assertText",
+      "selector": ".alias-tag",
+      "text": "вода",
+      "ignoreCase": true
+    }
+  ],
+  "screenshot": {
+    "fullPage": false
+  }
+}
