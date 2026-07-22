@@ -28,7 +28,7 @@ jobs:
       - name: Run regression tests
         run: npm test
 
-      - name: Validate repository, data and patchnotes
+      - name: Validate repository, data, handoff, screenshot tooling and patchnotes
         run: node scripts/validate-project.mjs
 
       - name: Require a new uNews patchnote for Pull Request changes
@@ -59,4 +59,7 @@ jobs:
           node --check sw.js
           node --check versions/v3.0.0/script.js
           node --check versions/v3.0.0/sw.js
+          node --check scripts/validate-project.mjs
           node --check scripts/validate-patchnote-diff.mjs
+          node --check tools/screenshots/playwright.config.mjs
+          node --check tools/screenshots/capture.spec.mjs
