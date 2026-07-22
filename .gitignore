@@ -1,0 +1,11 @@
+# Local and CI-generated screenshot tooling files
+artifacts/
+tools/screenshots/node_modules/
+tools/screenshots/playwright-report/
+tools/screenshots/test-results/
+tools/screenshots/blob-report/
+
+# Local environment files and secrets
+.env
+.env.*
+!.env.example
