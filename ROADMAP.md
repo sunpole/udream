@@ -69,7 +69,32 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Make every future agent read and update the handoff at task start, pause and completion.
 - [x] Record the current signal as `READY`: no unfinished task or open Pull Request.
 
-## Next approved series: D1 — data provenance and multi-dataset architecture
+## Current operational hardening: unified AI/GitHub workflow v23.8.6
+
+- [x] Make real GitHub facts the highest-priority source of truth.
+- [x] Define one protocol for any number of devices, chats and AI agents.
+- [x] Require an early pushed `WORK_STATUS.md` lock before implementation.
+- [x] Prevent a new chat from creating a competing branch for the same active goal.
+- [x] Define which work the connected agent performs independently and when human input is required.
+- [x] Require new screenshot provenance metadata in patchnotes.
+- [x] Require a newly added PNG/JPEG in the same Pull Request instead of reusing an older image.
+- [x] Add structural validation for `WORK_STATUS.md`.
+- [x] Synchronize stale cross-device documentation references.
+
+See `docs/AI_GITHUB_WORKFLOW.md` and `docs/SCREENSHOT_AUTOMATION.md`.
+
+## Next operational patch: Playwright screenshots v23.8.7
+
+- [ ] Add isolated Playwright tooling outside the public runtime.
+- [ ] Start the exact branch checkout through a local HTTP server in GitHub Actions.
+- [ ] Capture desktop and mobile screenshots from real Chromium.
+- [ ] Define reusable scenarios for page startup, search and documentation evidence.
+- [ ] Upload screenshots as workflow artifacts before they can be committed to `news/`.
+- [ ] Verify expected visible text before saving each screenshot.
+- [ ] Document local and GitHub Actions invocation.
+- [ ] Keep human/agent visual approval before merge.
+
+## Next approved series after v23.8.7: D1 — data provenance and multi-dataset architecture
 
 D1 starts as research, validation design and migration planning. It must not change the active 4,086-record runtime database in its first stage.
 
@@ -101,6 +126,7 @@ D1 starts as research, validation design and migration planning. It must not cha
 - [ ] Compare separate-database switching, combined search and side-by-side comparison.
 - [ ] Require visible provenance for every result in any future combined mode.
 - [ ] Approve a migration plan before implementing a user-facing selector or merged index.
+- [ ] Require full dataset validation, consistent reload, safe cache clearing and automatic stable fallback before any selector release.
 
 ### D1.5 — AI-assisted translation experiment
 
