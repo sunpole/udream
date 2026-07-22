@@ -7,7 +7,13 @@ version: 23.8.3
 queued_at: 2026-07-21T04:23:36Z
 repo_url: https://github.com/sunpole/udream
 web_url: https://sunpole.github.io/udream/
-image: 2026-07-18-udream-v3-1-0-repository-order.jpg
+image: 2026-07-21-udream-v23-8-3-product-vision.png
+image_source: github-ui
+image_target: https://github.com/sunpole/udream/blob/75e3e9664d67f9a9e28952eab53cdb1244369ce5/docs/PRODUCT_VISION.md
+image_commit: 75e3e9664d67f9a9e28952eab53cdb1244369ce5
+image_captured_at: 2026-07-22T10:34:47Z
+publication_repair: unpublished-image-upgrade
+publication_repair_reason: replace a reused generic repository image with a dedicated historical PRODUCT_VISION.md screenshot before publication
 ---
 
 # uDream 23.8.3: единое видение и готовность к следующему этапу
@@ -25,7 +31,9 @@ image: 2026-07-18-udream-v3-1-0-repository-order.jpg
 - D1 начинается с исследования и проектирования и не меняет активные 4 086 записей без отдельного утверждённого плана миграции.
 - Обновлены правила для будущих разработчиков и ИИ, карта файлов, формат базы, исторический контекст и citation metadata.
 
-Изображение повторно используется из документационного этапа наведения порядка в репозитории: оно относится к структуре и единой системе проектной документации. Код сайта, PWA-логика и база данных в этом обновлении не меняются.
+Изображение — настоящий Playwright Chromium-снимок `docs/PRODUCT_VISION.md` на точном историческом commit `75e3e96…`. Сценарий подтвердил видимость заголовка «Видение продукта uDream» и раздела «Миссия»; точный URL, commit, время, размеры и byte size записаны в `tools/screenshots/v23.8.1-v23.8.5-publication-repairs.json`.
+
+Публикационный upgrade выполнен до первого Telegram-поста. FIFO-идентичность записи сохранена, новый PNG уникален для `23.8.3` и не повторяет общую картинку раннего документационного патча.
 
 Короткий текст для Telegram:
 
