@@ -1,0 +1,242 @@
+name: Extract D1.1 data lineage
+
+on:
+  push:
+    branches:
+      - docs/data-provenance-d1.1
+    paths:
+      - .github/workflows/extract-data-lineage-d1.1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  lineage:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: docs/data-provenance-d1.1
+          fetch-depth: 0
+
+      - name: Extract concise lineage report
+        run: |
+          mkdir -p diagnostics
+          python3 - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import pathlib
+          import subprocess
+          from collections import Counter
+          from datetime import datetime, timezone
+
+          ROOT = pathlib.Path.cwd()
+          CURRENT = [
+              pathlib.Path('data/bd2.json'),
+              pathlib.Path('data/db.json'),
+              pathlib.Path('data/divinity_code_ru.json'),
+              pathlib.Path('data/report.txt'),
+          ]
+
+          def run(args: list[str], binary: bool = False):
+              completed = subprocess.run(
+                  args,
+                  cwd=ROOT,
+                  check=False,
+                  stdout=subprocess.PIPE,
+                  stderr=subprocess.PIPE,
+              )
+              if binary:
+                  return completed.returncode, completed.stdout, completed.stderr
+              return completed.returncode, completed.stdout.decode('utf-8', 'replace'), completed.stderr.decode('utf-8', 'replace')
+
+          def git_lines(*args: str) -> list[str]:
+              code, stdout, _ = run(['git', *args])
+              return stdout.splitlines() if code == 0 else []
+
+          def blob(commit: str, path: pathlib.Path) -> bytes | None:
+              code, stdout, _ = run(['git', 'show', f'{commit}:{path.as_posix()}'], binary=True)
+              return stdout if code == 0 else None
+
+          def sha256(data: bytes) -> str:
+              return hashlib.sha256(data).hexdigest()
+
+          def summarize_json(data: bytes) -> dict:
+              value = json.loads(data.decode('utf-8-sig'))
+              result = {'rootType': type(value).__name__}
+              if isinstance(value, list):
+                  result['records'] = len(value)
+                  result['fields'] = sorted({key for item in value if isinstance(item, dict) for key in item})
+                  result['emptyNotes'] = sum(1 for item in value if isinstance(item, dict) and not str(item.get('note', '')).strip())
+                  result['emptyTags'] = sum(1 for item in value if isinstance(item, dict) and not item.get('tags'))
+                  tags = Counter(tag for item in value if isinstance(item, dict) for tag in item.get('tags', []) if isinstance(tag, str))
+                  result['topTags'] = tags.most_common(20)
+                  notes = [str(item.get('note', '')) for item in value if isinstance(item, dict)]
+                  result['googleMarkers'] = sum(note.count('[GOOGLE]') for note in notes)
+                  result['myMemoryMarkers'] = sum(note.count('[MYMEMORY]') for note in notes)
+              return result
+
+          report = {
+              'schemaVersion': 1,
+              'generatedAt': datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z'),
+              'head': git_lines('rev-parse', 'HEAD')[0],
+              'files': {},
+              'allHistoricalDataPaths': sorted(set(
+                  line for line in git_lines('log', '--all', '--name-only', '--pretty=format:', '--', 'data', '_archive/old-data', '_archive/source-files')
+                  if line.strip()
+              )),
+          }
+
+          for path in CURRENT:
+              history_rows = []
+              raw_history = git_lines(
+                  'log', '--follow', '--name-status', '--date=iso-strict',
+                  '--format=COMMIT%x09%H%x09%aI%x09%s', '--', path.as_posix()
+              )
+              current_commit = None
+              for line in raw_history:
+                  if line.startswith('COMMIT\t'):
+                      _, commit, date, subject = line.split('\t', 3)
+                      current_commit = {'commit': commit, 'authorDate': date, 'subject': subject, 'changes': []}
+                      history_rows.append(current_commit)
+                  elif line.strip() and current_commit is not None:
+                      current_commit['changes'].append(line)
+
+              commit_ids = git_lines('log', '--follow', '--format=%H', '--', path.as_posix())
+              snapshots = []
+              previous_digest = None
+              for commit in commit_ids:
+                  content = blob(commit, path)
+                  if content is None:
+                      continue
+                  digest = sha256(content)
+                  if digest == previous_digest:
+                      continue
+                  item = {
+                      'commit': commit,
+                      'bytes': len(content),
+                      'sha256': digest,
+                  }
+                  if path.suffix == '.json':
+                      try:
+                          item['summary'] = summarize_json(content)
+                      except Exception as error:
+                          item['jsonError'] = f'{type(error).__name__}: {error}'
+                  snapshots.append(item)
+                  previous_digest = digest
+
+              current_bytes = path.read_bytes()
+              current_summary = summarize_json(current_bytes) if path.suffix == '.json' else None
+              report['files'][path.as_posix()] = {
+                  'currentBytes': len(current_bytes),
+                  'currentSha256': sha256(current_bytes),
+                  'currentSummary': current_summary,
+                  'history': history_rows,
+                  'contentChangingSnapshotsNewestFirst': snapshots,
+              }
+
+          # Compare transformation shape for the current files.
+          bd2 = {r['id']: r for r in json.loads(pathlib.Path('data/bd2.json').read_text('utf-8-sig'))}
+          db = {r['id']: r for r in json.loads(pathlib.Path('data/db.json').read_text('utf-8-sig'))}
+          ru = {r['id']: r for r in json.loads(pathlib.Path('data/divinity_code_ru.json').read_text('utf-8-sig'))}
+
+          def field_diff(left: dict, right: dict) -> dict:
+              fields = sorted({field for record in left.values() for field in record} | {field for record in right.values() for field in record})
+              return {
+                  field: sum(1 for record_id in sorted(set(left) & set(right)) if left[record_id].get(field) != right[record_id].get(field))
+                  for field in fields
+              }
+
+          report['currentTransformationShape'] = {
+              'bd2ToDbFieldDiffCounts': field_diff(bd2, db),
+              'dbToRuFieldDiffCounts': field_diff(db, ru),
+              'bd2ToRuFieldDiffCounts': field_diff(bd2, ru),
+              'coreBd2DbEqual': all(
+                  all(bd2[record_id].get(field) == db[record_id].get(field) for field in ['id', 'symbol', 'aliases', 'description', 'source'])
+                  for record_id in bd2
+              ),
+              'dbRuSameNoteCount': sum(db[record_id].get('note') == ru[record_id].get('note') for record_id in db),
+              'bd2RuSameNoteCount': sum(bd2[record_id].get('note') == ru[record_id].get('note') for record_id in bd2),
+          }
+
+          # List likely retained scripts and reports with their first informative lines.
+          candidates = []
+          for path in sorted(ROOT.rglob('*'), key=lambda p: p.as_posix()):
+              if not path.is_file() or '.git' in path.parts or 'node_modules' in path.parts:
+                  continue
+              if path.stat().st_size > 1_000_000:
+                  continue
+              if path.suffix.lower() not in {'.py', '.js', '.mjs', '.sh', '.ps1', '.bat', '.txt', '.md'}:
+                  continue
+              lowered = path.as_posix().lower()
+              try:
+                  text = path.read_text('utf-8-sig')
+              except Exception:
+                  continue
+              if not any(token in lowered or token in text.lower() for token in [
+                  'divinity_code_ru', 'bd2.json', 'db.json', '[google]', '[mymemory]',
+                  'translate', 'translation', 'перевод', 'data/report.txt'
+              ]):
+                  continue
+              informative = [line.strip() for line in text.splitlines() if line.strip()][:20]
+              candidates.append({
+                  'path': path.as_posix(),
+                  'bytes': path.stat().st_size,
+                  'sha256': sha256(path.read_bytes()),
+                  'firstInformativeLines': informative,
+              })
+          report['referenceCandidates'] = candidates
+
+          pathlib.Path('diagnostics/d1.1-lineage.json').write_text(
+              json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+
+          lines = [
+              '# D1.1 lineage summary',
+              '',
+              f"Generated: {report['generatedAt']}",
+              f"Head: {report['head']}",
+              '',
+          ]
+          for file_path, data in report['files'].items():
+              lines.extend([
+                  f"## {file_path}",
+                  f"current bytes: {data['currentBytes']}",
+                  f"current sha256: {data['currentSha256']}",
+                  f"history entries: {len(data['history'])}",
+                  f"content-changing snapshots: {len(data['contentChangingSnapshotsNewestFirst'])}",
+              ])
+              for entry in data['history']:
+                  lines.append(f"- {entry['authorDate']} {entry['commit']} {entry['subject']} {entry['changes']}")
+              lines.append('')
+
+          shape = report['currentTransformationShape']
+          lines.extend([
+              '## Current transformation shape',
+              f"bd2 → db: {shape['bd2ToDbFieldDiffCounts']}",
+              f"db → ru: {shape['dbToRuFieldDiffCounts']}",
+              f"bd2 → ru: {shape['bd2ToRuFieldDiffCounts']}",
+              f"core bd2/db equal: {shape['coreBd2DbEqual']}",
+              f"same notes db/ru: {shape['dbRuSameNoteCount']}",
+              f"same notes bd2/ru: {shape['bd2RuSameNoteCount']}",
+              '',
+              f"historical data paths: {len(report['allHistoricalDataPaths'])}",
+              f"reference candidates: {len(report['referenceCandidates'])}",
+          ])
+          pathlib.Path('diagnostics/d1.1-lineage.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+          PY
+
+          cat diagnostics/d1.1-lineage.txt
+
+      - name: Commit lineage evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/d1.1-lineage.json diagnostics/d1.1-lineage.txt
+          git commit -m "chore: extract D1.1 data lineage"
+          git push origin HEAD:docs/data-provenance-d1.1
