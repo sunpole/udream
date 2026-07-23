@@ -15,11 +15,13 @@ Before changing files, read:
 7. `docs/PROJECT_STATE.md`
 8. `docs/ARCHITECTURE.md`
 9. `docs/FILE_MAP.md`
-10. `docs/TRANSLATION_WORKFLOW.md` for any data, translation or AI-assisted task
-11. `docs/NEWS_PUBLISHING.md`
-12. `docs/SCREENSHOT_AUTOMATION.md`
-13. `docs/CONTENT_AND_RIGHTS.md`
-14. the latest commits, tags, branches and open Pull Requests relevant to the task
+10. `docs/DATA_PROVENANCE.md` for any data task
+11. `data/datasets.json` and `docs/DATASET_REGISTRY.md` for dataset identity, canonical-path or migration work
+12. `docs/TRANSLATION_WORKFLOW.md` for any translation or AI-assisted task
+13. `docs/NEWS_PUBLISHING.md`
+14. `docs/SCREENSHOT_AUTOMATION.md`
+15. `docs/CONTENT_AND_RIGHTS.md`
+16. the latest commits, tags, branches, open Pull Requests and Issues relevant to the task
 
 Do not infer the current application from numbered folders under `_archive/`.
 
@@ -29,20 +31,44 @@ Before implementation, state the verified current status, active branch, open PR
 
 - Real GitHub facts — `main`, open Pull Requests, branches, commits, tags, Releases and Actions results — have the highest priority.
 - `WORK_STATUS.md` is the live cross-device handoff: active task, branch, actual progress, pause point and exact next action.
-- `docs/AI_GITHUB_WORKFLOW.md` defines how any number of chats, devices and agents cooperate without conflicting branches.
+- `docs/AI_GITHUB_WORKFLOW.md` defines how devices, chats and agents cooperate without conflicting branches.
 - An active GitHub Issue stores the detailed task specification; it does not replace live handoff state.
 - `docs/PRODUCT_VISION.md` defines the product mission, final direction and non-destructive data principles.
-- `docs/TRANSLATION_WORKFLOW.md` defines the target translation variants, duplicate policy and safe API-assisted workflow.
+- `docs/DATA_PROVENANCE.md` defines verified current file evidence, Git history, inferences and unknowns.
+- `data/datasets.json` is the machine-readable source for current logical dataset IDs, physical file IDs, roles, hashes and policies.
+- `docs/DATASET_REGISTRY.md` defines the approved canonical selection, retained compatibility serialization and future rollback design.
+- `docs/TRANSLATION_WORKFLOW.md` defines target translation variants and safe API-assisted workflow.
 - `main` is the source for the currently published GitHub Pages site.
 - Git tags and GitHub Releases are immutable restoration checkpoints.
 - Root `index.html`, `script.js`, `manifest.json`, `version.json`, and `sw.js` are the current runtime.
-- `data/divinity_code_ru.json` is the active database until a documented migration changes it.
+- `data/divinity_code_ru.json` / `ru-current-v1` is the active database until a documented functional migration changes it.
 - `versions/<release>/` directories are runnable snapshots and must remain stable.
 - `_archive/` is historical material, not current runtime code.
 - `ROADMAP.md` distinguishes completed work, the next approved phase and later backlog.
 - Old chat messages, AI memory and unpushed local notes are never sources of truth.
 
 If documents disagree with executable code or GitHub facts, report the conflict before editing and update the documents as part of the approved task.
+
+## Current registered datasets
+
+Logical dataset IDs:
+
+```text
+source-divinity-code-en
+ru-current-v1
+```
+
+Physical file IDs:
+
+```text
+source-divinity-code-en-bd2  -> data/bd2.json
+source-divinity-code-en-db   -> data/db.json
+ru-current-v1-runtime        -> data/divinity_code_ru.json
+```
+
+D1.2 selects `data/bd2.json` as the canonical maintained physical serialization through a project-governance decision. This does not prove that it is the historical original or authoritative external edition.
+
+`data/db.json` remains a retained equivalent compatibility serialization. Physical migration status is `planned-not-executed`; deletion, rename or runtime switching is not approved.
 
 ## Change discipline
 
@@ -104,7 +130,7 @@ For Playwright evidence:
 - inspect the uploaded artifact and `manifest.json`;
 - visually inspect the selected PNG;
 - copy only an approved PNG into `news/` through an explicit branch change;
-- take `image_commit` and `image_captured_at` from the matching per-scenario provenance entry;
+- take `image_commit` and `image_captured_at` from matching provenance;
 - never make the permanent capture workflow writable.
 
 ## uNews publication requirement
@@ -112,12 +138,12 @@ For Playwright evidence:
 - User-visible changes, releases, fixes, documentation milestones and meaningful repository changes require a factual Russian patchnote in `news/`.
 - Follow `docs/NEWS_PUBLISHING.md` and the canonical rules in `sunpole/uNews`.
 - Use `project: uDream` and `series: udream` in YAML.
-- Every patchnote requires `type`, `project`, `series`, `title`, `version`, `repo_url` or `web_url`, `image` and the screenshot provenance fields required for its version.
+- Every patchnote requires `type`, `project`, `series`, `title`, next `version`, exact UTC `queued_at`, `repo_url` or `web_url`, `image` and required screenshot provenance fields.
 - Name patchnotes `YYYY-MM-DD-udream-short-title.md` using lowercase Latin characters and hyphens.
 - Real Telegram publication is performed only by the uNews GitHub Actions workflow. Do not send directly from a local machine.
 - Never describe planned work as completed. Build the patchnote from the actual diff and completed checks.
-- Before merge, run `node scripts/validate-project.mjs`; when practical, also run the uNews dry-run against the patchnote.
-- Merging a new valid file under `news/` into public `main` makes it eligible for automatic publication to `@uNewsLog`. State that consequence and the exact text/image before merging.
+- Before merge, run `node scripts/validate-project.mjs`, all specialized validators and, when practical, the uNews dry-run.
+- Merging a new valid file under `news/` into public `main` makes it eligible for automatic publication to `@uNewsLog`. State the exact text and image before merging.
 
 ## Copyright and third-party content
 
@@ -133,23 +159,32 @@ For Playwright evidence:
 - Preserve record IDs unless a documented migration requires otherwise.
 - Validate JSON syntax, array shape, required fields, record count and duplicate IDs before commit.
 - Do not silently replace source wording or biblical references.
-- Record the source and transformation method for generated or translated data.
+- Record source and transformation method for generated or translated data.
 - Never overwrite one source database, translation or editorial variant with another.
-- Keep every retained data variant identifiable by source, language, version/date and transformation history.
-- A new translation must be stored as a new version; the previous translation remains recoverable.
+- Keep every retained data variant identifiable by logical dataset ID, physical file ID, source, language, version/date and transformation history.
+- A new translation must receive a new dataset ID and file; the previous translation remains recoverable.
 - A future merged search must retain source provenance and must not destroy separate source datasets.
-- Byte-identical files are one logical dataset, not independent translations.
-- Do not delete `data/bd2.json`, `data/db.json`, reports or archived data until D1 proves the canonical file, records the migration and provides a rollback.
-- The target is one canonical source dataset, one current Russian translation and up to two genuinely independent alternatives; do not manufacture variants when only one reliable translation exists.
-- A future selector must validate the complete target dataset, reload the application consistently, support safe cache clearing and automatically fall back to the stable dataset on failure.
+- Raw-distinct files with identical canonical JSON are one logical dataset, not independent translations.
+- Do not delete or rename `data/bd2.json`, `data/db.json`, reports or archived data while migration status is `planned-not-executed`.
+- The target is one canonical source dataset, one current Russian/localized dataset and up to two genuinely independent alternatives; do not manufacture variants when only one reliable translation exists.
+- A future selector must validate the complete target dataset, reload consistently, support safe cache clearing and automatically fall back to the stable dataset on failure.
+
+Any future physical migration must:
+
+- use a separate branch and PR;
+- create an immutable restoration checkpoint first;
+- preserve old raw and canonical hashes in documentation;
+- prove runtime/tooling references;
+- include exact rollback steps;
+- keep the active runtime unchanged unless a separate functional release explicitly changes it.
 
 ## AI-assisted translation safety
 
 - DeepSeek or another provider may generate only a separate candidate dataset.
 - Never call a paid translation API from the public browser application or installed PWA.
-- Never commit an API key, place it in browser JavaScript, JSON, logs, artifacts, screenshots or patchnotes.
+- Never commit an API key or place it in browser JavaScript, JSON, logs, artifacts, screenshots or patchnotes.
 - Use a local environment variable or GitHub encrypted secret.
-- Record source hash, model, prompt-template version, parameters, output hash and review status for every run.
+- Record source dataset ID/hash, candidate dataset ID, model, prompt-template version, parameters, output hash and review status for every run.
 - A translation script must support checkpoints and must never modify the published database in place.
 - AI output requires automatic validation and human review before any data release.
 
@@ -161,6 +196,8 @@ For relevant changes, run and report:
 npm test
 jq empty data/divinity_code_ru.json
 jq 'length' data/divinity_code_ru.json
+node scripts/validate-data-provenance.mjs
+node scripts/validate-dataset-registry.mjs
 node scripts/validate-project.mjs
 python3 -m http.server 8019
 ```
@@ -184,7 +221,7 @@ Then verify:
 - saved snapshot loads its own database;
 - manifest, icons, service worker, PDFs and external assets do not return 404;
 - mobile layout remains usable;
-- screenshot artifact contains the expected scenarios and manifest when applicable;
+- screenshot artifact contains expected scenarios and manifest when applicable;
 - no unrelated files changed.
 
 Do not claim a browser, PWA, offline, mobile or screenshot check was completed unless it was actually performed.
@@ -192,10 +229,11 @@ Do not claim a browser, PWA, offline, mobile or screenshot check was completed u
 ## Versioning and releases
 
 - Public releases use semantic tags such as `v23.8.0`.
-- The historical UI label `v19` is legacy metadata. The maintained application currently uses `v23.8.0`; old tags and archived folders keep their original numbers.
-- Update `VERSION.md` and `CHANGELOG.md` for release-worthy changes.
-- Add a matching uNews patchnote for every release-worthy change.
-- Document rollback steps in `docs/RELEASE_AND_ROLLBACK.md`.
+- The historical UI label `v19` is legacy metadata. The maintained application currently uses `v23.8.0`.
+- Documentation/provenance/registry baselines may advance without changing the functional application version.
+- Update `VERSION.md` and `CHANGELOG.md` for release-worthy or baseline changes.
+- Add a matching uNews patchnote for every meaningful change.
+- Document rollback steps in `docs/RELEASE_AND_ROLLBACK.md` or the task-specific migration document.
 - Never move an existing release tag to a different commit.
 
 ## Documentation standard
@@ -205,19 +243,20 @@ Keep documentation factual and distinguish:
 - verified current behavior;
 - historical information;
 - planned work;
+- governance decisions;
 - assumptions that still require testing.
 
-After a release or major documentation patch, search all maintained documents for stale current-version labels, old SHAs and unresolved development-branch wording.
+After a release or major documentation patch, search maintained documents for stale current-version labels, old SHAs and unresolved development-branch wording.
 
-End each completed task with the files changed, checks run, results, remaining risks and an updated `WORK_STATUS.md` handoff.
+End each completed task with files changed, checks run, results, remaining risks and an updated `WORK_STATUS.md` handoff.
 
 ## Next approved planning boundary
 
-The unified AI/GitHub workflow `23.8.6` and Playwright screenshot automation `23.8.7` are complete.
+D1.1 provenance and D1.2 dataset registry are complete at documentation/data baseline `23.8.9`.
 
-The next approved task is D1.1: recover the provenance of current data files and create `docs/DATA_PROVENANCE.md` without changing the active 4,086-record database, runtime, PWA, saved versions or archives.
+The next approved task is D1.3: design and run a non-destructive data-quality audit for all 4,086 records. It may report issues but must not silently rewrite source or localized content.
 
-D1 begins with documentation, inventory, validation design and migration planning. It must not add a user-facing database selector until the architecture is separately reviewed and approved.
+D1.4 two-book product architecture and D1.5 AI-assisted translation experiment must not begin before D1.3 is completed and recorded.
 
 ## uNews / тыНовости — обязательный план публикации
 
@@ -230,8 +269,8 @@ D1 begins with documentation, inventory, validation design and migration plannin
 3. Формат времени: `queued_at: YYYY-MM-DDTHH:MM:SSZ`.
 4. Описывать только фактически выполненные изменения; не включать токены, ключи, приватные данные и локальные секреты.
 5. Добавлять патчноут и изображение в ту же публичную ветку, что и завершённое изменение.
-6. Не публиковать в Telegram вручную и не заходить для этого в uNews: бот сам проверяет публичные репозитории, выбирает новости в строгом FIFO-порядке и за один запуск публикует до 20 записей с паузой не менее 61 секунды.
-7. При ошибке исправить самый ранний патчноут проекта: более новые версии этого проекта будут ждать, а остальные проекты продолжат публиковаться. После каждого успешного Telegram-поста uNews обязан зафиксировать checkpoint; если фиксация не удалась, текущий пакет останавливается.
+6. Не публиковать в Telegram вручную: uNews сам проверяет публичные репозитории, выбирает новости в FIFO-порядке и публикует с паузой не менее 61 секунды.
+7. При ошибке исправить самый ранний патчноут проекта; после каждого успешного Telegram-поста uNews обязан зафиксировать checkpoint.
 
 Репозиторий: `sunpole/udream`.
 Полная спецификация: https://github.com/sunpole/uNews/blob/main/UNEWS.md
