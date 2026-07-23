@@ -11,7 +11,7 @@ image: 2026-07-23-udream-v23-8-10-data-quality-audit.png
 image_source: document-render
 image_target: reports/data-quality-audit.md
 image_commit: cd6aa539a418861108d58f2206050291642e7fcb
-image_captured_at: 2026-07-23T07:10:00Z
+image_captured_at: 2026-07-23T07:09:49Z
 ---
 
 # uDream 23.8.10: неразрушающий аудит качества данных
