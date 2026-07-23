@@ -8,7 +8,7 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — начат D1.2, реестр наборов и решение о канонической физической копии |
+| Состояние | **IN_PROGRESS** — D1.2 registry core создан; продолжается синхронизация документации и проверок |
 | Начато | `2026-07-23 08:10 Europe/Berlin` |
 | Среда | `ChatGPT + GitHub connector + GitHub Actions` |
 | Рабочая ветка | `docs/d1.2-dataset-registry-v23.8.9` |
@@ -21,7 +21,19 @@
 
 Цель: создать проверяемый машинно-читаемый реестр логических наборов и физических файлов, назначить стабильные IDs, выбрать `data/bd2.json` канонической физической копией английского логического набора, сохранить `data/db.json` как retained/compatibility serialization и документировать обратимый будущий план миграции без удаления, переименования или изменения существующих файлов данных.
 
-Последний проверенный commit: `766a3eb8c8d5a50b8fbf3703f5e1894739688d38` — зафиксирован старт D1.2 и GitHub-handoff.
+Последний проверенный commit: `15b09f76677c05d6b49067104c43f39fb97714d0` — добавлены registry, постоянный validator, документ D1.2 и обязательный CI-шаг.
+
+## Что уже сделано фактически
+
+- создан `data/datasets.json` со schema version 1;
+- утверждены logical dataset IDs `source-divinity-code-en` и `ru-current-v1`;
+- утверждены physical file IDs для `data/bd2.json`, `data/db.json` и `data/divinity_code_ru.json`;
+- `data/bd2.json` выбран canonical physical serialization как project-governance decision;
+- `data/db.json` сохранён как retained equivalent compatibility serialization;
+- создан `docs/DATASET_REGISTRY.md` с identity, reference-audit, migration и rollback правилами;
+- создан `scripts/validate-dataset-registry.mjs`, который сверяет registry с реальными файлами, hashes, canonical identity, ordered IDs, runtime isolation и policy;
+- `.github/workflows/validate.yml` запускает registry-validator и проверяет его JavaScript syntax;
+- существующие файлы данных, runtime, PWA, package metadata, `versions/` и `_archive/` не изменялись.
 
 ## Доказанная исходная точка
 
@@ -36,10 +48,10 @@
 
 Планируемые файлы:
 
-- `data/datasets.json` — новый машинно-читаемый реестр, не runtime-база;
-- `docs/DATASET_REGISTRY.md` — правила идентичности, каноничности, retention и rollback;
-- `scripts/validate-dataset-registry.mjs` — постоянный validator реестра;
-- `scripts/validate-project.mjs` — подключение registry-validator;
+- `data/datasets.json`;
+- `docs/DATASET_REGISTRY.md`;
+- `scripts/validate-dataset-registry.mjs`;
+- `.github/workflows/validate.yml`;
 - `README.md`;
 - `ROADMAP.md`;
 - `VERSION.md`;
@@ -48,7 +60,7 @@
 - `docs/FILE_MAP.md`;
 - `docs/DATABASE_FORMAT.md`;
 - `docs/TRANSLATION_WORKFLOW.md`;
-- `AGENTS.md` — исправление устаревшей границы D1.1;
+- `AGENTS.md`;
 - `WORK_STATUS.md`;
 - новый патчноут `23.8.9` и новое реальное документальное изображение.
 
@@ -73,7 +85,7 @@
 
 ## Следующий точный шаг
 
-Создать схему реестра и постоянный validator на основе доказательств D1.1, затем синхронизировать документацию. До этого не менять ни один существующий файл данных.
+Синхронизировать README, roadmap, version, project-state, file-map, database-format, translation rules и AGENTS с реестром 23.8.9; затем создать factual patchnote и новое реальное document-render изображение.
 
 ## Главные запреты
 
