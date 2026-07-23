@@ -11,7 +11,7 @@ image: 2026-07-23-udream-v23-8-11-two-book-architecture.png
 image_source: document-render
 image_target: docs/TWO_BOOK_ARCHITECTURE.md
 image_commit: b5c819de9e573f5d47de0a7aec19eb0bee050fea
-image_captured_at: 2026-07-23T08:15:00Z
+image_captured_at: 2026-07-23T08:08:00Z
 ---
 
 # uDream 23.8.11: архитектура двух книг определена до реализации
