@@ -25,13 +25,15 @@ DOM + localStorage + Web Share APIs
 
 There is no server-side application code. GitHub Pages serves files; the browser performs all search, filtering, rendering, preferences, history management, PWA update checks and installation UI.
 
+`data/datasets.json` is not part of this runtime graph. It is repository governance metadata used by documentation and validation only.
+
 ## Current components
 
 ### `index.html`
 
 - page structure and inline CSS;
-- current `v23.8.0` label populated from centralized runtime version metadata; the former `v19` label is historical only;
-- menu, search controls, history controls, result area, alphabet rows, tags, install banner host, and footer;
+- current `v23.8.0` label populated from centralized runtime version metadata;
+- menu, search controls, history controls, result area, alphabet rows, tags, install banner host and footer;
 - external CDN dependencies;
 - links to reference PDFs;
 - loads `script.js` as an ES module.
@@ -40,7 +42,7 @@ There is no server-side application code. GitHub Pages serves files; the browser
 
 - application orchestration and mutable UI state;
 - connects data, search, history, presentation, localization, storage, version and PWA modules;
-- autocomplete UI, tag, alphabet, color, and digit behavior;
+- autocomplete UI, tag, alphabet, color and digit behavior;
 - DOM event binding for prebuilt presentation fragments;
 - history and breadcrumb DOM rendering;
 - theme and UI preference DOM effects;
@@ -114,9 +116,21 @@ There is no server-side application code. GitHub Pages serves files; the browser
 
 ### `data/divinity_code_ru.json`
 
-The active runtime database. It is loaded client-side and kept in browser memory for searching. Its 4,086 records remain the published source until a separately approved data migration changes the active dataset contract.
+The active runtime database and physical file `ru-current-v1-runtime`. It is loaded client-side and kept in browser memory for searching. Its 4,086 records remain the published source until a separately approved functional data migration changes the runtime contract.
 
-The future D1 data architecture must preserve separate source datasets and translation variants rather than destructively replacing this file.
+### `data/datasets.json`
+
+The D1.2 machine-readable registry. It defines:
+
+- logical dataset IDs;
+- physical file IDs and paths;
+- exact raw/canonical hashes and record counts;
+- canonical, retained and runtime roles;
+- source relationships;
+- translation-variant policy;
+- future migration and rollback policy.
+
+The browser, `src/data.js` and Service Worker do not load this file. The registry cannot switch the active database by itself.
 
 ### `version.json`
 
@@ -132,23 +146,49 @@ PWA identity, start URL, scope, theme colors, language, categories and install i
 - activates new releases immediately through `skipWaiting()` and `clients.claim()`;
 - removes only old caches whose names start with `udream-`;
 - uses network-first with offline fallback for version-sensitive runtime resources;
-- must change its cache name whenever cached runtime assets change.
+- must change its cache name whenever cached runtime assets change;
+- does not cache or load `data/datasets.json`.
 
 ### `versions/`
 
-Contains the saved-version launcher and runnable snapshots. Each snapshot should use relative paths, its own active database, its own manifest, and a scoped service worker.
+Contains the saved-version launcher and runnable snapshots. Each snapshot should use relative paths, its own active database, its own manifest and a scoped service worker.
 
 ### `_archive/`
 
 Historical/reference storage. The current application must not import scripts or databases from archived numbered versions.
 
+## Dataset identity boundary
+
+D1.2 registers:
+
+```text
+source-divinity-code-en
+  ├─ source-divinity-code-en-bd2 -> data/bd2.json (canonical retained)
+  └─ source-divinity-code-en-db  -> data/db.json  (retained equivalent)
+
+ru-current-v1
+  └─ ru-current-v1-runtime       -> data/divinity_code_ru.json (runtime current)
+```
+
+The canonical English choice is a project-governance decision. It does not prove historical originality. Migration remains `planned-not-executed`, and neither English file is a runtime dependency.
+
+A future selector or combined search requires a separate reviewed architecture and functional release. The registry alone does not authorize runtime switching.
+
 ## Repository automation
 
-GitHub Actions runs `scripts/validate-project.mjs` for Pull Requests and pushes to `main`. The check validates runtime assets, manifests, the 4,086-record active database, unique IDs, required record types, and uNews patchnote images. Pull Requests also run `scripts/validate-patchnote-diff.mjs` and must add a new factual file under `news/`.
+GitHub Actions runs:
+
+- dependency-free regression tests;
+- `scripts/validate-project.mjs` for runtime assets, active data, handoff, screenshot tooling and patchnotes;
+- `scripts/validate-dataset-registry.mjs` for logical/physical IDs, exact files, hashes, canonical identity, roles, policies and runtime isolation;
+- Pull Request patchnote/image enforcement;
+- JavaScript syntax checks.
+
+`docs/DATA_PROVENANCE.md` and `scripts/validate-data-provenance.mjs` lock the D1.1 evidence baseline. `data/datasets.json`, `docs/DATASET_REGISTRY.md` and `scripts/validate-dataset-registry.mjs` lock the D1.2 identity and governance baseline.
 
 The release workflow for `v23.8.0` additionally verifies the exact release SHA and consistency between `package.json`, `src/version.js` and `version.json` before creating or confirming the immutable tag and GitHub Release.
 
-The uNews publisher is intentionally external to the website runtime. Its scheduled workflow lives in `sunpole/uNews`, scans public repositories owned by `sunpole`, discovers `sunpole/udream/news/*.md`, and publishes previously unseen valid patchnotes to Telegram. Telegram credentials are never required by the uDream site or repository checks.
+The uNews publisher is external to the website runtime. Its scheduled workflow lives in `sunpole/uNews`, scans public repositories owned by `sunpole`, discovers `sunpole/udream/news/*.md` and publishes previously unseen valid patchnotes to Telegram. Telegram credentials are never required by the uDream site or repository checks.
 
 ## External dependencies
 
@@ -172,4 +212,6 @@ Preferences and browsing history are stored locally in the browser via `localSto
 - Separate content/database migrations from UI changes.
 - Preserve old releases and runnable snapshots.
 - Preserve each source dataset and translation variant with provenance; do not overwrite one variant with another.
-- Follow `docs/PRODUCT_VISION.md` for product boundaries and the D1 data direction.
+- Keep the dataset registry outside the runtime until a separately approved architecture requires it.
+- Do not delete or rename retained physical files while migration status is `planned-not-executed`.
+- Follow `docs/PRODUCT_VISION.md` for product boundaries and `docs/DATASET_REGISTRY.md` for current data identity.

@@ -2,81 +2,119 @@
 
 Этот файл — единая оперативная точка продолжения разработки uDream с телефона, Windows, macOS, другого устройства или любого ИИ-чата.
 
-`ROADMAP.md` хранит общий план, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит живую текущую задачу и точный следующий шаг.
-
 ## Быстрый сигнал
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **READY** — незавершённой активной задачи нет |
-| Рабочая ветка | `main` |
-| Открытый Pull Request | нет |
+| Состояние | **COMPLETED** — D1.2 реализован и проверен; PR №27 готовится к финальному merge |
+| Рабочая ветка | `docs/d1.2-dataset-registry-v23.8.9` |
+| Открытый Pull Request | `#27` — `https://github.com/sunpole/udream/pull/27` |
+| Issue | `#26` — D1.2 dataset registry |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Документационный/provenance baseline | `23.8.8` — D1.1 завершён |
-| Последнее завершённое изменение | PR №25, squash merge `2a7919683efa6c65fcac9a1061cf6cf7f5fbd6eb` |
-| Закрытая задача | Issue №19 — D1.1 completed |
-| Следующая утверждённая задача | Issue №26 — D1.2: реестр наборов и каноническая физическая копия без удаления данных |
-| Активная база | `data/divinity_code_ru.json`, 4 086 записей |
+| Документационный/data baseline | кандидат `23.8.9` |
+| Последний проверенный branch head | `f43d750a69929f894651c00ec067fb4c3b2e509c` |
+| Проверка GitHub Actions | `Validate uDream` run `29985622461` — success |
+| Следующая утверждённая задача после merge | D1.3 — non-destructive data-quality audit design |
 
-## Завершённый этап D1.1
+## Цель
 
-- создан постоянный `docs/DATA_PROVENANCE.md`;
-- создан и подключён `scripts/validate-data-provenance.mjs`;
-- зафиксированы raw SHA-256, canonical JSON SHA-256, размеры, схема, упорядоченные ID и Git-история;
-- доказано, что `data/bd2.json` и `data/db.json` имеют разные физические bytes, но идентичны после JSON parsing и canonicalization;
-- они классифицированы как две сериализации одного логического английского набора, а не как две базы или два перевода;
-- для `data/divinity_code_ru.json` зафиксированы доказанные связи с английским набором и явно перечислено неизвестное;
-- исправлены прежние неточные утверждения в поддерживаемой документации;
-- сохранены патчноут `23.8.8` и новый реальный Chromium PNG страницы `docs/DATA_PROVENANCE.md`;
-- regression tests, provenance-validator, project-validator, patchnote validation и JavaScript syntax checks прошли;
-- активные data-файлы, runtime, PWA, `versions/` и `_archive/` не изменялись.
+Создать проверяемый машинно-читаемый реестр логических наборов и физических файлов, назначить стабильные IDs, выбрать `data/bd2.json` канонической физической копией английского логического набора, сохранить `data/db.json` как retained/compatibility serialization и документировать обратимый будущий план миграции без удаления, переименования или изменения существующих файлов данных.
 
-## Доказанные контрольные значения
+## Выполнено фактически
+
+- создан `data/datasets.json`, schema version 1;
+- logical dataset IDs: `source-divinity-code-en`, `ru-current-v1`;
+- physical file IDs: `source-divinity-code-en-bd2`, `source-divinity-code-en-db`, `ru-current-v1-runtime`;
+- `data/bd2.json` выбран canonical maintained serialization как project-governance decision;
+- явно записано, что этот выбор не доказывает исторический оригинал или authoritative source edition;
+- `data/db.json` сохранён как retained equivalent compatibility serialization;
+- создан `docs/DATASET_REGISTRY.md` с identity, reference audit, migration и rollback;
+- создан permanent validator `scripts/validate-dataset-registry.mjs`;
+- GitHub Actions обязательно запускает новый validator и syntax check;
+- README, VERSION, CHANGELOG, ROADMAP, PRODUCT_VISION, PROJECT_STATE, ARCHITECTURE, FILE_MAP, DATABASE_FORMAT, TRANSLATION_WORKFLOW и AGENTS синхронизированы;
+- создан factual uNews patchnote `23.8.9`;
+- создан новый реальный Chromium document-render exact GitHub page `docs/DATASET_REGISTRY.md`;
+- screenshot metadata указывает на source commit `80dde35b412a8de0462f0f612fdeb0eb85e6e5ca` и UTC capture `2026-07-23T06:36:11Z`;
+- одноразовый capture workflow удалён после сохранения изображения;
+- существующие файлы данных, runtime, PWA, Service Worker, package metadata, `versions/` и `_archive/` не изменены.
+
+## Проверки
+
+На branch head `f43d750a69929f894651c00ec067fb4c3b2e509c` GitHub Actions успешно выполнил:
+
+- regression tests;
+- project/data/handoff/screenshot/patchnote validator;
+- D1.2 dataset registry validator;
+- обязательную проверку нового patchnote и нового изображения;
+- JavaScript syntax checks.
+
+Итоговый changed-file list не содержит:
 
 ```text
-data/bd2.json raw SHA-256
-814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28
-
-data/db.json raw SHA-256
-4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0
-
-общий canonical JSON SHA-256 английского набора
-5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1
-
-data/divinity_code_ru.json raw SHA-256
-1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64
+data/bd2.json
+data/db.json
+data/divinity_code_ru.json
+data/report.txt
+index.html
+script.js
+src/
+sw.js
+manifest.json
+version.json
+package.json
+versions/
+_archive/
 ```
 
-Все текущие наборы содержат 4 086 записей с одинаковыми упорядоченными ID.
+Новый `data/datasets.json` является registry metadata и не загружается runtime.
 
-## Что остаётся неизвестным
+## Контрольные решения
 
-Точный generation/translation pipeline активной русской базы, использованный prompt, последовательность провайдеров и подтверждённая запись человеческой редакторской проверки не восстановлены. Эти пробелы не подменяются предположениями.
+```text
+source-divinity-code-en
+  canonical physical: data/bd2.json
+  retained equivalent: data/db.json
+
+ru-current-v1
+  active runtime: data/divinity_code_ru.json
+
+physical migration: planned-not-executed
+remove_or_rename_approved: false
+```
+
+## Планируемые файлы
+
+План D1.2 выполнен в пределах:
+
+- registry и validators;
+- документация и GitHub Actions validation;
+- WORK_STATUS, changelog и roadmap;
+- factual patchnote и новое реальное изображение.
+
+Незапланированных runtime/data-content изменений нет.
+
+## Критерии завершения
+
+- stable logical and physical IDs созданы;
+- canonical/retained/runtime roles зафиксированы;
+- реестр сверяется с реальными bytes, hashes, canonical JSON и 4 086 ordered IDs;
+- future migration и rollback документированы, но не выполнены;
+- current translation нельзя перезаписать будущим candidate dataset;
+- protected files не изменены;
+- CI зелёный;
+- patchnote и image относятся к D1.2;
+- после squash merge Issue №26 закрывается и `main/WORK_STATUS.md` возвращается в `READY`.
 
 ## Следующий точный шаг
 
-Начать D1.2 только в новой отдельной ветке после чтения Issue №26 и обновления этого файла до `IN_PROGRESS`.
+Перевести PR №27 из draft в ready, дождаться зелёной проверки на финальном head, проверить diff ещё раз и выполнить squash merge. Затем закрыть Issue №26 и записать на `main` состояние `READY` для D1.3.
 
-D1.2 должен сначала:
+## Запреты до merge
 
-1. создать машинно-читаемый реестр логических наборов и физических файлов;
-2. назначить стабильные logical dataset IDs и physical file IDs;
-3. определить одну каноническую физическую копию английского набора;
-4. сохранить вторую сериализацию как retained/compatibility copy;
-5. подготовить обратимый план будущей миграции;
-6. не удалять, не переименовывать и не менять существующие data-файлы на этом этапе.
-
-## Главные запреты
-
-- не менять и не удалять текущие data-файлы без отдельно утверждённой обратимой миграции;
-- не начинать пользовательский переключатель баз;
-- не запускать D1.3 или D1.4 раньше D1.2;
-- не выдавать неизвестный pipeline перевода за доказанный факт;
-- не начинать параллельную крупную задачу при активном `IN_PROGRESS` handoff.
-
-## Продолжение с другого устройства
-
-Новый чат или агент должен сначала открыть GitHub, прочитать этот файл, затем Issue №26, `docs/DATA_PROVENANCE.md`, `docs/PRODUCT_VISION.md`, `ROADMAP.md` и `AGENTS.md`. Антону не требуется терминал или ручное редактирование, пока доступные действия выполняются через GitHub.
+- не менять существующие data-файлы или runtime;
+- не выполнять физическую migration;
+- не начинать D1.3 до завершения PR №27;
+- не объединять PR при красной или незавершённой проверке.
 
 ## Источник истины
 

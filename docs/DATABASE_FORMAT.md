@@ -1,12 +1,14 @@
 # Database format
 
-## Active file
+## Active runtime file
 
 ```text
 data/divinity_code_ru.json
 ```
 
-At release `v23.8.0` it contains 4,086 records and remains the active published runtime database.
+At release `v23.8.0` it contains 4,086 records and remains the only active published runtime database.
+
+The D1.2 registry file `data/datasets.json` is governance metadata. It is not a searchable record database and is not loaded by the browser application or Service Worker.
 
 ## Record schema
 
@@ -36,16 +38,69 @@ At release `v23.8.0` it contains 4,086 records and remains the active published 
 
 The maintained application does not interpret record notes as Markdown or raw HTML. Imported display values are escaped before DOM insertion.
 
-## Current data-file classification
+## Dataset registry schema
 
-Verified by D1.1 on 2026-07-22:
+Machine-readable registry:
 
-| Path | Classification | Runtime use |
+```text
+data/datasets.json
+```
+
+Registry schema version: `1`.
+
+Top-level sections:
+
+| Field | Purpose |
+|---|---|
+| `logical_datasets` | Stable logical identities independent of physical file count |
+| `physical_files` | Exact JSON serializations, paths, hashes, roles and statuses |
+| `supporting_files` | Retained reports/evidence that are not record datasets |
+| `canonical_selection` | Current project-governance choice and its limitation |
+| `reference_audit` | Runtime and historical path classification |
+| `migration_plan` | Future reversible migration design; not execution |
+| `translation_variant_policy` | Non-destructive source/current/alternative translation rules |
+
+Every logical dataset entry records at least:
+
+- stable dataset ID;
+- role/kind;
+- source work and language;
+- status;
+- record count and ordered ID range;
+- canonical JSON SHA-256;
+- canonical physical file ID;
+- all retained physical file IDs;
+- source relationship or unknown transformation status when relevant.
+
+Every physical JSON file entry records at least:
+
+- stable physical file ID;
+- logical dataset ID;
+- path and format;
+- role and status;
+- exact byte count;
+- raw SHA-256;
+- canonical JSON SHA-256;
+- record count;
+- retained introduction commit.
+
+## Current registered identities
+
+### Logical datasets
+
+| ID | Classification | Runtime use |
 |---|---|---|
-| `data/divinity_code_ru.json` | Active mixed-language localized and augmented dataset with 4,086 records | Loaded by the application |
-| `data/bd2.json` | English source serialization A with 4,086 records | Not used by the current runtime |
-| `data/db.json` | English source serialization B; parsed JSON is identical to `bd2.json`, but raw bytes differ | Not used by the current runtime |
-| `data/report.txt` | Historical generation and quality summary | Not used by the current runtime |
+| `source-divinity-code-en` | One English source logical dataset | Not used by current runtime |
+| `ru-current-v1` | Current mixed-language localized and augmented dataset | Loaded by the application |
+
+### Physical files
+
+| Physical ID | Path | Classification | Runtime use |
+|---|---|---|---|
+| `source-divinity-code-en-bd2` | `data/bd2.json` | canonical retained English serialization | no |
+| `source-divinity-code-en-db` | `data/db.json` | retained equivalent compatibility serialization | no |
+| `ru-current-v1-runtime` | `data/divinity_code_ru.json` | active runtime serialization | yes |
+| `data-quality-report-v1` | `data/report.txt` | historical supporting report | no |
 
 Corrected raw SHA-256 values:
 
@@ -56,56 +111,57 @@ data/divinity_code_ru.json  1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c44
 data/report.txt              dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d
 ```
 
-`bd2.json` and `db.json` share canonical JSON SHA-256:
+`data/bd2.json` and `data/db.json` share canonical JSON SHA-256:
 
 ```text
 5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1
 ```
 
-They contain the same ordered records and values, but their serialization/formatting produces different physical files.
+They contain the same ordered records and values but use different physical serialization/formatting. They are one logical dataset, not two translations.
 
-The active dataset keeps `id`, `symbol`, `description`, `source` and `date_added` unchanged while modifying `aliases`, `notes` and `tags`. The exact generation and translation pipeline remains undocumented.
+The active dataset canonical JSON SHA-256 is:
 
-Full evidence, Git history, corrected earlier claims and the D1.2 recommendation are in `docs/DATA_PROVENANCE.md`.
+```text
+c3682a50dec3303b7a100abefb27befd2dfd5d84e66d219252cf099b1a0fcd64
+```
 
-## Target dataset model for D1
+It keeps `id`, `symbol`, `description`, `source` and `date_added` unchanged while modifying `aliases`, `notes` and `tags`. The exact generation and translation pipeline remains unknown.
 
-The planned logical model is:
+Full file-level evidence is in `docs/DATA_PROVENANCE.md`. Stable identity, canonical selection and rollback policy are in `docs/DATASET_REGISTRY.md`.
+
+## Canonical physical decision
+
+D1.2 selects `data/bd2.json` / `source-divinity-code-en-bd2` as the maintained canonical physical serialization.
+
+This is a project-governance decision based on retained Git order, identical canonical content, smaller physical size and absence of runtime dependency. It does not prove historical originality or a particular external source edition.
+
+`data/db.json` remains retained and unchanged. Migration status is:
+
+```text
+planned-not-executed
+remove_or_rename_approved: false
+```
+
+Any later physical migration must be a separate reversible patch with an immutable checkpoint and rollback.
+
+## Target dataset model
 
 | Logical role | Intended quantity | Notes |
 |---|---:|---|
 | Canonical source dataset | 1 | Original-language or closest retained source representation |
-| Current Russian translation | 1 | Published, reviewed runtime version |
+| Current Russian translation | 1 | Published runtime version |
 | Alternative Russian translation A | 0–1 | Independent candidate for comparison |
 | Alternative Russian translation B | 0–1 | Second independent candidate only when quality justifies it |
 
-Two semantically identical serializations are one logical dataset, not two translations. D1 must identify a canonical path and prepare a reversible migration before a redundant physical serialization is removed.
-
-The project does not require two alternative translations at any cost. When only one reliable Russian translation exists, the correct product state is one source dataset plus one Russian translation.
+Two semantically identical serializations are one logical dataset, not two translations. The project does not require two alternative translations at any cost. When only one reliable Russian translation exists, the correct product state is one source dataset plus one Russian translation.
 
 ## Dataset and translation preservation
 
 The current single-file runtime is not permission to overwrite other sources or translation variants.
 
-Every future dataset or translation variant must have documented metadata covering at least:
-
-- stable dataset identifier;
-- source work and source revision;
-- language;
-- translation/editorial variant;
-- version or date;
-- creation or acquisition method;
-- transformation tool and rules;
-- source commit or cryptographic hash;
-- validation result;
-- human-review status;
-- relationship to any previous variant.
-
-A new translation or corrected edition must be introduced as a new recoverable version. The prior version remains available until an explicit retention decision is documented.
+A new translation or corrected edition must be introduced as a new recoverable logical dataset and physical file. The prior version remains available until an explicit retention decision is documented.
 
 A future merged search may combine results for users, but it must preserve the source identity of every record and must not destroy separate source datasets.
-
-The planned D1 phase will define the dataset registry, provenance record and safe migration strategy before any user-facing source selector or merged database is implemented.
 
 ## AI-assisted candidate datasets
 
@@ -124,22 +180,24 @@ For every AI-assisted run, record:
 - automatic validation report;
 - human-review status.
 
-The API key itself is never stored in Git, JSON data, browser code, logs, reports or patchnotes. Full operational rules are in `docs/TRANSLATION_WORKFLOW.md`.
+The API key itself is never stored in Git, JSON data, browser code, logs, reports or patchnotes. Full rules are in `docs/TRANSLATION_WORKFLOW.md`.
 
 ## Validation checklist
 
-Before committing database changes:
+For the current protected baseline:
 
 ```bash
 jq empty data/divinity_code_ru.json
 jq 'length' data/divinity_code_ru.json
 jq 'map(.id) | length == (unique | length)' data/divinity_code_ru.json
-jq 'all(.[]; (.id | type) == "number" and (.symbol | type) == "string" and (.aliases | type) == "array" and (.description | type) == "string" and (.source | type) == "string" and (.date_added | type) == "string" and (.tags | type) == "array" and (.notes | type) == "string")' data/divinity_code_ru.json
 node scripts/validate-data-provenance.mjs
+node scripts/validate-dataset-registry.mjs
 node scripts/validate-project.mjs
 ```
 
-Record-count changes, ID changes, source changes and translation changes must be explained in the commit, changelog and matching data-migration document.
+The registry validator checks real file bytes and content rather than trusting registry text. It verifies exact paths, sizes, raw/canonical hashes, record counts, ordered IDs, semantic identity, roles, policies and runtime isolation.
+
+Record-count changes, ID changes, source changes, translation changes or registry identity changes must be explained in the commit, changelog and matching migration/data document.
 
 ## Content constraints
 

@@ -31,8 +31,9 @@
 |---|---|
 | Открыть приложение | [sunpole.github.io/udream](https://sunpole.github.io/udream/) |
 | Установить на телефон | Открыть сайт и нажать баннер установки либо выбрать в меню браузера «Установить приложение» / «Добавить на главный экран» |
-| Продолжить разработку из любого чата или устройства | Сначала открыть [WORK_STATUS.md](WORK_STATUS.md), проверить указанные branch/PR/commits и следовать [единому GitHub-протоколу](docs/AI_GITHUB_WORKFLOW.md) |
-| Проверить происхождение текущих баз | Открыть [docs/DATA_PROVENANCE.md](docs/DATA_PROVENANCE.md) и запустить `node scripts/validate-data-provenance.mjs` |
+| Продолжить разработку | Сначала открыть [WORK_STATUS.md](WORK_STATUS.md), проверить branch/PR/commits и следовать [GitHub-протоколу](docs/AI_GITHUB_WORKFLOW.md) |
+| Проверить происхождение баз | [docs/DATA_PROVENANCE.md](docs/DATA_PROVENANCE.md) + `node scripts/validate-data-provenance.mjs` |
+| Проверить реестр наборов | [docs/DATASET_REGISTRY.md](docs/DATASET_REGISTRY.md) + `node scripts/validate-dataset-registry.mjs` |
 | Создать реальные screenshot artifacts | Запустить [Capture uDream screenshots](https://github.com/sunpole/udream/actions/workflows/capture-screenshots.yml) либо использовать `tools/screenshots/` локально |
 | Скачать стабильный исходный код | [uDream v23.8.0 ZIP](https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip) |
 | Посмотреть точный релиз | [GitHub Release v23.8.0](https://github.com/sunpole/udream/releases/tag/v23.8.0) |
@@ -47,7 +48,7 @@ uDream — статическое веб-приложение для поиск�
 
 Проект работает непосредственно в браузере: сервер, регистрация и база данных на стороне сервера не требуются. Текущий интерфейс использует единую версию `UDREAM v23.8.0`. Метка `v19` сохраняется только как историческая интерфейсная итерация в архиве.
 
-Единая миссия, конечный образ продукта, правила сохранения баз и переводов и граница следующего этапа зафиксированы в [видении продукта](docs/PRODUCT_VISION.md).
+Единая миссия, конечный образ продукта и правила сохранения баз и переводов зафиксированы в [видении продукта](docs/PRODUCT_VISION.md).
 
 ### Возможности
 
@@ -57,9 +58,9 @@ uDream — статическое веб-приложение для поиск�
 - история просмотров, светлая и тёмная темы;
 - русский и английский интерфейс;
 - установка на устройство как PWA;
-- автоматическая проверка и получение новой PWA-версии без зависания на старом кэше;
+- автоматическое обновление PWA без зависания на старом кэше;
 - каталог сохранённых рабочих версий;
-- регрессионные тесты и автоматическая проверка базы, provenance, runtime-файлов, handoff и патчноутов;
+- регрессионные тесты и автоматическая проверка runtime, базы, provenance, dataset registry, handoff и патчноутов;
 - реальные desktop/mobile-скриншоты из точного commit через Playwright Chromium и GitHub Actions artifacts.
 
 ## Текущее состояние
@@ -68,39 +69,60 @@ uDream — статическое веб-приложение для поиск�
 |---|---|
 | Стабильная точка восстановления | `v23.8.0` |
 | Текущая версия приложения | `v23.8.0` |
-| Документационный и automation baseline | `v23.8.7` — реальные Chromium screenshot artifacts |
-| Оперативная точка продолжения | [WORK_STATUS.md](WORK_STATUS.md) — состояние нельзя дублировать из старого чата |
+| Документационный/data baseline | `v23.8.9` — D1.2 dataset registry |
+| Оперативная точка продолжения | [WORK_STATUS.md](WORK_STATUS.md) |
 | Источник GitHub-процесса | [docs/AI_GITHUB_WORKFLOW.md](docs/AI_GITHUB_WORKFLOW.md) |
-| Screenshot tooling | `tools/screenshots/` + read-only workflow `capture-screenshots.yml` |
-| Следующая утверждённая серия | `D1` — происхождение данных и архитектура нескольких наборов |
-| Текущая точная задача | `D1.1` — завершить проверенный provenance baseline без изменения активной базы |
-| Историческая метка интерфейса | `v19` — только архив |
-| Активная база | `data/divinity_code_ru.json` |
+| Активный logical dataset | `ru-current-v1` |
+| Активный runtime-файл | `data/divinity_code_ru.json` |
 | Количество записей | 4 086 |
+| Canonical source dataset | `source-divinity-code-en` |
+| Canonical source serialization | `data/bd2.json` |
+| Retained compatibility serialization | `data/db.json` |
+| Следующая утверждённая задача | `D1.3` — non-destructive data-quality audit |
 | Публикация | GitHub Pages из ветки `main` |
 | Технологии | HTML, CSS, JavaScript ES Modules, JSON, PWA |
 
 Новый чат, Codex или устройство сначала проверяет реальные GitHub-факты и `WORK_STATUS.md`. Память ИИ, старое сообщение или локальная незапушенная ветка не являются источником истины.
 
-Playwright-автоматизация завершена: четыре сценария запускают настоящий Chromium, проверяют ожидаемое состояние и сохраняют desktop/mobile PNG с точным manifest. Результаты сначала становятся GitHub Actions artifact и только после визуальной проверки могут попасть в `news/`.
+## Реестр данных и переводов
 
-D1.1 документирует происхождение файлов и фиксирует hashes/структуру валидатором, не меняя активные 4 086 записей.
+D1.1 доказал, что `data/bd2.json` и `data/db.json` различаются по raw bytes и SHA-256, но содержат одинаковый parsed/canonical JSON из 4 086 записей. Поэтому это две физические сериализации одного logical dataset, а не две базы или два перевода.
 
-## План данных и переводов
+D1.2 закрепил стабильные идентификаторы:
+
+```text
+source-divinity-code-en
+ru-current-v1
+
+source-divinity-code-en-bd2
+data/bd2.json
+
+source-divinity-code-en-db
+data/db.json
+
+ru-current-v1-runtime
+data/divinity_code_ru.json
+```
+
+`data/bd2.json` выбран canonical maintained serialization как **project-governance decision**. Это не доказывает, что файл является историческим оригиналом или подтверждённой внешней редакцией. `data/db.json` сохранён как retained equivalent compatibility serialization.
+
+Фактическая миграция не выполнялась:
+
+```text
+planned-not-executed
+remove_or_rename_approved: false
+```
 
 Целевая модель после D1:
 
-- одна каноническая исходная база;
-- один текущий опубликованный русский перевод;
-- до двух самостоятельных альтернативных русских переводов, только когда их качество и происхождение можно проверить.
+- один canonical source dataset;
+- один текущий опубликованный русский/localized dataset;
+- до двух самостоятельных альтернативных русских переводов, только когда их качество и происхождение можно проверить;
+- меньше вариантов, если надёжно существует только один перевод.
 
-`data/bd2.json` и `data/db.json` имеют разные raw bytes, но одинаковый parsed/canonical JSON, поэтому считаются двумя сериализациями одного логического исходного набора. D1.2 утвердит канонический путь и обратимую миграцию. Если надёжно существует только один русский перевод, проект сохранит один перевод вместо создания искусственных вариантов.
+DeepSeek API рассматривается только как инструмент создания отдельного candidate dataset. Ключ никогда не встраивается в сайт или PWA; любой результат получает новый dataset ID и проходит автоматическую и человеческую проверку.
 
-DeepSeek API рассматривается как дополнительный инструмент для создания кандидатного перевода. Ключ никогда не встраивается в сайт или PWA; перевод должен выполняться локальным служебным скриптом либо GitHub Actions с encrypted secret. Любой результат сохраняется как отдельная кандидатная версия и проходит автоматическую и человеческую проверку.
-
-Будущий переключатель баз допускается только после утверждения D1 и обязан проверять полный набор данных, перезагружать приложение согласованно, безопасно очищать кеш и автоматически возвращаться к стабильной базе при ошибке.
-
-Подробнее: [проверенное происхождение данных](docs/DATA_PROVENANCE.md), [переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md) и [формат данных](docs/DATABASE_FORMAT.md).
+Подробнее: [реестр наборов](docs/DATASET_REGISTRY.md), [проверенное происхождение](docs/DATA_PROVENANCE.md), [переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md) и [формат данных](docs/DATABASE_FORMAT.md).
 
 ## Структура репозитория
 
@@ -111,13 +133,17 @@ udream/
 ├── tests/                       # регрессионные тесты модулей
 ├── manifest.json, version.json  # PWA metadata и проверка опубликованной версии
 ├── sw.js                        # offline cache и обновление runtime
-├── favicon.svg, icon-*.png      # оформление сайта
-├── data/                        # текущая база и сохранённые варианты данных
+├── data/
+│   ├── datasets.json            # machine-readable registry, не runtime-база
+│   ├── divinity_code_ru.json    # текущий runtime dataset
+│   ├── bd2.json                 # canonical source serialization
+│   ├── db.json                  # retained equivalent serialization
+│   └── report.txt               # исторический отчёт
 ├── versions/                    # запускаемые контрольные версии
 ├── news/                        # патчноуты и новые реальные изображения для uNews
-├── tools/screenshots/           # изолированные Playwright-сценарии и package
-├── docs/                        # видение, состояние, процессы, данные и screenshot policy
-├── scripts/                     # автоматические проверки репозитория, provenance, PR и screenshot tooling
+├── tools/screenshots/           # изолированные Playwright-сценарии
+├── docs/                        # видение, состояние, процессы, provenance и registry
+├── scripts/                     # автоматические проверки
 ├── .github/workflows/           # validation, screenshot artifacts и release automation
 ├── _archive/                    # исторические версии и исходные материалы
 ├── WORK_STATUS.md               # текущая задача и GitHub-handoff
@@ -127,11 +153,11 @@ udream/
 └── VERSION.md                   # состояние версий
 ```
 
-Файлы текущего сайта намеренно находятся в корне: GitHub Pages публикует их напрямую. Исторические эксперименты хранятся отдельно в `_archive/` и не являются рабочим приложением.
+Файлы текущего сайта намеренно находятся в корне: GitHub Pages публикует их напрямую. `data/datasets.json` является metadata registry и не загружается браузером. Исторические эксперименты хранятся отдельно в `_archive/` и не являются рабочим приложением.
 
 Подробная карта находится в [docs/FILE_MAP.md](docs/FILE_MAP.md).
 
-## Локальный запуск
+## Локальный запуск и проверки
 
 ```bash
 python3 -m http.server 8019
@@ -139,11 +165,10 @@ python3 -m http.server 8019
 
 После этого откройте `http://localhost:8019/`. Запуск простым открытием `index.html` через `file://` не считается корректной проверкой: браузеры ограничивают `fetch()` и service worker.
 
-Проверка тестов, структуры, базы, provenance, handoff, screenshot tooling и патчноутов:
-
 ```bash
 npm test
 node scripts/validate-data-provenance.mjs
+node scripts/validate-dataset-registry.mjs
 node scripts/validate-project.mjs
 ```
 
@@ -158,9 +183,9 @@ npm run capture
 
 ## Новости и патчноуты
 
-Каждое пользовательски заметное изменение сопровождается файлом в `news/`. Система [uNews](https://github.com/sunpole/uNews) проверяет новые патчноуты из публичной ветки `main` и через GitHub Actions публикует их в Telegram-канале [@uNewsLog](https://t.me/uNewsLog).
+Каждое заметное изменение сопровождается файлом в `news/`. Система [uNews](https://github.com/sunpole/uNews) проверяет новые патчноуты из публичной ветки `main` и через GitHub Actions публикует их в Telegram-канале [@uNewsLog](https://t.me/uNewsLog).
 
-Для новых патчноутов требуется новый реальный PNG/JPEG в том же Pull Request и метаданные источника, цели, commit и UTC-времени захвата. Старую картинку использовать повторно нельзя. Постоянный Playwright workflow сначала создаёт read-only artifact; изображение добавляется в `news/` только после визуальной проверки. Правила описаны в [docs/NEWS_PUBLISHING.md](docs/NEWS_PUBLISHING.md) и [docs/SCREENSHOT_AUTOMATION.md](docs/SCREENSHOT_AUTOMATION.md).
+Для новых патчноутов требуется новый реальный PNG/JPEG в том же Pull Request и метаданные источника, цели, commit и UTC-времени захвата. Старую картинку использовать повторно нельзя. Правила описаны в [docs/NEWS_PUBLISHING.md](docs/NEWS_PUBLISHING.md) и [docs/SCREENSHOT_AUTOMATION.md](docs/SCREENSHOT_AUTOMATION.md).
 
 Секреты Telegram и ключи переводческих API в этом репозитории не хранятся.
 
@@ -180,6 +205,7 @@ npm run capture
 - [Единая работа ИИ, GitHub, чатов и устройств](docs/AI_GITHUB_WORKFLOW.md)
 - [Видение и конечная цель продукта](docs/PRODUCT_VISION.md)
 - [Проверенное происхождение данных](docs/DATA_PROVENANCE.md)
+- [Реестр наборов и migration policy](docs/DATASET_REGISTRY.md)
 - [Переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md)
 - [Реальные скриншоты и Playwright-автоматизация](docs/SCREENSHOT_AUTOMATION.md)
 - [Текущее состояние](docs/PROJECT_STATE.md)

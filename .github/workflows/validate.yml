@@ -31,6 +31,9 @@ jobs:
       - name: Validate repository, data, handoff, screenshot tooling and patchnotes
         run: node scripts/validate-project.mjs
 
+      - name: Validate D1.2 dataset registry
+        run: node scripts/validate-dataset-registry.mjs
+
       - name: Require a new uNews patchnote for Pull Request changes
         if: ${{ github.event_name == 'pull_request' }}
         env:
@@ -60,6 +63,8 @@ jobs:
           node --check versions/v3.0.0/script.js
           node --check versions/v3.0.0/sw.js
           node --check scripts/validate-project.mjs
+          node --check scripts/validate-data-provenance.mjs
+          node --check scripts/validate-dataset-registry.mjs
           node --check scripts/validate-patchnote-diff.mjs
           node --check scripts/validate-screenshot-tooling.mjs
           node --check tools/screenshots/playwright.config.mjs

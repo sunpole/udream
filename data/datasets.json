@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "registry_id": "udream-datasets",
+  "baseline": "23.8.9",
+  "updated_at": "2026-07-23",
+  "functional_release": "v23.8.0",
+  "provenance_document": "docs/DATA_PROVENANCE.md",
+  "logical_datasets": [
+    {
+      "id": "source-divinity-code-en",
+      "kind": "source",
+      "source_work": "Divinity Code",
+      "source_edition": "unknown",
+      "language": "en",
+      "status": "retained-source",
+      "record_count": 4086,
+      "ordered_id_range": [
+        1,
+        4086
+      ],
+      "canonical_json_sha256": "5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1",
+      "canonical_physical_file_id": "source-divinity-code-en-bd2",
+      "physical_file_ids": [
+        "source-divinity-code-en-bd2",
+        "source-divinity-code-en-db"
+      ],
+      "provenance_status": "file-identity-verified-source-edition-unknown"
+    },
+    {
+      "id": "ru-current-v1",
+      "kind": "localized-augmented",
+      "source_dataset_id": "source-divinity-code-en",
+      "source_work": "Divinity Code",
+      "language": "ru",
+      "status": "runtime-current",
+      "record_count": 4086,
+      "ordered_id_range": [
+        1,
+        4086
+      ],
+      "canonical_json_sha256": "c3682a50dec3303b7a100abefb27befd2dfd5d84e66d219252cf099b1a0fcd64",
+      "canonical_physical_file_id": "ru-current-v1-runtime",
+      "physical_file_ids": [
+        "ru-current-v1-runtime"
+      ],
+      "preserved_fields": [
+        "id",
+        "symbol",
+        "description",
+        "source",
+        "date_added"
+      ],
+      "changed_fields": [
+        "aliases",
+        "notes",
+        "tags"
+      ],
+      "transformation_pipeline_status": "unknown",
+      "human_review_status": "unknown"
+    }
+  ],
+  "physical_files": [
+    {
+      "id": "source-divinity-code-en-bd2",
+      "logical_dataset_id": "source-divinity-code-en",
+      "path": "data/bd2.json",
+      "format": "json",
+      "role": "canonical-serialization",
+      "status": "canonical-retained",
+      "bytes": 2141655,
+      "raw_sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+      "canonical_json_sha256": "5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1",
+      "record_count": 4086,
+      "introduced_commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5"
+    },
+    {
+      "id": "source-divinity-code-en-db",
+      "logical_dataset_id": "source-divinity-code-en",
+      "path": "data/db.json",
+      "format": "json",
+      "role": "compatibility-serialization",
+      "status": "retained-equivalent",
+      "bytes": 2204553,
+      "raw_sha256": "4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0",
+      "canonical_json_sha256": "5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1",
+      "record_count": 4086,
+      "introduced_commit": "a885544bbf7943e5943f14e78a6581f236ad97e5"
+    },
+    {
+      "id": "ru-current-v1-runtime",
+      "logical_dataset_id": "ru-current-v1",
+      "path": "data/divinity_code_ru.json",
+      "format": "json",
+      "role": "active-runtime",
+      "status": "runtime-current",
+      "bytes": 4688773,
+      "raw_sha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+      "canonical_json_sha256": "c3682a50dec3303b7a100abefb27befd2dfd5d84e66d219252cf099b1a0fcd64",
+      "record_count": 4086,
+      "introduced_commit": "0d1bd292dc00b3c17a6e5736049882486bafe56f"
+    }
+  ],
+  "supporting_files": [
+    {
+      "id": "data-quality-report-v1",
+      "path": "data/report.txt",
+      "role": "historical-generation-quality-summary",
+      "status": "retained-evidence",
+      "bytes": 2963,
+      "raw_sha256": "dec064b826ae20b1ded2f9bcbfeed7d1d4d1c94592ef9d0774e495689e59da1d",
+      "introduced_commit": "a885544bbf7943e5943f14e78a6581f236ad97e5"
+    }
+  ],
+  "canonical_selection": {
+    "logical_dataset_id": "source-divinity-code-en",
+    "selected_physical_file_id": "source-divinity-code-en-bd2",
+    "decision_type": "project-governance",
+    "basis": [
+      "the maintained data/bd2.json path predates data/db.json in retained Git history",
+      "both files have identical parsed and canonical JSON",
+      "data/bd2.json is the smaller physical serialization",
+      "no current runtime file depends on either English serialization"
+    ],
+    "not_claimed": "This decision does not prove that data/bd2.json is the historical original or authoritative source edition."
+  },
+  "reference_audit": {
+    "runtime_active_path": "data/divinity_code_ru.json",
+    "non_runtime_source_paths": [
+      "data/bd2.json",
+      "data/db.json"
+    ],
+    "historical_names": [
+      "data/db_v2.json",
+      "_archive/old-data/db_v2.json"
+    ],
+    "runtime_uses_english_serializations": false
+  },
+  "migration_plan": {
+    "status": "planned-not-executed",
+    "remove_or_rename_approved": false,
+    "future_goal": "Retain one maintained canonical English serialization while preserving compatibility, provenance and rollback evidence.",
+    "preconditions": [
+      "search maintained and archived references to both current paths and historical db_v2 names",
+      "create a separate migration Pull Request",
+      "verify no runtime, tooling or external workflow depends on data/db.json",
+      "preserve both raw hashes and the shared canonical hash in permanent documentation",
+      "create a release or immutable restoration checkpoint before changing paths"
+    ],
+    "future_steps": [
+      "update references to the canonical path only in a separate migration patch",
+      "move the retained compatibility serialization to an explicitly documented archive path or keep it in place when compatibility requires it",
+      "run provenance, registry, project and application regression validation",
+      "verify GitHub Pages and saved versions",
+      "publish a data-migration patchnote"
+    ],
+    "rollback": [
+      "restore data/db.json from the pre-migration commit or tag",
+      "restore any changed references to their previous paths",
+      "re-run all validators and application tests",
+      "confirm the active runtime remains data/divinity_code_ru.json"
+    ]
+  },
+  "translation_variant_policy": {
+    "current_dataset_id": "ru-current-v1",
+    "target_source_dataset_count": 1,
+    "target_current_russian_count": 1,
+    "maximum_independent_alternative_russian_count": 2,
+    "allow_fewer_when_quality_requires": true,
+    "overwrite_current_translation": false,
+    "candidate_requires_new_dataset_id": true,
+    "candidate_requires_source_hash_model_prompt_validation_and_human_review": true
+  }
+}
