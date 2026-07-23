@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "architecture_id": "udream-two-book-architecture",
+  "baseline": "23.8.11",
+  "functional_release": "v23.8.0",
+  "status": "architecture-only",
+  "default_dataset_id": "ru-current-v1",
+  "source_works": [
+    {
+      "id": "work-divinity-code",
+      "title": "The Divinity Code to Understanding Your Dreams and Visions",
+      "evidence_status": "registered-dataset-and-retained-document",
+      "registered_dataset_ids": [
+        "source-divinity-code-en",
+        "ru-current-v1"
+      ],
+      "document_ids": [
+        "document-divinity-code-pdf"
+      ]
+    },
+    {
+      "id": "work-unlocking-your-dreams",
+      "title": "Unlocking Your Dreams",
+      "evidence_status": "retained-document-only-dataset-not-created",
+      "registered_dataset_ids": [],
+      "document_ids": [
+        "document-unlocking-your-dreams-student-material-pdf"
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "id": "document-divinity-code-pdf",
+      "source_work_id": "work-divinity-code",
+      "path": "_archive/source-files/The_Divinity_Code_to_Understanding_Your_Dreams_and_Visions_PDF_Room.pdf",
+      "status": "retained-evidence",
+      "dataset_status": "registered-datasets-exist",
+      "source_url_status": "not-recorded",
+      "distribution_evidence_status": "not-archived"
+    },
+    {
+      "id": "document-unlocking-your-dreams-student-material-pdf",
+      "source_work_id": "work-unlocking-your-dreams",
+      "path": "_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf",
+      "status": "retained-evidence",
+      "dataset_status": "dataset-not-created",
+      "source_url_status": "not-recorded",
+      "distribution_evidence_status": "not-archived"
+    }
+  ],
+  "dataset_contracts": [
+    {
+      "dataset_id": "ru-current-v1",
+      "source_work_id": "work-divinity-code",
+      "status": "runtime-current",
+      "activation": "active-default",
+      "identity": "dataset-id-plus-local-record-id"
+    },
+    {
+      "dataset_id": "future-unlocking-your-dreams-source",
+      "source_work_id": "work-unlocking-your-dreams",
+      "status": "reserved-id-not-created",
+      "activation": "forbidden-until-extracted-validated-and-registered",
+      "identity": "dataset-id-plus-local-record-id"
+    }
+  ],
+  "identity_contract": {
+    "global_record_key": [
+      "dataset_id",
+      "record_id"
+    ],
+    "numeric_ids_are_local_to_dataset": true,
+    "cross_dataset_numeric_id_equivalence": false,
+    "stable_relation_identity": "relation_id"
+  },
+  "modes": [
+    {
+      "id": "separate",
+      "label": "separate dataset switching",
+      "status": "recommended-first-functional-mode",
+      "requires": [
+        "registered-and-validated-second-dataset",
+        "dataset-aware-loader",
+        "dataset-aware-history-and-links",
+        "stable-fallback"
+      ]
+    },
+    {
+      "id": "combined",
+      "label": "federated combined search",
+      "status": "recommended-after-separate-mode",
+      "implementation_rule": "query-separate-indexes-and-merge-ranked-results-with-provenance",
+      "destructive_json_merge": false
+    },
+    {
+      "id": "comparison",
+      "label": "side-by-side comparison",
+      "status": "recommended-after-reviewed-relation-map",
+      "implementation_rule": "compare-only-explicit-reviewed-relations",
+      "numeric_id_matching": false
+    }
+  ],
+  "visible_provenance": {
+    "required_on_results_and_cards": [
+      "source_work_id",
+      "dataset_id",
+      "translation_or_variant_label",
+      "source_reference_when_known"
+    ],
+    "unknown_values_must_be_visible": true
+  },
+  "routing_contract": {
+    "record_route_fields": [
+      "dataset",
+      "record"
+    ],
+    "search_route_fields": [
+      "mode",
+      "dataset",
+      "q"
+    ],
+    "comparison_route_fields": [
+      "mode",
+      "relation"
+    ],
+    "history_must_store_dataset_identity": true,
+    "sharing_must_preserve_dataset_identity": true,
+    "legacy_links_without_dataset_fallback_to": "ru-current-v1"
+  },
+  "loading_contract": {
+    "validate_before_activation": true,
+    "required_validation": [
+      "registry-entry",
+      "schema",
+      "record-count-policy",
+      "unique-local-ids",
+      "required-fields",
+      "declared-hashes",
+      "source-work-link"
+    ],
+    "activation_is_atomic": true,
+    "partial_activation_forbidden": true
+  },
+  "cache_contract": {
+    "cache_keys_must_include_dataset_id_and_version": true,
+    "unrelated_origin_caches_must_not_be_deleted": true,
+    "dataset_failure_must_not_corrupt_current_cache": true,
+    "new_dataset_activation_requires_functional_release": true
+  },
+  "fallback_contract": {
+    "stable_dataset_id": "ru-current-v1",
+    "automatic_on": [
+      "load-failure",
+      "validation-failure",
+      "hash-mismatch",
+      "partial-cache-state"
+    ],
+    "preserve_user_preferences": true,
+    "record_recovery_reason": true
+  },
+  "relation_map_contract": {
+    "required_fields": [
+      "relation_id",
+      "left_dataset_id",
+      "left_record_id",
+      "right_dataset_id",
+      "right_record_id",
+      "relation_type",
+      "evidence",
+      "review_status"
+    ],
+    "allowed_relation_types": [
+      "same-symbol",
+      "related-symbol",
+      "contrast",
+      "source-cross-reference"
+    ],
+    "auto_accept_by_numeric_id": false,
+    "human_review_required": true
+  },
+  "stages": [
+    {
+      "id": "D1.4",
+      "status": "architecture-only",
+      "changes_runtime": false,
+      "changes_data": false
+    },
+    {
+      "id": "future-second-dataset-extraction",
+      "status": "not-started",
+      "requires": [
+        "source-and-rights-evidence-review",
+        "separate-dataset-id",
+        "extraction-validation",
+        "rollback-plan"
+      ]
+    },
+    {
+      "id": "future-separate-mode",
+      "status": "not-started",
+      "requires": [
+        "registered-second-dataset",
+        "functional-release"
+      ]
+    },
+    {
+      "id": "future-combined-mode",
+      "status": "not-started",
+      "requires": [
+        "separate-mode-stable",
+        "federated-ranking-contract"
+      ]
+    },
+    {
+      "id": "future-comparison-mode",
+      "status": "not-started",
+      "requires": [
+        "reviewed-relation-map"
+      ]
+    }
+  ],
+  "rollback_contract": {
+    "precondition": "immutable-checkpoint-before-functional-activation",
+    "steps": [
+      "restore-default-dataset-to-ru-current-v1",
+      "disable-new-mode-flags",
+      "remove-only-dataset-scoped-new-caches",
+      "preserve-history-and-preferences",
+      "re-run-runtime-data-and-pwa-validation"
+    ]
+  },
+  "prohibitions": [
+    "do-not-treat-retained-pdf-as-ready-dataset",
+    "do-not-assume-cross-book-id-equivalence",
+    "do-not-destructively-merge-source-json",
+    "do-not-change-runtime-in-d1.4",
+    "do-not-change-existing-data-files-in-d1.4",
+    "do-not-add-api-keys"
+  ]
+}
