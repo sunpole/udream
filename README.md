@@ -34,6 +34,8 @@
 | Продолжить разработку | Сначала открыть [WORK_STATUS.md](WORK_STATUS.md), проверить branch/PR/commits и следовать [GitHub-протоколу](docs/AI_GITHUB_WORKFLOW.md) |
 | Проверить происхождение баз | [docs/DATA_PROVENANCE.md](docs/DATA_PROVENANCE.md) + `node scripts/validate-data-provenance.mjs` |
 | Проверить реестр наборов | [docs/DATASET_REGISTRY.md](docs/DATASET_REGISTRY.md) + `node scripts/validate-dataset-registry.mjs` |
+| Открыть аудит качества | [reports/data-quality-audit.md](reports/data-quality-audit.md) |
+| Проверить актуальность audit reports | `node scripts/audit-data-quality.mjs --check` |
 | Создать реальные screenshot artifacts | Запустить [Capture uDream screenshots](https://github.com/sunpole/udream/actions/workflows/capture-screenshots.yml) либо использовать `tools/screenshots/` локально |
 | Скачать стабильный исходный код | [uDream v23.8.0 ZIP](https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip) |
 | Посмотреть точный релиз | [GitHub Release v23.8.0](https://github.com/sunpole/udream/releases/tag/v23.8.0) |
@@ -60,7 +62,7 @@ uDream — статическое веб-приложение для поиск�
 - установка на устройство как PWA;
 - автоматическое обновление PWA без зависания на старом кэше;
 - каталог сохранённых рабочих версий;
-- регрессионные тесты и автоматическая проверка runtime, базы, provenance, dataset registry, handoff и патчноутов;
+- регрессионные тесты и автоматическая проверка runtime, базы, provenance, dataset registry, data-quality reports, handoff и патчноутов;
 - реальные desktop/mobile-скриншоты из точного commit через Playwright Chromium и GitHub Actions artifacts.
 
 ## Текущее состояние
@@ -69,16 +71,17 @@ uDream — статическое веб-приложение для поиск�
 |---|---|
 | Стабильная точка восстановления | `v23.8.0` |
 | Текущая версия приложения | `v23.8.0` |
-| Документационный/data baseline | `v23.8.9` — D1.2 dataset registry |
+| Документационный/data baseline | `v23.8.10` — D1.3 deterministic data-quality audit |
 | Оперативная точка продолжения | [WORK_STATUS.md](WORK_STATUS.md) |
-| Источник GitHub-процесса | [docs/AI_GITHUB_WORKFLOW.md](docs/AI_GITHUB_WORKFLOW.md) |
 | Активный logical dataset | `ru-current-v1` |
 | Активный runtime-файл | `data/divinity_code_ru.json` |
 | Количество записей | 4 086 |
 | Canonical source dataset | `source-divinity-code-en` |
 | Canonical source serialization | `data/bd2.json` |
 | Retained compatibility serialization | `data/db.json` |
-| Следующая утверждённая задача | `D1.3` — non-destructive data-quality audit |
+| Structural audit gate | `PASS` — 0 structural errors |
+| Human-review findings | 5 022 instances in 5 aggregated groups; не доказанные ошибки |
+| Следующая утверждённая задача | `D1.4` — two-book product architecture |
 | Публикация | GitHub Pages из ветки `main` |
 | Технологии | HTML, CSS, JavaScript ES Modules, JSON, PWA |
 
@@ -94,14 +97,9 @@ D1.2 закрепил стабильные идентификаторы:
 source-divinity-code-en
 ru-current-v1
 
-source-divinity-code-en-bd2
-data/bd2.json
-
-source-divinity-code-en-db
-data/db.json
-
-ru-current-v1-runtime
-data/divinity_code_ru.json
+source-divinity-code-en-bd2  -> data/bd2.json
+source-divinity-code-en-db   -> data/db.json
+ru-current-v1-runtime        -> data/divinity_code_ru.json
 ```
 
 `data/bd2.json` выбран canonical maintained serialization как **project-governance decision**. Это не доказывает, что файл является историческим оригиналом или подтверждённой внешней редакцией. `data/db.json` сохранён как retained equivalent compatibility serialization.
@@ -122,7 +120,27 @@ remove_or_rename_approved: false
 
 DeepSeek API рассматривается только как инструмент создания отдельного candidate dataset. Ключ никогда не встраивается в сайт или PWA; любой результат получает новый dataset ID и проходит автоматическую и человеческую проверку.
 
-Подробнее: [реестр наборов](docs/DATASET_REGISTRY.md), [проверенное происхождение](docs/DATA_PROVENANCE.md), [переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md) и [формат данных](docs/DATABASE_FORMAT.md).
+## Аудит качества D1.3
+
+D1.3 проверяет зарегистрированные source/current datasets в read-only режиме. Отчёты генерируются детерминированно:
+
+```text
+reports/data-quality-audit.json
+reports/data-quality-audit.md
+```
+
+Подтверждено:
+
+- оба logical datasets содержат 4 086 unique ordered IDs `1–4086`;
+- source/current IDs полностью aligned;
+- `id`, `symbol`, `description`, `source`, `date_added` имеют 0 различий;
+- ожидаемые различия: aliases 4 083, notes 4 086, tags 4 086;
+- structural gate прошёл: 0 errors, 0 warnings;
+- зарегистрировано 5 022 human-review instances в пяти агрегированных группах.
+
+5 022 — не число доказанных ошибок. Это пересекающиеся кандидаты на проверку: shared aliases, alias-to-primary routing и пустые source notes. Скрипт ничего не исправляет и не меняет файлы данных.
+
+Подробнее: [правила аудита](docs/DATA_QUALITY_AUDIT.md), [читаемый отчёт](reports/data-quality-audit.md), [реестр наборов](docs/DATASET_REGISTRY.md), [происхождение](docs/DATA_PROVENANCE.md) и [переводы](docs/TRANSLATION_WORKFLOW.md).
 
 ## Структура репозитория
 
@@ -139,11 +157,12 @@ udream/
 │   ├── bd2.json                 # canonical source serialization
 │   ├── db.json                  # retained equivalent serialization
 │   └── report.txt               # исторический отчёт
+├── reports/                     # deterministic machine/human audit reports
 ├── versions/                    # запускаемые контрольные версии
 ├── news/                        # патчноуты и новые реальные изображения для uNews
 ├── tools/screenshots/           # изолированные Playwright-сценарии
-├── docs/                        # видение, состояние, процессы, provenance и registry
-├── scripts/                     # автоматические проверки
+├── docs/                        # видение, состояние, процессы, provenance, registry и audit
+├── scripts/                     # автоматические проверки и read-only audit
 ├── .github/workflows/           # validation, screenshot artifacts и release automation
 ├── _archive/                    # исторические версии и исходные материалы
 ├── WORK_STATUS.md               # текущая задача и GitHub-handoff
@@ -153,9 +172,7 @@ udream/
 └── VERSION.md                   # состояние версий
 ```
 
-Файлы текущего сайта намеренно находятся в корне: GitHub Pages публикует их напрямую. `data/datasets.json` является metadata registry и не загружается браузером. Исторические эксперименты хранятся отдельно в `_archive/` и не являются рабочим приложением.
-
-Подробная карта находится в [docs/FILE_MAP.md](docs/FILE_MAP.md).
+Файлы текущего сайта намеренно находятся в корне: GitHub Pages публикует их напрямую. `data/datasets.json` и `reports/` не загружаются браузером. Исторические эксперименты хранятся отдельно в `_archive/` и не являются рабочим приложением.
 
 ## Локальный запуск и проверки
 
@@ -163,12 +180,13 @@ udream/
 python3 -m http.server 8019
 ```
 
-После этого откройте `http://localhost:8019/`. Запуск простым открытием `index.html` через `file://` не считается корректной проверкой: браузеры ограничивают `fetch()` и service worker.
+После этого откройте `http://localhost:8019/`. Запуск через `file://` не считается корректной проверкой: браузеры ограничивают `fetch()` и service worker.
 
 ```bash
 npm test
 node scripts/validate-data-provenance.mjs
 node scripts/validate-dataset-registry.mjs
+node scripts/audit-data-quality.mjs --check
 node scripts/validate-project.mjs
 ```
 
@@ -206,6 +224,8 @@ npm run capture
 - [Видение и конечная цель продукта](docs/PRODUCT_VISION.md)
 - [Проверенное происхождение данных](docs/DATA_PROVENANCE.md)
 - [Реестр наборов и migration policy](docs/DATASET_REGISTRY.md)
+- [Аудит качества данных](docs/DATA_QUALITY_AUDIT.md)
+- [Читаемый audit report](reports/data-quality-audit.md)
 - [Переводы и AI-assisted workflow](docs/TRANSLATION_WORKFLOW.md)
 - [Реальные скриншоты и Playwright-автоматизация](docs/SCREENSHOT_AUTOMATION.md)
 - [Текущее состояние](docs/PROJECT_STATE.md)
