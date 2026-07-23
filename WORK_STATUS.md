@@ -2,63 +2,91 @@
 
 Этот файл — единая оперативная точка продолжения разработки uDream с телефона, Windows, macOS, другого устройства или любого ИИ-чата.
 
-`ROADMAP.md` хранит общий план, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит живую текущую задачу и точный следующий шаг.
-
 ## Быстрый сигнал
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **READY** — незавершённой активной задачи нет |
-| Рабочая ветка | `main` |
-| Открытый Pull Request | нет |
+| Состояние | **COMPLETED** — D1.3 реализован; PR №29 переведён в ready и ожидает зелёный финальный Actions run |
+| Рабочая ветка | `audit/d1.3-data-quality-v23.8.10` |
+| Открытый Pull Request | `#29` — `https://github.com/sunpole/udream/pull/29` |
+| Issue | `#28` — D1.3 data-quality audit |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Документационный/data baseline | `23.8.9` — D1.2 dataset registry завершён |
-| Последнее завершённое изменение | PR #27, squash merge `3cb0403016b56a8d5e6fedd9b6367f383ec4a6ba` |
-| Закрытая задача | Issue #26 — D1.2 completed |
-| Следующая утверждённая задача | D1.3 — non-destructive data-quality audit design |
+| Документационный/data baseline | кандидат `23.8.10` |
+| Последний проверенный branch head до ready-review sync | `22fe94598e8de3a4c72ac76ffb9265625249c3eb` |
+| Следующая утверждённая задача после merge | D1.4 — two-book product architecture |
 
-## Завершённый этап D1.2
+## Выполнено фактически
 
-- создан machine-readable registry `data/datasets.json`;
-- зарегистрированы logical dataset IDs `source-divinity-code-en` и `ru-current-v1`;
-- зарегистрированы physical file IDs для обеих английских сериализаций и активной русской базы;
-- `data/bd2.json` выбран canonical maintained serialization как project-governance decision;
-- выбор canonical path не выдаётся за доказательство исторического оригинала;
-- `data/db.json` сохранён как retained equivalent compatibility serialization;
-- создан `docs/DATASET_REGISTRY.md` с identity, reference audit, migration и rollback;
-- создан permanent validator `scripts/validate-dataset-registry.mjs`;
-- GitHub Actions проверяет registry, реальные hashes, canonical JSON, 4 086 ordered IDs, policy и runtime isolation;
-- factual uNews patchnote `23.8.9` и новый реальный Chromium document-render сохранены;
-- существующие data-файлы, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены.
+- создан permanent read-only `scripts/audit-data-quality.mjs`;
+- создан `docs/DATA_QUALITY_AUDIT.md` с severity model, rules, determinism и limitations;
+- созданы deterministic reports `reports/data-quality-audit.json` и `reports/data-quality-audit.md`;
+- permanent CI запускает `node scripts/audit-data-quality.mjs --check`;
+- audit охватывает `source-divinity-code-en` и `ru-current-v1`;
+- оба datasets содержат 4 086 unique ordered IDs `1–4086`;
+- source/current IDs aligned;
+- preserved fields `id`, `symbol`, `description`, `source`, `date_added` имеют 0 differences;
+- changed-field counts: aliases 4 083, notes 4 086, tags 4 086;
+- structural gate: PASS;
+- structural errors: 0;
+- warnings: 0;
+- human-review instances: 5 022 в пяти aggregated groups;
+- findings не исправлялись и не выдавались за доказанные content errors;
+- README, VERSION, CHANGELOG, ROADMAP, PRODUCT_VISION, PROJECT_STATE, ARCHITECTURE, FILE_MAP, DATABASE_FORMAT, TRANSLATION_WORKFLOW и AGENTS синхронизированы;
+- создан factual patchnote `23.8.10`;
+- создан новый real Chromium document-render точной GitHub report page;
+- screenshot source commit: `cd6aa539a418861108d58f2206050291642e7fcb`;
+- screenshot captured at: `2026-07-23T07:09:49Z`;
+- одноразовые report/image workflows удалили себя после сохранения outputs;
+- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены.
 
-## Текущие зарегистрированные данные
+## Фактические audit findings
 
-```text
-source-divinity-code-en
-  canonical physical: data/bd2.json
-  retained equivalent: data/db.json
+| Rule | Dataset | Count | Classification |
+|---|---|---:|---|
+| alias collision across records | `ru-current-v1` | 854 | human/source review |
+| alias matches another primary symbol | `ru-current-v1` | 1 145 | routing review |
+| alias collision across records | `source-divinity-code-en` | 693 | human/source review |
+| alias matches another primary symbol | `source-divinity-code-en` | 1 145 | routing review |
+| empty notes | `source-divinity-code-en` | 1 185 | review; may be intentional source structure |
 
-ru-current-v1
-  active runtime: data/divinity_code_ru.json
+5 022 — не количество доказанных ошибок. Группы пересекаются; shared aliases могут быть намеренными, а empty source notes могут отражать структуру исходника.
 
-physical migration: planned-not-executed
-remove_or_rename_approved: false
-```
+## Планируемые файлы
+
+План D1.3 выполнен в пределах:
+
+- audit script/specification/reports;
+- CI validation;
+- maintained documentation;
+- WORK_STATUS, roadmap, version и changelog;
+- factual patchnote и новое real image.
+
+Незапланированных data-content/runtime изменений нет.
+
+## Критерии завершения
+
+- оба registered logical datasets и все 4 086 IDs проверены;
+- structural, warning, review и info categories разделены;
+- deterministic reports и stale-report check работают;
+- source/current alignment и preserved-field equality проверены;
+- heuristics не выдаются за доказанные errors;
+- protected data/runtime/PWA/saved-version/archive paths отсутствуют в diff;
+- provenance, registry, audit и project validators проходят;
+- GitHub Actions на final head должны быть зелёными;
+- patchnote и real image соответствуют D1.3;
+- после squash merge Issue №28 закрывается и `main/WORK_STATUS.md` возвращается в `READY`.
 
 ## Следующий точный шаг
 
-Начать D1.3 только в новой отдельной ветке после чтения Issue/ROADMAP и обновления этого файла до `IN_PROGRESS`.
+Дождаться зелёного `Validate uDream` на этом финальном synchronize commit, повторно проверить changed-file list и выполнить squash merge PR №29. Затем закрыть Issue №28 и записать `READY` на `main` для D1.4.
 
-D1.3 должна спроектировать и выполнить неразрушающий аудит качества всех 4 086 записей: автоматические проверки, severity levels, machine-readable и human-readable reports. Она может находить и описывать проблемы, но не должна молча исправлять или перезаписывать данные.
+## Запреты до merge
 
-## Главные запреты
-
-- не удалять, не переименовывать и не изменять текущие data-файлы без отдельной обратимой миграции;
-- не менять стабильные IDs или тексты в audit-патче;
-- не начинать пользовательский selector баз;
-- не запускать D1.4 или D1.5 раньше завершения D1.3;
-- не выдавать неизвестный translation pipeline за доказанный факт.
+- не менять существующие data files или runtime;
+- не исправлять findings в D1.3;
+- не начинать D1.4/D1.5 до merge;
+- не объединять PR при красной или незавершённой проверке.
 
 ## Источник истины
 
-Реальные GitHub-факты — `main`, открытые Pull Request, commits, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
+Реальные GitHub-факты — `main`, текущая ветка, commits, Pull Request, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
