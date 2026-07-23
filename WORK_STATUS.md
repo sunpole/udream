@@ -2,74 +2,68 @@
 
 Этот файл — единая оперативная точка продолжения разработки uDream с телефона, Windows, macOS, другого устройства или любого ИИ-чата.
 
-`ROADMAP.md` хранит общий план, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит живую текущую задачу и точный следующий шаг.
-
 ## Быстрый сигнал
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — начат architecture-only этап D1.4 |
+| Состояние | **COMPLETED** — D1.4 реализован в ветке; ожидаются Pull Request и проверки |
 | Рабочая ветка | `docs/two-book-architecture-d1.4` |
 | Открытый Pull Request | ещё не открыт |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Документационный/data baseline | `23.8.10` — D1.3 завершён |
+| Документационный/architecture baseline | кандидат `23.8.11` |
 | Актуальный `main` при старте | `d6c7a070ecd6aec19b7841644cfdb80ac9f82de1` |
-| Активная задача | Issue #30 — спроектировать архитектуру двух книг без изменения runtime |
-| Следующая утверждённая задача после D1.4 | определить отдельную functional/data phase только после завершения архитектуры |
+| Активная задача | Issue #30 — D1.4 two-book product architecture |
+| Следующая точная задача | открыть PR, дождаться зелёных Actions, проверить diff и объединить |
 
-## Текущая точка продолжения
+## Завершено фактически
 
-Статус: `IN_PROGRESS`
+- создан `docs/TWO_BOOK_ARCHITECTURE.md`;
+- создан machine-readable `docs/two-book-architecture.json`;
+- добавлен permanent `scripts/validate-two-book-architecture.mjs`;
+- validator включён в GitHub Actions и syntax checks;
+- текущий default зафиксирован как `ru-current-v1`;
+- второй PDF зафиксирован как retained evidence, но не готовый dataset;
+- global identity определена как `(dataset_id, record_id)`;
+- separate switching выбран первым будущим functional mode;
+- combined search определён как federated по отдельным indexes без destructive JSON merge;
+- side-by-side comparison требует explicit reviewed relation map;
+- определены visible provenance, dataset-aware URLs/history/sharing, atomic activation, cache isolation, fallback и rollback;
+- обновлены `ROADMAP.md` и `VERSION.md`;
+- создан factual patchnote `23.8.11` и новый real PNG exact architecture evidence;
+- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены.
 
-Начато: `2026-07-23 Europe/Berlin`
+## Планируемые и фактические файлы
 
-Среда: `ChatGPT + GitHub connector + GitHub Actions`
+Фактически изменены или добавлены:
 
-Ветка: `docs/two-book-architecture-d1.4`
-
-Issue: `#30` — `https://github.com/sunpole/udream/issues/30`
-
-Цель: создать проверяемую архитектуру работы uDream с двумя исходными книгами до любой реализации selector, combined search, side-by-side comparison или второй базы.
-
-## Планируемые файлы
-
-- `docs/TWO_BOOK_ARCHITECTURE.md`;
-- при необходимости machine-readable architecture registry under `data/` или `docs/`, но без изменения существующих data files;
-- постоянный validator архитектурного реестра, если registry добавляется;
-- `README.md`;
+- `.github/workflows/validate.yml`;
 - `ROADMAP.md`;
 - `VERSION.md`;
-- `CHANGELOG.md`;
-- `docs/PROJECT_STATE.md`;
-- `docs/ARCHITECTURE.md`;
-- `docs/FILE_MAP.md`;
-- `docs/DATASET_REGISTRY.md`;
-- `AGENTS.md`;
 - `WORK_STATUS.md`;
-- factual uNews patchnote и новый real PNG/JPEG.
+- `docs/TWO_BOOK_ARCHITECTURE.md`;
+- `docs/two-book-architecture.json`;
+- `scripts/validate-two-book-architecture.mjs`;
+- `news/2026-07-23-udream-v23-8-11-two-book-architecture.md`;
+- `news/2026-07-23-udream-v23-8-11-two-book-architecture.png`.
 
-## Критерии завершения
+## Критерии завершения перед merge
 
-- source works и documents имеют stable IDs и evidence status;
-- current dataset и future second-book dataset разделены;
-- global identity использует `(dataset_id, record_id)`;
-- separate switching, federated combined search и side-by-side comparison сравнены и сведены в staged recommendation;
-- visible provenance, URLs, history, sharing, cache/fallback и relation-map contracts определены;
-- migration/rollback описаны до implementation;
-- validators и GitHub Actions проходят;
-- data/runtime/PWA/package metadata/`versions/`/`_archive/` отсутствуют в diff;
-- factual patchnote и новое реальное изображение добавлены;
-- PR объединён после полного diff review;
+- GitHub Actions полностью зелёные;
+- architecture validator проходит;
+- patchnote/new-image validation проходит;
+- diff не содержит `data/`, runtime, PWA, package metadata, `versions/` или `_archive/`;
+- PR переведён в ready и объединён squash merge;
 - Issue #30 закрыт completed;
-- `main/WORK_STATUS.md` возвращён в `READY`.
+- `main/WORK_STATUS.md` возвращён в `READY`;
+- следующая approved phase названа явно.
 
 ## Последний проверенный commit
 
-`d6c7a070ecd6aec19b7841644cfdb80ac9f82de1` — D1.3 завершён и `main` готов к D1.4.
+Последний сохранённый этап до этого handoff содержит architecture docs, machine registry, validator, roadmap/version updates, patchnote и real PNG. Точный финальный head будет зафиксирован GitHub в Pull Request.
 
 ## Следующий точный шаг
 
-Прочитать поддерживаемые architecture/data документы и зарегистрированные datasets, затем подготовить `docs/TWO_BOOK_ARCHITECTURE.md` и, только если это повышает проверяемость, machine-readable architecture registry с validator.
+Открыть Pull Request из `docs/two-book-architecture-d1.4` в `main`, проверить GitHub Actions и полный changed-files список. Не объединять при любой красной или незавершённой проверке.
 
 ## Главные запреты
 
@@ -79,9 +73,8 @@ Issue: `#30` — `https://github.com/sunpole/udream/issues/30`
 - не добавлять user-facing selector;
 - не считать наличие PDF готовым dataset;
 - не назначать одинаковые IDs между книгами без evidence;
-- не начинать D1.5 DeepSeek translation experiment;
-- не добавлять API keys;
-- не заявлять source URLs или permissions, которых нет в GitHub.
+- не начинать DeepSeek translation experiment;
+- не добавлять API keys.
 
 ## Источник истины
 
