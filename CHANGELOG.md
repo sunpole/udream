@@ -1,5 +1,20 @@
 # Changelog
 
+## Audit and documentation update v23.8.10 — 2026-07-23
+
+- Added `scripts/audit-data-quality.mjs` as a deterministic, read-only audit for registered source/current datasets.
+- Added `docs/DATA_QUALITY_AUDIT.md` with structural, hygiene and ambiguity rules plus `error`, `warning`, `review` and `info` severities.
+- Added deterministic machine-readable and human-readable reports under `reports/`.
+- Audited both logical datasets and all 4,086 ordered IDs without changing source or current files.
+- Confirmed zero preserved-field differences for `id`, `symbol`, `description`, `source` and `date_added`.
+- Confirmed expected changed-field counts: aliases 4,083; notes 4,086; tags 4,086.
+- Recorded a passing structural gate with 0 errors and 0 warnings.
+- Recorded 5,022 human-review instances in five aggregated groups covering shared aliases, alias-to-primary routing and empty source notes.
+- Explicitly documented that review instances are heuristic candidates, can overlap and are not 5,022 proven content errors.
+- Required committed report freshness and the structural audit gate in GitHub Actions.
+- Synchronized README, roadmap, version, project state, file map, database contract and agent rules.
+- Kept all existing data files, application runtime, PWA, package metadata, saved versions and archives unchanged.
+
 ## Documentation and registry update v23.8.9 — 2026-07-23
 
 - Added `data/datasets.json` as the machine-readable D1.2 registry for logical datasets, physical files, hashes, roles and policies.
