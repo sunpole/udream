@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "architecture_id": "udream-two-book-architecture",
+  "baseline": "23.8.11",
+  "status": "approved-architecture-not-implemented",
+  "functional_release": "v23.8.0",
+  "source_work_registry": "data/source-works.json",
+  "dataset_registry": "data/datasets.json",
+  "current_runtime": {
+    "mode": "single-dataset",
+    "dataset_id": "ru-current-v1",
+    "source_work_id": "divinity-code",
+    "stable_fallback_dataset_id": "ru-current-v1"
+  },
+  "global_record_identity": {
+    "components": [
+      "dataset_id",
+      "record_id"
+    ],
+    "canonical_string_format": "dataset_id:record_id",
+    "numeric_ids_are_local_to_dataset": true,
+    "same_numeric_id_across_datasets_implies_same_record": false
+  },
+  "future_modes": [
+    {
+      "id": "single",
+      "label": "Single dataset",
+      "status": "current",
+      "behavior": "Search and display one explicitly selected validated dataset.",
+      "default_dataset_id": "ru-current-v1"
+    },
+    {
+      "id": "switch",
+      "label": "Dataset switching",
+      "status": "planned",
+      "behavior": "User selects one validated dataset or translation variant; selection is preserved explicitly.",
+      "requires_registered_dataset": true
+    },
+    {
+      "id": "combined",
+      "label": "Federated combined search",
+      "status": "planned",
+      "behavior": "Query independent per-dataset indexes and merge ranked result references without creating a destructive merged source file.",
+      "physical_merge_forbidden": true
+    },
+    {
+      "id": "compare",
+      "label": "Side-by-side comparison",
+      "status": "planned",
+      "behavior": "Show explicitly related records from different datasets using a reviewed relation map.",
+      "numeric_id_matching_forbidden": true
+    }
+  ],
+  "result_provenance_contract": {
+    "required_fields": [
+      "source_work_id",
+      "dataset_id",
+      "record_id",
+      "dataset_label",
+      "language_or_variant",
+      "source_reference_status"
+    ],
+    "optional_when_known": [
+      "source_document_id",
+      "source_page",
+      "source_section",
+      "translation_variant_id",
+      "relation_review_status"
+    ],
+    "must_be_visible_on": [
+      "search-result",
+      "record-card",
+      "shared-link-preview",
+      "comparison-panel"
+    ],
+    "unknown_reference_label": "Source location not yet verified"
+  },
+  "navigation_contract": {
+    "url_query_parameters": {
+      "mode": "single|switch|combined|compare",
+      "dataset": "primary dataset_id",
+      "record": "primary local record_id",
+      "compare_dataset": "secondary dataset_id for compare mode",
+      "compare_record": "secondary local record_id for compare mode",
+      "q": "search query when no record is selected"
+    },
+    "history_entry_required_fields": [
+      "mode",
+      "dataset_id",
+      "record_id",
+      "label",
+      "visited_at"
+    ],
+    "share_payload_required_fields": [
+      "mode",
+      "dataset_id",
+      "record_id",
+      "canonical_url"
+    ],
+    "deep_link_invalid_target_behavior": "show-safe-error-and-offer-stable-fallback"
+  },
+  "dataset_activation_contract": {
+    "preconditions": [
+      "dataset is registered with stable logical and physical IDs",
+      "source_work_id is registered",
+      "JSON parses successfully",
+      "schema and required fields pass",
+      "record IDs are unique and valid",
+      "declared record count and hashes match",
+      "dataset-specific audit has no structural errors",
+      "source and translation provenance are displayed",
+      "fallback dataset is available"
+    ],
+    "activation_sequence": [
+      "load registry metadata without trusting stale runtime cache",
+      "fetch candidate dataset into isolated memory or staging cache",
+      "validate complete candidate before activation",
+      "build dataset-scoped search index",
+      "atomically switch active in-memory dataset and UI state",
+      "persist selection only after successful activation",
+      "retain stable fallback and previous valid selection"
+    ],
+    "failure_behavior": [
+      "do not replace current active dataset",
+      "discard invalid staging state",
+      "return to ru-current-v1",
+      "show non-destructive error message",
+      "preserve history and user preferences",
+      "record diagnostics without secrets or source content dumps"
+    ]
+  },
+  "cache_contract": {
+    "ownership_prefix": "udream-",
+    "dataset_cache_key_components": [
+      "dataset_id",
+      "content_hash"
+    ],
+    "staging_and_active_caches_are_separate": true,
+    "clear_unrelated_origin_caches": false,
+    "clear_other_udream_dataset_caches_automatically": false,
+    "fallback_dataset_must_remain_cached_when_offline_support_is_claimed": true,
+    "registry_and_version_metadata_strategy": "network-first-or-no-store-with-safe-offline-copy"
+  },
+  "combined_search_contract": {
+    "index_model": "one-index-per-dataset",
+    "query_execution": "parallel-or-sequential-per-dataset-with-independent-failure-isolation",
+    "result_identity": "dataset_id:record_id",
+    "ranking": "normalize-within-dataset-then-merge-with-dataset-provenance",
+    "deduplication": "do-not-collapse-cross-dataset-results-without-reviewed-relation",
+    "partial_failure_behavior": "show-successful-datasets-and-identify-unavailable-datasets",
+    "source_labels_required": true
+  },
+  "comparison_contract": {
+    "relation_map_path": "data/record-relations.json",
+    "relation_map_status": "planned-not-created",
+    "relation_identity_components": [
+      "left.dataset_id",
+      "left.record_id",
+      "right.dataset_id",
+      "right.record_id"
+    ],
+    "allowed_relation_types": [
+      "equivalent",
+      "related",
+      "contrast",
+      "redirect",
+      "ambiguous"
+    ],
+    "required_relation_fields": [
+      "relation_id",
+      "left",
+      "right",
+      "relation_type",
+      "review_status",
+      "evidence"
+    ],
+    "allowed_review_statuses": [
+      "candidate",
+      "reviewed",
+      "rejected"
+    ],
+    "default_visibility": "only-reviewed-relations",
+    "numeric_id_autolinking_forbidden": true
+  },
+  "second_book_readiness": {
+    "source_work_id": "unlocking-your-dreams-student-material",
+    "current_status": "retained-document-only",
+    "registered_dataset_exists": false,
+    "required_before_dataset_registration": [
+      "verify document identity and edition as far as evidence allows",
+      "archive original source URL and distribution statement when recoverable",
+      "define reproducible extraction schema and tooling",
+      "extract into a new non-runtime candidate file",
+      "preserve page or section references when available",
+      "assign stable dataset and physical file IDs",
+      "validate schema, IDs, counts, hashes and source links",
+      "run deterministic quality audit",
+      "perform human/source review",
+      "create a separate data release and rollback point"
+    ]
+  },
+  "implementation_phases": [
+    {
+      "id": "D1.4",
+      "name": "Architecture and source-work registry",
+      "status": "current",
+      "runtime_change": false
+    },
+    {
+      "id": "D1.5",
+      "name": "Second-book provenance and extraction specification",
+      "status": "next",
+      "runtime_change": false
+    },
+    {
+      "id": "D1.6",
+      "name": "AI-assisted translation candidate experiment",
+      "status": "later",
+      "runtime_change": false
+    },
+    {
+      "id": "D2.1",
+      "name": "Multi-dataset loading and validation core behind a disabled feature flag",
+      "status": "later",
+      "runtime_change": true
+    },
+    {
+      "id": "D2.2",
+      "name": "User-facing switching, combined search and comparison",
+      "status": "later",
+      "runtime_change": true
+    }
+  ],
+  "rollback_contract": {
+    "architecture_only_rollback": "revert D1.4 metadata and documentation commit",
+    "future_runtime_rollback": [
+      "disable multi-dataset feature flag",
+      "restore ru-current-v1 as the only active dataset",
+      "restore previous Service Worker and cache contract from immutable release",
+      "preserve user history entries while marking unavailable dataset targets",
+      "do not delete registered datasets during rollback"
+    ]
+  },
+  "hard_boundaries": {
+    "runtime_changed_by_d1_4": false,
+    "existing_data_changed_by_d1_4": false,
+    "second_book_dataset_created_by_d1_4": false,
+    "selector_implemented_by_d1_4": false,
+    "deepseek_used_by_d1_4": false
+  }
+}
