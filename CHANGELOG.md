@@ -1,5 +1,19 @@
 # Changelog
 
+## Documentation and architecture update v23.8.11 — 2026-07-23
+
+- Added `data/source-works.json` with stable source-work/document IDs and explicit evidence status.
+- Registered `divinity-code` as the source work for the current source/current datasets.
+- Registered `unlocking-your-dreams-student-material` as retained-document-only; no extracted or validated second-book dataset is claimed.
+- Added `data/two-book-architecture.json` and `docs/TWO_BOOK_ARCHITECTURE.md`.
+- Defined global record identity as `dataset_id:record_id` and prohibited cross-dataset numeric-ID assumptions.
+- Approved future single, switch, Federated combined search and Side-by-side comparison modes.
+- Prohibited destructive merged source JSON and required explicit reviewed relations for comparison.
+- Defined visible provenance, dataset-aware URL/history/share, activation validation, cache isolation and stable fallback contracts.
+- Added `scripts/validate-two-book-architecture.mjs` and required it in GitHub Actions.
+- Split future work into D1.5 extraction specification, D1.6 AI candidate, D2.1 loading core and D2.2 user-facing modes.
+- Kept all existing data files, runtime, PWA, package metadata, saved versions and archives unchanged.
+
 ## Audit and documentation update v23.8.10 — 2026-07-23
 
 - Added `scripts/audit-data-quality.mjs` as a deterministic, read-only audit for registered source/current datasets.
