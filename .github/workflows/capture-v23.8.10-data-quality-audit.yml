@@ -1,0 +1,153 @@
+name: Capture uDream v23.8.10 data-quality audit image
+
+on:
+  push:
+    branches:
+      - audit/d1.3-data-quality-v23.8.10
+    paths:
+      - .github/workflows/capture-v23.8.10-data-quality-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capture-udream-v23.8.10-data-quality-audit
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    env:
+      SOURCE_COMMIT: cd6aa539a418861108d58f2206050291642e7fcb
+      SOURCE_URL: https://github.com/sunpole/udream/blob/cd6aa539a418861108d58f2206050291642e7fcb/reports/data-quality-audit.md
+      OUTPUT: news/2026-07-23-udream-v23-8-10-data-quality-audit.png
+      PATCHNOTE: news/2026-07-23-udream-v23-8-10-data-quality-audit.md
+      WORKFLOW_FILE: .github/workflows/capture-v23.8.10-data-quality-audit.yml
+
+    steps:
+      - name: Checkout active branch
+        uses: actions/checkout@v4
+        with:
+          ref: audit/d1.3-data-quality-v23.8.10
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install isolated Chromium tooling
+        run: |
+          npm ci --prefix tools/screenshots
+          npx --prefix tools/screenshots playwright install --with-deps chromium
+
+      - name: Capture exact audit report page
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tools/screenshots/tmp
+          cat > tools/screenshots/tmp/capture-v23.8.10.mjs <<'EOF'
+          import { chromium } from "@playwright/test";
+
+          const browser = await chromium.launch({ headless: true });
+          const page = await browser.newPage({
+            viewport: { width: 1440, height: 1000 },
+            deviceScaleFactor: 1,
+          });
+          await page.goto(process.env.SOURCE_URL, {
+            waitUntil: "domcontentloaded",
+            timeout: 120000,
+          });
+          await page.waitForTimeout(3500);
+          const body = await page.locator("body").innerText();
+          if (!page.url().includes(process.env.SOURCE_COMMIT)) {
+            throw new Error(`Unexpected final URL: ${page.url()}`);
+          }
+          for (const expected of [
+            "uDream data-quality audit",
+            "Structural gate",
+            "PASS",
+            "source-divinity-code-en",
+            "ru-current-v1",
+            "5022",
+          ]) {
+            if (!body.replaceAll(",", "").includes(expected)) {
+              throw new Error(`Expected audit evidence is not visible: ${expected}`);
+            }
+          }
+          await page.screenshot({ path: process.env.OUTPUT, fullPage: false });
+          await browser.close();
+          EOF
+          node tools/screenshots/tmp/capture-v23.8.10.mjs
+          rm -rf tools/screenshots/tmp
+
+      - name: Validate PNG and synchronize patchnote metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          import re
+          import struct
+          import zlib
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path(os.environ["OUTPUT"])
+          data = path.read_bytes()
+          if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+              raise SystemExit("Invalid PNG signature")
+          if len(data) < 100_000:
+              raise SystemExit(f"PNG is unexpectedly small: {len(data)} bytes")
+          width, height = struct.unpack(">II", data[16:24])
+          if (width, height) != (1440, 1000):
+              raise SystemExit(f"Unexpected PNG size: {width}x{height}")
+
+          position = 8
+          chunks = []
+          while position < len(data):
+              length = struct.unpack(">I", data[position:position + 4])[0]
+              kind = data[position + 4:position + 8]
+              payload = data[position + 8:position + 8 + length]
+              expected_crc = struct.unpack(">I", data[position + 8 + length:position + 12 + length])[0]
+              actual_crc = zlib.crc32(payload, zlib.crc32(kind)) & 0xffffffff
+              if actual_crc != expected_crc:
+                  raise SystemExit(f"Invalid PNG CRC in {kind!r}")
+              chunks.append(kind)
+              position += 12 + length
+          for required in (b"IHDR", b"IDAT", b"IEND"):
+              if required not in chunks:
+                  raise SystemExit(f"Missing PNG chunk {required!r}")
+
+          captured_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+          patchnote = Path(os.environ["PATCHNOTE"])
+          source = patchnote.read_text(encoding="utf-8")
+          source, commit_count = re.subn(
+              r"(?m)^image_commit:\s*.*$",
+              f"image_commit: {os.environ['SOURCE_COMMIT']}",
+              source,
+              count=1,
+          )
+          source, time_count = re.subn(
+              r"(?m)^image_captured_at:\s*.*$",
+              f"image_captured_at: {captured_at}",
+              source,
+              count=1,
+          )
+          if commit_count != 1 or time_count != 1:
+              raise SystemExit("Patchnote screenshot metadata fields were not found exactly once")
+          patchnote.write_text(source, encoding="utf-8")
+          print(f"PNG OK: {width}x{height}, {len(data)} bytes, {captured_at}")
+          PY
+
+      - name: Commit image and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUTPUT" "$PATCHNOTE"
+          git rm "$WORKFLOW_FILE"
+          git commit -m "docs: add real v23.8.10 audit screenshot"
+          git push origin HEAD:audit/d1.3-data-quality-v23.8.10
