@@ -41,7 +41,7 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Reload once safely when the deployed version differs from the running version.
 - [x] Remove only old `udream-*` caches and preserve unrelated origin caches.
 - [x] Use network-first with offline fallback for HTML, JavaScript, manifest and JSON.
-- [x] Add a visible install banner with system prompt and manual instructions.
+- [x] Add a visible install banner with system prompt support and manual instructions.
 - [x] Hide the install banner in the standalone PWA.
 - [x] Create the immutable `v23.8.0` tag on the exact functional merge commit.
 - [x] Add a GitHub Release and documented rollback path.
@@ -132,25 +132,34 @@ See `docs/DATA_PROVENANCE.md`.
 
 See `data/datasets.json` and `docs/DATASET_REGISTRY.md`.
 
-## Next approved work: D1.3 — data-quality audit design
+## Completed: D1.3 data-quality audit v23.8.10
 
-D1.3 designs and runs non-destructive quality checks. It must not silently rewrite published content.
+- [x] Define a four-level severity model: error, warning, review and info.
+- [x] Add structural checks for arrays, required fields, types, dates, unique/ordered IDs and registered record counts.
+- [x] Add data-hygiene and ambiguity checks for whitespace, empty values, duplicate aliases/tags, control characters, HTML-like content and normalized collisions.
+- [x] Compare `source-divinity-code-en` with `ru-current-v1` without changing either dataset.
+- [x] Confirm 4,086 unique ordered IDs and exact source/current alignment.
+- [x] Confirm zero differences in preserved fields `id`, `symbol`, `description`, `source` and `date_added`.
+- [x] Record expected changed-field counts: aliases 4,083; notes 4,086; tags 4,086.
+- [x] Generate deterministic machine-readable and human-readable reports.
+- [x] Add permanent `scripts/audit-data-quality.mjs` with write and `--check` modes.
+- [x] Require report freshness and a passing structural gate in GitHub Actions.
+- [x] Record 0 structural errors, 0 warnings and 5,022 human-review instances in five aggregated groups.
+- [x] State explicitly that heuristic review counts are not proven content errors and are not auto-fixed.
+- [x] Preserve all existing data files, runtime, PWA, package metadata, saved versions and archives unchanged.
 
-- [ ] Define automated checks for all 4,086 active records, duplicate IDs, empty fields, invalid types, cross-references and suspicious entries.
-- [ ] Classify checks that can be automatic versus checks requiring human/source review.
-- [ ] Define severity levels and a stable report format.
-- [ ] Compare the current localized dataset with the registered source dataset without changing either file.
-- [ ] Produce a machine-readable and human-readable audit report.
-- [ ] Add a permanent validator or audit command that does not modify data.
-- [ ] Keep content corrections for later separate reviewed data patches.
+See `docs/DATA_QUALITY_AUDIT.md` and `reports/data-quality-audit.md`.
 
-## D1.4 — two-book product architecture
+## Next approved work: D1.4 — two-book product architecture
 
+- [ ] Identify and register the second source book/dataset as far as retained evidence allows.
 - [ ] Define the intended relationship between the two source books.
 - [ ] Compare separate-database switching, combined search and side-by-side comparison.
-- [ ] Require visible provenance for every result in any future combined mode.
-- [ ] Approve a migration plan before implementing a user-facing selector or merged index.
-- [ ] Require full dataset validation, consistent reload, safe cache clearing and automatic stable fallback before any selector release.
+- [ ] Define user-visible provenance for every result in every future mode.
+- [ ] Define validation, reload, cache-clearing and automatic fallback contracts before any selector implementation.
+- [ ] Decide how history, sharing and deep links preserve dataset identity.
+- [ ] Approve a migration and rollback plan before implementing a user-facing selector or merged index.
+- [ ] Keep D1.4 architecture-only unless a separate functional implementation phase is approved.
 
 ## D1.5 — AI-assisted translation experiment
 
