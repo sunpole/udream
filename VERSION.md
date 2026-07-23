@@ -13,36 +13,46 @@
 - Database: the active 4,086-record JSON database is unchanged
 - Previous checkpoint: `v23.7.0`
 
-## Documentation, provenance and registry baseline
+## Documentation, provenance, registry and audit baseline
 
-`v23.8.9`
+`v23.8.10`
 
-- Status: D1.2 dataset-registry milestone; it does not create a new application build or move the `v23.8.0` tag
-- Purpose: establish stable logical/physical dataset identities, canonical-retained roles and an unexecuted reversible migration plan
-- Machine-readable registry: `data/datasets.json`, schema version 1
-- Registry document: `docs/DATASET_REGISTRY.md`
-- Registry validator: `scripts/validate-dataset-registry.mjs`, required by `.github/workflows/validate.yml`
+- Status: D1.3 non-destructive data-quality audit milestone; it does not create a new application build or move the `v23.8.0` tag
+- Purpose: define deterministic audit rules, inspect all registered source/current records and preserve the results without modifying data
+- Audit specification: `docs/DATA_QUALITY_AUDIT.md`
+- Audit script: `scripts/audit-data-quality.mjs`
+- Machine report: `reports/data-quality-audit.json`
+- Human report: `reports/data-quality-audit.md`
+- CI command: `node scripts/audit-data-quality.mjs --check`
+- Logical datasets audited: `source-divinity-code-en`, `ru-current-v1`
+- Records audited: 4,086 in each logical dataset
+- ID result: unique, ordered and aligned from 1 through 4,086
+- Preserved-field differences: 0 for `id`, `symbol`, `description`, `source` and `date_added`
+- Expected changed-field differences: aliases 4,083; notes 4,086; tags 4,086
+- Structural gate: pass
+- Structural error instances: 0
+- Warning instances: 0
+- Human-review instances: 5,022 in five aggregated finding groups
+- Important limitation: review counts are heuristic candidates, not 5,022 proven content errors; one record may appear in multiple groups
+- Data mutation policy: read-only; no finding is corrected by the audit
+- Registry baseline: `v23.8.9`, D1.2 completed by PR #27
 - Source logical dataset ID: `source-divinity-code-en`
 - Current localized dataset ID: `ru-current-v1`
 - Canonical physical serialization: `source-divinity-code-en-bd2` at `data/bd2.json`
 - Retained compatibility serialization: `source-divinity-code-en-db` at `data/db.json`
 - Active runtime physical file: `ru-current-v1-runtime` at `data/divinity_code_ru.json`
-- Canonical choice type: project-governance decision; it does not prove the historical original or authoritative source edition
 - Migration status: `planned-not-executed`; no file removal, rename or runtime switch is approved
-- Active dataset: 4,086 records, SHA-256 `1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64`
-- English serialization A: SHA-256 `814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28`
-- English serialization B: SHA-256 `4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0`
+- Active dataset SHA-256: `1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64`
 - Shared canonical English JSON SHA-256: `5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1`
-- Previous provenance baseline: `v23.8.8`, D1.1 completed by PR #25
 - Live handoff source: `WORK_STATUS.md`
-- Next approved task after D1.2 merge: D1.3 data-quality audit design
+- Next approved task after D1.3 merge: D1.4 two-book product architecture
 - Repository download: https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip
 
 ## Current development line
 
 No functional application version is assigned after `v23.8.0`.
 
-Documentation, provenance and automation updates `23.8.1` through `23.8.9` finalize the immutable release record, product/data baseline, translation safety, cross-device workflow, screenshot provenance, verified data provenance and dataset-registry governance. They do not change application runtime, PWA behavior or existing database records.
+Documentation, provenance and automation updates `23.8.1` through `23.8.10` finalize the immutable release record, product/data baseline, translation safety, cross-device workflow, screenshot provenance, verified data provenance, dataset-registry governance and deterministic data-quality reporting. They do not change application runtime, PWA behavior or existing database records.
 
 ## Unified version line
 
