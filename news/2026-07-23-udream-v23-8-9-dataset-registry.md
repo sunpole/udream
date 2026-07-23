@@ -11,7 +11,7 @@ image: 2026-07-23-udream-v23-8-9-dataset-registry.png
 image_source: document-render
 image_target: docs/DATASET_REGISTRY.md
 image_commit: 80dde35b412a8de0462f0f612fdeb0eb85e6e5ca
-image_captured_at: 2026-07-23T06:34:14Z
+image_captured_at: 2026-07-23T06:36:11Z
 ---
 
 # uDream 23.8.9: создан реестр наборов данных
