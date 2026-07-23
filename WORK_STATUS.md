@@ -8,11 +8,11 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — D1.2 registry core создан; продолжается синхронизация документации и проверок |
+| Состояние | **IN_PROGRESS** — D1.2 registry core проверен; продолжается синхронизация документации и публикационного пакета |
 | Начато | `2026-07-23 08:10 Europe/Berlin` |
 | Среда | `ChatGPT + GitHub connector + GitHub Actions` |
 | Рабочая ветка | `docs/d1.2-dataset-registry-v23.8.9` |
-| Открытый Pull Request | ещё не открыт |
+| Открытый Pull Request | `#27` — `https://github.com/sunpole/udream/pull/27` |
 | Issue | `#26` — D1.2 dataset registry |
 | Стабильный функциональный релиз | `v23.8.0` |
 | Текущий baseline | `23.8.8` — D1.1 завершён |
@@ -21,7 +21,7 @@
 
 Цель: создать проверяемый машинно-читаемый реестр логических наборов и физических файлов, назначить стабильные IDs, выбрать `data/bd2.json` канонической физической копией английского логического набора, сохранить `data/db.json` как retained/compatibility serialization и документировать обратимый будущий план миграции без удаления, переименования или изменения существующих файлов данных.
 
-Последний проверенный commit: `15b09f76677c05d6b49067104c43f39fb97714d0` — добавлены registry, постоянный validator, документ D1.2 и обязательный CI-шаг.
+Последний проверенный commit: `a12ac44cda3c1763567aacd3ea9148d5244887dc` — registry core сохранён, draft PR №27 открыт; Actions подтвердили regression tests, project validator и новый registry-validator. Текущий CI падает только на ожидаемом отсутствии обязательного нового патчноута/изображения.
 
 ## Что уже сделано фактически
 
@@ -33,6 +33,8 @@
 - создан `docs/DATASET_REGISTRY.md` с identity, reference-audit, migration и rollback правилами;
 - создан `scripts/validate-dataset-registry.mjs`, который сверяет registry с реальными файлами, hashes, canonical identity, ordered IDs, runtime isolation и policy;
 - `.github/workflows/validate.yml` запускает registry-validator и проверяет его JavaScript syntax;
+- draft PR №27 открыт;
+- первый Actions run подтвердил: tests success, project validation success, registry validation success;
 - существующие файлы данных, runtime, PWA, package metadata, `versions/` и `_archive/` не изменялись.
 
 ## Доказанная исходная точка
