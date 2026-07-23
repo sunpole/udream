@@ -6,13 +6,13 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **COMPLETED** — D1.3 реализован и подготовлен к финальной проверке/merge PR №29 |
+| Состояние | **COMPLETED** — D1.3 реализован; PR №29 переведён в ready и ожидает зелёный финальный Actions run |
 | Рабочая ветка | `audit/d1.3-data-quality-v23.8.10` |
 | Открытый Pull Request | `#29` — `https://github.com/sunpole/udream/pull/29` |
 | Issue | `#28` — D1.3 data-quality audit |
 | Стабильный функциональный релиз | `v23.8.0` |
 | Документационный/data baseline | кандидат `23.8.10` |
-| Последний проверенный branch head перед этим handoff | `116560d161a945549ea94ebd39c94a99f5d72fed` |
+| Последний проверенный branch head до ready-review sync | `22fe94598e8de3a4c72ac76ffb9265625249c3eb` |
 | Следующая утверждённая задача после merge | D1.4 — two-book product architecture |
 
 ## Выполнено фактически
@@ -78,7 +78,7 @@
 
 ## Следующий точный шаг
 
-Проверить финальный head PR №29: Actions, changed-file list и отсутствие protected paths. После зелёного результата перевести PR из draft в ready, выполнить squash merge, закрыть Issue №28 и записать `READY` на `main` для D1.4.
+Дождаться зелёного `Validate uDream` на этом финальном synchronize commit, повторно проверить changed-file list и выполнить squash merge PR №29. Затем закрыть Issue №28 и записать `READY` на `main` для D1.4.
 
 ## Запреты до merge
 
