@@ -1,0 +1,112 @@
+name: Capture uDream v23.8.11 two-book architecture
+
+on:
+  push:
+    branches:
+      - docs/two-book-architecture-d1.4
+    paths:
+      - .github/workflows/capture-v23.8.11-two-book-architecture.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capture-udream-v23.8.11-two-book-architecture
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    env:
+      SOURCE_COMMIT: b5c819de9e573f5d47de0a7aec19eb0bee050fea
+      SOURCE_URL: https://github.com/sunpole/udream/blob/b5c819de9e573f5d47de0a7aec19eb0bee050fea/docs/TWO_BOOK_ARCHITECTURE.md
+      OUTPUT: news/2026-07-23-udream-v23-8-11-two-book-architecture.png
+      PATCHNOTE: news/2026-07-23-udream-v23-8-11-two-book-architecture.md
+      WORKFLOW_FILE: .github/workflows/capture-v23.8.11-two-book-architecture.yml
+    steps:
+      - name: Checkout active branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs/two-book-architecture-d1.4
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install isolated Chromium
+        run: |
+          npm ci --prefix tools/screenshots
+          npx --prefix tools/screenshots playwright install --with-deps chromium
+
+      - name: Capture exact GitHub architecture page
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tools/screenshots/tmp
+          cat > tools/screenshots/tmp/capture-v23.8.11.mjs <<'EOF'
+          import { chromium } from "@playwright/test";
+          const browser = await chromium.launch({ headless: true });
+          const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+          await page.goto(process.env.SOURCE_URL, { waitUntil: "domcontentloaded", timeout: 120000 });
+          await page.waitForTimeout(3500);
+          const text = await page.locator("body").innerText();
+          if (!page.url().includes(process.env.SOURCE_COMMIT)) throw new Error(`Unexpected URL: ${page.url()}`);
+          if (!text.includes("Two-book product architecture")) throw new Error("Architecture title is not visible");
+          if (!text.includes("dataset_id") || !text.includes("record_id")) throw new Error("Identity contract is not visible");
+          if (!text.includes("Federated combined search")) throw new Error("Federated search section is not visible");
+          await page.screenshot({ path: process.env.OUTPUT, fullPage: false });
+          await browser.close();
+          EOF
+          node tools/screenshots/tmp/capture-v23.8.11.mjs
+          rm -rf tools/screenshots/tmp
+
+      - name: Validate image and synchronize metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, re, struct, zlib
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path(os.environ["OUTPUT"])
+          data = path.read_bytes()
+          if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+              raise SystemExit("Invalid PNG signature")
+          if len(data) < 100_000:
+              raise SystemExit(f"PNG too small: {len(data)}")
+          width, height = struct.unpack(">II", data[16:24])
+          if (width, height) != (1440, 1000):
+              raise SystemExit(f"Unexpected PNG size: {width}x{height}")
+          pos = 8
+          while pos < len(data):
+              length = struct.unpack(">I", data[pos:pos+4])[0]
+              kind = data[pos+4:pos+8]
+              payload = data[pos+8:pos+8+length]
+              stored = struct.unpack(">I", data[pos+8+length:pos+12+length])[0]
+              actual = zlib.crc32(payload, zlib.crc32(kind)) & 0xffffffff
+              if stored != actual:
+                  raise SystemExit(f"CRC mismatch in {kind!r}")
+              pos += 12 + length
+          captured_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+          patch = Path(os.environ["PATCHNOTE"])
+          source = patch.read_text(encoding="utf-8")
+          source = re.sub(r"(?m)^image_commit:\s*.*$", f"image_commit: {os.environ['SOURCE_COMMIT']}", source, count=1)
+          source = re.sub(r"(?m)^image_captured_at:\s*.*$", f"image_captured_at: {captured_at}", source, count=1)
+          patch.write_text(source, encoding="utf-8")
+          print(f"Validated {path}: {width}x{height}, {len(data)} bytes, {captured_at}")
+          PY
+
+      - name: Commit screenshot and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUTPUT" "$PATCHNOTE"
+          git rm "$WORKFLOW_FILE"
+          git commit -m "docs: add real v23.8.11 architecture screenshot"
+          git push origin HEAD:docs/two-book-architecture-d1.4
