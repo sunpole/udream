@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "audit_version": "23.8.10",
+  "registry_baseline": "23.8.9",
+  "registry_path": "data/datasets.json",
+  "registry_raw_sha256": "6da823d20eb5f6018da6f5fcd3a2c98f1ded3dd0e0f354bd06344a0c4742f338",
+  "deterministic": true,
+  "mutation_policy": "read-only",
+  "datasets": [
+    {
+      "dataset_id": "source-divinity-code-en",
+      "physical_file_id": "source-divinity-code-en-bd2",
+      "path": "data/bd2.json",
+      "bytes": 2141655,
+      "raw_sha256": "814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28",
+      "canonical_json_sha256": "5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1",
+      "record_count": 4086,
+      "ordered_ids": true,
+      "unique_ids": true,
+      "id_min": 1,
+      "id_max": 4086,
+      "records_without_aliases": 2482,
+      "records_without_tags": 153,
+      "records_with_cross_reference_like_text": 1637,
+      "records_with_bible_reference_like_text": 2448,
+      "field_non_empty_counts": {
+        "id": 4086,
+        "symbol": 4086,
+        "aliases": 1604,
+        "description": 4086,
+        "source": 4086,
+        "date_added": 4086,
+        "tags": 3933,
+        "notes": 2901
+      },
+      "source_distribution": {
+        "DivinityCode": 4086
+      },
+      "date_distribution": {
+        "2026-05-24": 4086
+      },
+      "normalized_primary_symbol_count": 4086,
+      "normalized_alias_count": 1517
+    },
+    {
+      "dataset_id": "ru-current-v1",
+      "physical_file_id": "ru-current-v1-runtime",
+      "path": "data/divinity_code_ru.json",
+      "bytes": 4688773,
+      "raw_sha256": "1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64",
+      "canonical_json_sha256": "c3682a50dec3303b7a100abefb27befd2dfd5d84e66d219252cf099b1a0fcd64",
+      "record_count": 4086,
+      "ordered_ids": true,
+      "unique_ids": true,
+      "id_min": 1,
+      "id_max": 4086,
+      "records_without_aliases": 2,
+      "records_without_tags": 0,
+      "records_with_cross_reference_like_text": 1637,
+      "records_with_bible_reference_like_text": 2453,
+      "field_non_empty_counts": {
+        "id": 4086,
+        "symbol": 4086,
+        "aliases": 4084,
+        "description": 4086,
+        "source": 4086,
+        "date_added": 4086,
+        "tags": 4086,
+        "notes": 4086
+      },
+      "source_distribution": {
+        "DivinityCode": 4086
+      },
+      "date_distribution": {
+        "2026-05-24": 4086
+      },
+      "normalized_primary_symbol_count": 4086,
+      "normalized_alias_count": 5429
+    }
+  ],
+  "comparison": {
+    "source_dataset_id": "source-divinity-code-en",
+    "current_dataset_id": "ru-current-v1",
+    "source_record_count": 4086,
+    "current_record_count": 4086,
+    "ids_aligned": true,
+    "preserved_field_difference_counts": {
+      "id": 0,
+      "symbol": 0,
+      "description": 0,
+      "source": 0,
+      "date_added": 0
+    },
+    "changed_field_difference_counts": {
+      "aliases": 4083,
+      "notes": 4086,
+      "tags": 4086
+    }
+  },
+  "findings": [
+    {
+      "severity": "review",
+      "rule_id": "alias_collision_across_records",
+      "dataset_id": "ru-current-v1",
+      "count": 854,
+      "sample_ids": [
+        3,
+        4,
+        5,
+        8,
+        10,
+        13,
+        14,
+        19,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "message": "A normalized alias points to more than one record and may be intentionally shared or ambiguous.",
+      "details": {
+        "sample_keys": [
+          "black man",
+          "first nations peoples",
+          "foreigner",
+          "native/s",
+          "birth",
+          "under",
+          "underwater",
+          "seed",
+          "snake",
+          "boat"
+        ]
+      }
+    },
+    {
+      "severity": "review",
+      "rule_id": "alias_matches_other_primary_symbol",
+      "dataset_id": "ru-current-v1",
+      "count": 1145,
+      "sample_ids": [
+        2,
+        3,
+        5,
+        8,
+        10,
+        12,
+        13,
+        14,
+        19,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        32,
+        35,
+        36,
+        37,
+        38
+      ],
+      "message": "An alias matches another record's normalized primary symbol and requires routing review.",
+      "details": {
+        "sample_keys": [
+          "bigfoot",
+          "black man",
+          "first nations peoples",
+          "foreigner",
+          "native/s",
+          "under",
+          "underwater",
+          "seed",
+          "snake",
+          "boat"
+        ]
+      }
+    },
+    {
+      "severity": "review",
+      "rule_id": "alias_collision_across_records",
+      "dataset_id": "source-divinity-code-en",
+      "count": 693,
+      "sample_ids": [
+        3,
+        4,
+        5,
+        8,
+        10,
+        13,
+        14,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        52
+      ],
+      "message": "A normalized alias points to more than one record and may be intentionally shared or ambiguous.",
+      "details": {
+        "sample_keys": [
+          "black man",
+          "first nations peoples",
+          "foreigner",
+          "native/s",
+          "birth",
+          "under",
+          "underwater",
+          "seed",
+          "snake",
+          "boat"
+        ]
+      }
+    },
+    {
+      "severity": "review",
+      "rule_id": "alias_matches_other_primary_symbol",
+      "dataset_id": "source-divinity-code-en",
+      "count": 1145,
+      "sample_ids": [
+        2,
+        3,
+        5,
+        8,
+        10,
+        12,
+        13,
+        14,
+        19,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        32,
+        35,
+        36,
+        37,
+        38
+      ],
+      "message": "An alias matches another record's normalized primary symbol and requires routing review.",
+      "details": {
+        "sample_keys": [
+          "bigfoot",
+          "black man",
+          "first nations peoples",
+          "foreigner",
+          "native/s",
+          "under",
+          "underwater",
+          "seed",
+          "snake",
+          "boat"
+        ]
+      }
+    },
+    {
+      "severity": "review",
+      "rule_id": "notes_empty",
+      "dataset_id": "source-divinity-code-en",
+      "count": 1185,
+      "sample_ids": [
+        47,
+        59,
+        72,
+        116,
+        320,
+        408,
+        447,
+        448,
+        449,
+        477,
+        553,
+        576,
+        585,
+        590,
+        857,
+        858,
+        886,
+        909,
+        924,
+        945
+      ],
+      "message": "notes is empty or whitespace-only."
+    }
+  ],
+  "summary": {
+    "finding_instances_by_severity": {
+      "error": 0,
+      "warning": 0,
+      "review": 5022,
+      "info": 0
+    },
+    "finding_groups_by_severity": {
+      "error": 0,
+      "warning": 0,
+      "review": 5,
+      "info": 0
+    },
+    "finding_instances_by_rule": {
+      "alias_collision_across_records": 1547,
+      "alias_matches_other_primary_symbol": 2290,
+      "notes_empty": 1185
+    },
+    "structural_gate": "pass"
+  },
+  "limitations": [
+    "Heuristic warnings and review findings are not proven semantic errors.",
+    "The exact historical translation pipeline and complete human-review record remain unknown.",
+    "Cross-reference-like and biblical-reference-like text is counted but not automatically validated against source books.",
+    "The audit does not decide theological correctness, preferred wording or final translation quality.",
+    "No finding is corrected by this script; fixes require separate reviewed data patches."
+  ]
+}
