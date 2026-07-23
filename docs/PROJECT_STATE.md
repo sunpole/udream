@@ -2,13 +2,13 @@
 
 The current restoration checkpoint is release `v23.8.0` at commit `24dece593bea679485057d7551a2583f7f1f5acf`, published on 2026-07-20 after verification of the PWA update, cache migration, uncached version checks and installation flow. The previous checkpoint remains `v23.7.0`, while the independently runnable pre-cleanup fallback remains `v3.0.0`.
 
-Documentation, provenance and registry baseline `23.8.9` completes D1.2. It adds stable dataset identities, a machine-readable registry, a permanent validator and a reversible future migration design. It does not change application runtime, PWA behavior, package metadata or any existing database record.
+Documentation, provenance, registry and audit baseline `23.8.10` completes D1.3. It adds deterministic read-only quality reports and a permanent audit command without changing application runtime, PWA behavior, package metadata or any existing database record.
 
 ## What UDREAM is
 
 UDREAM is a public, static GitHub Pages application for searching Christian dream-symbol reference material. It has no backend, account system, database server or browser build step.
 
-The current product mission and final direction are defined in `docs/PRODUCT_VISION.md`. Dataset identities and canonical/retained roles are defined in `data/datasets.json` and `docs/DATASET_REGISTRY.md`. Translation variants and API-assisted data preparation are governed by `docs/TRANSLATION_WORKFLOW.md`.
+The product mission is defined in `docs/PRODUCT_VISION.md`. Dataset identities and canonical/retained roles are defined in `data/datasets.json` and `docs/DATASET_REGISTRY.md`. Translation variants are governed by `docs/TRANSLATION_WORKFLOW.md`. Audit rules and factual reports are in `docs/DATA_QUALITY_AUDIT.md` and `reports/`.
 
 ## GitHub-centered work status
 
@@ -20,12 +20,10 @@ The completed process baseline includes:
 
 - cross-device handoff through `WORK_STATUS.md`;
 - one task, one branch and one Pull Request;
-- required factual uNews patchnotes and new real images;
+- factual uNews patchnotes and new real images;
 - read-only Playwright Chromium screenshot artifacts;
-- permanent provenance and dataset-registry validators;
-- automatic GitHub Actions checks.
-
-`ROADMAP.md` remains the long-term plan and this file remains the detailed verified state. Neither replaces the live handoff.
+- permanent provenance, registry and data-quality checks;
+- automatic GitHub Actions validation.
 
 ## Published runtime
 
@@ -41,9 +39,9 @@ sw.js
 data/divinity_code_ru.json
 ```
 
-The maintained page is labelled `v23.8.0` in its title, header, menu and footer. The former `v19` label remains only in historical material. Release `v23.8.0` is the current immutable Git restoration checkpoint.
+The maintained page is labelled `v23.8.0`. Release `v23.8.0` is the current immutable Git restoration checkpoint.
 
-The new registry `data/datasets.json` is development/governance metadata. It is not loaded by the browser application or Service Worker.
+`data/datasets.json` and `reports/` are development/governance artifacts. They are not loaded by the browser application or Service Worker.
 
 ## Verified capabilities in code
 
@@ -55,45 +53,21 @@ The new registry `data/datasets.json` is development/governance metadata. It is 
 - tag cloud and tag filtering;
 - back/forward history and breadcrumbs;
 - persistent history in `localStorage`;
-- safe recovery from malformed or partially written saved history;
+- safe recovery from malformed saved history;
 - light/dark themes;
 - Russian/English interface text;
 - text-selection and scrollbar preferences;
 - text and image sharing helpers;
 - automatic JSON loading with manual-file fallback;
 - PWA manifest and isolated service-worker registration;
-- immediate Service Worker activation through `skipWaiting()` and `clients.claim()`;
-- uncached checks through `version.json` and protected one-time reload when an update is detected;
-- migration from older `udream-*` caches without affecting other projects on the same origin;
-- install banner with system prompt support, manual instructions and standalone-app suppression.
+- immediate Service Worker activation;
+- uncached deployed-version checks and protected one-time reload;
+- migration from older `udream-*` caches without affecting other projects;
+- installation banner and standalone-mode suppression.
 
-Release `v3.6.0` completed M5. Release `v23.7.0` added centralized version metadata, strict filters, relevance ranking, Enter submission and alias resolution. Release `v23.8.0` added the verified PWA update and installation flow and remains the current restoration checkpoint.
-
-Imported display values are escaped before DOM insertion. Notes are rendered as plain text with safe paragraphs and line breaks; raw HTML and Markdown from a manually selected JSON file are not interpreted.
-
-The current root site and installed PWA were verified on Android during development of `v23.8.0`. D1.1 and D1.2 do not alter that runtime.
-
-## Screenshot automation
-
-The screenshot system is isolated under `tools/screenshots/` and is not imported by the public site or PWA.
-
-Verified implementation includes:
-
-- a dedicated package and lockfile;
-- pinned Playwright/Chromium tooling;
-- one-worker deterministic scenarios;
-- local HTTP serving of the exact checkout;
-- JSON scenarios with allowlisted actions and assertions;
-- storage cleanup, blocked Service Worker registration and disabled animations;
-- PNG validation and per-scenario provenance;
-- read-only `.github/workflows/capture-screenshots.yml`;
-- structural validation through `scripts/validate-screenshot-tooling.mjs`.
-
-Documentation-only milestones may use an exact GitHub UI or document-render screenshot when the image truthfully proves the documented change.
+The current root site and installed PWA were verified on Android during development of `v23.8.0`. D1.1–D1.3 do not alter that runtime.
 
 ## Data and dataset registry
-
-D1.1 established the corrected file-level provenance. D1.2 now assigns stable identities without changing any existing file.
 
 ### Logical datasets
 
@@ -112,44 +86,60 @@ D1.1 established the corrected file-level provenance. D1.2 now assigns stable id
 
 `data/bd2.json` and `data/db.json` have different raw bytes and SHA-256 values but identical parsed and canonical JSON. They represent one logical English dataset, not two translations.
 
-D1.2 selects `data/bd2.json` as the maintained canonical physical serialization through a project-governance decision. This does not prove that it is the historical original or authoritative source edition. `data/db.json` remains in place as a retained equivalent compatibility serialization.
+D1.2 selects `data/bd2.json` as the maintained canonical physical serialization through a project-governance decision. This does not prove historical originality. `data/db.json` remains a retained equivalent compatibility serialization.
 
-The active dataset contains 4,086 ordered IDs and preserves `symbol`, `description`, `source` and `date_added`; it differs from the English logical dataset in `aliases`, `notes` and `tags`. The exact generation and translation pipeline remains unproven.
+The physical migration status remains `planned-not-executed`. No deletion, rename, runtime switch or selector is approved.
+
+## D1.3 quality-audit results
+
+D1.3 audits the canonical source dataset and current runtime dataset with a deterministic, read-only script.
 
 Permanent sources:
 
-- `docs/DATA_PROVENANCE.md` — evidence, hashes, history, corrections and unknowns;
-- `data/datasets.json` — machine-readable identity and policy registry;
-- `docs/DATASET_REGISTRY.md` — canonical decision, retention and rollback;
-- `scripts/validate-data-provenance.mjs` — file-level provenance validation;
-- `scripts/validate-dataset-registry.mjs` — registry/file/policy validation.
+- `docs/DATA_QUALITY_AUDIT.md` — rules, severity model and limitations;
+- `scripts/audit-data-quality.mjs` — report generator and `--check` validator;
+- `reports/data-quality-audit.json` — machine-readable facts;
+- `reports/data-quality-audit.md` — human-readable report.
 
-The physical migration status is `planned-not-executed`. No deletion, rename, runtime switch or selector is approved by D1.2.
+Verified structural facts:
 
-The intended target remains one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations. Equivalent serializations do not count as separate variants. When only one reliable Russian translation exists, the smaller set is preferred over artificial duplication.
+- both logical datasets contain 4,086 records;
+- IDs are unique, ordered and aligned from 1 through 4,086;
+- preserved-field differences are 0 for `id`, `symbol`, `description`, `source` and `date_added`;
+- expected changed-field counts are aliases 4,083, notes 4,086 and tags 4,086;
+- structural gate: pass;
+- structural errors: 0;
+- warnings: 0.
 
-DeepSeek remains only a possible candidate-generation tool. No API client or key is part of the browser runtime. Any future experiment must create a separate recoverable candidate dataset and require validation plus human review.
+The audit reports 5,022 human-review instances in five aggregated groups:
+
+- source alias collisions: 693;
+- current alias collisions: 854;
+- source alias-to-primary matches: 1,145;
+- current alias-to-primary matches: 1,145;
+- empty source notes: 1,185.
+
+These are not 5,022 proven errors. Findings can overlap, shared aliases may be intentional, and empty source notes may reflect source structure. The audit never changes data.
 
 ## Documentation status
 
-The maintained documentation set now covers:
+The maintained documentation covers:
 
 - GitHub-centered multi-chat and multi-device execution;
 - product mission and final direction;
-- verified current runtime and risks;
+- verified runtime and risks;
 - architecture and file ownership;
-- active data contract and file-level provenance;
+- file-level provenance;
 - stable logical and physical dataset identity;
 - canonical/retained serialization roles;
+- deterministic audit rules and reports;
 - target translation topology and safe AI-assisted workflow;
-- implemented real Chromium screenshot evidence;
+- real Chromium screenshot evidence;
 - completed M1–M5 modularization;
 - versioning, releases, download and rollback;
 - uNews publication;
 - rights and third-party materials;
-- next approved series and later backlog.
-
-The sources of truth are listed in `AGENTS.md` and mapped in `docs/FILE_MAP.md`.
+- next approved work and later backlog.
 
 ## Historical material
 
@@ -160,32 +150,32 @@ The repository retains:
 - old databases in `_archive/old-data/`;
 - PDFs and screenshots in `_archive/source-files/`.
 
-Historical files are deliberately preserved and are not the source of truth for the current site.
+Historical files are preserved and are not the source of truth for the current site.
 
 ## Known risks and unfinished work
 
-- The exact generation and translation pipeline is still not proven.
+- The exact generation and translation pipeline remains unproven.
 - The original external source URL and exact source edition remain unknown.
-- D1.2 designs but does not execute the equivalent-serialization migration.
+- The equivalent-serialization migration is designed but not executed.
+- Audit review findings have not received full human/source review.
 - Alternative Russian translations do not yet exist as reviewed datasets.
-- The full quality audit of all 4,086 active records is not yet complete.
 - The relationship between the two source books is not yet implemented as a user-selectable architecture.
-- The administration workflow is archived rather than part of the maintained runtime.
-- External CDN dependencies remain for fonts, icons and image capture.
+- The administration workflow is archived rather than maintained runtime.
+- External CDN dependencies remain.
 - Accessibility has not been formally audited.
 - Bundled source-PDF URLs and exact distribution statements still require archival evidence.
-- Privacy and sharing behavior require a final documented review.
+- Privacy and sharing behavior require final review.
 
-These are tracked as future work in `ROADMAP.md`; they are not hidden defects in the `v23.8.0` release.
+These are tracked in `ROADMAP.md`; they are not hidden defects in `v23.8.0`.
 
 ## Next approved work
 
-D1.3 — non-destructive data-quality audit design and reporting.
+D1.4 — two-book product architecture.
 
-D1.3 may inspect and report problems but must not silently rewrite the current source or localized datasets. Content corrections require later separate reviewed data patches.
+D1.4 is architecture-only unless a separate functional implementation phase is approved. It must define source identity, user-visible provenance, switching/combined/side-by-side options, history and deep-link behavior, validation, cache handling and stable fallback before any selector is implemented.
 
-No user-facing database selector, physical data migration or AI-generated replacement is approved by D1.2.
+No physical data migration, user-facing selector or AI-generated replacement is approved by D1.3.
 
 ## Safe restoration point
 
-Release `v23.8.0` and its tag preserve the exact verified functional source at `24dece593bea679485057d7551a2583f7f1f5acf`. Release `v23.7.0` remains the previous unified-version checkpoint. The independently runnable fallback remains `versions/v3.0.0/`; no separate runnable `v23.8.0` snapshot was created.
+Release `v23.8.0` and its tag preserve the exact verified functional source at `24dece593bea679485057d7551a2583f7f1f5acf`. Release `v23.7.0` remains the previous unified-version checkpoint. The independently runnable fallback remains `versions/v3.0.0/`.
