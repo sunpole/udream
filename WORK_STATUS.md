@@ -8,20 +8,50 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — начат D1.3 non-destructive data-quality audit |
+| Состояние | **IN_PROGRESS** — D1.3 audit core и deterministic reports созданы; продолжается CI/documentation/publication package |
 | Начато | `2026-07-23 08:47 Europe/Berlin` |
 | Среда | `ChatGPT + GitHub connector + GitHub Actions` |
 | Рабочая ветка | `audit/d1.3-data-quality-v23.8.10` |
-| Открытый Pull Request | ещё не открыт |
+| Открытый Pull Request | `#29` — `https://github.com/sunpole/udream/pull/29` |
 | Issue | `#28` — D1.3 data-quality audit |
 | Стабильный функциональный релиз | `v23.8.0` |
 | Текущий baseline | `23.8.9` — D1.2 dataset registry завершён |
-| Последний подтверждённый main перед стартом | `4fae1d8dd13c345bd3cf459f0c896891e64e497b` |
-| Активная база | `data/divinity_code_ru.json`, 4 086 записей; менять запрещено |
+| Последний проверенный branch head | `0090584fc714d0ebe75e4fef463cdd7a253dbf6e` |
+| Активная база | `data/divinity_code_ru.json`, 4 086 записей; не изменена |
 
 Цель: спроектировать и выполнить воспроизводимый неразрушающий аудит качества зарегистрированных source/current datasets, создать permanent audit script и deterministic machine/human reports, не исправляя и не перезаписывая данные.
 
-Последний проверенный commit: `4fae1d8dd13c345bd3cf459f0c896891e64e497b` — D1.2 завершён, main READY, Issue #28 создан.
+## Что уже сделано фактически
+
+- создан `scripts/audit-data-quality.mjs`;
+- создан `docs/DATA_QUALITY_AUDIT.md` с severity model, rules, determinism и limitations;
+- GitHub Actions выполнил audit на реальных зарегистрированных datasets;
+- созданы byte-deterministic reports `reports/data-quality-audit.json` и `reports/data-quality-audit.md`;
+- audit охватывает `source-divinity-code-en` и `ru-current-v1`;
+- оба набора содержат 4 086 unique ordered IDs `1–4086`;
+- source/current IDs aligned;
+- preserved fields `id`, `symbol`, `description`, `source`, `date_added` имеют 0 differences;
+- ожидаемые changed-field counts: aliases 4 083, notes 4 086, tags 4 086;
+- structural gate: PASS;
+- structural errors: 0;
+- warnings: 0;
+- human-review instances: 5 022 в 5 aggregated groups;
+- findings не исправлялись и не объявлены доказанными content errors;
+- одноразовый report-generation workflow удалён после commit reports;
+- draft PR №29 открыт;
+- existing data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены.
+
+## Фактические audit findings
+
+| Rule | Dataset | Count | Classification |
+|---|---|---:|---|
+| alias collision across records | `ru-current-v1` | 854 | human/source review |
+| alias matches another primary symbol | `ru-current-v1` | 1 145 | routing review |
+| alias collision across records | `source-divinity-code-en` | 693 | human/source review |
+| alias matches another primary symbol | `source-divinity-code-en` | 1 145 | routing review |
+| empty notes | `source-divinity-code-en` | 1 185 | review; may be intentional source structure |
+
+Эти counts не означают 5 022 доказанных ошибок: один record может входить в несколько aggregated findings, а shared aliases могут быть намеренными.
 
 ## Планируемые файлы
 
@@ -54,7 +84,7 @@
 - JSON и Markdown reports deterministic и проверяются CI;
 - source/current alignment и preserved-field equality проверяются;
 - эвристика не выдаётся за доказанную content error;
-- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` отсутствуют в diff;
+- existing data files, runtime, PWA, package metadata, `versions/` и `_archive/` отсутствуют в diff;
 - provenance, registry, audit и project validators проходят;
 - GitHub Actions зелёные;
 - factual patchnote и новое изображение соответствуют D1.3;
@@ -63,7 +93,7 @@
 
 ## Следующий точный шаг
 
-Создать audit specification и permanent deterministic audit script. Затем через GitHub Actions сгенерировать reports из реальных зарегистрированных datasets и зафиксировать фактические counts/findings.
+Подключить `node scripts/audit-data-quality.mjs --check` к permanent CI, синхронизировать поддерживаемую документацию с factual report, затем создать patchnote `23.8.10` и новое real report image.
 
 ## Главные запреты
 
