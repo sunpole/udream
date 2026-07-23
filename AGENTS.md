@@ -77,6 +77,7 @@ Ask the owner only for decisions requiring human judgment, access to an unavaila
 - Before implementation, update `WORK_STATUS.md` with status `IN_PROGRESS`, start time, environment, branch, one goal, planned files and completion criteria.
 - Push the handoff before substantial implementation so another chat can see the lock.
 - At meaningful checkpoints, record what is actually complete, the last verified commit and the exact next action.
+- After every substantial saved stage that changes completed work, the last verified commit, the exact next action, blockers or prohibitions, update and push `WORK_STATUS.md` before continuing.
 - Before switching devices or stopping unfinished work, set status to `PAUSED` or `BLOCKED`, commit the handoff and push it to GitHub.
 - A local note, chat message or unpushed commit is not a valid handoff.
 - When finishing, record planned versus actual work, changed files, checks, PR/merge, risks and the next approved task.

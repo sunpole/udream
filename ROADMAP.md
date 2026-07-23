@@ -102,33 +102,41 @@ See `docs/AI_GITHUB_WORKFLOW.md`.
 
 See `docs/SCREENSHOT_AUTOMATION.md` and `tools/screenshots/README.md`.
 
-## Next approved series: D1 — data provenance and multi-dataset architecture
+## Completed: D1.1 data provenance v23.8.8
 
-D1 starts as research, validation design and migration planning. It must not change the active 4,086-record runtime database in its first stage.
+- [x] Recover the retained Git history of `data/divinity_code_ru.json`, `data/bd2.json`, `data/db.json` and `data/report.txt`.
+- [x] Record exact bytes, raw SHA-256, canonical JSON SHA-256, schema and ordered ID coverage.
+- [x] Separate proven facts, reasonable inferences and unknowns in `docs/DATA_PROVENANCE.md`.
+- [x] Correct the earlier byte-duplicate claim for `bd2.json` and `db.json`.
+- [x] Prove that `bd2.json` and `db.json` are byte-different but parsed/canonical-JSON equal.
+- [x] Record that the active dataset preserves IDs and core source fields while changing `aliases`, `notes` and `tags`.
+- [x] Invalidate the earlier intermediate metric that inspected nonexistent field `note` instead of `notes`.
+- [x] Add `scripts/validate-data-provenance.mjs` and integrate it into project validation.
+- [x] Keep all current data files, runtime, PWA, saved versions and archives unchanged.
 
-### D1.1 — provenance recovery
+See `docs/DATA_PROVENANCE.md`.
 
-- [ ] Recover the known generation and translation history of `data/divinity_code_ru.json` from Git history, reports, scripts and retained source files.
-- [ ] Record what is proven, what is inferred and what remains unknown.
-- [ ] Create a source/provenance record for every retained current data file.
-- [ ] Reconfirm the hash equality and history of `data/bd2.json` and `data/db.json`.
+## Next approved work: D1.2 — dataset registry and equivalent-serialization decision
 
-### D1.2 — dataset registry and duplicate decision
+D1.2 remains design and migration planning. It must not remove, rename or switch runtime data until a separately reviewed reversible plan is approved.
 
 - [ ] Define stable dataset identifiers, source work, language, edition/translation version and transformation metadata.
-- [ ] Define how original data, translation, aliases, tags and editorial notes remain distinguishable.
-- [ ] Design the target set: one canonical source dataset, one current Russian translation and up to two independent alternative Russian translations.
+- [ ] Approve one logical English source dataset entry while preserving both current raw hashes.
+- [ ] Decide whether `data/bd2.json` becomes the canonical path or another path is justified by evidence.
+- [ ] Search maintained and archived references to `data/bd2.json`, `data/db.json` and earlier `db_v2.json` names.
+- [ ] Define how source data, localized aliases, generated tags, notes and editorial material remain distinguishable.
+- [ ] Design the target set: one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations.
 - [ ] Explicitly allow a smaller set when only one reliable Russian translation exists.
-- [ ] Decide which exact duplicate is canonical and prepare a reversible migration before removing the redundant physical copy.
-- [ ] Define retention and rollback rules so a new translation never overwrites the previous one.
+- [ ] Prepare a reversible migration and rollback record before removing the redundant physical serialization.
+- [ ] Define retention rules so a new translation never overwrites the current published dataset.
 
-### D1.3 — data-quality audit design
+## D1.3 — data-quality audit design
 
 - [ ] Define automated checks for all 4,086 active records, duplicate IDs, empty fields, cross-references and suspicious entries.
 - [ ] Classify checks that can be automatic versus checks requiring human/source review.
 - [ ] Produce a report format without changing published content.
 
-### D1.4 — two-book product architecture
+## D1.4 — two-book product architecture
 
 - [ ] Define the intended relationship between the two source books.
 - [ ] Compare separate-database switching, combined search and side-by-side comparison.
@@ -136,7 +144,7 @@ D1 starts as research, validation design and migration planning. It must not cha
 - [ ] Approve a migration plan before implementing a user-facing selector or merged index.
 - [ ] Require full dataset validation, consistent reload, safe cache clearing and automatic stable fallback before any selector release.
 
-### D1.5 — AI-assisted translation experiment
+## D1.5 — AI-assisted translation experiment
 
 - [ ] Design a resumable translation script that never modifies the active database in place.
 - [ ] Use DeepSeek only as an optional candidate generator, not as an automatic source of truth.
@@ -158,7 +166,7 @@ See `docs/TRANSLATION_WORKFLOW.md`.
 - [ ] Add broader automated browser smoke checks for asset paths, startup and critical flows beyond the current screenshot scenarios.
 - [ ] Review accessibility: keyboard navigation, contrast, focus, screen readers and text selection.
 - [ ] Review privacy, local history and sharing behavior.
-- [ ] Confirm automatic uDream publications and operational recovery in `@uNewsLog`.
+- [x] Confirm automatic uDream publications and operational recovery in `@uNewsLog`.
 
 ## Later options
 

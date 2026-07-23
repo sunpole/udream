@@ -4,6 +4,7 @@ import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+import { validateDataProvenance } from "./validate-data-provenance.mjs";
 import { validateScreenshotTooling } from "./validate-screenshot-tooling.mjs";
 
 const ROOT = process.cwd();
@@ -181,7 +182,9 @@ async function validateRuntimeFiles() {
     "apple-touch-icon.png",
     "preview.jpg",
     "docs/AI_GITHUB_WORKFLOW.md",
+    "docs/DATA_PROVENANCE.md",
     "docs/SCREENSHOT_AUTOMATION.md",
+    "scripts/validate-data-provenance.mjs",
     "versions/index.html",
     "versions/v3.0.0/index.html",
     "versions/v3.0.0/script.js",
@@ -334,6 +337,7 @@ async function main() {
   await validateRuntimeFiles();
   const workStatus = await validateWorkStatus();
   const screenshotTooling = await validateScreenshotTooling(ROOT);
+  const dataProvenance = await validateDataProvenance(ROOT);
   const recordCount = await validateDatabase();
   const patchnoteResult = await validatePatchnotes();
   console.log(`WORK_STATUS passed: ${workStatus}.`);
@@ -341,6 +345,11 @@ async function main() {
     `Screenshot tooling passed: ${screenshotTooling.scenarios} scenario(s), `
     + `${screenshotTooling.desktop} desktop, ${screenshotTooling.mobile} mobile, `
     + `Playwright ${screenshotTooling.playwrightVersion}.`,
+  );
+  console.log(
+    `Data provenance passed: ${dataProvenance.records} records, `
+    + `${dataProvenance.sourceSerializations} source serializations, `
+    + `active SHA-256 ${dataProvenance.activeSha256}.`,
   );
   console.log(
     `uDream validation passed: ${recordCount} records, `

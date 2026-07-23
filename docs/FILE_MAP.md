@@ -40,14 +40,16 @@
 
 | Path | Status |
 |---|---|
-| `data/divinity_code_ru.json` | Active translated and augmented runtime database with 4,086 records |
-| `data/bd2.json` | Retained English reference dataset; not used by current runtime |
-| `data/db.json` | Exact duplicate of `data/bd2.json`; retained pending D1 provenance documentation |
+| `data/divinity_code_ru.json` | Active mixed-language localized and augmented runtime dataset; 4,086 records |
+| `data/bd2.json` | English source serialization A; canonical-path candidate for D1.2 |
+| `data/db.json` | English source serialization B; raw bytes differ, parsed/canonical JSON equals `bd2.json` |
 | `data/report.txt` | Historical generation/quality summary; not used by current runtime |
+| `docs/DATA_PROVENANCE.md` | Verified D1.1 hashes, Git history, comparisons, corrections, inferences and unknowns |
+| `scripts/validate-data-provenance.mjs` | Permanent byte/hash/schema/canonical-identity and field-difference validator |
 
 No retained database or translation variant may be destructively replaced. D1 must assign stable dataset identity, source, language, version and transformation history before any migration or selector is implemented.
 
-The target logical topology is one canonical source dataset, one current Russian translation and up to two independent alternative Russian translations. Exact duplicates are not separate variants. See `docs/TRANSLATION_WORKFLOW.md`.
+The target logical topology is one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations. Equivalent serializations are one logical source dataset, not separate variants. See `docs/DATA_PROVENANCE.md` and `docs/TRANSLATION_WORKFLOW.md`.
 
 ## Planned translation tooling
 
@@ -124,7 +126,7 @@ The selected `23.8.7` image came from scenario `russian-alias-mobile`, source co
 | `news/*.md` | Factual patchnotes discovered by uNews |
 | `news/*.{jpg,png}` | New real Telegram visuals stored beside their patchnotes |
 | `docs/SCREENSHOT_AUTOMATION.md` | Real-screenshot definition, implemented Playwright workflow and review contract |
-| `scripts/validate-project.mjs` | Repository, `WORK_STATUS`, screenshot tooling, database, patchnote and image validation |
+| `scripts/validate-project.mjs` | Repository, `WORK_STATUS`, screenshot tooling, provenance, database, patchnote and image validation |
 | `scripts/validate-patchnote-diff.mjs` | Requires a new patchnote and newly added screenshot evidence in each Pull Request |
 | `.github/workflows/validate.yml` | Automatic validation for pushes and Pull Requests |
 | `.github/workflows/publish-v23.8.0.yml` | Immutable one-release workflow for tag and GitHub Release publication |
@@ -151,7 +153,8 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 | `AGENTS.md` | Binding instructions for future coding agents |
 | `README.md` | Entry point, current overview, installation, screenshots and stable download links |
 | `docs/PRODUCT_VISION.md` | Current mission, final product direction and data-preservation rules |
-| `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, duplicate policy and safe DeepSeek-assisted workflow |
+| `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, equivalent-serialization policy and safe DeepSeek-assisted workflow |
+| `docs/DATA_PROVENANCE.md` | Verified D1.1 provenance, hashes, Git history and corrected dataset classification |
 | `docs/SCREENSHOT_AUTOMATION.md` | Real screenshot and implemented Playwright workflow contract |
 | `VERSION.md` | Release and development version state |
 | `CHANGELOG.md` | User/project-visible change history |

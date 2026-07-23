@@ -2,98 +2,81 @@
 
 Этот файл — единая оперативная точка продолжения разработки uDream с телефона, Windows, macOS, другого устройства или любого ИИ-чата.
 
-`ROADMAP.md` хранит общий план, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит живую текущую задачу и точку продолжения.
+`ROADMAP.md` хранит общий план, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит живую текущую задачу и точный следующий шаг.
 
 ## Быстрый сигнал
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **IN_PROGRESS** — PR #24 с ремонтом публикационных изображений проходит финальную проверку |
-| Рабочая ветка | `fix/pending-publication-images-v23.8.1-v23.8.5` |
-| Открытый Pull Request | `#24` — `https://github.com/sunpole/udream/pull/24` |
-| Стабильный релиз | `v23.8.0` |
-| Документационный и automation baseline | `v23.8.7` |
-| Уже опубликовано | `uDream 23.8.0`, Telegram message `54`, `https://t.me/uNewsLog/54` |
-| Сохранённая работа | D1.1 branch commit `9527dff75971d86a634ab437618d26cc03c3c87a` |
-| Активная задача | объединить PR #24, затем завершить uNews `0.3.7`, dry-run и Telegram FIFO |
+| Состояние | **COMPLETED** — D1.1 реализован; ожидаются финальная зелёная проверка и merge PR №25 |
+| Рабочая ветка | `docs/data-provenance-d1.1` |
+| Открытый Pull Request | `#25` — `https://github.com/sunpole/udream/pull/25` |
+| Стабильный функциональный релиз | `v23.8.0` |
+| Документационный/provenance baseline | кандидат `23.8.8` |
+| Актуальный `main` | `acc91a1162521a35fcdd3d3cfbc11811f2988508` |
+| Последний проверенный branch head до этого handoff | `b968e73e6ba5d605629c5f05ab0434d7b55c496f` |
+| Активная база | 4 086 записей; файлы данных не изменены |
+| Следующая утверждённая задача после merge | D1.2 — реестр наборов и каноническая физическая копия без удаления данных |
 
-## Текущая точка продолжения
+## Что завершено фактически
 
-Статус: `IN_PROGRESS`
+- создан постоянный `docs/DATA_PROVENANCE.md`;
+- создан и подключён `scripts/validate-data-provenance.mjs`;
+- зафиксированы raw SHA-256, canonical JSON SHA-256, размеры, схема, 4 086 упорядоченных ID и Git-история;
+- доказано, что `data/bd2.json` и `data/db.json` имеют разные физические bytes, но идентичны после JSON parsing и canonicalization;
+- они классифицированы как две сериализации одного логического английского набора, а не как две базы или два перевода;
+- для `data/divinity_code_ru.json` зафиксированы доказанные связи с английским набором и явно перечислено неизвестное;
+- исправлены прежние неточные утверждения в поддерживаемой документации;
+- создан патчноут `23.8.8`;
+- создан новый реальный PNG exact GitHub document page для `docs/DATA_PROVENANCE.md`;
+- `image_commit` и `image_captured_at` синхронизированы с фактическим снимком;
+- активные data-файлы, runtime, PWA, `versions/` и `_archive/` не изменены.
 
-Начато: `2026-07-22 Europe/Berlin`
+## Доказанные контрольные значения
 
-Устройство/среда: `ChatGPT + GitHub connector + GitHub Actions + Playwright Chromium`
+```text
+data/bd2.json raw SHA-256
+814c5d33444160e6f1ab20278f9356090ec0e9cc04943cd14ad99d9038be6e28
 
-Ветка: `fix/pending-publication-images-v23.8.1-v23.8.5`
+data/db.json raw SHA-256
+4e166959d318778be57557349a152c2b466ad9db14e5634f5e5df3c87ca2cdc0
 
-Pull Request: `https://github.com/sunpole/udream/pull/24`
+общий canonical JSON SHA-256 английского набора
+5ebe0d973f9cfd1c9db65a9d5abebe0ca16788261219299a710ed9fe78bb25d1
 
-Цель: устранить все известные технические и содержательные дефекты неопубликованных изображений `23.8.1–23.8.5`, не меняя FIFO-идентичность патчноутов, runtime, PWA, базу, сохранённые версии или архив.
+data/divinity_code_ru.json raw SHA-256
+1def80216e238b0c2a8640aaf1b4e95dd0669d5944a67f4e7c4421fad55a6e64
+```
 
-Планируемые файлы:
+Все текущие наборы содержат 4 086 записей с одинаковыми упорядоченными ID.
 
-- пять существующих неопубликованных патчноутов `23.8.1–23.8.5`;
-- пять отдельных реальных GitHub UI PNG в `news/`;
-- Playwright provenance manifest `tools/screenshots/v23.8.1-v23.8.5-publication-repairs.json`;
-- `scripts/validate-patchnote-diff.mjs`;
-- `scripts/validate-project.mjs`;
-- `docs/NEWS_PUBLISHING.md`;
-- `WORK_STATUS.md`.
+## Что остаётся неизвестным
 
-Критерии завершения:
+Точный generation/translation pipeline активной русской базы, использованный prompt, последовательность провайдеров и подтверждённая запись человеческой редакторской проверки не восстановлены. Эти пробелы не подменяются предположениями.
 
-- пять изображений уникальны и относятся к конкретным патчам;
-- каждый PNG проходит сигнатуру, PNG chunk CRC, декодирование и размерные проверки;
-- GitHub UI-страница на снимке соответствует историческому commit своего этапа;
-- FIFO-поля патчноутов не изменены;
-- runtime, PWA, package metadata, `data/`, `versions/` и `_archive/` отсутствуют в diff;
-- PR #24 объединён после зелёных Actions;
-- uNews `0.3.7` dry-run сообщает 0 image errors;
-- Telegram публикует оставшиеся записи с отдельным checkpoint после каждого поста;
-- `health.json` завершает запуск со status success и `last_error: null`;
-- Issue uNews №3 закрыт;
-- D1.1 возвращён в `IN_PROGRESS` в существующей ветке.
+## Следующий точный шаг
 
-Уже сделано:
+1. удалить оставшиеся одноразовые D1.1 workflows из итогового diff;
+2. дождаться успешного `Validate uDream` на финальном head PR №25;
+3. проверить полный список изменённых файлов и отсутствие изменений в `data/`, runtime, PWA, `versions/` и `_archive/`;
+4. перевести PR №25 из draft в ready и объединить squash merge;
+5. закрыть Issue №19 как completed;
+6. на `main` вернуть `WORK_STATUS.md` в состояние `READY`;
+7. продолжать только D1.2 через Issue №26.
 
-- `uDream 23.8.0` опубликован как Telegram message `54`; ключ и `published_at` сохранены, дубль исключён;
-- uNews CRC-аудит доказал повреждение общего PNG `23.8.1/23.8.2` в chunk `PLTE`;
-- доказано, что `23.8.3–23.8.5` использовали технически исправное, но нерелевантное общее изображение;
-- созданы пять уникальных Playwright Chromium-снимков публичных исторических GitHub-страниц;
-- manifest хранит пять exact URLs, commits, assertions, UTC-времён, размеров `1440×1000` и byte size;
-- пять патчноутов синхронизированы с manifest без изменения `project`, `series`, `version` и `queued_at`;
-- добавлены repair markers `unpublished-invalid-image` и `unpublished-image-upgrade`;
-- PR-validator проверяет пакетный repair, FIFO-поля, уникальность файлов, PNG CRC и исторические commits;
-- project-validator постоянно проверяет repaired images, CRC и provenance;
-- все временные capture, render, diagnostic и cleanup workflow удалены commit `aa9acba743dbdb1a9c5207769c407fa74ee40cfb`;
-- PR #24 открыт на head `1056af845a0b664d8972bbfae7dd6d0c60bd773d`;
-- `Validate uDream` run `29914377019` завершён успешно;
-- `Capture uDream screenshots` run `29914377000` завершён успешно;
-- diff PR #24 не содержит runtime, PWA, package metadata, активную базу, `versions/` или `_archive/`;
-- D1.1 остаётся сохранённым на паузе и не изменяется.
+## Что нельзя делать до merge
 
-Последний проверенный commit:
+- не менять `data/divinity_code_ru.json`, `data/bd2.json`, `data/db.json` или `data/report.txt`;
+- не менять runtime, PWA, Service Worker, package metadata, `versions/` или `_archive/`;
+- не создавать параллельную ветку D1.1;
+- не начинать D1.2 до завершения PR №25;
+- не объединять PR при красных или незавершённых проверках;
+- не выдавать неизвестный переводческий pipeline за доказанный факт.
 
-- uDream `main`: `e21bc8b2288591dcfdc6ad2e3d9a2524bd47b0f6`;
-- текущий repair head до этого handoff: `1056af845a0b664d8972bbfae7dd6d0c60bd773d`;
-- D1.1 pause commit: `9527dff75971d86a634ab437618d26cc03c3c87a`;
-- uNews saved state after message 54: `ccd3b8b4400deef478411215bb8038de35742300`.
+## Продолжение с другого устройства
 
-Следующий точный шаг:
-
-- дождаться зелёных Actions на новом head PR #24, объединить PR; затем вернуться в `sunpole/uNews`, завершить `0.3.7`, выполнить полный dry-run и только после нулевого отчёта запустить Telegram FIFO.
-
-Что нельзя делать при продолжении:
-
-- не повторно публиковать `23.8.0`;
-- не менять project, series, version или queued_at старых патчноутов;
-- не создавать пять новых дублирующих новостей вместо ремонта неопубликованных записей;
-- не использовать одно общее изображение для разных патчей;
-- не менять runtime, PWA, Service Worker, package metadata или базу;
-- не создавать новую D1.1 ветку и не удалять `docs/data-provenance-d1.1`;
-- не продолжать D1.1 до подтверждения Telegram recovery.
+Новый чат или агент должен сначала открыть GitHub, прочитать этот файл, проверить PR №25, Actions, Issue №19 и Issue №26 и продолжить существующую ветку. Антону не требуется терминал или ручное редактирование, пока доступные действия выполняются через GitHub.
 
 ## Источник истины
 
-Реальные GitHub-факты — `main`, открытые Pull Request, commits, Actions, uNews `data/published.json`, `data/health.json` и Telegram `post_url` — имеют приоритет над памятью ИИ, старыми чатами и незапушенными локальными изменениями.
+Реальные GitHub-факты — `main`, текущая ветка, commits, Pull Request, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
