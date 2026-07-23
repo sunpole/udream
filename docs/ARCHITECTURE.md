@@ -23,143 +23,58 @@ script.js ──import──> src/search.js
 DOM + localStorage + Web Share APIs
 ```
 
-There is no server-side application code. GitHub Pages serves files; the browser performs all search, filtering, rendering, preferences, history management, PWA update checks and installation UI.
+There is no server-side application code. GitHub Pages serves files; the browser performs search, rendering, preferences, history, update checks and installation UI.
 
-`data/datasets.json` is not part of this runtime graph. It is repository governance metadata used by documentation and validation only.
+The following are repository tooling, not runtime dependencies:
+
+```text
+data/datasets.json
+reports/data-quality-audit.json
+reports/data-quality-audit.md
+scripts/validate-data-provenance.mjs
+scripts/validate-dataset-registry.mjs
+scripts/audit-data-quality.mjs
+```
 
 ## Current components
 
-### `index.html`
+### Runtime
 
-- page structure and inline CSS;
-- current `v23.8.0` label populated from centralized runtime version metadata;
-- menu, search controls, history controls, result area, alphabet rows, tags, install banner host and footer;
-- external CDN dependencies;
-- links to reference PDFs;
-- loads `script.js` as an ES module.
+- `index.html` — page structure, inline CSS, controls, install host and footer.
+- `script.js` — application orchestration and DOM events.
+- `src/version.js` — runtime version, visible labels and title.
+- `src/search.js` — strict search, relevance and alias resolution.
+- `src/data.js` — active database loading/manual JSON parsing.
+- `src/state.js` — initial state and restored preferences.
+- `src/history.js` — navigation, breadcrumbs and history grouping.
+- `src/storage.js` — typed browser-storage operations.
+- `src/i18n.js` — RU/EN interface dictionary.
+- `src/presentation.js` — escaped pure HTML builders.
+- `src/pwa.js` — Service Worker registration, update and installation flow.
+- `version.json` — uncached deployed-version signal.
+- `manifest.json` — PWA identity and icons.
+- `sw.js` — application shell/active database cache and update strategy.
 
-### `script.js`
+### Active data
 
-- application orchestration and mutable UI state;
-- connects data, search, history, presentation, localization, storage, version and PWA modules;
-- autocomplete UI, tag, alphabet, color and digit behavior;
-- DOM event binding for prebuilt presentation fragments;
-- history and breadcrumb DOM rendering;
-- theme and UI preference DOM effects;
-- sharing helpers.
+`data/divinity_code_ru.json` is physical file `ru-current-v1-runtime` and the only active runtime dataset. Its 4,086 records remain published until a separate approved functional data release changes the contract.
 
-### `src/version.js`
+### Registry metadata
 
-- defines the runtime application version, visible label and page title;
-- updates all `[data-app-version]` labels consistently;
-- must agree with `package.json` and `version.json` for release publication.
+`data/datasets.json` defines logical/physical IDs, roles, hashes, canonical choice, source relationships, migration policy and translation policy. It cannot switch the active runtime database.
 
-### `src/search.js`
+### Audit reports
 
-- strict per-field search and autocomplete matching;
-- relevance ranking for exact, prefix and substring matches;
-- primary-card preference for aliases shared with short redirect records;
-- direct-result resolution for exact aliases;
-- uses JSDoc and `// @ts-check` without a TypeScript build step;
-- is covered by dependency-free Node.js regression tests.
+`reports/data-quality-audit.json` and `.md` are deterministic outputs generated from registered canonical source/current datasets. They are not loaded by the browser or cached by the Service Worker.
 
-### `src/data.js`
+`scripts/audit-data-quality.mjs` supports generation and `--check`. The audit writes reports only and never modifies `data/` inputs.
 
-- owns ordered database path fallback and manual JSON parsing;
-- preserves the runtime contract of a non-empty JSON array;
-- returns records plus source metadata without touching the DOM.
+### Saved versions and archive
 
-### `src/state.js`
-
-- creates the initial application state from defaults and the storage module;
-- normalizes restored full-history data before the UI starts;
-- contains no database transformation logic;
-- can be tested without a browser.
-
-### `src/history.js`
-
-- owns pure navigation-stack and breadcrumb-window operations;
-- appends and normalizes persistent history entries;
-- groups full history by day without touching the DOM;
-- preserves navigation branch truncation and back/forward boundaries.
-
-### `src/storage.js`
-
-- owns string, boolean and JSON reads from browser storage;
-- owns browser-compatible serialization and removal;
-- returns documented defaults when storage is unavailable or JSON is malformed;
-- contains no application UI or database logic.
-
-### `src/i18n.js`
-
-- owns the complete RU/EN interface dictionary, language normalization and reviewed instruction HTML;
-- falls back to Russian for missing or corrupted stored language values;
-- marks the single translation that intentionally contains trusted line-break HTML.
-
-### `src/pwa.js`
-
-- owns service-worker registration and PWA installation/update interaction;
-- registers after the browser `load` event;
-- checks `version.json` with `cache: no-store`;
-- requests an update and performs a protected one-time reload when the deployed version differs;
-- handles `beforeinstallprompt`, manual installation guidance and standalone-mode suppression;
-- safely does nothing when browser capabilities are unavailable;
-- reports failures without blocking application startup;
-- is covered by dependency-free Node.js regression tests.
-
-### `src/presentation.js`
-
-- owns pure HTML builders for records, lists, history, breadcrumbs, tags, autocomplete, statistics and sharing;
-- escapes text and attribute values from imported JSON, including both quote types;
-- renders notes as safe plain text with paragraphs and line breaks instead of interpreting raw HTML or Markdown;
-- contains no DOM queries, event listeners, browser storage or search logic.
-
-### `data/divinity_code_ru.json`
-
-The active runtime database and physical file `ru-current-v1-runtime`. It is loaded client-side and kept in browser memory for searching. Its 4,086 records remain the published source until a separately approved functional data migration changes the runtime contract.
-
-### `data/datasets.json`
-
-The D1.2 machine-readable registry. It defines:
-
-- logical dataset IDs;
-- physical file IDs and paths;
-- exact raw/canonical hashes and record counts;
-- canonical, retained and runtime roles;
-- source relationships;
-- translation-variant policy;
-- future migration and rollback policy.
-
-The browser, `src/data.js` and Service Worker do not load this file. The registry cannot switch the active database by itself.
-
-### `version.json`
-
-A small deployment-version file requested without browser HTTP cache. It allows a running page or installed PWA to detect that GitHub Pages has published a newer version.
-
-### `manifest.json`
-
-PWA identity, start URL, scope, theme colors, language, categories and install icons.
-
-### `sw.js`
-
-- caches the application shell and active database;
-- activates new releases immediately through `skipWaiting()` and `clients.claim()`;
-- removes only old caches whose names start with `udream-`;
-- uses network-first with offline fallback for version-sensitive runtime resources;
-- must change its cache name whenever cached runtime assets change;
-- does not cache or load `data/datasets.json`.
-
-### `versions/`
-
-Contains the saved-version launcher and runnable snapshots. Each snapshot should use relative paths, its own active database, its own manifest and a scoped service worker.
-
-### `_archive/`
-
-Historical/reference storage. The current application must not import scripts or databases from archived numbered versions.
+- `versions/` contains runnable snapshots with independent relative paths and scoped PWA files.
+- `_archive/` contains historical/reference material and is not imported by current runtime.
 
 ## Dataset identity boundary
-
-D1.2 registers:
 
 ```text
 source-divinity-code-en
@@ -170,48 +85,72 @@ ru-current-v1
   └─ ru-current-v1-runtime       -> data/divinity_code_ru.json (runtime current)
 ```
 
-The canonical English choice is a project-governance decision. It does not prove historical originality. Migration remains `planned-not-executed`, and neither English file is a runtime dependency.
+The canonical English choice is a project-governance decision and does not prove historical originality.
 
-A future selector or combined search requires a separate reviewed architecture and functional release. The registry alone does not authorize runtime switching.
+```text
+physical migration: planned-not-executed
+remove_or_rename_approved: false
+```
+
+A future selector or combined search requires separate architecture and a functional release. Registry/audit tooling does not authorize runtime switching.
+
+## Quality-audit boundary
+
+D1.3 verifies:
+
+```text
+records per logical dataset: 4086
+ordered/unique/aligned IDs: true
+preserved-field differences: 0
+structural errors: 0
+warnings: 0
+review instances: 5022 in five groups
+structural gate: pass
+```
+
+Review instances may overlap and are not proven content errors. The audit cannot decide theological correctness, preferred wording, source intent or whether shared aliases are intentional. Corrections require separate evidence-based data PRs.
 
 ## Repository automation
 
 GitHub Actions runs:
 
-- dependency-free regression tests;
-- `scripts/validate-project.mjs` for runtime assets, active data, handoff, screenshot tooling and patchnotes;
-- `scripts/validate-dataset-registry.mjs` for logical/physical IDs, exact files, hashes, canonical identity, roles, policies and runtime isolation;
-- Pull Request patchnote/image enforcement;
+- dependency-free application regression tests;
+- project/runtime/data/handoff/screenshot/patchnote validation;
+- D1.1 provenance validation;
+- D1.2 registry validation;
+- D1.3 report freshness and structural gate;
+- PR patchnote/new-image enforcement;
 - JavaScript syntax checks.
 
-`docs/DATA_PROVENANCE.md` and `scripts/validate-data-provenance.mjs` lock the D1.1 evidence baseline. `data/datasets.json`, `docs/DATASET_REGISTRY.md` and `scripts/validate-dataset-registry.mjs` lock the D1.2 identity and governance baseline.
+The `v23.8.0` release workflow separately verifies exact SHA and runtime-version consistency.
 
-The release workflow for `v23.8.0` additionally verifies the exact release SHA and consistency between `package.json`, `src/version.js` and `version.json` before creating or confirming the immutable tag and GitHub Release.
+uNews is external to runtime. It discovers valid `news/*.md` from public `main` and publishes through its own Actions workflow. Telegram credentials are not stored in uDream.
 
-The uNews publisher is external to the website runtime. Its scheduled workflow lives in `sunpole/uNews`, scans public repositories owned by `sunpole`, discovers `sunpole/udream/news/*.md` and publishes previously unseen valid patchnotes to Telegram. Telegram credentials are never required by the uDream site or repository checks.
+## Screenshot tooling
+
+Playwright tooling under `tools/screenshots/` is isolated from runtime. The permanent capture workflow is read-only. Documentation/audit patchnotes may use an exact GitHub document/report page captured by a self-removing one-time workflow.
 
 ## External dependencies
 
-Loaded from CDNs at runtime:
+Runtime CDN dependencies:
 
 - Google Fonts (`Inter`);
 - Font Awesome;
 - html2canvas.
 
-The core search and note rendering remain repository-hosted, but fonts, icons and image-sharing presentation may degrade offline unless the remaining external resources have already been cached by the browser.
+Core search and safe note rendering are repository-hosted. Fonts/icons/image sharing may degrade offline when not already cached by the browser.
 
 ## State and privacy
 
-Preferences and browsing history are stored locally in the browser via `localStorage`. There is no project backend receiving this state. Sharing occurs only when the user invokes the share helpers and the browser supports the required API.
+Preferences/history use localStorage. There is no project backend receiving them. Sharing occurs only when the user invokes browser share helpers.
 
 ## Architectural constraints
 
 - Keep GitHub Pages compatibility.
 - Keep the app usable without a build step unless explicitly changed.
-- Do not introduce server requirements for ordinary search.
-- Separate content/database migrations from UI changes.
-- Preserve old releases and runnable snapshots.
-- Preserve each source dataset and translation variant with provenance; do not overwrite one variant with another.
-- Keep the dataset registry outside the runtime until a separately approved architecture requires it.
-- Do not delete or rename retained physical files while migration status is `planned-not-executed`.
-- Follow `docs/PRODUCT_VISION.md` for product boundaries and `docs/DATASET_REGISTRY.md` for current data identity.
+- Do not introduce a server for ordinary search.
+- Separate data migration, content correction, UI and architecture work.
+- Preserve releases, runnable snapshots, sources and translation variants.
+- Keep registry and audit tooling outside runtime until a functional architecture explicitly requires otherwise.
+- Do not delete/rename retained physical data while migration is `planned-not-executed`.
+- D1.4 must define two-book provenance, modes, history/deep links, validation/cache/fallback and rollback before selector implementation.
