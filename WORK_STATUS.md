@@ -8,57 +8,74 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **READY** — незавершённой активной задачи нет |
-| Рабочая ветка | `main` |
-| Открытый Pull Request | нет |
+| Состояние | **IN_PROGRESS** — начат D1.3 non-destructive data-quality audit |
+| Начато | `2026-07-23 08:47 Europe/Berlin` |
+| Среда | `ChatGPT + GitHub connector + GitHub Actions` |
+| Рабочая ветка | `audit/d1.3-data-quality-v23.8.10` |
+| Открытый Pull Request | ещё не открыт |
+| Issue | `#28` — D1.3 data-quality audit |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Документационный/data baseline | `23.8.9` — D1.2 dataset registry завершён |
-| Последнее завершённое изменение | PR #27, squash merge `3cb0403016b56a8d5e6fedd9b6367f383ec4a6ba` |
-| Закрытая задача | Issue #26 — D1.2 completed |
-| Следующая утверждённая задача | D1.3 — non-destructive data-quality audit design |
+| Текущий baseline | `23.8.9` — D1.2 dataset registry завершён |
+| Последний подтверждённый main перед стартом | `4fae1d8dd13c345bd3cf459f0c896891e64e497b` |
+| Активная база | `data/divinity_code_ru.json`, 4 086 записей; менять запрещено |
 
-## Завершённый этап D1.2
+Цель: спроектировать и выполнить воспроизводимый неразрушающий аудит качества зарегистрированных source/current datasets, создать permanent audit script и deterministic machine/human reports, не исправляя и не перезаписывая данные.
 
-- создан machine-readable registry `data/datasets.json`;
-- зарегистрированы logical dataset IDs `source-divinity-code-en` и `ru-current-v1`;
-- зарегистрированы physical file IDs для обеих английских сериализаций и активной русской базы;
-- `data/bd2.json` выбран canonical maintained serialization как project-governance decision;
-- выбор canonical path не выдаётся за доказательство исторического оригинала;
-- `data/db.json` сохранён как retained equivalent compatibility serialization;
-- создан `docs/DATASET_REGISTRY.md` с identity, reference audit, migration и rollback;
-- создан permanent validator `scripts/validate-dataset-registry.mjs`;
-- GitHub Actions проверяет registry, реальные hashes, canonical JSON, 4 086 ordered IDs, policy и runtime isolation;
-- factual uNews patchnote `23.8.9` и новый реальный Chromium document-render сохранены;
-- существующие data-файлы, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены.
+Последний проверенный commit: `4fae1d8dd13c345bd3cf459f0c896891e64e497b` — D1.2 завершён, main READY, Issue #28 создан.
 
-## Текущие зарегистрированные данные
+## Планируемые файлы
 
-```text
-source-divinity-code-en
-  canonical physical: data/bd2.json
-  retained equivalent: data/db.json
+Планируемые файлы:
 
-ru-current-v1
-  active runtime: data/divinity_code_ru.json
+- `scripts/audit-data-quality.mjs`;
+- `docs/DATA_QUALITY_AUDIT.md`;
+- `reports/data-quality-audit.json`;
+- `reports/data-quality-audit.md`;
+- `.github/workflows/validate.yml`;
+- `README.md`;
+- `VERSION.md`;
+- `CHANGELOG.md`;
+- `ROADMAP.md`;
+- `docs/PROJECT_STATE.md`;
+- `docs/FILE_MAP.md`;
+- `docs/DATABASE_FORMAT.md`;
+- `AGENTS.md`;
+- `WORK_STATUS.md`;
+- новый factual patchnote `23.8.10` и новое real report/document image.
 
-physical migration: planned-not-executed
-remove_or_rename_approved: false
-```
+## Критерии завершения
+
+Критерии завершения:
+
+- audit охватывает logical datasets `source-divinity-code-en` и `ru-current-v1`;
+- все 4 086 IDs проверяются без изменения data files;
+- structural errors, warnings, human-review findings и info statistics разделены;
+- report rules и limitations документированы;
+- JSON и Markdown reports deterministic и проверяются CI;
+- source/current alignment и preserved-field equality проверяются;
+- эвристика не выдаётся за доказанную content error;
+- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` отсутствуют в diff;
+- provenance, registry, audit и project validators проходят;
+- GitHub Actions зелёные;
+- factual patchnote и новое изображение соответствуют D1.3;
+- PR объединён, Issue #28 закрыт, `main/WORK_STATUS.md` возвращён в `READY`;
+- следующая задача — D1.4 two-book product architecture.
 
 ## Следующий точный шаг
 
-Начать D1.3 только в новой отдельной ветке после чтения Issue/ROADMAP и обновления этого файла до `IN_PROGRESS`.
-
-D1.3 должна спроектировать и выполнить неразрушающий аудит качества всех 4 086 записей: автоматические проверки, severity levels, machine-readable и human-readable reports. Она может находить и описывать проблемы, но не должна молча исправлять или перезаписывать данные.
+Создать audit specification и permanent deterministic audit script. Затем через GitHub Actions сгенерировать reports из реальных зарегистрированных datasets и зафиксировать фактические counts/findings.
 
 ## Главные запреты
 
-- не удалять, не переименовывать и не изменять текущие data-файлы без отдельной обратимой миграции;
-- не менять стабильные IDs или тексты в audit-патче;
-- не начинать пользовательский selector баз;
-- не запускать D1.4 или D1.5 раньше завершения D1.3;
-- не выдавать неизвестный translation pipeline за доказанный факт.
+- не менять `data/bd2.json`, `data/db.json`, `data/divinity_code_ru.json` или `data/report.txt`;
+- не менять IDs, тексты, aliases, notes, tags или record order;
+- не выполнять physical migration;
+- не исправлять findings в этом PR;
+- не добавлять database selector;
+- не начинать D1.4 или D1.5;
+- не считать heuristic finding доказанной смысловой ошибкой;
+- не объединять PR при красных или незавершённых проверках.
 
 ## Источник истины
 
-Реальные GitHub-факты — `main`, открытые Pull Request, commits, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
+Реальные GitHub-факты — `main`, текущая ветка, commits, Pull Request, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
