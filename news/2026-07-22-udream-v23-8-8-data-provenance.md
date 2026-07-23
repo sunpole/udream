@@ -11,7 +11,7 @@ image: 2026-07-22-udream-v23-8-8-data-provenance.png
 image_source: document-render
 image_target: docs/DATA_PROVENANCE.md
 image_commit: 0b257ff27b676107976a9e7a4aa59410d98cde13
-image_captured_at: 2026-07-22T16:42:53Z
+image_captured_at: 2026-07-23T06:00:08Z
 ---
 
 # uDream 23.8.8: проверенная provenance-база данных
