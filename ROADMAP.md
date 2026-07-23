@@ -116,25 +116,33 @@ See `docs/SCREENSHOT_AUTOMATION.md` and `tools/screenshots/README.md`.
 
 See `docs/DATA_PROVENANCE.md`.
 
-## Next approved work: D1.2 — dataset registry and equivalent-serialization decision
+## Completed: D1.2 dataset registry v23.8.9
 
-D1.2 remains design and migration planning. It must not remove, rename or switch runtime data until a separately reviewed reversible plan is approved.
+- [x] Add machine-readable `data/datasets.json` with schema version 1.
+- [x] Define stable logical dataset IDs `source-divinity-code-en` and `ru-current-v1`.
+- [x] Define stable physical file IDs for both English serializations and the active runtime file.
+- [x] Select `data/bd2.json` as the canonical maintained physical serialization through a project-governance decision.
+- [x] State explicitly that the canonical choice does not prove the historical original or authoritative source edition.
+- [x] Retain `data/db.json` as an equivalent compatibility serialization.
+- [x] Record bytes, raw hashes, canonical hashes, record counts, roles, statuses and source relationships.
+- [x] Add `docs/DATASET_REGISTRY.md` with identity, reference-audit, migration and rollback rules.
+- [x] Add `scripts/validate-dataset-registry.mjs` and require it in GitHub Actions.
+- [x] Preserve all existing data files, runtime, PWA, package metadata, saved versions and archives unchanged.
+- [x] Keep the physical migration in status `planned-not-executed`.
 
-- [ ] Define stable dataset identifiers, source work, language, edition/translation version and transformation metadata.
-- [ ] Approve one logical English source dataset entry while preserving both current raw hashes.
-- [ ] Decide whether `data/bd2.json` becomes the canonical path or another path is justified by evidence.
-- [ ] Search maintained and archived references to `data/bd2.json`, `data/db.json` and earlier `db_v2.json` names.
-- [ ] Define how source data, localized aliases, generated tags, notes and editorial material remain distinguishable.
-- [ ] Design the target set: one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations.
-- [ ] Explicitly allow a smaller set when only one reliable Russian translation exists.
-- [ ] Prepare a reversible migration and rollback record before removing the redundant physical serialization.
-- [ ] Define retention rules so a new translation never overwrites the current published dataset.
+See `data/datasets.json` and `docs/DATASET_REGISTRY.md`.
 
-## D1.3 — data-quality audit design
+## Next approved work: D1.3 — data-quality audit design
 
-- [ ] Define automated checks for all 4,086 active records, duplicate IDs, empty fields, cross-references and suspicious entries.
+D1.3 designs and runs non-destructive quality checks. It must not silently rewrite published content.
+
+- [ ] Define automated checks for all 4,086 active records, duplicate IDs, empty fields, invalid types, cross-references and suspicious entries.
 - [ ] Classify checks that can be automatic versus checks requiring human/source review.
-- [ ] Produce a report format without changing published content.
+- [ ] Define severity levels and a stable report format.
+- [ ] Compare the current localized dataset with the registered source dataset without changing either file.
+- [ ] Produce a machine-readable and human-readable audit report.
+- [ ] Add a permanent validator or audit command that does not modify data.
+- [ ] Keep content corrections for later separate reviewed data patches.
 
 ## D1.4 — two-book product architecture
 
