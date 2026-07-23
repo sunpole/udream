@@ -6,14 +6,14 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **COMPLETED** — D1.4 реализован в ветке; ожидаются Pull Request и проверки |
+| Состояние | **COMPLETED** — D1.4 реализован; PR №31 ожидает успешных проверок и merge |
 | Рабочая ветка | `docs/two-book-architecture-d1.4` |
-| Открытый Pull Request | ещё не открыт |
+| Открытый Pull Request | `#31` — `https://github.com/sunpole/udream/pull/31` |
 | Стабильный функциональный релиз | `v23.8.0` |
 | Документационный/architecture baseline | кандидат `23.8.11` |
 | Актуальный `main` при старте | `d6c7a070ecd6aec19b7841644cfdb80ac9f82de1` |
 | Активная задача | Issue #30 — D1.4 two-book product architecture |
-| Следующая точная задача | открыть PR, дождаться зелёных Actions, проверить diff и объединить |
+| Следующая точная задача | дождаться зелёных Actions, проверить diff и объединить PR №31 |
 
 ## Завершено фактически
 
@@ -52,18 +52,18 @@
 - architecture validator проходит;
 - patchnote/new-image validation проходит;
 - diff не содержит `data/`, runtime, PWA, package metadata, `versions/` или `_archive/`;
-- PR переведён в ready и объединён squash merge;
+- PR №31 объединён squash merge;
 - Issue #30 закрыт completed;
 - `main/WORK_STATUS.md` возвращён в `READY`;
 - следующая approved phase названа явно.
 
 ## Последний проверенный commit
 
-Последний сохранённый этап до этого handoff содержит architecture docs, machine registry, validator, roadmap/version updates, patchnote и real PNG. Точный финальный head будет зафиксирован GitHub в Pull Request.
+PR №31 открыт из существующей D1.4 ветки. Точный актуальный head определяется GitHub и должен совпадать с head, проверенным Actions перед merge.
 
 ## Следующий точный шаг
 
-Открыть Pull Request из `docs/two-book-architecture-d1.4` в `main`, проверить GitHub Actions и полный changed-files список. Не объединять при любой красной или незавершённой проверке.
+Дождаться `Validate uDream` на текущем head PR №31, проверить полный changed-files список и protected paths. Не объединять при любой красной или незавершённой проверке.
 
 ## Главные запреты
 
