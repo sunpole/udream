@@ -4,69 +4,69 @@
 
 Этот документ фиксирует целевую модель переводов uDream и безопасный порядок экспериментов с API-переводом. Он не означает, что новые переводы уже созданы или что активная база должна быть немедленно изменена.
 
-Стабильные текущие dataset IDs определены D1.2 в `data/datasets.json` и `docs/DATASET_REGISTRY.md`.
+Стабильные IDs определены в `data/datasets.json` и `docs/DATASET_REGISTRY.md`. Current quality baseline хранится в `docs/DATA_QUALITY_AUDIT.md` и `reports/`.
 
 ## Текущие зарегистрированные наборы
 
 | Dataset ID | Роль | Статус |
 |---|---|---|
-| `source-divinity-code-en` | один логический английский исходный набор | retained source |
-| `ru-current-v1` | текущий локализованный и дополненный набор | runtime current |
+| `source-divinity-code-en` | один logical English source dataset | retained source |
+| `ru-current-v1` | текущий localized/augmented dataset | runtime current |
 
-Текущий русский набор связан с `source-divinity-code-en`, но точный исторический translation pipeline, prompts, последовательность провайдеров и запись полной человеческой проверки остаются неизвестными.
+Точный historical translation pipeline, prompts, provider sequence и полный human-review record остаются неизвестными.
 
-## Целевой набор данных
+## Целевая модель
 
-После завершения D1 проект стремится иметь следующие логически независимые наборы:
+1. `source-divinity-code-en` — canonical logical source dataset.
+2. `ru-current-v1` — current published localized dataset.
+3. Alternative Russian translation A — новый independent dataset ID.
+4. Alternative Russian translation B — только если качество и проверяемость это оправдывают.
 
-1. **Исходная база** — `source-divinity-code-en`, канонический логический набор на языке исходного материала.
-2. **Текущий русский вариант** — `ru-current-v1`, опубликованный runtime-набор.
-3. **Альтернативный русский перевод A** — отдельный вариант с новым dataset ID.
-4. **Альтернативный русский перевод B** — второй независимый вариант, только если его удастся получить и проверить с достаточным качеством.
-
-Это целевая модель, а не требование искусственно создавать лишние копии. Если надёжно получается только один русский перевод, проект сохраняет одну русскую версию и исходную базу. Количество вариантов не должно быть важнее качества, происхождения и проверяемости.
+Если надёжно получается только один русский перевод, проект сохраняет один. Количество вариантов не важнее качества и provenance.
 
 ## Эквивалентные английские сериализации
 
-D1.1 доказал, что `data/bd2.json` и `data/db.json`:
+D1.1 доказал:
 
-- имеют разные размеры и raw SHA-256;
-- после JSON-разбора и canonical normalization полностью совпадают;
-- содержат одинаковые 4 086 записей, порядок, поля и значения;
-- являются двумя физическими сериализациями одного logical dataset `source-divinity-code-en`.
+- `data/bd2.json` и `data/db.json` имеют разные raw bytes/hashes;
+- parsed/canonical JSON полностью одинаков;
+- оба файла содержат одинаковые 4 086 ordered records;
+- это две physical serializations одного `source-divinity-code-en`.
 
-D1.2 утвердил физические IDs:
+D1.2 утвердил:
 
 ```text
-source-divinity-code-en-bd2  -> data/bd2.json
-source-divinity-code-en-db   -> data/db.json
+source-divinity-code-en-bd2 -> data/bd2.json
+source-divinity-code-en-db  -> data/db.json
 ```
 
-`source-divinity-code-en-bd2` выбран canonical physical serialization через project-governance decision. Это не доказывает, что `data/bd2.json` является историческим оригиналом или подтверждённой исходной редакцией.
+`data/bd2.json` — canonical maintained serialization по project-governance decision. Это не доказательство historical original. `data/db.json` остаётся retained equivalent compatibility serialization.
 
-`source-divinity-code-en-db` остаётся retained equivalent compatibility serialization. Оба файла сохраняются без изменений. Фактическое удаление, переименование или перенос не одобрены и могут выполняться только отдельным будущим migration-патчем с rollback.
+```text
+migration: planned-not-executed
+remove_or_rename_approved: false
+```
 
-## Идентичность каждого варианта
+## Идентичность варианта
 
-Каждый самостоятельный набор или перевод должен иметь собственный стабильный logical dataset ID и метаданные:
+Каждый самостоятельный dataset/translation должен иметь:
 
-- источник и книга;
-- исходный язык;
-- язык перевода;
-- название варианта;
-- версия или дата;
-- исходный commit или SHA-256;
-- способ получения;
-- переводчик, инструмент или модель;
-- шаблон инструкции для преобразования;
-- правила редакторской обработки;
-- результаты автоматической проверки;
-- статус человеческой проверки;
+- stable logical dataset ID;
+- stable physical file ID;
+- source/book и language;
+- version/date;
+- source commit/hash;
+- получение и transformation method;
+- translator/tool/model;
+- prompt-template version;
+- editorial rules;
+- validation result;
+- human-review status;
 - связь с предыдущей версией.
 
-Каждый физический файл получает отдельный physical file ID, path, exact raw hash и роль. Несколько физически разных файлов могут относиться к одному logical dataset только когда их semantic/canonical identity доказана.
+Несколько physical files относятся к одному logical dataset только при доказанной canonical identity.
 
-Примеры будущих идентификаторов:
+Примеры будущих IDs:
 
 ```text
 ru-deepseek-candidate-v1
@@ -76,106 +76,103 @@ ru-alternative-reviewed-v2
 
 Новый перевод не может использовать ID `ru-current-v1` и не может перезаписывать его файл.
 
+## D1.3 quality baseline
+
+D1.3 проверил `source-divinity-code-en` и `ru-current-v1` read-only аудитом.
+
+Подтверждено:
+
+- по 4 086 unique ordered IDs;
+- source/current IDs aligned;
+- preserved-field differences: 0;
+- structural errors: 0;
+- warnings: 0;
+- review instances: 5 022 in 5 aggregated groups.
+
+Review findings не являются доказанными translation errors. Они могут пересекаться и требуют source/human review. Audit не меняет данные и не выбирает «лучший» перевод.
+
 ## Использование DeepSeek API
 
-DeepSeek рассматривается как один из возможных инструментов для создания дополнительного кандидата перевода или расширения непереведённых полей. Результат API не считается автоматически правильным, опубликованным или богословски проверенным.
+DeepSeek может создавать только отдельный candidate dataset или расширять непереведённые поля в отдельном кандидате. Результат не считается автоматически правильным, опубликованным или богословски проверенным.
 
-### Где допускается запуск
+### Допустимое место запуска
 
-Перевод через API выполняется только:
+- локальный служебный script; или
+- отдельный GitHub Actions workflow с encrypted secret.
 
-- локальным служебным скриптом разработчика; или
-- отдельным GitHub Actions workflow с ключом в GitHub Secrets.
-
-Статический сайт и установленная PWA не должны обращаться к переводческому API напрямую. Встраивание ключа в браузерный JavaScript неизбежно раскроет его пользователям.
+Public site и PWA никогда не обращаются к paid translation API напрямую.
 
 ### Хранение ключа
 
-Ключ API:
+Ключ:
 
 - не записывается в Git;
-- не помещается в `index.html`, `script.js`, `src/`, JSON-базы, патчноуты или документацию;
-- локально передаётся через переменную окружения или игнорируемый `.env`;
-- в GitHub Actions хранится только как encrypted secret;
-- не выводится в логи, отчёты об ошибках и артефакты;
-- при подозрении на утечку немедленно отзывается и заменяется.
-
-Рекомендуемое имя локальной переменной:
+- не попадает в browser code, JSON, patchnotes, docs, screenshots, logs или artifacts;
+- локально передаётся через environment variable/ignored `.env`;
+- в Actions хранится только как encrypted secret;
+- при подозрении на утечку отзывается.
 
 ```text
 DEEPSEEK_API_KEY
 ```
 
-В репозиторий может быть добавлен только безопасный `.env.example` без значения.
+`.env.example` может содержать только пустое имя variable.
 
-## Безопасный конвейер AI-перевода
+## Безопасный AI pipeline
 
-Экспериментальный перевод должен идти отдельными контролируемыми шагами:
+1. выбрать registered source dataset ID и exact hash;
+2. назначить новый candidate dataset ID;
+3. определить разрешённые fields;
+4. запретить изменение IDs, sources и Bible references;
+5. обрабатывать resumable batches;
+6. сохранять raw response отдельно от normalized candidate;
+7. записывать model, date, parameters и prompt version;
+8. проверять count, IDs, types и references;
+9. формировать diff с `ru-current-v1`;
+10. выполнять human review;
+11. регистрировать candidate file/hashes после validation;
+12. публиковать только отдельным data release.
 
-1. выбрать exact registered source dataset ID и source hash;
-2. назначить новый candidate dataset ID до начала генерации;
-3. определить поля, которые разрешено переводить;
-4. запретить модели изменять ID, источники и библейские ссылки;
-5. обрабатывать данные небольшими возобновляемыми пакетами;
-6. сохранять сырой ответ отдельно от нормализованного кандидата;
-7. записывать модель, дату, параметры и версию prompt-шаблона;
-8. повторно проверять число записей, ID, типы полей и ссылки;
-9. формировать отчёт различий с `ru-current-v1`;
-10. проводить человеческую выборочную и содержательную проверку;
-11. регистрировать candidate file и hashes только после автоматической проверки;
-12. публиковать только через отдельный data-релиз после утверждения.
+Сбой не должен портить опубликованный файл. Script обязан иметь checkpoint/resume.
 
-Сбой посередине не должен портить уже опубликованный файл. Скрипт обязан поддерживать checkpoint и продолжение с последнего подтверждённого пакета.
+## Что нельзя автоматизировать без проверки
 
-## Что нельзя поручать модели без проверки
+- новые Bible references;
+- усиление/изменение смысла;
+- объединение книг в одну запись;
+- удаление неоднозначности;
+- замена source;
+- изменение stable ID;
+- выбор окончательного перевода.
 
-AI-перевод нельзя автоматически использовать для:
+## Future UI modes
 
-- добавления новых библейских ссылок;
-- усиления или изменения смысла толкования;
-- объединения разных книг в одну запись;
-- удаления неоднозначных мест;
-- замены источника;
-- изменения стабильного ID;
-- принятия решения, какой перевод является окончательным.
+Будущая архитектура может поддерживать:
 
-Такие изменения требуют сверки с исходником и отдельного редакторского решения.
+- выбор source dataset;
+- выбор current/alternative translation;
+- side-by-side comparison;
+- combined search with visible source/variant.
 
-## Сравнение вариантов
-
-Будущий интерфейс может позволить:
-
-- выбрать исходную базу;
-- выбрать текущий или альтернативный перевод;
-- открыть два варианта рядом;
-- выполнить объединённый поиск с явной подписью источника и варианта.
-
-Переключатель не реализуется до завершения D1.3–D1.4, полного validation контракта и отдельного функционального релиза. Активная база `data/divinity_code_ru.json` / `ru-current-v1` остаётся единственным опубликованным runtime-набором.
+Selector не реализуется до завершения D1.4, полного validation contract и отдельного functional release. `ru-current-v1` остаётся единственным runtime dataset.
 
 ## Критерии допуска нового перевода
 
-Новый вариант можно считать кандидатом на публикацию только когда:
+- зарегистрирован exact source ID/hash;
+- создан новый logical dataset ID и separate physical file;
+- current dataset не перезаписан;
+- count/identity объяснены;
+- automatic checks прошли;
+- diff report создан;
+- disputed wording/references проверены человеком;
+- provenance/rights не ухудшились;
+- существует rollback;
+- оформлены separate PR, data release и uNews patchnote.
 
-- сохранён зарегистрированный исходный набор и его hash;
-- создан новый logical dataset ID;
-- создана отдельная физическая версия, не перезаписывающая текущую;
-- число и идентичность записей объяснены;
-- автоматические проверки прошли;
-- сформирован отчёт различий;
-- спорные формулировки и ссылки проверены человеком;
-- права и происхождение данных не стали менее ясными;
-- существует точный откат;
-- изменение оформлено отдельным Pull Request, data-релизом и uNews-патчноутом.
+## Текущий этап
 
-## Текущее решение D1.2
+D1.1 provenance, D1.2 registry и D1.3 quality audit завершены.
 
-D1.2 дал однозначный ответ на текущие identity-вопросы:
+Следующий этап — **D1.4 two-book product architecture**. Он должен определить relationship двух книг, visible provenance, switching/combined/side-by-side UX, dataset-aware history/deep links, validation/cache/fallback и migration plan. Реализация selector требует отдельной functional phase.
 
-1. логический исходный набор: `source-divinity-code-en`;
-2. текущий опубликованный локализованный набор: `ru-current-v1`;
-3. canonical physical serialization: `source-divinity-code-en-bd2` / `data/bd2.json`;
-4. retained equivalent serialization: `source-divinity-code-en-db` / `data/db.json`;
-5. physical migration status: `planned-not-executed`;
-6. существующие данные не удаляются и не переименовываются.
-
-Будущие альтернативные переводы и пользовательский selector ещё не реализованы. Следующий этап — D1.3 data-quality audit design.
+D1.5 AI-assisted translation experiment начинается только после завершения D1.4.
