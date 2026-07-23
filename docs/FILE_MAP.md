@@ -16,40 +16,47 @@
 | `src/state.js` | Initial state and persisted preference restoration | Medium |
 | `src/storage.js` | Typed localStorage reads, writes and serialization | Medium |
 | `version.json` | Uncached deployed-version signal used by the PWA update flow | Low |
-| `tests/search.test.js` | Search ranking, filter and alias regression tests | Low |
-| `tests/runtime.test.js` | Visible version and form-submission contract tests | Low |
-| `tests/data.test.js` | Database loader and fallback tests | Low |
-| `tests/history.test.js` | Navigation, breadcrumbs and history regression tests | Low |
-| `tests/i18n.test.js` | Language fallback, translation and instruction-claim tests | Low |
-| `tests/presentation.test.js` | HTML escaping and hostile imported-data regression tests | Low |
-| `tests/pwa.test.js` | Service Worker, update, install and failure-handling tests | Low |
-| `tests/state.test.js` | Initial-state regression tests | Low |
-| `tests/storage.test.js` | localStorage serialization and fallback tests | Low |
-| `package.json` | Application version, dependency-free test command and ES-module mode | Low |
+| `tests/*.test.js` | Dependency-free regression tests | Low |
+| `package.json` | Application version, test command and ES-module mode | Low |
 | `data/divinity_code_ru.json` | Active published database | Critical |
 | `manifest.json` | PWA identity, scope, metadata and icons | Medium |
 | `sw.js` | Offline cache, immediate activation and runtime fetch strategy | High |
-| `favicon.svg` | Browser/site icon | Low |
-| `icon-192.png` | PWA icon | Low |
-| `icon-512.png` | PWA icon | Low |
-| `apple-touch-icon.png` | Apple home-screen icon | Low |
+| `favicon.svg`, `icon-*.png`, `apple-touch-icon.png` | Browser and PWA icons | Low |
 | `preview.jpg` | Social sharing preview | Low |
 | `.nojekyll` | GitHub Pages behavior | Medium |
 
-## Data and reports
+## Dataset registry and data evidence
 
 | Path | Status |
 |---|---|
-| `data/divinity_code_ru.json` | Active mixed-language localized and augmented runtime dataset; 4,086 records |
-| `data/bd2.json` | English source serialization A; canonical-path candidate for D1.2 |
-| `data/db.json` | English source serialization B; raw bytes differ, parsed/canonical JSON equals `bd2.json` |
-| `data/report.txt` | Historical generation/quality summary; not used by current runtime |
-| `docs/DATA_PROVENANCE.md` | Verified D1.1 hashes, Git history, comparisons, corrections, inferences and unknowns |
+| `data/datasets.json` | Machine-readable D1.2 registry; not loaded by the browser runtime |
+| `data/divinity_code_ru.json` | Physical ID `ru-current-v1-runtime`; active mixed-language localized and augmented runtime dataset; 4,086 records |
+| `data/bd2.json` | Physical ID `source-divinity-code-en-bd2`; canonical retained serialization of logical dataset `source-divinity-code-en` |
+| `data/db.json` | Physical ID `source-divinity-code-en-db`; retained equivalent compatibility serialization of the same logical dataset |
+| `data/report.txt` | Supporting ID `data-quality-report-v1`; historical generation/quality summary |
+| `docs/DATA_PROVENANCE.md` | D1.1 evidence: hashes, Git history, comparisons, corrections, inferences and unknowns |
+| `docs/DATASET_REGISTRY.md` | D1.2 identity, canonical selection, reference-audit, migration and rollback rules |
 | `scripts/validate-data-provenance.mjs` | Permanent byte/hash/schema/canonical-identity and field-difference validator |
+| `scripts/validate-dataset-registry.mjs` | Permanent registry/file/role/policy/runtime-isolation validator |
 
-No retained database or translation variant may be destructively replaced. D1 must assign stable dataset identity, source, language, version and transformation history before any migration or selector is implemented.
+Logical dataset IDs:
 
-The target logical topology is one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations. Equivalent serializations are one logical source dataset, not separate variants. See `docs/DATA_PROVENANCE.md` and `docs/TRANSLATION_WORKFLOW.md`.
+```text
+source-divinity-code-en
+ru-current-v1
+```
+
+Physical file IDs:
+
+```text
+source-divinity-code-en-bd2
+source-divinity-code-en-db
+ru-current-v1-runtime
+```
+
+`data/bd2.json` and `data/db.json` are raw-distinct but parsed/canonical-JSON equal. D1.2 selects `data/bd2.json` as the canonical maintained physical serialization through a project-governance decision. This does not prove historical originality. `data/db.json` remains retained and unchanged.
+
+No retained database or translation variant may be destructively replaced. The target logical topology is one canonical source dataset, one current localized dataset and up to two independent alternative Russian translations. Equivalent serializations are one logical source dataset, not separate variants.
 
 ## Planned translation tooling
 
@@ -64,15 +71,15 @@ Future D1 tooling may add:
 | `.env.example` | May contain only an empty variable name, never a real key |
 | translation manifests and reports | Must record source hash, model, prompt version, output hash and review status |
 
-Any such tooling belongs under a separate D1 implementation PR and must not be imported by the public browser application.
+Any such tooling belongs under a separate implementation PR and must not be imported by the public browser application.
 
 ## Versioning, handoff and restoration
 
 | Path or reference | Role |
 |---|---|
 | `WORK_STATUS.md` | Live cross-device and cross-chat task lock: active branch, actual progress, pause point and exact next action |
-| `docs/AI_GITHUB_WORKFLOW.md` | Binding priority order and execution protocol for any number of devices, chats and AI agents |
-| `VERSION.md` | Current release and documentation/automation baseline |
+| `docs/AI_GITHUB_WORKFLOW.md` | Binding priority order and execution protocol for devices, chats and AI agents |
+| `VERSION.md` | Current release and documentation/provenance/registry baseline |
 | `version.json` | Deployed runtime version check |
 | `versions/index.html` | User-facing saved-version launcher |
 | `versions/v3.0.0/` | Independently runnable pre-cleanup fallback |
@@ -83,41 +90,27 @@ Any such tooling belongs under a separate D1 implementation PR and must not be i
 
 `WORK_STATUS.md` is intentionally mutable and records current work. Git tags and Releases are immutable restoration sources. These roles must not be confused.
 
-The runnable `v3.0.0` directory contains only path and scope adaptations needed to operate under `/versions/v3.0.0/`.
-
 The direct stable source download is `https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip`.
 
 ## Playwright screenshot tooling
 
-The following files are development and CI tooling only. They are not imported by the public site, PWA or Service Worker.
+These files are development and CI tooling only. They are not imported by the public site, PWA or Service Worker.
 
 | Path | Role |
 |---|---|
 | `tools/screenshots/package.json` | Private isolated package, capture scripts and pinned Playwright dependency |
-| `tools/screenshots/package-lock.json` | Exact `1.61.1` lock for `@playwright/test`, `playwright` and `playwright-core` |
-| `tools/screenshots/playwright.config.mjs` | One-worker Chromium configuration, local HTTP server and artifact paths |
-| `tools/screenshots/prepare-artifacts.mjs` | Guarded cleanup and recreation of `artifacts/screenshots/` before a full run |
-| `tools/screenshots/capture.spec.mjs` | Allowlisted JSON scenario runner, assertions, PNG capture and manifest generation |
+| `tools/screenshots/package-lock.json` | Exact lock for screenshot tooling |
+| `tools/screenshots/playwright.config.mjs` | One-worker Chromium configuration and local HTTP server |
+| `tools/screenshots/prepare-artifacts.mjs` | Guarded artifact cleanup |
+| `tools/screenshots/capture.spec.mjs` | Allowlisted scenario runner, assertions, PNG capture and manifest generation |
 | `tools/screenshots/scenarios/*.json` | Factual desktop/mobile startup, search and alias scenarios |
 | `tools/screenshots/README.md` | Local and GitHub Actions usage guide |
-| `tools/screenshots/v23.8.7-selected-image.json` | Exact provenance of the approved patchnote screenshot |
+| `tools/screenshots/v23.8.7-selected-image.json` | Exact provenance of the approved screenshot |
 | `.github/workflows/capture-screenshots.yml` | Permanent read-only Chromium capture and artifact workflow |
-| `scripts/validate-screenshot-tooling.mjs` | Package/lock, workflow, scenario, cleanup and runtime-isolation validation |
-| `.gitignore` | Excludes browser dependencies, reports and screenshot artifacts |
+| `scripts/validate-screenshot-tooling.mjs` | Package, workflow, scenario and runtime-isolation validation |
+| `.gitignore` | Excludes browser dependencies, reports and generated artifacts |
 
 Generated artifacts are stored under `artifacts/screenshots/` and are never committed automatically.
-
-The permanent workflow uploads:
-
-```text
-images/*.png
-entries/*.json
-manifest.json
-playwright-results.json
-test-results/
-```
-
-The selected `23.8.7` image came from scenario `russian-alias-mobile`, source commit `d6cb082d8d1aa1990d26a9a5f72e6e61ae56fb47`.
 
 ## News, screenshot evidence and automation
 
@@ -125,10 +118,11 @@ The selected `23.8.7` image came from scenario `russian-alias-mobile`, source co
 |---|---|
 | `news/*.md` | Factual patchnotes discovered by uNews |
 | `news/*.{jpg,png}` | New real Telegram visuals stored beside their patchnotes |
-| `docs/SCREENSHOT_AUTOMATION.md` | Real-screenshot definition, implemented Playwright workflow and review contract |
-| `scripts/validate-project.mjs` | Repository, `WORK_STATUS`, screenshot tooling, provenance, database, patchnote and image validation |
+| `docs/SCREENSHOT_AUTOMATION.md` | Real-screenshot definition, Playwright workflow and review contract |
+| `scripts/validate-project.mjs` | Repository, handoff, screenshot tooling, provenance, active database, patchnote and image validation |
+| `scripts/validate-dataset-registry.mjs` | D1.2 registry validation required by CI |
 | `scripts/validate-patchnote-diff.mjs` | Requires a new patchnote and newly added screenshot evidence in each Pull Request |
-| `.github/workflows/validate.yml` | Automatic validation for pushes and Pull Requests |
+| `.github/workflows/validate.yml` | Automatic tests, project validation, registry validation, PR patchnote enforcement and syntax checks |
 | `.github/workflows/publish-v23.8.0.yml` | Immutable one-release workflow for tag and GitHub Release publication |
 | `.github/pull_request_template.md` | Review checklist including handoff and screenshot provenance |
 | `.github/CODEOWNERS` | Default repository owner for review routing |
@@ -139,7 +133,7 @@ The selected `23.8.7` image came from scenario `russian-alias-mobile`, source co
 |---|---|
 | `_archive/legacy-versions/` | UI iterations `002–019` |
 | `_archive/admin-versions/` | Admin prototypes `admin1–admin7` |
-| `_archive/old-data/` | Older database files and variants |
+| `_archive/old-data/` | Older database files and variants, including historical `db_v2` paths |
 | `_archive/source-files/` | PDFs and historical screenshots |
 
 Do not delete archived files as routine cleanup. Git history is valuable, but the archive also documents intermediate product decisions and may contain files that were never released separately.
@@ -153,18 +147,19 @@ Do not delete archived files as routine cleanup. Git history is valuable, but th
 | `AGENTS.md` | Binding instructions for future coding agents |
 | `README.md` | Entry point, current overview, installation, screenshots and stable download links |
 | `docs/PRODUCT_VISION.md` | Current mission, final product direction and data-preservation rules |
-| `docs/TRANSLATION_WORKFLOW.md` | Target translation variants, equivalent-serialization policy and safe DeepSeek-assisted workflow |
+| `docs/TRANSLATION_WORKFLOW.md` | Target translation variants and safe AI-assisted workflow |
 | `docs/DATA_PROVENANCE.md` | Verified D1.1 provenance, hashes, Git history and corrected dataset classification |
+| `docs/DATASET_REGISTRY.md` | Verified D1.2 logical/physical identities and migration policy |
 | `docs/SCREENSHOT_AUTOMATION.md` | Real screenshot and implemented Playwright workflow contract |
-| `VERSION.md` | Release and development version state |
+| `VERSION.md` | Release and baseline state |
 | `CHANGELOG.md` | User/project-visible change history |
 | `ROADMAP.md` | Completed work, next approved phase and later backlog |
 | `docs/PROJECT_STATE.md` | Detailed verified state and risks |
 | `docs/ARCHITECTURE.md` | Runtime design |
 | `docs/MODULARIZATION_PLAN.md` | Completed staged ES-module migration plan |
-| `docs/DATABASE_FORMAT.md` | Current data contract, classification and checks |
+| `docs/DATABASE_FORMAT.md` | Current data contract, registry classification and checks |
 | `docs/RELEASE_AND_ROLLBACK.md` | Safe release and recovery procedure |
-| `docs/HISTORICAL_CONTEXT.md` | Recovered earlier project description and its relationship to current docs |
+| `docs/HISTORICAL_CONTEXT.md` | Earlier project description and relationship to current docs |
 | `docs/NEWS_PUBLISHING.md` | uNews, Telegram and screenshot-provenance workflow |
 | `docs/CONTENT_AND_RIGHTS.md` | Boundary between original code and third-party content |
 | `THIRD_PARTY_NOTICES.md` | Public notice for source works and other third-party material |
