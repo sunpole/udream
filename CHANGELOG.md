@@ -1,5 +1,19 @@
 # Changelog
 
+## Documentation and registry update v23.8.9 — 2026-07-23
+
+- Added `data/datasets.json` as the machine-readable D1.2 registry for logical datasets, physical files, hashes, roles and policies.
+- Defined logical dataset IDs `source-divinity-code-en` and `ru-current-v1`.
+- Defined stable physical IDs for `data/bd2.json`, `data/db.json` and `data/divinity_code_ru.json`.
+- Selected `data/bd2.json` as the canonical maintained English serialization through a project-governance decision while explicitly not claiming historical originality.
+- Retained `data/db.json` as an equivalent compatibility serialization of the same logical English dataset.
+- Added `docs/DATASET_REGISTRY.md` with reference-audit, identity, future migration and rollback rules.
+- Added `scripts/validate-dataset-registry.mjs` to verify the registry against real bytes, hashes, canonical JSON, 4,086 ordered IDs, roles, policies and runtime isolation.
+- Required the new registry validator and syntax check in GitHub Actions.
+- Recorded the physical migration as `planned-not-executed`; no existing data file was removed, renamed or changed.
+- Synchronized README, product vision, roadmap, version, project state, database contract, translation workflow, file map and agent rules.
+- Kept application runtime, PWA, Service Worker, package metadata, saved versions, archives and all existing database records unchanged.
+
 ## Documentation and provenance update v23.8.8 — 2026-07-22
 
 - Added `docs/DATA_PROVENANCE.md` as the permanent D1.1 evidence record for all maintained files under `data/`.
