@@ -6,14 +6,15 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **COMPLETED** — D1.4 реализован; PR №31 ожидает успешных проверок и merge |
+| Состояние | **COMPLETED** — D1.4 реализован и повторно сверен с GitHub; PR №31 ожидает зелёных проверок и merge |
 | Рабочая ветка | `docs/two-book-architecture-d1.4` |
 | Открытый Pull Request | `#31` — `https://github.com/sunpole/udream/pull/31` |
 | Стабильный функциональный релиз | `v23.8.0` |
 | Документационный/architecture baseline | кандидат `23.8.11` |
 | Актуальный `main` при старте | `d6c7a070ecd6aec19b7841644cfdb80ac9f82de1` |
 | Активная задача | Issue #30 — D1.4 two-book product architecture |
-| Следующая точная задача | дождаться зелёных Actions, проверить diff и объединить PR №31 |
+| Последний проверенный branch head до этого checkpoint | `24bf2f828368ecd7a07a67e94699d7bd879c6c37` |
+| Следующая точная задача | дождаться `Validate uDream` на новом head, проверить итоговый diff и объединить PR №31 squash merge |
 
 ## Завершено фактически
 
@@ -30,7 +31,9 @@
 - определены visible provenance, dataset-aware URLs/history/sharing, atomic activation, cache isolation, fallback и rollback;
 - обновлены `ROADMAP.md` и `VERSION.md`;
 - создан factual patchnote `23.8.11` и новый real PNG exact architecture evidence;
-- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены.
+- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены;
+- 2026-07-24 повторно сверены `main`, PR №31, Issue №30, changed files, architecture JSON и permanent validator;
+- отсутствие зарегистрированного Actions run на предыдущем head зафиксировано; этот checkpoint-коммит предназначен для повторного запуска CI.
 
 ## Планируемые и фактические файлы
 
@@ -59,11 +62,11 @@
 
 ## Последний проверенный commit
 
-PR №31 открыт из существующей D1.4 ветки. Точный актуальный head определяется GitHub и должен совпадать с head, проверенным Actions перед merge.
+До повторного CI-checkpoint фактический head PR №31 был `24bf2f828368ecd7a07a67e94699d7bd879c6c37`. Новый head определяется GitHub после этого commit и должен совпасть с head, проверенным Actions перед merge.
 
 ## Следующий точный шаг
 
-Дождаться `Validate uDream` на текущем head PR №31, проверить полный changed-files список и protected paths. Не объединять при любой красной или незавершённой проверке.
+Дождаться `Validate uDream` на новом head PR №31, проверить полный changed-files список и protected paths. Не объединять при любой красной или незавершённой проверке.
 
 ## Главные запреты
 
