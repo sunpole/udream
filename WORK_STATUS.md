@@ -6,57 +6,78 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **READY** — незавершённой активной задачи нет |
-| Рабочая ветка | `main` |
-| Открытый Pull Request | нет |
+| Состояние | **IN_PROGRESS** — начат D1.4a second-book evidence and extraction contract |
+| Рабочая ветка | `docs/second-book-evidence-d1.4a` |
+| Открытый Pull Request | ещё не открыт |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Документационный/architecture baseline | `23.8.11` — D1.4 two-book architecture завершён |
-| Последнее завершённое изменение | PR #31, squash merge `897f89a325c9997f9046455a6df7336e82d2c7d8` |
-| Закрытая задача | Issue #30 — D1.4 completed |
-| Следующая утверждённая работа | second-book evidence and dataset preparation |
+| Текущий baseline | `23.8.11`; следующий документационный кандидат будет определён после фактического diff |
+| Актуальный `main` при старте | `20325ee0c3d60dbc90b88060dc26b201b6376e6f` |
+| Активная задача | Issue #32 — D1.4a second-book evidence and extraction contract |
+| Следующий точный шаг | собрать read-only identity, metadata и Git-history evidence для второго PDF, затем создать первый доказательный документ |
 
-## Завершённый этап D1.4
+## Цель
 
-- создан `docs/TWO_BOOK_ARCHITECTURE.md`;
-- создан machine-readable `docs/two-book-architecture.json`;
-- добавлен permanent `scripts/validate-two-book-architecture.mjs`;
-- GitHub Actions run №129 завершён успешно;
-- текущий default остаётся `ru-current-v1`;
-- второй сохранённый PDF классифицирован как retained evidence, но не готовый dataset;
-- global identity определена как `(dataset_id, record_id)`;
-- separate dataset switching выбран первым будущим functional mode;
-- combined search определён как federated по отдельным indexes без destructive JSON merge;
-- side-by-side comparison требует explicit reviewed relation map;
-- определены visible provenance, dataset-aware URLs/history/sharing, atomic activation, cache isolation, fallback и rollback;
-- factual uNews patchnote `23.8.11` и новый real PNG сохранены;
-- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены;
-- Issue #30 закрыт как completed.
+Подготовить проверяемую доказательную базу и безопасный extraction contract для второй сохранённой книги до создания нового logical dataset и до любой реализации selector, combined search или comparison UI.
+
+## Планировалось
+
+- проверить exact path, bytes, SHA-256 и PDF metadata второго сохранённого документа;
+- восстановить Git history появления и переименований файла;
+- проверить существующие упоминания названия, автора, edition и происхождения;
+- разделить сведения на доказанные факты, разумные выводы и неизвестное;
+- определить immutable raw-extraction output;
+- определить provenance manifest contract;
+- определить schema, local-ID и source-reference policy;
+- определить validation gates перед регистрацией нового dataset;
+- определить retention и rollback;
+- не создавать и не изменять данные на этом этапе.
+
+## Планируемые постоянные файлы
+
+- `WORK_STATUS.md`;
+- новый документ evidence/extraction contract под `docs/`;
+- при необходимости machine-readable contract под `docs/`;
+- при необходимости permanent validator под `scripts/`;
+- синхронизация `ROADMAP.md`, `VERSION.md` и связанных документов;
+- factual uNews patchnote и новое реальное изображение перед PR.
+
+## Критерии завершения
+
+- доказательства и неизвестное разделены честно;
+- second-book PDF identity и retained history зафиксированы;
+- extraction output и manifest contracts определены;
+- protected paths отсутствуют в diff;
+- существующие data files не изменены;
+- runtime, PWA, package metadata, `versions/` и `_archive/` не изменены;
+- validators и GitHub Actions зелёные;
+- PR объединён только после полного diff review;
+- Issue #32 закрыт completed;
+- `main/WORK_STATUS.md` возвращён в READY.
+
+## Что уже сделано
+
+- D1.4 завершён PR #31, squash merge `897f89a325c9997f9046455a6df7336e82d2c7d8`;
+- Issue #30 закрыт completed;
+- создан Issue #32 с точными границами D1.4a;
+- создана отдельная ветка `docs/second-book-evidence-d1.4a` от актуального `main`;
+- ранний handoff сохранён до начала исследования.
 
 ## Следующий точный шаг
 
-Следующую работу начинать только в новой отдельной ветке после создания Issue и обновления этого файла до `IN_PROGRESS`.
-
-Цель следующего этапа — подготовить доказательства и безопасный extraction contract для второй книги до создания logical dataset:
-
-1. зафиксировать точную identity/edition второй сохранённой работы настолько, насколько позволяют файлы и Git history;
-2. отделить доказанные сведения, разумные выводы и неизвестное;
-3. определить immutable raw-extraction output и provenance manifest;
-4. определить schema, local ID policy, source references, hashes и validation gates;
-5. не создавать registered dataset до появления фактического extraction output;
-6. не менять `ru-current-v1`, runtime, PWA или существующие data files;
-7. не реализовывать selector, combined search или comparison UI на этом этапе.
+Read-only проверить `_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf`: exact bytes, SHA-256, PDF metadata, Git history и все maintained references. Затем создать первый доказательный черновик без изменения PDF, данных или runtime.
 
 ## Главные запреты
 
-- не менять и не удалять существующие data files;
-- не считать наличие PDF готовым dataset;
-- не выполнять destructive merge книг;
-- не назначать одинаковые numeric IDs между книгами без evidence;
-- не менять runtime, PWA, Service Worker, package metadata, `versions/` или `_archive/`;
-- не начинать user-facing selector до готовности и регистрации второй базы;
-- не запускать AI-assisted translation experiment до отдельного утверждённого этапа;
-- не добавлять API keys или секреты.
+- не изменять существующие `data/` файлы;
+- не изменять или удалять PDF и `_archive/`;
+- не создавать registered second-book dataset без фактического extraction output;
+- не добавлять selector, combined search или comparison UI;
+- не назначать одинаковые numeric IDs между книгами;
+- не менять runtime, PWA, Service Worker, package metadata или `versions/`;
+- не запускать AI-assisted translation;
+- не добавлять API keys;
+- не заявлять source URL, edition или permissions без сохранённого evidence.
 
 ## Источник истины
 
-Реальные GitHub-факты — `main`, открытые Pull Request, commits, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
+Реальные GitHub-факты — `main`, текущая ветка, commits, Pull Request, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
