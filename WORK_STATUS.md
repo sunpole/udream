@@ -6,79 +6,57 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **COMPLETED** — D1.4 реализован и повторно сверен с GitHub; PR №31 ожидает зелёных проверок и merge |
-| Рабочая ветка | `docs/two-book-architecture-d1.4` |
-| Открытый Pull Request | `#31` — `https://github.com/sunpole/udream/pull/31` |
+| Состояние | **READY** — незавершённой активной задачи нет |
+| Рабочая ветка | `main` |
+| Открытый Pull Request | нет |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Документационный/architecture baseline | кандидат `23.8.11` |
-| Актуальный `main` при старте | `d6c7a070ecd6aec19b7841644cfdb80ac9f82de1` |
-| Активная задача | Issue #30 — D1.4 two-book product architecture |
-| Последний проверенный branch head до этого checkpoint | `24bf2f828368ecd7a07a67e94699d7bd879c6c37` |
-| Следующая точная задача | дождаться `Validate uDream` на новом head, проверить итоговый diff и объединить PR №31 squash merge |
+| Документационный/architecture baseline | `23.8.11` — D1.4 two-book architecture завершён |
+| Последнее завершённое изменение | PR #31, squash merge `897f89a325c9997f9046455a6df7336e82d2c7d8` |
+| Закрытая задача | Issue #30 — D1.4 completed |
+| Следующая утверждённая работа | second-book evidence and dataset preparation |
 
-## Завершено фактически
+## Завершённый этап D1.4
 
 - создан `docs/TWO_BOOK_ARCHITECTURE.md`;
 - создан machine-readable `docs/two-book-architecture.json`;
 - добавлен permanent `scripts/validate-two-book-architecture.mjs`;
-- validator включён в GitHub Actions и syntax checks;
-- текущий default зафиксирован как `ru-current-v1`;
-- второй PDF зафиксирован как retained evidence, но не готовый dataset;
+- GitHub Actions run №129 завершён успешно;
+- текущий default остаётся `ru-current-v1`;
+- второй сохранённый PDF классифицирован как retained evidence, но не готовый dataset;
 - global identity определена как `(dataset_id, record_id)`;
-- separate switching выбран первым будущим functional mode;
+- separate dataset switching выбран первым будущим functional mode;
 - combined search определён как federated по отдельным indexes без destructive JSON merge;
 - side-by-side comparison требует explicit reviewed relation map;
 - определены visible provenance, dataset-aware URLs/history/sharing, atomic activation, cache isolation, fallback и rollback;
-- обновлены `ROADMAP.md` и `VERSION.md`;
-- создан factual patchnote `23.8.11` и новый real PNG exact architecture evidence;
+- factual uNews patchnote `23.8.11` и новый real PNG сохранены;
 - существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены;
-- 2026-07-24 повторно сверены `main`, PR №31, Issue №30, changed files, architecture JSON и permanent validator;
-- отсутствие зарегистрированного Actions run на предыдущем head зафиксировано; этот checkpoint-коммит предназначен для повторного запуска CI.
-
-## Планируемые и фактические файлы
-
-Фактически изменены или добавлены:
-
-- `.github/workflows/validate.yml`;
-- `ROADMAP.md`;
-- `VERSION.md`;
-- `WORK_STATUS.md`;
-- `docs/TWO_BOOK_ARCHITECTURE.md`;
-- `docs/two-book-architecture.json`;
-- `scripts/validate-two-book-architecture.mjs`;
-- `news/2026-07-23-udream-v23-8-11-two-book-architecture.md`;
-- `news/2026-07-23-udream-v23-8-11-two-book-architecture.png`.
-
-## Критерии завершения перед merge
-
-- GitHub Actions полностью зелёные;
-- architecture validator проходит;
-- patchnote/new-image validation проходит;
-- diff не содержит `data/`, runtime, PWA, package metadata, `versions/` или `_archive/`;
-- PR №31 объединён squash merge;
-- Issue #30 закрыт completed;
-- `main/WORK_STATUS.md` возвращён в `READY`;
-- следующая approved phase названа явно.
-
-## Последний проверенный commit
-
-До повторного CI-checkpoint фактический head PR №31 был `24bf2f828368ecd7a07a67e94699d7bd879c6c37`. Новый head определяется GitHub после этого commit и должен совпасть с head, проверенным Actions перед merge.
+- Issue #30 закрыт как completed.
 
 ## Следующий точный шаг
 
-Дождаться `Validate uDream` на новом head PR №31, проверить полный changed-files список и protected paths. Не объединять при любой красной или незавершённой проверке.
+Следующую работу начинать только в новой отдельной ветке после создания Issue и обновления этого файла до `IN_PROGRESS`.
+
+Цель следующего этапа — подготовить доказательства и безопасный extraction contract для второй книги до создания logical dataset:
+
+1. зафиксировать точную identity/edition второй сохранённой работы настолько, насколько позволяют файлы и Git history;
+2. отделить доказанные сведения, разумные выводы и неизвестное;
+3. определить immutable raw-extraction output и provenance manifest;
+4. определить schema, local ID policy, source references, hashes и validation gates;
+5. не создавать registered dataset до появления фактического extraction output;
+6. не менять `ru-current-v1`, runtime, PWA или существующие data files;
+7. не реализовывать selector, combined search или comparison UI на этом этапе.
 
 ## Главные запреты
 
-- не менять существующие data files;
-- не извлекать и не генерировать вторую базу;
-- не менять runtime, PWA, Service Worker, package metadata, `versions/` или `_archive/`;
-- не добавлять user-facing selector;
+- не менять и не удалять существующие data files;
 - не считать наличие PDF готовым dataset;
-- не назначать одинаковые IDs между книгами без evidence;
-- не начинать DeepSeek translation experiment;
-- не добавлять API keys.
+- не выполнять destructive merge книг;
+- не назначать одинаковые numeric IDs между книгами без evidence;
+- не менять runtime, PWA, Service Worker, package metadata, `versions/` или `_archive/`;
+- не начинать user-facing selector до готовности и регистрации второй базы;
+- не запускать AI-assisted translation experiment до отдельного утверждённого этапа;
+- не добавлять API keys или секреты.
 
 ## Источник истины
 
-Реальные GitHub-факты — `main`, текущая ветка, commits, Pull Request, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
+Реальные GitHub-факты — `main`, открытые Pull Request, commits, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
