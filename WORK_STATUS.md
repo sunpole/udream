@@ -2,75 +2,83 @@
 
 Этот файл — единая оперативная точка продолжения разработки uDream с телефона, Windows, macOS, другого устройства или любого ИИ-чата.
 
-`ROADMAP.md` хранит общий план, `docs/PROJECT_STATE.md` — проверенное состояние продукта, а этот файл хранит живую текущую задачу и точный следующий шаг.
-
 ## Быстрый сигнал
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **READY** — незавершённой активной задачи нет |
-| Рабочая ветка | `main` |
-| Открытый Pull Request | нет |
+| Состояние | **COMPLETED** — D1.4 реализован и повторно сверен с GitHub; PR №31 ожидает зелёных проверок и merge |
+| Рабочая ветка | `docs/two-book-architecture-d1.4` |
+| Открытый Pull Request | `#31` — `https://github.com/sunpole/udream/pull/31` |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Документационный/data baseline | `23.8.10` — D1.3 data-quality audit завершён |
-| Последнее завершённое изменение | PR #29, squash merge `d4c100c8f3430bdfe57d294f3c81217efb5a4186` |
-| Закрытая задача | Issue #28 — D1.3 completed |
-| Следующая утверждённая задача | D1.4 — two-book product architecture |
+| Документационный/architecture baseline | кандидат `23.8.11` |
+| Актуальный `main` при старте | `d6c7a070ecd6aec19b7841644cfdb80ac9f82de1` |
+| Активная задача | Issue #30 — D1.4 two-book product architecture |
+| Последний проверенный branch head до этого checkpoint | `24bf2f828368ecd7a07a67e94699d7bd879c6c37` |
+| Следующая точная задача | дождаться `Validate uDream` на новом head, проверить итоговый diff и объединить PR №31 squash merge |
 
-## Завершённый этап D1.3
+## Завершено фактически
 
-- создан permanent read-only `scripts/audit-data-quality.mjs`;
-- созданы deterministic reports `reports/data-quality-audit.json` и `reports/data-quality-audit.md`;
-- GitHub Actions проверяет report freshness и structural gate;
-- проверены logical datasets `source-divinity-code-en` и `ru-current-v1`;
-- подтверждены 4 086 unique ordered IDs `1–4086` в каждом наборе;
-- source/current IDs полностью aligned;
-- preserved fields `id`, `symbol`, `description`, `source`, `date_added` имеют 0 differences;
-- expected changed fields: aliases 4 083, notes 4 086, tags 4 086;
-- structural gate: PASS;
-- structural errors: 0;
-- warnings: 0;
-- human-review instances: 5 022 в пяти aggregated groups;
-- 5 022 — пересекающиеся кандидаты на source/human review, а не доказанные ошибки;
-- factual uNews patchnote `23.8.10` и новое real Chromium report image сохранены;
-- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены.
+- создан `docs/TWO_BOOK_ARCHITECTURE.md`;
+- создан machine-readable `docs/two-book-architecture.json`;
+- добавлен permanent `scripts/validate-two-book-architecture.mjs`;
+- validator включён в GitHub Actions и syntax checks;
+- текущий default зафиксирован как `ru-current-v1`;
+- второй PDF зафиксирован как retained evidence, но не готовый dataset;
+- global identity определена как `(dataset_id, record_id)`;
+- separate switching выбран первым будущим functional mode;
+- combined search определён как federated по отдельным indexes без destructive JSON merge;
+- side-by-side comparison требует explicit reviewed relation map;
+- определены visible provenance, dataset-aware URLs/history/sharing, atomic activation, cache isolation, fallback и rollback;
+- обновлены `ROADMAP.md` и `VERSION.md`;
+- создан factual patchnote `23.8.11` и новый real PNG exact architecture evidence;
+- существующие data files, runtime, PWA, package metadata, `versions/` и `_archive/` не изменены;
+- 2026-07-24 повторно сверены `main`, PR №31, Issue №30, changed files, architecture JSON и permanent validator;
+- отсутствие зарегистрированного Actions run на предыдущем head зафиксировано; этот checkpoint-коммит предназначен для повторного запуска CI.
 
-## Текущие зарегистрированные данные
+## Планируемые и фактические файлы
 
-```text
-source-divinity-code-en
-  canonical physical: data/bd2.json
-  retained equivalent: data/db.json
+Фактически изменены или добавлены:
 
-ru-current-v1
-  active runtime: data/divinity_code_ru.json
+- `.github/workflows/validate.yml`;
+- `ROADMAP.md`;
+- `VERSION.md`;
+- `WORK_STATUS.md`;
+- `docs/TWO_BOOK_ARCHITECTURE.md`;
+- `docs/two-book-architecture.json`;
+- `scripts/validate-two-book-architecture.mjs`;
+- `news/2026-07-23-udream-v23-8-11-two-book-architecture.md`;
+- `news/2026-07-23-udream-v23-8-11-two-book-architecture.png`.
 
-physical migration: planned-not-executed
-remove_or_rename_approved: false
-```
+## Критерии завершения перед merge
+
+- GitHub Actions полностью зелёные;
+- architecture validator проходит;
+- patchnote/new-image validation проходит;
+- diff не содержит `data/`, runtime, PWA, package metadata, `versions/` или `_archive/`;
+- PR №31 объединён squash merge;
+- Issue #30 закрыт completed;
+- `main/WORK_STATUS.md` возвращён в `READY`;
+- следующая approved phase названа явно.
+
+## Последний проверенный commit
+
+До повторного CI-checkpoint фактический head PR №31 был `24bf2f828368ecd7a07a67e94699d7bd879c6c37`. Новый head определяется GitHub после этого commit и должен совпасть с head, проверенным Actions перед merge.
 
 ## Следующий точный шаг
 
-Начать D1.4 только в новой отдельной ветке после создания/чтения Issue и обновления этого файла до `IN_PROGRESS`.
-
-D1.4 должна быть architecture-only и определить:
-
-- identity и provenance второй исходной книги;
-- separate switching, combined search и side-by-side modes;
-- visible source/dataset/translation provenance;
-- dataset-aware history, sharing и deep links;
-- validation, reload, cache-clearing и stable fallback contracts;
-- migration и rollback до любой user-facing реализации.
+Дождаться `Validate uDream` на новом head PR №31, проверить полный changed-files список и protected paths. Не объединять при любой красной или незавершённой проверке.
 
 ## Главные запреты
 
-- не менять и не удалять существующие data files;
-- не исправлять audit findings без отдельного evidence-based data PR;
-- не выполнять physical migration;
-- не реализовывать selector в architecture-only D1.4;
-- не начинать D1.5 AI-assisted translation до завершения D1.4;
-- не выдавать heuristic findings или неизвестный translation pipeline за доказанный факт.
+- не менять существующие data files;
+- не извлекать и не генерировать вторую базу;
+- не менять runtime, PWA, Service Worker, package metadata, `versions/` или `_archive/`;
+- не добавлять user-facing selector;
+- не считать наличие PDF готовым dataset;
+- не назначать одинаковые IDs между книгами без evidence;
+- не начинать DeepSeek translation experiment;
+- не добавлять API keys.
 
 ## Источник истины
 
-Реальные GitHub-факты — `main`, открытые Pull Request, commits, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
+Реальные GitHub-факты — `main`, текущая ветка, commits, Pull Request, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.

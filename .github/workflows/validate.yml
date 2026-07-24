@@ -37,6 +37,9 @@ jobs:
       - name: Validate D1.3 deterministic data-quality reports
         run: node scripts/audit-data-quality.mjs --check
 
+      - name: Validate D1.4 two-book architecture
+        run: node scripts/validate-two-book-architecture.mjs
+
       - name: Require a new uNews patchnote for Pull Request changes
         if: ${{ github.event_name == 'pull_request' }}
         env:
@@ -69,6 +72,7 @@ jobs:
           node --check scripts/validate-data-provenance.mjs
           node --check scripts/validate-dataset-registry.mjs
           node --check scripts/audit-data-quality.mjs
+          node --check scripts/validate-two-book-architecture.mjs
           node --check scripts/validate-patchnote-diff.mjs
           node --check scripts/validate-screenshot-tooling.mjs
           node --check tools/screenshots/playwright.config.mjs
