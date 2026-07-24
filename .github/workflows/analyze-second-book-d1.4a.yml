@@ -1,0 +1,105 @@
+name: Analyze second book D1.4a
+
+on:
+  push:
+    branches:
+      - docs/second-book-evidence-d1.4a
+    paths:
+      - .github/workflows/analyze-second-book-d1.4a.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PDF tools
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Analyze retained second-book PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          PDF="_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf"
+          OUT="artifacts/d1.4a"
+          mkdir -p "$OUT"
+
+          test -f "$PDF"
+          stat --printf='bytes=%s\n' "$PDF" | tee "$OUT/file-identity.txt"
+          sha256sum "$PDF" | tee -a "$OUT/file-identity.txt"
+          file "$PDF" | tee -a "$OUT/file-identity.txt"
+          pdfinfo "$PDF" | tee "$OUT/pdfinfo.txt"
+          pdftotext -layout "$PDF" "$OUT/extracted.txt"
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import re
+          import statistics
+
+          text_path = Path('artifacts/d1.4a/extracted.txt')
+          text = text_path.read_text(encoding='utf-8', errors='replace')
+          pages = text.split('\f')
+          if pages and not pages[-1].strip():
+              pages.pop()
+          counts = [len(page.strip()) for page in pages]
+          word_counts = [len(re.findall(r"\b\w+\b", page, flags=re.UNICODE)) for page in pages]
+          substantial = sum(count >= 80 for count in counts)
+          ratio = substantial / len(counts) if counts else 0
+          headings = []
+          seen = set()
+          for page_number, page in enumerate(pages, start=1):
+              for raw in page.splitlines():
+                  line = re.sub(r'\s+', ' ', raw).strip()
+                  if not 3 <= len(line) <= 90:
+                      continue
+                  if line.isupper() or re.match(r"^[A-Z][A-Za-z'’&:\- ]{3,}$", line):
+                      key = line.casefold()
+                      if key not in seen:
+                          seen.add(key)
+                          headings.append({'page': page_number, 'text': line})
+                  if len(headings) >= 100:
+                      break
+              if len(headings) >= 100:
+                  break
+
+          result = {
+              'page_count_from_text': len(pages),
+              'pages_with_substantial_text': substantial,
+              'searchable_page_ratio': round(ratio, 4),
+              'total_characters': sum(counts),
+              'total_words': sum(word_counts),
+              'median_nonempty_page_characters': statistics.median([c for c in counts if c > 0]) if any(counts) else 0,
+              'technical_conclusion': (
+                  'direct-text-extraction-viable' if ratio >= 0.85
+                  else 'hybrid-text-and-ocr-likely' if ratio >= 0.35
+                  else 'ocr-first-likely'
+              ),
+              'first_20_page_character_counts': counts[:20],
+              'heading_candidates': headings,
+              'samples': [
+                  {'page': i + 1, 'text': re.sub(r'\s+', ' ', pages[i]).strip()[:1200]}
+                  for i in sorted(set([0, 1, 2, 3, 4, len(pages)//2, max(0, len(pages)-2), max(0, len(pages)-1)]))
+                  if 0 <= i < len(pages)
+              ],
+          }
+          Path('artifacts/d1.4a/extractability.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          PY
+
+          git log --follow --date=iso-strict --format='%H%x09%aI%x09%s' -- "$PDF" | tee "$OUT/git-history.txt"
+          git log --all --name-status --date=iso-strict --format='commit %H %aI %s' -- '*Unlocking*' '*Dream-Student*' | tee "$OUT/path-history.txt"
+
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: udream-d1-4a-second-book-diagnostics
+          path: artifacts/d1.4a
+          retention-days: 30
