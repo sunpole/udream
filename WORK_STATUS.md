@@ -6,16 +6,16 @@
 
 | Поле | Текущее значение |
 |---|---|
-| Состояние | **COMPLETED** — D1.4a реализован в ветке; остаются финальная зелёная проверка и merge |
-| Рабочая ветка | `docs/second-book-evidence-d1.4a` |
-| Открытый Pull Request | `#33` — `https://github.com/sunpole/udream/pull/33` |
+| Состояние | **READY** — незавершённой активной задачи нет |
+| Рабочая ветка | `main` |
+| Открытый Pull Request | нет |
 | Стабильный функциональный релиз | `v23.8.0` |
-| Документационный/extraction baseline | кандидат `23.8.12` |
-| Актуальный `main` при старте | `20325ee0c3d60dbc90b88060dc26b201b6376e6f` |
-| Активная задача | Issue #32 — D1.4a second-book evidence and extraction contract |
-| Следующая утверждённая работа после merge | D1.4b — private/non-public raw-extraction pilot |
+| Документационный/extraction baseline | `23.8.12` — D1.4a завершён |
+| Последнее завершённое изменение | PR #33, squash merge `24cf1cf13dce580dbf628b05a3c160e1c716fd54` |
+| Закрытая задача | Issue #32 — D1.4a completed |
+| Следующая утверждённая задача | Issue #34 — D1.4b private/non-public raw-extraction pilot |
 
-## Завершено фактически
+## Завершённый этап D1.4a
 
 - проверен PDF `_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf`;
 - зафиксированы размер `740193` bytes, SHA-256 `edb4127915bf720ee56c96612f825ea4e0ef2f5fc15192a56fb96e5c7ec4745a`, Git blob и Git history;
@@ -23,34 +23,25 @@
 - searchable ratio: `1.0`;
 - технические метрики: 85 103 символа, 12 479 слов, median 1 520 символов на непустой странице;
 - технический вывод: `direct-text-extraction-viable`;
-- создан `docs/SECOND_BOOK_EVIDENCE.md`;
-- создан machine-readable `docs/second-book-evidence.json`;
-- создан `docs/SECOND_BOOK_EXTRACTION_CONTRACT.md`;
+- созданы `docs/SECOND_BOOK_EVIDENCE.md`, `docs/second-book-evidence.json` и `docs/SECOND_BOOK_EXTRACTION_CONTRACT.md`;
 - создан permanent validator `scripts/validate-second-book-evidence.mjs`;
-- validator подключён к GitHub Actions и syntax checks;
-- создан factual uNews patchnote `23.8.12`;
-- создан новый real Chromium PNG exact GitHub evidence page;
-- временные analysis/capture workflows удалены из итогового diff;
+- validator подключён к GitHub Actions;
+- factual uNews patchnote `23.8.12` и новый real Chromium PNG сохранены;
+- временные analysis/capture workflows удалены;
 - полный извлечённый текст книги не сохранён в репозитории;
-- существующие `data/`, PDF, runtime, PWA, Service Worker, package metadata, `versions/` и `_archive/` не изменены.
+- существующие `data/`, PDF, runtime, PWA, Service Worker, package metadata, `versions/` и `_archive/` не изменены;
+- GitHub Actions run №145 прошёл полностью;
+- PR #33 объединён, Issue #32 закрыт completed.
 
 ## Доказанный вывод
 
-Вторая сохранённая книга технически подходит для прямого page-aware extraction. Это не означает, что база уже готова: semantic record boundaries, aliases, source references, права публикации и человеческая проверка остаются отдельными gates.
+Вторая сохранённая книга технически подходит для прямого page-aware extraction. Это не означает, что готова новая база: semantic record boundaries, aliases, source references, права публикации и человеческая проверка остаются отдельными gates.
 
 ## Следующий точный шаг
 
-1. дождаться нового полного `Validate uDream` на финальном head PR #33;
-2. проверить полный changed-file list и отсутствие protected-path изменений;
-3. перевести PR #33 из draft в ready;
-4. объединить squash merge только после зелёных checks;
-5. закрыть Issue #32 completed;
-6. вернуть `main/WORK_STATUS.md` в `READY`;
-7. начать D1.4b только через отдельный Issue и новую ветку.
+Начать Issue #34 только в новой отдельной ветке после обновления этого файла до `IN_PROGRESS`.
 
-## Следующая фаза D1.4b
-
-D1.4b должна создать private/non-public immutable raw-extraction pilot:
+D1.4b должна выполнить private/non-public immutable raw-extraction pilot:
 
 - один UTF-8 файл на физическую страницу;
 - manifest с source hash, tool version, page hashes и aggregate hash;
@@ -61,21 +52,16 @@ D1.4b должна создать private/non-public immutable raw-extraction pi
 
 ## Главные запреты
 
-- не изменять существующие `data/` файлы;
-- не изменять или удалять исходный PDF и `_archive/`;
-- не сохранять полный извлечённый текст книги в публичном репозитории до rights review;
+- не коммитить полный извлечённый текст книги в публичный репозиторий;
+- не изменять существующие `data/` файлы, PDF или `_archive/`;
 - не создавать registered second-book dataset без immutable extraction output и review;
 - не добавлять selector, combined search или comparison UI;
 - не назначать одинаковые numeric IDs между книгами;
 - не менять runtime, PWA, Service Worker, package metadata или `versions/`;
 - не запускать AI-assisted translation;
-- не добавлять API keys;
+- не добавлять API keys или секреты;
 - не заявлять source URL, edition или permissions без сохранённого evidence.
-
-## Последний проверенный commit
-
-`ac9a44526017e3e9c3aed4bdd23962d11804a96f` — ветка содержит evidence, contract, validator, patchnote и новый real PNG; one-time workflows удалены.
 
 ## Источник истины
 
-Реальные GitHub-факты — `main`, текущая ветка, commits, Pull Request, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
+Реальные GitHub-факты — `main`, открытые Pull Request, commits, Actions и Issues — имеют приоритет над памятью ИИ, старыми чатами и локальными незапушенными изменениями.
