@@ -40,6 +40,9 @@ jobs:
       - name: Validate D1.4 two-book architecture
         run: node scripts/validate-two-book-architecture.mjs
 
+      - name: Validate D1.4a second-book evidence and extraction contract
+        run: node scripts/validate-second-book-evidence.mjs
+
       - name: Require a new uNews patchnote for Pull Request changes
         if: ${{ github.event_name == 'pull_request' }}
         env:
@@ -73,6 +76,7 @@ jobs:
           node --check scripts/validate-dataset-registry.mjs
           node --check scripts/audit-data-quality.mjs
           node --check scripts/validate-two-book-architecture.mjs
+          node --check scripts/validate-second-book-evidence.mjs
           node --check scripts/validate-patchnote-diff.mjs
           node --check scripts/validate-screenshot-tooling.mjs
           node --check tools/screenshots/playwright.config.mjs
