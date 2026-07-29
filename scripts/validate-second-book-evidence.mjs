@@ -160,9 +160,10 @@ async function validateFilesAgainstEvidence(evidence) {
   }
 
   const contract = await readFile(path.join(ROOT, CONTRACT_MD), "utf8");
+  const normalizedContract = contract.toLowerCase();
   for (const token of [
     "immutable raw extraction",
-    "second-book-en-YYYYMMDD-NNN",
+    "second-book-en-yyyymmdd-nnn",
     "local_id",
     "source_anchor",
     "provenance manifest",
@@ -170,7 +171,9 @@ async function validateFilesAgainstEvidence(evidence) {
     "federated combined search",
     "public repository storage is not approved",
   ]) {
-    if (!contract.includes(token)) fail(`${CONTRACT_MD}: missing required contract token ${token}`);
+    if (!normalizedContract.includes(token)) {
+      fail(`${CONTRACT_MD}: missing required contract token ${token}`);
+    }
   }
 
   for (const forbiddenPath of [
