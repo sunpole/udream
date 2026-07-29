@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "evidence_id": "second-book-retained-pdf-v1",
+  "generated_at": "2026-07-29T04:26:42Z",
+  "source_commit": "c4a35998a1c1ca4601f2293523ae18cb1343994a",
+  "document": {
+    "path": "_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf",
+    "bytes": 740193,
+    "raw_sha256": "edb4127915bf720ee56c96612f825ea4e0ef2f5fc15192a56fb96e5c7ec4745a",
+    "git_blob_sha": "c1d4b038b1d7efbe50d7b2ba8de8040e686a1e18",
+    "retention_status": "retained-evidence-not-dataset",
+    "metadata": {
+      "Author": "mann",
+      "Creator": "Microsoft® Word 2010",
+      "Producer": "Microsoft® Word 2010",
+      "CreationDate": "Wed Apr  6 21:46:43 2016 UTC",
+      "ModDate": "Wed Apr  6 21:46:43 2016 UTC",
+      "Custom Metadata": "no",
+      "Metadata Stream": "no",
+      "Tagged": "yes",
+      "UserProperties": "no",
+      "Suspects": "no",
+      "Form": "none",
+      "JavaScript": "no",
+      "Pages": "55",
+      "Encrypted": "no",
+      "Page size": "612 x 792 pts (letter)",
+      "Page rot": "0",
+      "File size": "740193 bytes",
+      "Optimized": "no",
+      "PDF version": "1.5"
+    },
+    "git_history": [
+      {
+        "commit": "15da7fd0422405d9ecdd27db8edc7b30cb6016a5",
+        "authored_at": "2026-05-25T00:25:42+03:00",
+        "message": "Clean repository structure"
+      },
+      {
+        "commit": "6204f8e202b4161c487055a83fe4e13f5e565292",
+        "authored_at": "2026-05-23T22:02:00+03:00",
+        "message": "Add files via upload"
+      }
+    ]
+  },
+  "text_layer": {
+    "tool": "pdftotext -layout (poppler-utils)",
+    "page_count_from_text": 55,
+    "pages_with_substantial_text": 55,
+    "searchable_page_ratio": 1.0,
+    "total_characters": 85103,
+    "total_words": 12479,
+    "median_nonempty_page_characters": 1520,
+    "nonempty_page_count": 55,
+    "line_count": 1428,
+    "heading_candidate_count": 147,
+    "short_heading_candidate_count": 565,
+    "colon_entry_candidate_count": 260,
+    "numbered_section_candidate_count": 0,
+    "first_20_page_character_counts": [
+      365,
+      1164,
+      2137,
+      1291,
+      1100,
+      817,
+      455,
+      1936,
+      1762,
+      2236,
+      1378,
+      1540,
+      2089,
+      1242,
+      1512,
+      1751,
+      1520,
+      868,
+      311,
+      1270
+    ],
+    "technical_conclusion": "direct-text-extraction-viable"
+  },
+  "claims": {
+    "proven": [
+      "the retained PDF has the recorded bytes and SHA-256 at the recorded source commit",
+      "the text-layer metrics were generated reproducibly with pdfinfo and pdftotext -layout",
+      "no existing dataset, runtime, PWA or archive file was modified by this analysis"
+    ],
+    "inference": [
+      "text-layer density indicates the likely extraction strategy but does not prove semantic database quality"
+    ],
+    "unknown": [
+      "authoritative external source URL and distribution permission evidence",
+      "confirmed edition identity beyond embedded PDF metadata and retained filename",
+      "final record boundaries, aliases and source references for a future dataset",
+      "whether limited OCR will be required for pages or elements with weak text extraction"
+    ]
+  },
+  "safety": {
+    "full_extracted_text_committed": false,
+    "existing_data_modified": false,
+    "runtime_modified": false,
+    "registered_dataset_created": false
+  }
+}

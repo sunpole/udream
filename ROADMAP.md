@@ -46,51 +46,16 @@ See `docs/MODULARIZATION_PLAN.md`.
 - [x] Create the immutable `v23.8.0` tag on the exact functional merge commit.
 - [x] Add a GitHub Release and documented rollback path.
 
-## Completed: unified documentation baseline v23.8.4
+## Completed: unified documentation and work process v23.8.4–v23.8.7
 
-- [x] Add one current product-vision document.
-- [x] Distinguish product mission, verified current state, next phase and later backlog.
-- [x] Synchronize maintained documentation with `v23.8.0`.
-- [x] Record non-destructive preservation rules for source datasets and translation variants.
-- [x] Mark the M1–M5 modularization plan as completed.
-- [x] Update the architecture, file map, database contract, historical context and coding-agent rules.
-- [x] Define the boundary of the next project series before implementation begins.
-- [x] Record the desired source/current/alternative translation model.
-- [x] Document safe DeepSeek API use without exposing the key in the static application.
-- [x] Add direct download links and clearer current-state information to the repository README.
-
-## Completed: cross-device work handoff v23.8.5
-
-- [x] Add root `WORK_STATUS.md` as the live handoff between phone, Windows, macOS and GitHub agents.
-- [x] Separate current task state from long-term roadmap, verified project state and immutable release checkpoints.
-- [x] Define `READY`, `IN_PROGRESS`, `PAUSED`, `BLOCKED` and `COMPLETED` states.
-- [x] Require planned work, actual work, branch, commit, checks, blockers and exact next action.
-- [x] Require a pushed handoff before switching devices or pausing unfinished work.
-- [x] Make every future agent read and update the handoff at task start, pause and completion.
-
-## Completed: unified AI/GitHub workflow v23.8.6
-
+- [x] Add a current product vision and non-destructive data/translation rules.
+- [x] Document safe DeepSeek-assisted translation without exposing keys in the public application.
+- [x] Add `WORK_STATUS.md` and a GitHub-first cross-device handoff protocol.
 - [x] Make real GitHub facts the highest-priority source of truth.
-- [x] Define one protocol for any number of devices, chats and AI agents.
-- [x] Require an early pushed `WORK_STATUS.md` lock before implementation.
-- [x] Prevent a new chat from creating a competing branch for the same active goal.
-- [x] Define which work the connected agent performs independently and when human input is required.
-- [x] Require new screenshot provenance metadata in patchnotes.
-- [x] Require a newly added PNG/JPEG in the same Pull Request instead of reusing an older image.
-- [x] Add structural validation for `WORK_STATUS.md`.
+- [x] Add isolated Playwright Chromium screenshot tooling and provenance.
+- [x] Require a new real image for every new uNews patchnote.
 
-See `docs/AI_GITHUB_WORKFLOW.md`.
-
-## Completed: Playwright screenshots v23.8.7
-
-- [x] Add isolated Playwright tooling outside the public runtime.
-- [x] Pin Playwright package and lockfile versions.
-- [x] Capture desktop and mobile screenshots from real Chromium.
-- [x] Define reusable JSON scenarios and visible assertions.
-- [x] Upload screenshots and provenance as workflow artifacts.
-- [x] Keep the permanent workflow read-only.
-
-See `docs/SCREENSHOT_AUTOMATION.md` and `tools/screenshots/README.md`.
+See `docs/PRODUCT_VISION.md`, `docs/AI_GITHUB_WORKFLOW.md` and `docs/SCREENSHOT_AUTOMATION.md`.
 
 ## Completed: D1.1 data provenance v23.8.8
 
@@ -137,22 +102,49 @@ See `docs/DATA_QUALITY_AUDIT.md` and `reports/data-quality-audit.md`.
 - [x] Define dataset-aware URL, history, sharing and legacy-link migration contracts.
 - [x] Define validation, atomic activation, cache isolation and automatic fallback to `ru-current-v1`.
 - [x] Define an explicit reviewed relation-map contract without numeric-ID assumptions.
-- [x] Define migration and rollback before any functional implementation.
-- [x] Add machine-readable `docs/two-book-architecture.json` and permanent validator.
+- [x] Add machine-readable architecture metadata and permanent validation.
 - [x] Preserve existing data files, runtime, PWA, package metadata, saved versions and archive unchanged.
 
 See `docs/TWO_BOOK_ARCHITECTURE.md`.
 
-## Next approved work: second-book evidence and dataset preparation
+## Completed: D1.4a second-book evidence and extraction contract v23.8.12
 
-Before any selector or combined-search implementation:
+- [x] Verify the retained PDF path, bytes, SHA-256, Git blob and Git history.
+- [x] Record PDF metadata and confirm 55 pages.
+- [x] Measure the direct text layer without committing the extracted book text.
+- [x] Confirm that all 55 pages contain substantial extractable text.
+- [x] Record a searchable-page ratio of `1.0`, 85,103 characters and 12,479 words.
+- [x] Classify the technical strategy as `direct-text-extraction-viable`.
+- [x] State that extractability does not prove semantic record boundaries, source rights or dataset readiness.
+- [x] Define immutable raw extraction, page-level provenance, local-ID, source-reference, validation, review, retention and rollback contracts.
+- [x] Add permanent machine-readable evidence and a validator locked to the exact retained PDF.
+- [x] Remove the one-time diagnostic workflow and keep full extracted text out of the repository.
+- [x] Keep existing data files, runtime, PWA, package metadata, saved versions and archive unchanged.
 
-- [ ] archive exact source/edition evidence and known distribution statements for the second retained work;
-- [ ] define a separate extraction task and immutable raw-output policy;
-- [ ] create a new logical dataset ID only after actual extraction exists;
-- [ ] validate schema, required fields, local IDs, record-count policy, hashes and source references;
-- [ ] register the second dataset without replacing `ru-current-v1`;
-- [ ] approve a separate functional phase for dataset switching only after data readiness.
+See `docs/SECOND_BOOK_EVIDENCE.md`, `docs/second-book-evidence.json` and `docs/SECOND_BOOK_EXTRACTION_CONTRACT.md`.
+
+## Next approved work: D1.4b private raw-extraction pilot
+
+The next bounded phase must not publish a second dataset yet.
+
+- [ ] Create a private or otherwise non-public immutable extraction run with one UTF-8 file per PDF page.
+- [ ] Generate the required manifest with source hash, tool version, page hashes, metrics and aggregate hash.
+- [ ] Preserve the exact 55-page boundary and stop when the source hash differs.
+- [ ] Use direct extraction as default and limited OCR only for explicitly flagged regions.
+- [ ] Produce a small reviewed segmentation sample from the beginning, middle and end of the book.
+- [ ] Define candidate record boundaries, page references and stable source anchors from evidence.
+- [ ] Keep full extracted text outside the public repository until rights/publication evidence is reviewed.
+- [ ] Do not register a logical dataset until schema, review and rights gates pass.
+- [ ] Keep `ru-current-v1` as the unchanged default and stable fallback.
+
+## Later data phases
+
+- [ ] Create and validate the full second-book candidate dataset with its own local IDs.
+- [ ] Register the second logical dataset in a separate data Pull Request.
+- [ ] Implement separate dataset selection in a functional release only after data readiness.
+- [ ] Add federated combined search over separate indexes without destructive JSON merging.
+- [ ] Add reviewed side-by-side comparison and explicit relation maps.
+- [ ] Show matching, additional, unique and possibly contradictory material without automatic harmonization.
 
 ## D1.5 — AI-assisted translation experiment
 

@@ -12,26 +12,31 @@
 - Active database: 4,086 records, unchanged
 - Previous checkpoint: `v23.7.0`
 
-## Documentation, data and architecture baseline
+## Documentation, data and extraction baseline
 
-`v23.8.11`
+`v23.8.12`
 
-- Status: D1.4 two-book architecture milestone; no new application build and no movement of the `v23.8.0` tag
-- Purpose: define safe multi-book identity, provenance, modes, routing, validation, caching, fallback and rollback before implementation
-- Human architecture: `docs/TWO_BOOK_ARCHITECTURE.md`
-- Machine-readable architecture: `docs/two-book-architecture.json`
-- Validator: `scripts/validate-two-book-architecture.mjs`
-- CI command: `node scripts/validate-two-book-architecture.mjs`
+- Status: D1.4a second-book evidence and extraction-contract milestone; no new application build and no movement of the `v23.8.0` tag
+- Purpose: prove whether the retained second-book PDF has an extractable text layer and define a non-destructive path to a separate dataset
+- Evidence document: `docs/SECOND_BOOK_EVIDENCE.md`
+- Machine-readable evidence: `docs/second-book-evidence.json`
+- Extraction contract: `docs/SECOND_BOOK_EXTRACTION_CONTRACT.md`
+- Validator: `scripts/validate-second-book-evidence.mjs`
+- CI command: `node scripts/validate-second-book-evidence.mjs`
+- Retained document: `_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf`
+- Exact bytes: `740193`
+- SHA-256: `edb4127915bf720ee56c96612f825ea4e0ef2f5fc15192a56fb96e5c7ec4745a`
+- PDF pages: `55`
+- Pages with substantial direct text: `55`
+- Searchable-page ratio: `1.0`
+- Extracted text metrics: `85103` characters, `12479` words
+- Technical conclusion: `direct-text-extraction-viable`
+- Important limitation: text-layer viability does not prove correct semantic record boundaries or publication rights
+- Second-book status: retained evidence, not a registered logical dataset
 - Current default dataset: `ru-current-v1`
-- Current source dataset: `source-divinity-code-en`
-- Second source work status: retained PDF evidence only; no registered second-book dataset exists
-- Global record identity: `(dataset_id, record_id)`
-- Recommended order: separate mode, then federated combined search, then reviewed side-by-side comparison
-- Combined search rule: independent indexes and provenance-preserving result federation; no destructive JSON merge
-- Comparison rule: explicit reviewed relation map; no numeric-ID equivalence across books
-- Stable fallback: `ru-current-v1`
-- Runtime/data policy: existing data files, runtime, PWA, package metadata, saved versions and archive remain unchanged
-- Previous baselines: D1.1 `23.8.8`, D1.2 `23.8.9`, D1.3 `23.8.10`
+- Existing data/runtime policy: unchanged; no selector, combined-search UI or second dataset is added by this milestone
+- Next practical phase: private or non-public immutable raw-extraction pilot with page files, manifest and reviewed segmentation sample
+- Previous baselines: D1.1 `23.8.8`, D1.2 `23.8.9`, D1.3 `23.8.10`, D1.4 `23.8.11`
 - Live handoff source: `WORK_STATUS.md`
 - Repository download: https://github.com/sunpole/udream/archive/refs/tags/v23.8.0.zip
 
@@ -39,9 +44,9 @@
 
 No functional application version is assigned after `v23.8.0`.
 
-Documentation, provenance, registry, audit and architecture updates `23.8.1` through `23.8.11` do not change application runtime, PWA behavior or existing database records.
+Documentation, provenance, registry, audit, architecture and extraction-safety updates `23.8.1` through `23.8.12` do not change application runtime, PWA behavior or existing database records.
 
-The next implementation phase must be approved separately. A second-book dataset must first be extracted, validated, registered and reviewed before selector, combined search or comparison UI work begins.
+A second-book dataset may be registered only after immutable raw extraction, provenance manifest, schema validation, source references, rights review and human review exist. User-facing switching or combined search remains a separate future functional release.
 
 ## Unified version line
 
