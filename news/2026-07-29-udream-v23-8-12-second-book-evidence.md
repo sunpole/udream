@@ -10,8 +10,8 @@ web_url: https://sunpole.github.io/udream/
 image: 2026-07-29-udream-v23-8-12-second-book-evidence.png
 image_source: document-render
 image_target: docs/SECOND_BOOK_EVIDENCE.md
-image_commit: c9879b2c4f38d33da2a1403ba8874ee126a781a6
-image_captured_at: 2026-07-29T04:40:00Z
+image_commit: e8c1f4754b739cd6d99331e5b07d90c600d1ee5a
+image_captured_at: 2026-07-29T04:36:29Z
 ---
 
 # uDream 23.8.12: вторая книга технически пригодна для прямого извлечения
