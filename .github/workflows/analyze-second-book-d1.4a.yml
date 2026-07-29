@@ -9,97 +9,200 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: analyze-second-book-d1-4a
+  cancel-in-progress: false
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    env:
+      PDF: _archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf
+      EVIDENCE_JSON: docs/second-book-evidence.json
+      EVIDENCE_MD: docs/SECOND_BOOK_EVIDENCE.md
+      WORKFLOW_FILE: .github/workflows/analyze-second-book-d1.4a.yml
+      BRANCH: docs/second-book-evidence-d1.4a
     steps:
-      - name: Checkout repository
+      - name: Checkout active branch
         uses: actions/checkout@v4
         with:
+          ref: docs/second-book-evidence-d1.4a
           fetch-depth: 0
 
       - name: Install PDF tools
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
 
-      - name: Analyze retained second-book PDF
+      - name: Analyze retained PDF without publishing book text
         shell: bash
         run: |
           set -euo pipefail
-          PDF="_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf"
-          OUT="artifacts/d1.4a"
-          mkdir -p "$OUT"
-
           test -f "$PDF"
-          stat --printf='bytes=%s\n' "$PDF" | tee "$OUT/file-identity.txt"
-          sha256sum "$PDF" | tee -a "$OUT/file-identity.txt"
-          file "$PDF" | tee -a "$OUT/file-identity.txt"
-          pdfinfo "$PDF" | tee "$OUT/pdfinfo.txt"
-          pdftotext -layout "$PDF" "$OUT/extracted.txt"
+          mkdir -p artifacts/d1.4a
+          pdfinfo "$PDF" > artifacts/d1.4a/pdfinfo.txt
+          pdftotext -layout "$PDF" artifacts/d1.4a/extracted.txt
 
           python3 - <<'PY'
           from pathlib import Path
+          from datetime import datetime, timezone
+          import hashlib
           import json
+          import os
           import re
           import statistics
+          import subprocess
 
+          pdf_path = Path(os.environ['PDF'])
           text_path = Path('artifacts/d1.4a/extracted.txt')
+          info_path = Path('artifacts/d1.4a/pdfinfo.txt')
+          evidence_json = Path(os.environ['EVIDENCE_JSON'])
+          evidence_md = Path(os.environ['EVIDENCE_MD'])
+
+          pdf_bytes = pdf_path.read_bytes()
+          raw_sha256 = hashlib.sha256(pdf_bytes).hexdigest()
           text = text_path.read_text(encoding='utf-8', errors='replace')
           pages = text.split('\f')
           if pages and not pages[-1].strip():
               pages.pop()
-          counts = [len(page.strip()) for page in pages]
-          word_counts = [len(re.findall(r"\b\w+\b", page, flags=re.UNICODE)) for page in pages]
-          substantial = sum(count >= 80 for count in counts)
-          ratio = substantial / len(counts) if counts else 0
-          headings = []
-          seen = set()
-          for page_number, page in enumerate(pages, start=1):
+
+          page_characters = [len(page.strip()) for page in pages]
+          page_words = [len(re.findall(r"\b\w+\b", page, flags=re.UNICODE)) for page in pages]
+          nonempty = [value for value in page_characters if value > 0]
+          substantial_pages = sum(value >= 80 for value in page_characters)
+          searchable_ratio = round(substantial_pages / len(pages), 4) if pages else 0
+
+          lines = []
+          heading_candidates = 0
+          short_heading_candidates = 0
+          colon_entry_candidates = 0
+          numbered_section_candidates = 0
+          for page in pages:
               for raw in page.splitlines():
                   line = re.sub(r'\s+', ' ', raw).strip()
-                  if not 3 <= len(line) <= 90:
+                  if not line:
                       continue
-                  if line.isupper() or re.match(r"^[A-Z][A-Za-z'’&:\- ]{3,}$", line):
-                      key = line.casefold()
-                      if key not in seen:
-                          seen.add(key)
-                          headings.append({'page': page_number, 'text': line})
-                  if len(headings) >= 100:
-                      break
-              if len(headings) >= 100:
-                  break
+                  lines.append(line)
+                  if 3 <= len(line) <= 90 and (
+                      line.isupper()
+                      or re.fullmatch(r"[A-Z][A-Za-z'’&:\- ]{3,}", line)
+                  ):
+                      heading_candidates += 1
+                  if 2 <= len(line.split()) <= 7 and len(line) <= 70:
+                      short_heading_candidates += 1
+                  if re.match(r"^[A-Za-z][A-Za-z'’&()\- ]{1,60}:\s+\S", line):
+                      colon_entry_candidates += 1
+                  if re.match(r"^(?:chapter|lesson|session|part)\s+\d+\b", line, flags=re.I):
+                      numbered_section_candidates += 1
 
-          result = {
-              'page_count_from_text': len(pages),
-              'pages_with_substantial_text': substantial,
-              'searchable_page_ratio': round(ratio, 4),
-              'total_characters': sum(counts),
-              'total_words': sum(word_counts),
-              'median_nonempty_page_characters': statistics.median([c for c in counts if c > 0]) if any(counts) else 0,
-              'technical_conclusion': (
-                  'direct-text-extraction-viable' if ratio >= 0.85
-                  else 'hybrid-text-and-ocr-likely' if ratio >= 0.35
-                  else 'ocr-first-likely'
-              ),
-              'first_20_page_character_counts': counts[:20],
-              'heading_candidates': headings,
-              'samples': [
-                  {'page': i + 1, 'text': re.sub(r'\s+', ' ', pages[i]).strip()[:1200]}
-                  for i in sorted(set([0, 1, 2, 3, 4, len(pages)//2, max(0, len(pages)-2), max(0, len(pages)-1)]))
-                  if 0 <= i < len(pages)
-              ],
+          metadata = {}
+          for raw in info_path.read_text(encoding='utf-8', errors='replace').splitlines():
+              if ':' not in raw:
+                  continue
+              key, value = raw.split(':', 1)
+              metadata[key.strip()] = value.strip()
+
+          history_output = subprocess.check_output([
+              'git', 'log', '--follow', '--date=iso-strict',
+              '--format=%H%x09%aI%x09%s', '--', str(pdf_path)
+          ], text=True).strip()
+          history = []
+          for row in history_output.splitlines():
+              if not row.strip():
+                  continue
+              sha, authored_at, message = row.split('\t', 2)
+              history.append({
+                  'commit': sha,
+                  'authored_at': authored_at,
+                  'message': message,
+              })
+
+          conclusion = (
+              'direct-text-extraction-viable'
+              if searchable_ratio >= 0.85
+              else 'hybrid-text-and-ocr-likely'
+              if searchable_ratio >= 0.35
+              else 'ocr-first-likely'
+          )
+
+          generated_at = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          evidence = {
+              'schema_version': 1,
+              'evidence_id': 'second-book-retained-pdf-v1',
+              'generated_at': generated_at,
+              'source_commit': os.environ.get('GITHUB_SHA', ''),
+              'document': {
+                  'path': str(pdf_path),
+                  'bytes': len(pdf_bytes),
+                  'raw_sha256': raw_sha256,
+                  'git_blob_sha': 'c1d4b038b1d7efbe50d7b2ba8de8040e686a1e18',
+                  'retention_status': 'retained-evidence-not-dataset',
+                  'metadata': metadata,
+                  'git_history': history,
+              },
+              'text_layer': {
+                  'tool': 'pdftotext -layout (poppler-utils)',
+                  'page_count_from_text': len(pages),
+                  'pages_with_substantial_text': substantial_pages,
+                  'searchable_page_ratio': searchable_ratio,
+                  'total_characters': sum(page_characters),
+                  'total_words': sum(page_words),
+                  'median_nonempty_page_characters': statistics.median(nonempty) if nonempty else 0,
+                  'nonempty_page_count': len(nonempty),
+                  'line_count': len(lines),
+                  'heading_candidate_count': heading_candidates,
+                  'short_heading_candidate_count': short_heading_candidates,
+                  'colon_entry_candidate_count': colon_entry_candidates,
+                  'numbered_section_candidate_count': numbered_section_candidates,
+                  'first_20_page_character_counts': page_characters[:20],
+                  'technical_conclusion': conclusion,
+              },
+              'claims': {
+                  'proven': [
+                      'the retained PDF has the recorded bytes and SHA-256 at the recorded source commit',
+                      'the text-layer metrics were generated reproducibly with pdfinfo and pdftotext -layout',
+                      'no existing dataset, runtime, PWA or archive file was modified by this analysis',
+                  ],
+                  'inference': [
+                      'text-layer density indicates the likely extraction strategy but does not prove semantic database quality',
+                  ],
+                  'unknown': [
+                      'authoritative external source URL and distribution permission evidence',
+                      'confirmed edition identity beyond embedded PDF metadata and retained filename',
+                      'final record boundaries, aliases and source references for a future dataset',
+                      'whether limited OCR will be required for pages or elements with weak text extraction',
+                  ],
+              },
+              'safety': {
+                  'full_extracted_text_committed': False,
+                  'existing_data_modified': False,
+                  'runtime_modified': False,
+                  'registered_dataset_created': False,
+              },
           }
-          Path('artifacts/d1.4a/extractability.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
-          print(json.dumps(result, ensure_ascii=False, indent=2))
+          evidence_json.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          title = metadata.get('Title') or 'не подтверждено метаданными'
+          author = metadata.get('Author') or 'не подтверждено метаданными'
+          pages_info = metadata.get('Pages') or str(len(pages))
+          history_first = history[-1] if history else None
+          first_commit = history_first['commit'] if history_first else 'не найден'
+          first_date = history_first['authored_at'] if history_first else 'не найдена'
+
+          md = f'''# Evidence второй сохранённой книги\n\n## Статус\n\nЭтот документ фиксирует воспроизводимые технические доказательства для `_archive/source-files/Unlocking-Your-Dream-Student-Ma.pdf`. Наличие PDF не означает, что для него уже существует готовая база.\n\n## Проверенная identity\n\n| Поле | Значение |\n|---|---|\n| Путь | `{pdf_path}` |\n| Размер | `{len(pdf_bytes)}` bytes |\n| SHA-256 | `{raw_sha256}` |\n| Git blob | `c1d4b038b1d7efbe50d7b2ba8de8040e686a1e18` |\n| PDF title metadata | `{title}` |\n| PDF author metadata | `{author}` |\n| PDF pages metadata | `{pages_info}` |\n| Первый сохранённый commit в доступной истории | `{first_commit}` |\n| Дата первого сохранённого commit | `{first_date}` |\n\n## Текстовый слой\n\nМетрики получены командой `pdftotext -layout`; полный текст книги не сохраняется в репозитории.\n\n| Метрика | Значение |\n|---|---|\n| Страниц в text output | `{len(pages)}` |\n| Страниц с >=80 символами | `{substantial_pages}` |\n| Searchable ratio | `{searchable_ratio}` |\n| Всего символов | `{sum(page_characters)}` |\n| Всего слов | `{sum(page_words)}` |\n| Медиана символов на непустой странице | `{statistics.median(nonempty) if nonempty else 0}` |\n| Кандидатов заголовков | `{heading_candidates}` |\n| Кандидатов строк `термин: описание` | `{colon_entry_candidates}` |\n| Технический вывод | `{conclusion}` |\n\n## Что доказано\n\n- PDF имеет зафиксированные bytes, SHA-256 и Git identity.\n- Текстовый слой можно измерять воспроизводимо без изменения исходного PDF.\n- Анализ не меняет существующие базы, runtime, PWA, `versions/` или `_archive/`.\n\n## Обоснованный вывод\n\n`{conclusion}` означает только выбор технической стратегии извлечения. Он не доказывает, что автоматическое разбиение сразу создаст качественную базу символов. Границы записей, ссылки на страницы и смысловые связи должны пройти отдельную проверку.\n\n## Что остаётся неизвестным\n\n- подтверждённый внешний URL источника и точные условия распространения;\n- подтверждённая edition identity сверх встроенных метаданных и имени файла;\n- окончательные record boundaries, aliases и source references;\n- понадобится ли ограниченный OCR для отдельных страниц или графических элементов.\n\n## Следующая граница\n\nДо регистрации нового logical dataset требуется отдельный immutable raw extraction, provenance manifest, validator, schema/local-ID policy и review отчёт. Текущий `ru-current-v1` остаётся неизменным default.\n'''
+          evidence_md.write_text(md, encoding='utf-8')
+          print(json.dumps(evidence, ensure_ascii=False, indent=2))
           PY
 
-          git log --follow --date=iso-strict --format='%H%x09%aI%x09%s' -- "$PDF" | tee "$OUT/git-history.txt"
-          git log --all --name-status --date=iso-strict --format='commit %H %aI %s' -- '*Unlocking*' '*Dream-Student*' | tee "$OUT/path-history.txt"
+          rm -rf artifacts
 
-      - name: Upload diagnostics
-        uses: actions/upload-artifact@v4
-        with:
-          name: udream-d1-4a-second-book-diagnostics
-          path: artifacts/d1.4a
-          retention-days: 30
+      - name: Commit evidence and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$EVIDENCE_JSON" "$EVIDENCE_MD"
+          git rm "$WORKFLOW_FILE"
+          git commit -m "docs: record second-book PDF evidence"
+          git push origin HEAD:"$BRANCH"
